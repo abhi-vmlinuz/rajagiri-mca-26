@@ -1,0 +1,7 @@
+*.o
+*.out
+*.exe
+
+# Ignore compiled binaries (no extension) in problem directories
+BrideCourse/C-programming/**/problem-*
+!BrideCourse/C-programming/**/*.c
