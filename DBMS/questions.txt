@@ -1,0 +1,204 @@
+Section 1: Familiarization with Oracle SQL Environment
+
+Part A: Basic SQL Commands
+
+1.  Display the message ‘Welcome to Oracle SQL’.
+
+2.  Display your name.
+
+3.  Display your register number.
+
+4.  Display your department name.
+
+5.  Display your college name.
+
+6.  Display the current date.
+
+7.  Display the current date and time.
+
+8.  Display the result of 25 + 35.
+
+9.  Display the result of 100 – 45.
+
+10. Display the result of 15 × 8.
+
+11. Display the result of 144 ÷ 12.
+
+12. Display the remainder when 27 is divided by 5.
+
+13. Display the square of 12.
+
+14. Display the cube of 5.
+
+15. Display the value of 2 raised to the power 10.
+
+16. Display your name in uppercase.
+
+17. Display your name in lowercase.
+
+18. Display your department name in uppercase.
+
+19. Find the length of your name.
+
+20. Extract the first three letters of your name.
+
+21. Extract the last four letters of your name.
+
+22. Concatenate:
+
+    1.  First Name
+
+    2.  Last Name
+
+23. Repeat your name twice using concatenation.
+
+24. Round 23.678 to:
+
+    1.  nearest integer
+
+    2.  two decimal places
+
+25. Find the absolute value of -125.
+
+26. Find the square root of 625.
+
+27. Find the greatest among:
+
+    1.  10, 25, 18
+
+28. Find the least among:
+
+    1.  10, 25, 18
+
+29. Generate a random number.
+
+30. Truncate:
+
+    1.  98.7654 to two decimal places
+
+31. Find:
+
+    1.  CEIL(12.3)
+
+    2.  FLOOR(12.9)
+
+32. Display today's date.
+
+33. Display current date and time.
+
+34. Display tomorrow's date.
+
+35. Display yesterday's date.
+
+36. Display date after 100 days.
+
+37. Display date before 75 days.
+
+38. Display current day name.
+
+39. Display current month name.
+
+40. Display current year.
+
+41. Display current week number.
+
+42. Display current quarter.
+
+43. Display first day of current month.
+
+44. Display last day of current month.
+
+45. Display first day of current year.
+
+46. Display next Sunday.
+
+47. Display next Monday.
+
+48. Display next Friday.
+
+49. Display the current date in ‘DD-MM-YYYY’ with 12-hour time format
+
+50. Add six months to current date.
+
+51. Add one year to current date.
+
+52. Find the number of days between two given dates.
+
+53. Find the number of months between two given dates.
+
+54. Display current date in DD-MM-YYYY format.
+
+55. Calculate your age in days using your date of birth.
+
+56. Calculate your age in months using your date of birth.
+
+57. Find the day on which you were born.
+
+58. Display the number of days remaining in the current year.
+
+59. Display the date exactly four years from today.
+
+60. Generate the following output using a single query:
+
+Today is Wednesday, 10 June 2026
+
+Current Time: 10:30:15
+
+Display current date in:
+
+- DD-MM-YYYY
+
+61. Display current date in:
+
+    - DD-MON-YYYY
+
+62. Display current date in:
+
+    - DAY, DD MONTH YYYY
+
+63. Display current time in:
+
+    - HH:MI:SS
+
+64. Display current date and time together.
+
+66. Display:
+
+**********
+ORACLE SQL
+**********
+
+67. Display a digital ID card:
+
+Name : XXXXX
+Department: MCA
+College : Rajagiri
+
+68. Generate a college email ID from your name.
+
+69. Display: Today is Monday, 04 August 2026
+
+70. Generate a student code using:
+
+    - First three letters of name
+
+    - Current year
+
+71. Display the current semester code:
+    Example:
+
+MCA2026S1
+
+76. Display current quarter of the year.
+
+77. Generate a password using:
+
+- first 3 letters of name
+
+- last 2 digits of birth year
+
+- random number
+
+************************************************************************
+
+End of Section 1
