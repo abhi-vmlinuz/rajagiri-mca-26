@@ -1,68 +1,397 @@
 1) select 'Welcome to Oracle SQL' as message from dual;
+
+MESSAGE
+---------------------
+Welcome to Oracle SQL
+
 2) select 'Abhishek Vincent' as name from dual;
+
+NAME
+----------------
+Abhishek Vincent
+
 3) select '26cs1***' as regno from dual;
+
+REGNO
+--------
+26cs1***
+
 4) select 'Computer Science' as dept from dual;
+
+DEPT
+----------------
+Computer Science
+
 5) select 'Rajagiri College of Arts and Science' as college from dual;
+
+COLLEGE
+------------------------------------
+Rajagiri College of Arts and Science
+
 6) select sysdate as today from dual;
+select sysdate as today from dual;
+
+TODAY
+---------
+15-JUL-26
+
 7) select to_char(sysdate,'DD-MM-YYYY HH:MI:SS AM') as current_datetime from dual;
+
+CURRENT_DATETIME
+----------------------
+15-07-2026 05:58:52 AM
+
 8) select 25+35 as result from dual;
+    RESULT
+----------
+	60
 9) select 100-45 as result from dual;
+
+    RESULT
+----------
+	55
+
 10) select 15*8 as result from dual;
+    RESULT
+----------
+       120
+
 11) select 144/12 as result from dual;
+
+    RESULT
+----------
+	12
+
 12) select mod(27,5) as remainder from dual;
+
+ REMAINDER
+----------
+	2
+
 13) select power(12,2) as square from dual;
+
+    SQUARE
+----------
+       144
+
 14) select power(5,3) as cube from dual;
+
+      CUBE
+----------
+       125
+
 15) select power(2,10) as result from dual;
+
+    RESULT
+----------
+      1024
+
 16) select upper('Abhishek Vincent') as uppercase_name from dual;
+UPPERCASE_NAME
+----------------
+ABHISHEK VINCENT
+
 17) select lower('Abhishek Vincent') as lowercase_name from dual;
+LOWER_NAME
+----------------
+abhishek vincent
+
 18) select upper('Computer Science') as uppercase_dept from dual;
+
+UPPERCASE_DEPT
+----------------
+COMPUTER SCIENCE
+
 19) select length('Abhishek Vincent') as name_length from dual;
+NAME_LENGTH
+-----------
+	16
+
 20) select substr('Abhishek Vincent',1,3) as first_three_letters from dual;
+
+FIR
+---
+Abh
+
 21) select substr('Abhishek Vincent',-4) as last_four_letters from dual;
+
+LAST
+----
+cent
+
 22) select 'Abhishek' || ' ' || 'Vincent' as full_name from dual;
+
+FULL_NAME
+----------------
+Abhishek Vincent
+
 23) select 'Abhishek Vincent' || ' ' || 'Abhishek Vincent' as repeated_name from dual;
+
+REPEATED_NAME
+---------------------------------
+Abhishek Vincent Abhishek Vincent
+
 24) select round(23.678) as nearest_integer, round(23.678,2) as two_decimals from dual;
+
+NEAREST_INTEGER TWO_DECIMALS
+--------------- ------------
+	    24        23.68
+
 25) select abs(-125) as absolute_value from dual;
+
+
+ABSOLUTE_VALUE
+--------------
+	  125
+
 26) select sqrt(625) as square_root from dual;
+
+
+SQUARE_ROOT
+-----------
+	25
+
 27) select greatest(10,25,18) as greatest_value from dual;
+GREATEST_VALUE
+--------------
+	   25
+
 28) select least(10,25,18) as least_value from dual;
+
+LEAST_VALUE
+-----------
+	10
+
 29) select dbms_random.value as random_number from dual;
+
+RANDOM_NUMBER
+-------------
+   .514303951
+
 30) select trunc(98.7654,2) as truncated_value from dual;
+
+TRUNCATED_VALUE
+---------------
+	 98.76
+
 31) select ceil(12.3) as ceil_result, floor(12.9) as floor_result from dual;
+
+
+CEIL_RESULT FLOOR_RESULT
+----------- ------------
+	13	     12
+
 32) select sysdate as today from dual;
+
+TODAY
+---------
+15-JUL-26
+
 33) select systimestamp as current_datetime from dual;
+
+
+CURRENT_DATETIME
+---------------------------------------------------------------------------
+15-JUL-26 06.07.03.810126 AM +00:00
+
 34) select sysdate+1 as tomorrow from dual;
+
+TOMORROW
+---------
+16-JUL-26
+
 35) select sysdate-1 as yesterday from dual;
+
+
+YESTERDAY
+---------
+14-JUL-26
+
 36) select sysdate+100 as date_after_100_days from dual;
+
+DATE_AFTE
+---------
+23-OCT-26
+
 37) select sysdate-75 as date_before_75_days from dual;
+
+
+DATE_BEFO
+---------
+01-MAY-26
+
 38) select to_char(sysdate,'DAY') as day_name from dual;
+
+DAY_NAME
+------------------------------------
+WEDNESDAY
+
 39) select to_char(sysdate,'MONTH') as month_name from dual;
+
+
+MONTH_NAME
+------------------------------------
+JULY
+
 40) select to_char(sysdate,'YYYY') as current_year from dual;
+
+CURR
+----
+2026
+
 41) select to_char(sysdate,'IW') as week_number from dual;
+
+WE
+--
+29
+
 42) select to_char(sysdate,'Q') as quarter from dual;
+
+
+Q
+-
+3
+
 43) select trunc(sysdate,'MM') as first_day_month from dual;
+
+FIRST_DAY
+---------
+01-JUL-26
+
 44) select last_day(sysdate) as last_day_month from dual;
+
+LAST_DAY_
+---------
+31-JUL-26
+
 45) select trunc(sysdate,'YYYY') as first_day_year from dual;
+
+
+FIRST_DAY
+---------
+01-JAN-26
+
 46) select next_day(sysdate,'SUNDAY') as next_sunday from dual;
+
+NEXT_SUND
+---------
+19-JUL-26
+
 47) select next_day(sysdate,'MONDAY') as next_monday from dual;
+
+NEXT_MOND
+---------
+20-JUL-26
+
 48) select next_day(sysdate,'FRIDAY') as next_friday from dual;
+
+
+NEXT_FRID
+---------
+17-JUL-26
+
 49) select to_char(sysdate,'DD-MM-YYYY HH:MI AM') as today_time from dual;
+
+TODAY_TIME
+-------------------
+15-07-2026 06:11 AM
+
 50) select add_months(sysdate,6) as after_six_months from dual;
+
+
+AFTER_SIX
+---------
+15-JAN-27
+
 51) select add_months(sysdate,12) as after_one_year from dual;
+AFTER_ONE
+---------
+15-JUL-27
+
 52) select to_date('15-07-2026','DD-MM-YYYY') - to_date('01-01-2026','DD-MM-YYYY') as days_between from dual;
+
+DAYS_BETWEEN
+------------
+	195
+
 53) select months_between(to_date('15-07-2026','DD-MM-YYYY'),to_date('01-01-2026','DD-MM-YYYY')) as months_between from dual;
+
+MONTHS_BETWEEN
+--------------
+     6.4516129
+
 54) select to_char(sysdate,'DD-MM-YYYY') as today_format from dual;
+
+TODAY_FORM
+----------
+15-07-2026
+
 55) select sysdate - to_date('12-02-2006','DD-MM-YYYY') as age_in_days from dual;
+
+AGE_IN_DAYS
+-----------
+ 7458.25883
+
 56) select months_between(sysdate,to_date('12-02-2006','DD-MM-YYYY')) as age_in_months from dual;
+AGE_IN_MONTHS
+-------------
+   245.105127
+
 57) select to_char(to_date('12-02-2006','DD-MM-YYYY'),'DAY') as birth_day from dual;
+BIRTH_DAY
+---------
+SUNDAY
+
 58) select to_date('31-12-2026','DD-MM-YYYY') - sysdate as days_remaining_year from dual;
+
+DAYS_REMAINING_YEAR
+-------------------
+	168.738507
+
 59) select add_months(sysdate,48) as four_years_later from dual;
+FOUR_YEAR
+---------
+15-JUL-30
+
 60) select 'Today is ' || to_char(sysdate,'DAY, DD MONTH YYYY') as line1, 'Current Time: ' || to_char(sysdate,'HH:MI:SS') as line2, 'Display current date in: ' || to_char(sysdate,'DD-MM-YYYY') as line3 from dual;
+
+LINE1
+--------------------------------------------------------------------------------
+LINE2		      LINE3
+---------------------- -----------------------------------
+Today is WEDNESDAY, 15 JULY	2026
+Current Time: 06:16:55 Display current date in: 15-07-2026
+
 61) select to_char(sysdate,'DD-MON-YYYY') as date_format from dual;
+
+DATE_FORMAT
+--------------------
+15-JUL-2026
+
 62) select to_char(sysdate,'DAY, DD MONTH YYYY') as date_format from dual;
+
+DATE_FORMAT
+--------------------------------------------------------------------------------
+WEDNESDAY, 15 JULY	2026
+
 63) select to_char(sysdate,'HH:MI:SS') as time_format from dual;
+
+
+TIME_FOR
+--------
+06:22:44
+
 64) select systimestamp as date_time_together from dual;
+
+DATE_TIME_TOGETHER
+---------------------------------------------------------------------------
+15-JUL-26 06.22.54.337966 AM +00:00
+
 66) select '*********' || CHR(10) || 'ORACLE SQL' || CHR(10) || '**********' as disp from dual;
+*********
+ORACLE SQL
+**********
+
 67) SELECT ' 172 │' AS id_card FROM dual
 UNION ALL
 SELECT ' 173 │ Name       : XXXXX' FROM dual
@@ -71,5 +400,17 @@ SELECT ' 174 │ Department : MCA' FROM dual
 UNION ALL
 SELECT ' 175 │ College    : Rajagiri' FROM dual;
 
+ID_CARD
+------------------------------------
+ 172 ???
+ 173 ??? Name	   : XXXXX
+ 174 ??? Department : MCA
+ 175 ??? College    : Rajagiri
+
 68) select lower(replace('abhishek',' ', '')) || '.' || lower('mca') || '@rajagiri.edu' as college_email from dual;
+
+COLLEGE_EMAIL
+-------------------------
+abhishek.mca@rajagiri.edu
+
 

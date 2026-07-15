@@ -1,0 +1,150 @@
+Date Functions in SQL
+
+Display current date
+
+SELECT SYSDATE FROM dual;
+
+Display current date in a specific format
+
+SELECT TO_CHAR(SYSDATE, 'DD-MM-YYYY') FROM dual;
+
+Display current date and time in 12-hour format
+
+SELECT TO_CHAR(SYSDATE, 'DD-MM-YYYY HH:MI:SS AM') FROM dual;
+
+Display current date and time in 24-hour format
+
+SELECT TO_CHAR(SYSDATE, 'DD-MM-YYYY HH24:MI:SS') FROM dual;
+
+Add 5 days
+
+SELECT SYSDATE + 5 FROM dual;
+
+Subtract 5 days
+
+SELECT SYSDATE - 5 FROM dual;
+
+Tomorrow
+
+SELECT SYSDATE + 1 FROM dual;
+
+Yesterday
+
+SELECT SYSDATE - 1 FROM dual;
+
+First day of current month
+
+SELECT TRUNC(SYSDATE, 'MM') FROM dual;
+
+Last day of current month
+
+SELECT LAST_DAY(SYSDATE) FROM dual;
+
+First day of current year
+
+SELECT TRUNC(SYSDATE, 'YYYY') FROM dual;
+
+First day of current week
+
+SELECT TRUNC(SYSDATE, 'IW') FROM dual;
+
+Next Sunday
+
+SELECT NEXT_DAY(SYSDATE, 'SUNDAY') FROM dual;
+
+Next Monday
+
+SELECT NEXT_DAY(SYSDATE, 'MONDAY') FROM dual;
+
+Next Friday
+
+SELECT NEXT_DAY(SYSDATE, 'FRIDAY') FROM dual;
+
+Current day number
+
+SELECT TO_CHAR(SYSDATE, 'DD') FROM dual;
+
+Current month number
+
+SELECT TO_CHAR(SYSDATE, 'MM') FROM dual;
+
+Current month name
+
+SELECT TO_CHAR(SYSDATE, 'MONTH') FROM dual;
+
+Current year
+
+SELECT TO_CHAR(SYSDATE, 'YYYY') FROM dual;
+
+Current day name
+
+SELECT TO_CHAR(SYSDATE, 'DAY') FROM dual;
+
+Current week number
+
+SELECT TO_CHAR(SYSDATE, 'WW') FROM dual;
+
+Current quarter
+
+SELECT TO_CHAR(SYSDATE, 'Q') FROM dual;
+
+Remove time part from current date
+
+SELECT TRUNC(SYSDATE) FROM dual;
+
+Round date to nearest day
+
+SELECT ROUND(SYSDATE) FROM dual;
+
+Round to nearest month
+
+SELECT ROUND(SYSDATE, 'MM') FROM dual;
+
+Difference between two dates
+
+SELECT DATE '2026-07-20' - SYSDATE AS Difference_In_Days FROM dual;
+
+Number of months between two dates
+
+  SELECT MONTHS_BETWEEN(DATE '2026-12-31', SYSDATE) AS Months_Difference
+  FROM dual;
+
+Check if today is before a given date
+
+  SELECT CASE
+
+  WHEN SYSDATE < DATE '2026-12-31' THEN 'Before'
+
+  ELSE 'After'
+
+  END AS Result
+
+  FROM dual;
+
+Check if today is after a given date
+
+  SELECT CASE
+
+  WHEN SYSDATE > DATE '2026-01-01' THEN 'After'
+
+  ELSE 'Before'
+
+  END AS Result
+
+  FROM dual;
+
+Database server date and time
+
+SELECT SYSDATE FROM dual;
+
+India time
+
+  SELECT TO_CHAR(
+
+  SYSTIMESTAMP AT TIME ZONE 'Asia/Kolkata',
+
+  'DD-MM-YYYY HH:MI:SS AM'
+
+  ) AS India_Time
+
+  FROM dual;
