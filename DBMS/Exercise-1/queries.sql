@@ -1,3 +1,4 @@
+drop table course;
 drop table faculty;
 drop table student;
 drop table dept;
@@ -26,5 +27,14 @@ create table faculty(
 	joining_date date default sysdate,
 	salary number(10,2) constraint salary_check check(salary > 1000),
 	email_id varchar2(20) constraint faculty_email_unique unique
+);
+
+create table course(
+	course_id varchar2(10) constraint course_pkey primary key,
+	course_name varchar2(20) constraint course_name_unique unique not null,
+	course_credits number(2) constraint course_credits_check check(course_credits between 1 and 6),
+	semester number(2) constraint semester_check check(semester between 1 and 8),
+	dept_id varchar2(10),
+	faculty_id varchar2(12)
 );
 
