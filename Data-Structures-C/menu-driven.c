@@ -36,6 +36,7 @@ void deletee()
 		printf("[%d] ",a[i]);
 	}
 	
+	// basic 
 	printf("\nEnter the element to delete: \n");
 	scanf("%d",&del);
 	for(i=0;i<n;i++){
@@ -45,6 +46,7 @@ void deletee()
 	}
 }
 int menu(){
+	// menu function for prompting user
 	int ch;
 	printf("\n1.Insert\n2.Display\n3.Search\n4.Delete\n5.Exit\nEnter your choice: ");
 	scanf("%d",&ch);
@@ -52,6 +54,7 @@ int menu(){
 }
 void process()
 {
+	// process menu with switch
 	int ch;
 	for(ch = menu();ch!=5;ch = menu()){
 		switch(ch){

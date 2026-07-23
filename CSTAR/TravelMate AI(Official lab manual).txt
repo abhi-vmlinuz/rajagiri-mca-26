@@ -1,0 +1,832 @@
+TravelMate AI
+Building Your First AI Agent using Tool Calling
+
+Introduction
+In this workshop, we will build a simple AI Travel Assistant using Python and
+the Groq API. Unlike a normal chatbot that only generates text, our AI agent
+can use external tools (functions) to answer user queries with real data.
+The Travel Assistant can:
+
+
+Check the weather for a city.
+
+
+
+Search available flights.
+
+
+
+Recommend hotels.
+
+
+
+Suggest popular tourist attractions.
+
+During this workshop, we will learn how to:
+
+
+Create custom Python functions (tools).
+
+
+
+Register those tools with an AI model.
+
+
+
+Allow the AI to decide which tool to use based on the user's question.
+
+
+
+Execute the selected tool and return the result to the AI.
+
+
+
+Generate a final, user-friendly response.
+
+By the end of this session, you will have built a basic agentic AI application that
+demonstrates how Large Language Models can interact with external tools to
+solve real-world tasks.
+
+Step 1 — Create the Project Folder
+Create a folder called TravelMateAI.
+Open the folder using Visual Studio Code.
+This folder will contain all files required for the project.
+
+Step 2 — Create a Virtual Environment
+Open the VS Code terminal.
+Run
+
+python -m venv venv
+Why?
+A virtual environment creates an isolated Python environment for this project.
+This prevents dependency conflicts between different Python projects.
+
+Step 3 – Activate the Virtual Environment
+On Windows, run:
+venv\Scripts\activate
+If successful, your terminal will look similar to:
+(venv) PS D:\TravelMateAI>
+Explanation
+Activating the virtual environment tells Python to use the packages installed
+specifically for this project.
+
+Step 4 – Create the Requirements File
+Create a new file called:
+requirements.txt
+
+Add the following inside requirements:
+openai==2.45.0
+python-dotenv==1.2.2
+Save the file.
+
+Finally run this IN THE TERMINAL:
+
+pip install -r requirements.txt
+
+Explanation
+The requirements.txt file stores a list of all the Python libraries required for the
+project.
+Using this file allows anyone to install every dependency with a single
+command.
+
+Step 5 – Create the Project Files
+Create the following files:
+main.py
+.env
+
+Step 6 – Add the API Key
+Inside the .env file write:
+GROQS_API_KEY=Paste_Your_API_Key_Here
+Replace Paste_Your_API_Key_Here with your own Groq API key.
+(Remember to copy your api key somewhere else because once its gone its
+gone forever)
+
+If you haven’t made the API key then do this first:
+1) Make an account on groq if you haven’t.
+2) after you made your account simply search on google for groq api keys.
+
+Click on Create Api Key , The variable name inside your .env file must match
+the name used in your Python code.
+then click on submit.
+
+This is the key u will paste in the env file.(Keep your API key private and never
+upload it to GitHub.)
+Paste it in the env file like this:
+GROQS_API_KEY=gsk_LGaDXiGlcd8gS5b1utoTWGd
+Pls note that I have named my api key GROQS_API_KEY with an S
+
+Explanation
+The .env file stores sensitive information such as API keys. Keeping API keys
+separate from the source code makes projects safer and easier to share.
+
+3. Importing Libraries
+Open main.py.
+Add the following code:
+from openai import OpenAI
+from dotenv import load_dotenv
+import os
+import json
+
+Explanation
+
+Library Purpose
+openai Connects Python to the Groq/OpenAI-compatible API.
+dotenv Reads the .env file.
+os
+
+Accesses environment variables such as the API key.
+
+json
+
+Converts tool arguments from JSON into Python dictionaries.
+
+If you got this far, great!! Now its time for the hard part.
+
+4. Creating the Travel Database
+What is a Database?
+A database is a collection of organized information.
+In real-world travel applications, this information is usually stored in MySQL,
+PostgreSQL, or MongoDB. However, to keep this workshop simple, we will use
+Python dictionaries as our database.
+Each dictionary stores information about different cities.
+
+Creating the Weather Database
+Add the following code below the import statements inside the main.py file.
+weather_data = {
+"Delhi": {
+"temperature": "36°C",
+"condition": "Sunny",
+
+"humidity": "40%"
+},
+"Mumbai": {
+"temperature": "29°C",
+"condition": "Rainy",
+"humidity": "85%"
+},
+"Bangalore": {
+"temperature": "24°C",
+"condition": "Cloudy",
+"humidity": "60%"
+},
+"Goa": {
+"temperature": "31°C",
+"condition": "Sunny",
+"humidity": "70%"
+}
+}
+
+Explanation
+
+The weather_data dictionary stores weather information for different cities.
+
+
+The key represents the city name.
+
+
+
+The value is another dictionary containing details such as:
+o
+
+Temperature
+
+o
+
+Weather condition
+
+o
+
+Humidity
+
+For example:
+weather_data["Goa"]
+returns
+{
+"temperature":"31°C",
+"condition":"Sunny",
+"humidity":"70%"}
+
+DO IT YOURSELF – 1
+Similar to the weather_data dictionary can you make the flight_data
+dictionary?
+
+Explanation
+This dictionary stores flight information for each destination.
+Each destination contains:
+
+
+Airline
+
+
+
+Price
+
+
+
+Flight Duration
+
+Example:
+flight_data["Delhi"]
+
+returns
+{
+"airline":"IndiGo",
+"price":"₹5,200",
+"duration":"2 hrs"
+}
+
+Heres a sneak peek:
+
+flight_data = {
+"Delhi": {
+"airline": "IndiGo",
+"price": "₹5,200",
+"duration": "2 hrs"
+},
+________
+
+}
+Q1: Can you fill in the blanks with flight_data of mumbai,Bangalore
+and Goa? Try solving it on your own before looking at the answer.
+
+Ans:
+flight_data = {
+"Delhi": {
+
+"airline": "IndiGo",
+"price": "₹5,200",
+"duration": "2 hrs"
+},
+"Mumbai": {
+"airline": "Air India",
+"price": "₹4,800",
+"duration": "1.5 hrs"
+},
+"Bangalore": {
+"airline": "Vistara",
+"price": "₹6,300",
+"duration": "2.5 hrs"
+},
+"Goa": {
+"airline": "Akasa Air",
+"price": "₹3,900",
+"duration": "1 hr"
+}
+}
+
+Creating the Hotel Database
+Add the hotel_data dictionary.
+Explanation
+Unlike the weather dictionary, each city can have multiple hotels.
+Because of this, each city stores a list of dictionaries.
+Example:
+hotel_data["Delhi"]
+returns
+[
+{
+"name":"The Grand Palace",
+"rating":4.8,
+"price":"₹4500/night"
+},
+
+{
+...
+}
+]
+
+Paste the following below the hotel_data:
+hotel_data = {
+"Delhi": [
+{
+"name": "The Grand Palace",
+"rating": 4.8,
+"price": "₹4500/night"
+},
+{
+"name": "City Comfort",
+"rating": 4.2,
+"price": "₹2800/night"
+}
+],
+
+"Mumbai": [
+{
+"name": "Sea View Hotel",
+"rating": 4.7,
+
+"price": "₹5200/night"
+}
+],
+
+"Bangalore": [
+{
+"name": "Skyline Suites",
+"rating": 4.5,
+"price": "₹3800/night"
+}
+],
+
+________
+}
+
+DO IT YOURSELF – 2
+Q2: Can you fill in the blanks with hotel_data of Goa?
+ANS:
+"Goa": [
+{
+"name": "Beach Paradise",
+"rating": 4.9,
+"price": "₹6000/night"
+}
+
+]
+
+Creating the Tourist Attractions Database
+Add the attractions_data dictionary.
+Explanation
+This dictionary stores a list of famous tourist attractions for each city.
+Unlike hotels, only the attraction names are stored.
+Example:
+attractions_data["Goa"]
+returns
+[
+"Baga Beach",
+"Fort Aguada",
+"Dudhsagar Falls"
+]
+Paste the following below attractions_data:
+attractions_data = {
+"Delhi": [
+"India Gate",
+"Red Fort",
+"Qutub Minar"
+],
+
+"Mumbai": [
+"Gateway of India",
+
+"Marine Drive",
+"Juhu Beach"
+],
+
+"Bangalore": [
+"Cubbon Park",
+"Lalbagh Botanical Garden",
+"Bangalore Palace"
+],
+
+"Goa": [
+"Baga Beach",
+"Fort Aguada",
+"Dudhsagar Falls"
+]
+}
+
+5. Creating AI Tools
+What is a Tool?
+A tool is simply a Python function that the AI model is allowed to use.
+Instead of generating every answer itself, the AI can call these functions
+whenever additional information is needed.
+In this project, we will create four tools:
+
+
+Get Weather
+
+
+
+Search Flights
+
+
+
+Find Hotels
+
+
+
+Get Attractions
+
+Tool 1 – Get Weather
+Add the following function after all the dictionary data .
+def get_weather(city):
+
+weather = weather_data.get(city)
+
+if weather is None:
+return "Sorry, weather information is not available."
+
+return (
+f"City: {city}\n"
+f"Temperature: {weather['temperature']}\n"
+f"Condition: {weather['condition']}\n"
+f"Humidity: {weather['humidity']}"
+)
+
+Understanding the Code
+Line 1
+def get_weather(city):
+This creates a Python function named get_weather.
+It accepts one parameter called city.
+Whenever someone asks for weather information, this function will be
+executed.
+
+Line 2
+weather = weather_data.get(city)
+The .get() method searches the dictionary using the city name.
+For example,
+weather_data.get("Goa")
+returns
+{
+"temperature":"31°C",
+"condition":"Sunny",
+"humidity":"70%"
+}
+If the city does not exist,
+weather_data.get("Paris")
+returns
+None
+instead of causing an error.
+
+Line 4
+return "Sorry, weather information is not available."
+
+Returns a friendly message to the user.
+
+Remaining Lines
+The remaining code creates a formatted string using Python f-strings.
+Instead of returning the raw dictionary, it produces readable output such as:
+City: Goa
+Temperature: 31°C
+Condition: Sunny
+Humidity: 70%
+
+Testing the Tool
+Temporarily add( u can delete it later):
+print(get_weather("Goa"))
+Expected Output:
+City: Goa
+Temperature: 31°C
+Condition: Sunny
+Humidity: 70%
+Try changing "Goa" to "Paris".
+Observe the output.
+
+DO IT YOURSELF – 3
+Q3) Can you write something similar for def search_flights(destination):
+ANS:
+def search_flights(destination):
+
+flight = flight_data.get(destination)
+
+if flight is None:
+return "Sorry, no flights are available for this destination."
+
+return (
+f"Destination: {destination}\n"
+f"Airline: {flight['airline']}\n"
+f"Price: {flight['price']}\n"
+f"Duration: {flight['duration']}"
+)
+
+Now copy the rest of the rest of the function code :
+
+def find_hotels(city):
+
+hotels = hotel_data.get(city)
+
+if hotels is None:
+return "Sorry, no hotels found for this city."
+
+result = f"Hotels in {city}:\n\n"
+
+for hotel in hotels:
+result += (
+f"Hotel: {hotel['name']}\n"
+f"Rating: ⭐ {hotel['rating']}\n"
+f"Price: {hotel['price']}\n\n"
+)
+
+return result
+
+def get_attractions(city):
+
+attractions = attractions_data.get(city)
+
+if attractions is None:
+return "Sorry, no tourist attractions found for this city."
+
+result = f"Top attractions in {city}:\n\n"
+
+for attraction in attractions:
+result += f"• {attraction}\n"
+
+return result
+
+6. Connecting to the Groq API
+Now that we have created our travel database and Python tools, we need to
+connect our application to a Large Language Model (LLM).
+In this workshop, we will use Llama 3.3 70B, which is hosted by Groq.
+The model will analyze the user's question and decide which tool should be
+executed.
+
+Step 1 – Load the API Key
+Add:
+load_dotenv()
+Explanation:
+load_dotenv() loads the API key stored in the .env file so Python can access it.
+
+Step 2 – Create the AI Client
+Add:
+client = OpenAI(
+api_key=os.getenv("GROQS_API_KEY"),
+base_url="https://api.groq.com/openai/v1"
+)
+
+Explanation:
+
+
+
+OpenAI() creates the API client.
+
+
+
+api_key reads your API key from the .env file.
+
+
+
+base_url tells the SDK to use Groq's API instead of OpenAI's.
+
+7. Registering the AI Tools
+Our Python functions already exist, but the AI doesn't know about them yet.
+We register them as tools so the model knows:
+
+
+What each function does
+
+
+
+When to use it
+
+
+
+What inputs it requires
+
+Step 1 – Create the Tools List
+Create a list to store all available tools:
+tools = [
+
+Add this code:
+tools = [
+{
+"type": "function",
+"function": {
+"name": "get_weather",
+"description": "Get the current weather for a city.",
+"parameters": {
+"type": "object",
+"properties": {
+
+"city": {
+"type": "string",
+"description": "Name of the city"
+}
+},
+"required": ["city"]
+}
+}
+},
+
+{
+"type": "function",
+"function": {
+"name": "search_flights",
+"description": "Find available flights to a destination.",
+"parameters": {
+"type": "object",
+"properties": {
+"destination": {
+"type": "string",
+"description": "Destination city"
+}
+},
+"required": ["destination"]
+}
+}
+
+},
+
+{
+"type": "function",
+"function": {
+"name": "find_hotels",
+"description": "Find hotels in a city.",
+"parameters": {
+"type": "object",
+"properties": {
+"city": {
+"type": "string",
+"description": "Name of the city"
+}
+},
+"required": ["city"]
+}
+}
+},
+
+{
+"type": "function",
+"function": {
+"name": "get_attractions",
+"description": "Get popular tourist attractions in a city.",
+"parameters": {
+
+"type": "object",
+"properties": {
+"city": {
+"type": "string",
+"description": "Name of the city"
+}
+},
+"required": ["city"]
+}
+}
+}
+]
+
+Explanation:
+
+
+type – Specifies that this is a Python function.
+
+
+
+name – Must exactly match the function name.
+
+
+
+description – Tells the AI when to use the tool.
+
+
+
+parameters – Defines the required inputs.
+
+
+
+required – Makes the city parameter mandatory.
+
+8. Sending the User's Question to the AI
+The following code allows the user to enter a travel-related question and sends
+it to the LLM.
+The AI analyzes the question and decides whether one of the registered tools
+should be used.
+
+Next copy paste this:
+
+user_question = input("You: ")
+
+#Ask the ai a question
+
+response = client.chat.completions.create(
+model="llama-3.3-70b-versatile",
+messages=[
+{
+"role": "user",
+"content": user_question
+}
+],
+tools=tools,
+tool_choice="auto"
+)
+message = response.choices[0].message
+
+# Did the AI choose a tool?
+if message.tool_calls:
+
+tool_call = message.tool_calls[0]
+
+tool_name = tool_call.function.name
+arguments = json.loads(tool_call.function.arguments)
+
+# Execute the correct tool
+if tool_name == "get_weather":
+
+tool_result = get_weather(arguments["city"])
+
+elif tool_name == "search_flights":
+tool_result = search_flights(arguments["destination"])
+
+elif tool_name == "find_hotels":
+tool_result = find_hotels(arguments["city"])
+
+elif tool_name == "get_attractions":
+tool_result = get_attractions(arguments["city"])
+
+else:
+tool_result = "Unknown tool."
+
+print("\n===== TOOL RESULT =====")
+print(tool_result)
+print("=======================\n")
+messages = [
+{
+"role": "user",
+"content": user_question
+},
+message,
+{
+"role": "tool",
+"tool_call_id": tool_call.id,
+
+"content": tool_result
+}
+]
+
+final_response = client.chat.completions.create(
+model="llama-3.3-70b-versatile",
+messages=messages
+)
+
+print("TravelMate AI:\n")
+print(final_response.choices[0].message.content)
+
+Run the program by typing python main.py in the terminal and ask it a
+question. Eg: what are some of the best hotels in Bangalore?
+
+Explanation
+
+
+input() accepts the user's question.
+
+
+
+client.chat.completions.create() sends the question to the Groq LLM.
+
+
+
+tools=tools gives the model access to all the registered tools.
+
+
+
+tool_choice="auto" lets the model automatically decide which tool to
+use.
+
+If the model selects a tool:
+
+
+The tool name and arguments are extracted.
+
+
+
+The corresponding Python function is executed.
+
+
+
+The tool's result is stored in tool_result.
+
+Finally, the program prints the information returned by the selected tool.
+
+Project Files
+The complete source code for this workshop has been provided separately as:
+
+TravelAI_Updated.zip
+
+The ZIP file contains:
+
+
+main.py
+
+
+
+.env.example
+
+
+
+requirements.txt
+
+
+
+README.md (optional)
+
+
+
+venv should NOT be included
+
+Project Structure
+TravelMate_AI/
+│
+├── main.py
+├── .env.example
+├── requirements.txt
+└── README.md
+
+Running the Project
+1. Extract the ZIP file.
+2. Open the project folder in VS Code.
+3. Create a virtual environment.
+4. Activate the virtual environment.
+5. Install the dependencies:
+pip install -r requirements.txt
+6. Rename .env.example to .env.
+7. Paste your Groq API key into the .env file.
+8. Run:
+python main.py
+
+
