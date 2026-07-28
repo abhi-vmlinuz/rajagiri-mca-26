@@ -20,6 +20,8 @@ char pop()
 
 char peek()
 {
+    if ( top == -1 )
+	return '#';
     return stack[top];
 }
 
