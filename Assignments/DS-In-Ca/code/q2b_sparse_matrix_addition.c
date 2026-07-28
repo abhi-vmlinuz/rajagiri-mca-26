@@ -1,108 +1,130 @@
 #include <stdio.h>
 
-#define MAX 100
+#define MAX 10
 
-void readSparseMatrix(int sparse[][3], int rows, int cols) {
-    int count = 0;
-    int value;
-    printf("Enter elements of matrix (%dx%d):\n", rows, cols);
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            scanf("%d", &value);
-            if (value != 0) {
-                sparse[++count][0] = i;
-                sparse[count][1] = j;
-                sparse[count][2] = value;
-            }
+void readMatrix(int mat[MAX][MAX], int rows, int cols)
+{
+    int i, j;
+
+    for(i = 0; i < rows; i++)
+    {
+        for(j = 0; j < cols; j++)
+        {
+            scanf("%d", &mat[i][j]);
         }
     }
+}
+
+int convertToSparse(int mat[MAX][MAX], int rows, int cols, int sparse[MAX*MAX][3])
+{
+    int i, j;
+    int k = 1;
+
     sparse[0][0] = rows;
     sparse[0][1] = cols;
-    sparse[0][2] = count;
-}
+    sparse[0][2] = 0;
 
-void addSparseMatrices(int sparse1[][3], int sparse2[][3], int result[][3]) {
-    int rows1 = sparse1[0][0], cols1 = sparse1[0][1], count1 = sparse1[0][2];
-    int rows2 = sparse2[0][0], cols2 = sparse2[0][1], count2 = sparse2[0][2];
+    for(i = 0; i < rows; i++)
+    {
+        for(j = 0; j < cols; j++)
+        {
+            if(mat[i][j] != 0)
+            {
+                sparse[k][0] = i;
+                sparse[k][1] = j;
+                sparse[k][2] = mat[i][j];
 
-    if (rows1 != rows2 || cols1 != cols2) {
-        printf("Matrices dimensions do not match for addition.\n");
-        result[0][2] = -1;
-        return;
-    }
-
-    result[0][0] = rows1;
-    result[0][1] = cols1;
-    int k = 0;
-    int i = 1, j = 1;
-
-    while (i <= count1 && j <= count2) {
-        if (sparse1[i][0] < sparse2[j][0] ||
-            (sparse1[i][0] == sparse2[j][0] && sparse1[i][1] < sparse2[j][1])) {
-            result[++k][0] = sparse1[i][0];
-            result[k][1] = sparse1[i][1];
-            result[k][2] = sparse1[i][2];
-            i++;
-        } else if (sparse1[i][0] > sparse2[j][0] ||
-                   (sparse1[i][0] == sparse2[j][0] && sparse1[i][1] > sparse2[j][1])) {
-            result[++k][0] = sparse2[j][0];
-            result[k][1] = sparse2[j][1];
-            result[k][2] = sparse2[j][2];
-            j++;
-        } else {
-            int sum = sparse1[i][2] + sparse2[j][2];
-            if (sum != 0) {
-                result[++k][0] = sparse1[i][0];
-                result[k][1] = sparse1[i][1];
-                result[k][2] = sum;
+                k++;
+                sparse[0][2]++;
             }
-            i++;
-            j++;
         }
     }
 
-    while (i <= count1) {
-        result[++k][0] = sparse1[i][0];
-        result[k][1] = sparse1[i][1];
-        result[k][2] = sparse1[i][2];
-        i++;
-    }
-
-    while (j <= count2) {
-        result[++k][0] = sparse2[j][0];
-        result[k][1] = sparse2[j][1];
-        result[k][2] = sparse2[j][2];
-        j++;
-    }
-
-    result[0][2] = k;
+    return k;
 }
 
-void printSparseMatrix(int sparse[][3]) {
-    if (sparse[0][2] == -1) return;
-    printf("Row\tCol\tValue\n");
-    for (int i = 1; i <= sparse[0][2]; i++) {
-        printf("%d\t%d\t%d\n", sparse[i][0], sparse[i][1], sparse[i][2]);
+void addMatrices(int a[MAX][MAX], int b[MAX][MAX], int result[MAX][MAX], int rows, int cols)
+{
+    int i, j;
+
+    for(i = 0; i < rows; i++)
+    {
+        for(j = 0; j < cols; j++)
+        {
+            result[i][j] = a[i][j] + b[i][j];
+        }
     }
 }
 
-int main() {
+void displaySparse(int sparse[MAX*MAX][3], int size)
+{
+    int i;
+
+    printf("\nTriplet Representation\n");
+
+    for(i = 0; i < size; i++)
+    {
+        printf("%d\t%d\t%d\n",
+               sparse[i][0],
+               sparse[i][1],
+               sparse[i][2]);
+    }
+}
+
+void displayMatrix(int mat[MAX][MAX], int rows, int cols)
+{
+    int i, j;
+
+    printf("\nMatrix\n");
+
+    for(i = 0; i < rows; i++)
+    {
+        for(j = 0; j < cols; j++)
+        {
+            printf("%d ", mat[i][j]);
+        }
+
+        printf("\n");
+    }
+}
+
+int main()
+{
     int rows, cols;
-    int sparse1[MAX][3], sparse2[MAX][3], result[MAX][3];
+    int a[MAX][MAX], b[MAX][MAX], result[MAX][MAX];
+    int sparse1[MAX * MAX][3];
+    int sparse2[MAX * MAX][3];
+    int sparseResult[MAX * MAX][3];
 
-    printf("Enter rows and columns: ");
-    scanf("%d %d", &rows, &cols);
+    int size1, size2, sizeResult;
 
-    printf("\n--- First Sparse Matrix ---\n");
-    readSparseMatrix(sparse1, rows, cols);
+    printf("Enter number of rows and columns: ");
+    scanf("%d%d", &rows, &cols);
 
-    printf("\n--- Second Sparse Matrix ---\n");
-    readSparseMatrix(sparse2, rows, cols);
+    printf("\nEnter first matrix:\n");
+    readMatrix(a, rows, cols);
 
-    addSparseMatrices(sparse1, sparse2, result);
+    printf("\nEnter second matrix:\n");
+    readMatrix(b, rows, cols);
 
-    printf("\n--- Resultant Sparse Matrix (Sum) ---\n");
-    printSparseMatrix(result);
+    size1 = convertToSparse(a, rows, cols, sparse1);
+    size2 = convertToSparse(b, rows, cols, sparse2);
+
+    addMatrices(a, b, result, rows, cols);
+
+    sizeResult = convertToSparse(result, rows, cols, sparseResult);
+
+    printf("\nFirst Matrix in Triplet Form:\n");
+    displaySparse(sparse1, size1);
+
+    printf("\nSecond Matrix in Triplet Form:\n");
+    displaySparse(sparse2, size2);
+
+    printf("\nResultant Triplet:\n");
+    displaySparse(sparseResult, sizeResult);
+
+    printf("\nResultant Sparse Matrix:\n");
+    displayMatrix(result, rows, cols);
 
     return 0;
 }
