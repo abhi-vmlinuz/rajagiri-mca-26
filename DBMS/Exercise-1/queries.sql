@@ -38,14 +38,14 @@ create table course(
 	course_name varchar2(20) constraint course_name_unique unique not null,
 	course_credits number(2) constraint course_credits_check check(course_credits between 1 and 6),
 	semester number(2) constraint semester_check check(semester between 1 and 8),
-	dept_id varchar2(10),
-	faculty_id varchar2(12)
+	dept_id varchar2(10) references depart,
+	faculty_id number(5)  references faculty
 );
 
 create table enrollment(
 	enrollment_id char(5) constraint enrl_primary_key primary key,
 	student_id char(5) references student(student_id),
-	course_id varchar2(10) references course(course_id),
+	course_id char(5) references course(course_id),
 	enrollment_date date default current_date,
 	academic_year number,
 	constraint unique_student_course unique (student_id, course_id)
@@ -53,7 +53,7 @@ create table enrollment(
 
 create table result(
 	result_id char(5) constraint result_primary_key primary key,
-	enrollment_id char(5) references enrollment(enrollment_id), 
+	enrollment_id char(5) references enrollment, 
 	internal_marks numeric constraint result_marks_check check (internal_marks between 0 and 50 ),
 	external_marks numeric constraint result_external_marks_check check (external_marks between 0 and 50),
 	grade char(1) constraint result_grade_check check (grade in ('A','B','C','D','F')),
