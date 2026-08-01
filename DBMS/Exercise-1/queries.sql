@@ -1,3 +1,6 @@
+drop table event;
+drop table result;
+drop table enrollment;
 drop table course;
 drop table faculty;
 drop table student;
@@ -37,4 +40,23 @@ create table course(
 	dept_id varchar2(10),
 	faculty_id varchar2(12)
 );
+
+create table enrollment(
+	enrollment_id char(5) constraint enrl_primary_key primary key,
+	student_id varchar2(20) references student(student_id),
+	course_id varchar2(10) references course(course_id),
+	enrollment_date date default current_date,
+	academic_year number,
+	constraint unique_student_course unique (student_id, course_id)
+);
+
+create table result(
+	result_id char(5) constraint result_primary_key primary key,
+	enrollment_id char(5) references enrollment(enrollment_id), 
+	internal_marks numeric constraint result_marks_check check (internal_marks between 0 and 50 ),
+	external_marks numeric constraint result_external_marks_check check (external_marks between 0 and 50),
+	grade char(1) constraint result_grade_check check (grade in ('A','B','C','D','F')),
+	result_status varchar2(10) constraint result_status_check check (result_status in ('PASS','FAIL'))
+);
+
 
