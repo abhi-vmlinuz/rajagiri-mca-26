@@ -38,7 +38,7 @@ create table course(
 	course_name varchar2(20) constraint course_name_unique unique not null,
 	course_credits number(2) constraint course_credits_check check(course_credits between 1 and 6),
 	semester number(2) constraint semester_check check(semester between 1 and 8),
-	dept_id varchar2(10) references depart,
+	dept_id varchar2(10) references dept,
 	faculty_id number(5)  references faculty
 );
 
