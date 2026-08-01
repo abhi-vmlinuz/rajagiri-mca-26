@@ -1,3 +1,4 @@
+drop table event_registration;
 drop table event;
 drop table result;
 drop table enrollment;
@@ -13,7 +14,7 @@ create table dept(
 	office_location varchar2(50)
 );
 create table student(
-	student_id varchar2(20) constraint student_pkey primary key,
+	student_id char(5) constraint student_pkey primary key,
 	dob date,
 	gender char(1) constraint student_gender_check check(gender in ('M','F')),
 	mobile_no numeric(13),
@@ -33,7 +34,7 @@ create table faculty(
 );
 
 create table course(
-	course_id varchar2(10) constraint course_pkey primary key,
+	course_id char(5) constraint course_pkey primary key,
 	course_name varchar2(20) constraint course_name_unique unique not null,
 	course_credits number(2) constraint course_credits_check check(course_credits between 1 and 6),
 	semester number(2) constraint semester_check check(semester between 1 and 8),
@@ -43,7 +44,7 @@ create table course(
 
 create table enrollment(
 	enrollment_id char(5) constraint enrl_primary_key primary key,
-	student_id varchar2(20) references student(student_id),
+	student_id char(5) references student(student_id),
 	course_id varchar2(10) references course(course_id),
 	enrollment_date date default current_date,
 	academic_year number,
@@ -59,4 +60,21 @@ create table result(
 	result_status varchar2(10) constraint result_status_check check (result_status in ('PASS','FAIL'))
 );
 
+create table event(
+	event_id char(5) constraint event_primary_key primary key,
+	event_name varchar2(40),
+	event_date date,
+	venue varchar2(50),
+	coordinator_faculty_id number(5) references faculty(faculty_id),
+	max_participants number,
+	registration_fee number
+);
+
+create table event_registration(
+	registration_id char(5) constraint event_reg_pkey primary key,
+	event_id char(5) references event,
+	student_id char(5) references student,
+	registration_date date default current_date,
+	participation_status varchar2(10) constraint event_reg_participation_check check (participation_status in ('REGISTERED','ATTENDED','ABSENT'))
+);
 
