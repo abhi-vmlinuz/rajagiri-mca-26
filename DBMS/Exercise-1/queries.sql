@@ -61,6 +61,7 @@ create table result(
 	enrollment_id char(5) references enrollment, 
 	internal_marks numeric constraint result_marks_check check (internal_marks between 0 and 50),
 	external_marks numeric constraint result_external_marks_check check (external_marks between 0 and 50),
+	total_marks numeric generated always as (internal_marks + external_marks),
 	grade char(1) constraint result_grade_check check (grade in ('A','B','C','D','F')),
 	result_status varchar2(10) constraint result_status_check check (result_status in ('PASS','FAIL'))
 );

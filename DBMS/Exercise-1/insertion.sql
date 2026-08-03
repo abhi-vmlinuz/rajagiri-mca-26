@@ -21,3 +21,18 @@ insert into student values ('S103','Jemima Eden',to_date('17-02-2005','DD-MM-YYY
 -- COURSE INSERTIONS
 insert into course(course_id, course_name, course_credits, semester, dept_id, faculty_id) values ('C101','Database Management Systems',4,3,'D01','F101');
 insert into course values ('C102','Object Oriented C++',4,1,'D01','F101');
+
+-- Enrollment insertions
+insert into enrollment(enrollment_id,student_id,course_id,academic_year) values ('E101','S101','C101','2026-2027');
+
+-- result insertions
+insert into result values ('R101','E101',45,50,'A','PASS',DEFAULT);
+
+-- event insertions
+insert all into event values ('E101','Euphoria',current_date,'Carmel Block','F101',100,200)
+ into event values ('E102','Gyanimesh',current_date,'Darshana','F102',200,20)
+ into event values ('E103','CSTAR event',to_date('27-08-2026','DD-MM-YYYY'),'Amigo','F103',60,0)
+ select * from dual;
+insert into event_registration values ('R101','E101','S101',current_date,'REGISTERED');
+
+create table high_cgpa_students as select * from student where cgpa >=8;
