@@ -52,7 +52,7 @@ create table enrollment(
 	student_id char(5) references student(student_id),
 	course_id char(5) references course(course_id),
 	enrollment_date date default current_date,
-	academic_year number,
+	academic_year varchar2(15),
 	constraint unique_student_course unique (student_id, course_id)
 );
 
