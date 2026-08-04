@@ -47,4 +47,25 @@ update faculty set salary = salary * 1.08 where designation = 'Assistant Profess
 update dept set office_location = 'Golden Aureole Block' where dept_name like 'Compu%';
 update course set course_credits = 5 where course_name like 'Data%';
 update course set faculty_id = 'F102' where faculty_id  = 'F101';
+update result set grade = 'A' where total_marks >= 80;
+update result set result_status = 'PASS' where total_marks >= 50;
+update event_registration set participation_status = 'ATTENDED' where participation_status = 'REGISTERED';
+update event set registration_fee = 0 where registration_fee is null;
+update enrollment set academic_year = '2026-2027';
+
+-- === PART C ===
+alter table student add address varchar2(200);
+alter table student add (city varchar2(15), state varchar2(15));
+alter table faculty add experience_years numeric;
+alter table student modify student_name varchar2(100);
+-- need a temp table to store exisitng ph.nos
+alter table student add temp varchar2(15);
+-- back up the values
+update student set temp = to_char(mobile_no);
+-- drop then rename back to mobile_no
+alter table student drop column mobile_no;
+alter table student rename column temp to mobile_no;
+-- continuing with the questions:
+alter table student rename column mobile_no to contact_number;
+alter table course rename column course_name to course_title;
 
