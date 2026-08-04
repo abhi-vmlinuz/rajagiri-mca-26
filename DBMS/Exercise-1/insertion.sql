@@ -68,4 +68,12 @@ alter table student rename column temp to mobile_no;
 -- continuing with the questions:
 alter table student rename column mobile_no to contact_number;
 alter table course rename column course_name to course_title;
+alter table faculty drop column qualification;
+alter table faculty add constraint check_salary check (faculty > 0);
+alter table event modify event_name not null;
+alter table student add constraint contact_uni unique(contact_number);
+rename event to college_event;
+rename college_event to event;
+alter table faculty add hod_faculty_id varchar2(5);
+alter table dept add constraint foreignKey foreign key (hod_faculty_id) references faculty(faculty_id);
 
