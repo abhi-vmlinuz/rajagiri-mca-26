@@ -1,3 +1,4 @@
+-- === PART A ====
 -- DEPT INSERTIONS
 insert into dept values ('D01','Computer Science','Dr Anil Kumar',987654321,'Carmel Block');
 insert into dept(dept_id, dept_name, office_location) values ('D03','Bio Science','Carmel Block');
@@ -5,7 +6,7 @@ insert into dept values ('D02','MSW','Dr Reji John',987654321,'Assumption Block'
 insert into dept values ('D04','Statistics','Mr Dilijith K Benny',987654321,'Assumption Block');
 insert into dept values ('D05','Social Work','Mr Roshy Augustin',987654321,'Assumption Block');
 
--- FACULTY INSERTIONS (Must be inserted before Student/Course for Foreign Keys)
+-- FACULTY INSERTIONS
 insert into faculty values ('F101','Dr Shiju Thomas','Ph.D','Professor',current_date,67000,'professor.shiju@edu','D01');
 insert into faculty values ('F102','Meera Joseph','PhD','Assistant Professor',to_date('01-06-2022','DD-MM-YYYY'),55000,'meera@rajagiri.edu','D01');
 insert all 
@@ -36,3 +37,14 @@ insert all into event values ('E101','Euphoria',current_date,'Carmel Block','F10
 insert into event_registration values ('R101','E101','S101',current_date,'REGISTERED');
 
 create table high_cgpa_students as select * from student where cgpa >=8;
+
+-- === PART B ====
+update student set CGPA = 8.7 where student_id = 'S101';
+update student set mobile_no = 9142327534, email_id = 'test@gmail.com' where student_id = 'S101';
+update faculty set salary = salary + 5000 where faculty_id = 'F101';
+update faculty set salary = salary * 1.10;
+update faculty set salary = salary * 1.08 where designation = 'Assistant Professor';
+update dept set office_location = 'Golden Aureole Block' where dept_name like 'Compu%';
+update course set course_credits = 5 where course_name like 'Data%';
+update course set faculty_id = 'F102' where faculty_id  = 'F101';
+
