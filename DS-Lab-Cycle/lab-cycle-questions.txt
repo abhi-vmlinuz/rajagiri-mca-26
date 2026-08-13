@@ -1,0 +1,58 @@
+﻿DS Lab Cycle
+Section 1: Basics
+
+
+1. Write programs to demonstrate the use of storage classes (local variable, global variable, static variable, register variable) in C.
+2. Use a menu-driven program to insert, search, delete and sort elements in an array using functions (use global variables) 
+3. Use a menu-driven program to insert, search, delete and sort elements in an array using functions (use only local variables) 
+4. Search for all the occurrences of an element in an integer array (positions) 
+5. Sort the array elements in ascending order (minimum three functions: read, disp and sort) 
+6. Display the array elements in the same order using a recursive function 
+7. Display array elements in reverse order using a recursive function .
+8. Perform the following matrix operations
+   1. Adding two matrices
+   2. Subtraction of one matrix from another.
+   3. Multiplication of two matrices
+   4. Transpose of a matrix.
+   5. Determinant of a matrix(2x2 and 3x3)
+9. Read a String and display it in the reverse order using the same array itself
+10. Read n Strings and display them in the ascending order.
+
+
+Section 2: Stack
+
+
+11. Implement stack operations using arrays. 
+12. A letter means push and an asterisk means pop in the  following sequence. Give the sequence of values returned by the pop operations when this sequence of operations is performed on an initially empty LIFO stack.
+ E A S * Y * Q U E * * * S T * * * I O * N * * *
+13. Reverse a string using Stack
+14. Convert an expression from infix expression to postfix using stack
+15. Convert an expression from infix expression to prefix using stack
+16. Evaluate an infix expression using stack
+Session - 3 Polynomial using array
+17. Read a polynomial and display 
+18. Add two polynomials
+19. Subtract two polynomials
+20. Multiply two polynomials
+Session 4: Structure
+21. Define a structure for dates with dd/mm/yyyy. Provide functions for reading, displaying and comparing two dates for equality 
+22. Define a structure for employees with eno,ename, esal and dno. Read  n employees information and provide functions for the following:  
+   1. Searching an employee by no
+   2. Sorting the employees by
+      1. Name
+      2. Salary
+   3. Deleting an employee
+Session 5: Polynomials using Structure
+23. Read a polynomial and display it; use structure array 
+24. Add two polynomials 
+25. Subtract two polynomials 
+26. Multiply two polynomials 
+Session 6 - String 
+27. Read a String and display it in the reverse order using
+   1. Just print it in the reverse order
+   2. Reverse the string in the same array itself
+   3. Using stack - already completed in program 13.
+28. Read n Strings and display them in the ascending order
+Session-7
+29. Demonstrate queue using array
+30. Demonstrate circular queue using array.
