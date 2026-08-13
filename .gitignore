@@ -5,3 +5,4 @@ Assignments/CNIA/webpage
 # Ignore compiled binaries (no extension) in problem directories
 BrideCourse/C-programming/**/problem-*
 !BrideCourse/C-programming/**/*.c
+SIH/career-assistant/.agents
