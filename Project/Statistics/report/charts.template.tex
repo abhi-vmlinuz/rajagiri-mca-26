@@ -1,0 +1,38 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Termes}
+\usepackage{graphicx}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\begin{document}
+\begin{center}
+{\Large\bfseries IPL Statistics Project --- Figures Gallery}\\[0.3em]
+{\normalsize All visualisations produced in R (ggplot2); seasons 2008--2018}\\[0.5em]
+\rule{\textwidth}{0.5pt}
+\end{center}
+\vspace{0.5em}
+
+\section*{1. Distribution of Target Runs}
+\includegraphics[width=\textwidth]{figures/fig_target_hist.pdf}
+
+\clearpage
+\section*{2. Box-and-Whisker Comparison}
+\includegraphics[width=\textwidth]{figures/fig_boxplots.pdf}
+
+\clearpage
+\section*{3. Empirical PMF of Wicket Margins}
+\includegraphics[width=\textwidth]{figures/fig_pmf_wickets.pdf}
+
+\clearpage
+\section*{4. Regression: Target Runs Across the Decade}
+\includegraphics[width=\textwidth]{figures/fig_regression.pdf}
+
+\clearpage
+\section*{5. Binomial Proportion Estimates with 95\% CIs}
+\includegraphics[width=\textwidth]{figures/fig_binomial_ci.pdf}
+
+\end{document}
