@@ -47,6 +47,13 @@ S = {
     'P_LT120': f"{rb['P(T<120)']:.3f}",
     'P_M50': f"{rb['P(margin>50)']:.3f}",
     'P_M100': f"{rb['P(margin>=100)']:.3f}",
+    # Inline percentage placeholders are longer than their base tokens, so
+    # longest-first substitution resolves the complete expression.
+    'P_140_160*100': f"{rb['P(140<=T<=160)']*100:.1f}",
+    'P_161_190*100': f"{rb['P(161<=T<=190)']*100:.1f}",
+    'P_GT200*100': f"{rb['P(T>200)']*100:.0f}",
+    'P_M50*100': f"{rb['P(margin>50)']*100:.0f}",
+    'REG_R2*100': f"{reg['r2']*100:.1f}",
     # regression
     'REG_INT': f"{reg['intercept']:.2f}", 'REG_SLP': f"{reg['slope']:.2f}",
     'REG_SLP_R1': f"{reg['slope']:.1f}", 'REG_R2': f"{reg['r2']:.3f}",

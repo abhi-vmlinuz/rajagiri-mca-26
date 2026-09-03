@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{}%
+\contentsline {subsection}{\numberline {1.1}Dataset and Variables}{1}{}%
+\contentsline {section}{\numberline {2}Descriptive Statistics}{1}{}%
+\contentsline {subsection}{\numberline {2.1}Central Tendency}{1}{}%
+\contentsline {subsection}{\numberline {2.2}Dispersion}{2}{}%
+\contentsline {section}{\numberline {3}Probability Modelling}{3}{}%
+\contentsline {subsection}{\numberline {3.1}The Binomial Model for First-Innings Advantage}{3}{}%
+\contentsline {subsection}{\numberline {3.2}A Probability Mass Function for Wicket Margins}{4}{}%
+\contentsline {subsection}{\numberline {3.3}Range-Based Probabilities}{5}{}%
+\contentsline {section}{\numberline {4}Regression Analysis}{5}{}%
+\contentsline {section}{\numberline {5}Conclusion and Reflection}{5}{}%
