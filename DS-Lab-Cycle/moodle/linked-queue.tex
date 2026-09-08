@@ -1,0 +1,173 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[top=0.85in, bottom=0.85in, left=0.8in, right=0.8in]{geometry}
+\usepackage{mathptmx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\setlength{\headheight}{14.5pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textbf{Data Structures Lab}}
+\rhead{Linked Queue}
+\cfoot{Page \thepage}
+\renewcommand{\headrulewidth}{0.6pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    pdftitle={Linked Queue Program - Student Records},
+    pdfauthor={Data Structures Lab}
+}
+
+% Code listing styling
+\definecolor{codebg}{rgb}{0.97,0.98,0.99}
+\definecolor{codeframe}{rgb}{0.82,0.85,0.90}
+\definecolor{keywordcolor}{rgb}{0.0,0.25,0.7}
+\definecolor{commentcolor}{rgb}{0.38,0.45,0.52}
+\definecolor{stringcolor}{rgb}{0.12,0.52,0.22}
+
+\lstdefinestyle{cstyle}{
+    language=C,
+    basicstyle=\fontsize{9}{11.5}\selectfont\ttfamily,
+    keywordstyle=\color{keywordcolor}\bfseries,
+    commentstyle=\color{commentcolor}\itshape,
+    stringstyle=\color{stringcolor},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=8pt,
+    backgroundcolor=\color{codebg},
+    frame=single,
+    rulecolor=\color{codeframe},
+    tabsize=4,
+    showspaces=false,
+    showstringspaces=false,
+    breaklines=true,
+    breakatwhitespace=false,
+    xleftmargin=12pt,
+    framexleftmargin=12pt,
+    captionpos=b
+}
+
+\lstdefinestyle{terminalstyle}{
+    basicstyle=\fontsize{8.5}{11}\selectfont\ttfamily,
+    backgroundcolor=\color{black!4},
+    frame=single,
+    rulecolor=\color{black!25},
+    breaklines=true,
+    breakatwhitespace=false,
+    numbers=none,
+    xleftmargin=8pt,
+    framexleftmargin=8pt,
+    tabsize=4
+}
+
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{DATA STRUCTURES LABORATORY}}\\[4pt]
+    {\large \textbf{Program: Linked Queue for Student Records}}\\[8pt]
+    \rule{\textwidth}{1pt}
+\end{center}
+
+\vspace{0.3em}
+
+\section*{Problem Statement}
+
+\noindent
+\fcolorbox{codeframe}{codebg}{%
+\begin{minipage}{0.97\textwidth}
+\vspace{0.4em}
+\textbf{Question:}\\[0.3em]
+Write a menu-driven program to implement a linked queue for storing student records containing name, roll number, and marks. Implement the following operations:
+\begin{enumerate}
+    \item \textbf{Enqueue}: Add a student record at the rear of the queue.
+    \item \textbf{Dequeue}: Remove a student record from the front of the queue.
+    \item \textbf{Display}: Show all student records in the queue.
+\end{enumerate}
+\vspace{0.2em}
+\end{minipage}%
+}
+
+\vspace{0.8em}
+
+\section*{Source Code (\texttt{linked-queue.c})}
+\lstinputlisting[style=cstyle]{linked-queue.c}
+
+\vspace{0.8em}
+
+\section*{Sample Output}
+\begin{lstlisting}[style=terminalstyle]
+1. Enqueue
+2. Dequeue
+3. Display Queue
+4. Exit
+Choice: 1
+Enter name: John
+Enter roll no: 101
+Enter marks: 85
+[+] Enqueued successfully!
+
+1. Enqueue
+2. Dequeue
+3. Display Queue
+4. Exit
+Choice: 1
+Enter name: Alice
+Enter roll no: 102
+Enter marks: 92
+[+] Enqueued successfully!
+
+1. Enqueue
+2. Dequeue
+3. Display Queue
+4. Exit
+Choice: 3
+
+--- Student Queue ---
+Roll No: 101 | Name: John | Marks: 85
+Roll No: 102 | Name: Alice | Marks: 92
+
+1. Enqueue
+2. Dequeue
+3. Display Queue
+4. Exit
+Choice: 2
+[+] Dequeued: Roll No: 101 | Name: John | Marks: 85
+
+1. Enqueue
+2. Dequeue
+3. Display Queue
+4. Exit
+Choice: 3
+
+--- Student Queue ---
+Roll No: 102 | Name: Alice | Marks: 92
+
+1. Enqueue
+2. Dequeue
+3. Display Queue
+4. Exit
+Choice: 2
+[+] Dequeued: Roll No: 102 | Name: Alice | Marks: 92
+
+1. Enqueue
+2. Dequeue
+3. Display Queue
+4. Exit
+Choice: 2
+[-] Queue Underflow! No records to dequeue.
+
+1. Enqueue
+2. Dequeue
+3. Display Queue
+4. Exit
+Choice: 4
+Exiting program...
+\end{lstlisting}
+
+\end{document}
