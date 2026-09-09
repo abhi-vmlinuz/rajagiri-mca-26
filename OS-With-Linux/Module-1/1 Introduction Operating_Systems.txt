@@ -1,0 +1,223 @@
+OPERATING SYSTEMS
+Fundamentals, Functions & Architecture
+
+Computer System Components
+Hardware
+•
+•
+•
+
+Software
+
+CPU
+Memory
+I/O Devices
+
+•
+•
+•
+
+Compilers
+Text Editors
+Database Systems
+
+Operating System (Kernel)
+Interface between users/applications and hardware
+
+What is an Operating System?
+•
+
+A program running at all times on the computer (kernel)
+
+•
+
+Acts as interface between users and computer hardware
+
+•
+
+Manages hardware and controls resource usage
+
+•
+
+Provides efficient and convenient system usage
+
+Operating System Objectives
+Convenience
+
+Efficiency
+
+Evolvability
+
+Make the computer system easier to use
+
+Use system resources in an efficient manner
+
+Support testing, development & addition of new
+components
+
+OS as an Extended Machine
+Hides Complex Hardware Details
+Example: Disk Access
+
+With OS (Simple):
+
+Without OS (Complex):
+
+Just specify:
+
+•
+•
+•
+
+•
+•
+
+Specify block address
+Calculate sector numbers
+Handle inter-sector gaps
+
+File name
+Data location
+
+OS as a Resource Manager
+OS Responsibilities:
+•
+
+Keep track of allocated resources
+
+•
+
+Grant resource requests when available
+
+•
+
+Account for resource usage
+
+•
+
+Resolve conflicts between different programs/users
+
+Resource Multiplexing
+Time Multiplexing
+Resources are shared turn-by-turn
+
+Space Multiplexing
+Resources split into portions
+•
+
+Then to User B for T2
+
+Each user gets a portion
+simultaneously
+
+•
+
+•
+
+Then to User C for T3
+
+Example: Main memory
+
+•
+
+•
+
+Example: CPU scheduling
+
+Example: Disk storage
+
+•
+
+OS allocates and deallocates space
+
+•
+
+Resource allocated to User A for T1
+
+•
+
+OS: User Point of View
+Stand-Alone
+
+Ease of use
+
+Personal computers
+
+Networked
+
+Resource utilization
+
+Multiple users competing
+
+Handheld
+
+Individual usability
+
+Mobile devices
+
+Embedded
+
+Reliable operation
+
+No user intervention
+
+OS: System Point of View
+The OS has two primary roles:
+Resource Allocator
+
+Control Program
+
+•
+
+Manages CPU time
+
+•
+
+Manages user programs
+
+•
+
+Allocates memory
+
+•
+
+Prevents errors
+
+•
+
+Controls I/O devices
+
+•
+
+Prevents improper system use
+
+•
+
+Ensures efficient & fair distribution
+
+•
+
+Controls I/O operations
+
+Key Takeaways
+•
+
+OS is the bridge between users and hardware
+
+•
+
+Achieves convenience, efficiency, and evolvability
+
+•
+
+Functions as an extended machine and resource manager
+
+•
+
+Uses time & space multiplexing for resource sharing
+
+•
+
+Adapts to different computing environments
+
+
