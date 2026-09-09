@@ -1,0 +1,1093 @@
+% ============================================================
+% DISPERSION CLASS 1
+% Statistics - Module 3
+% Topics: Range, Quartiles, IQR, Quartile Deviation
+% Individual, Discrete and Continuous Series
+% ============================================================
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Statistics -- Module 3}
+\rhead{Dispersion Class 1}
+\cfoot{\thepage}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\newcommand{\boxformula}[1]{%
+\[
+\boxed{\displaystyle #1}
+\]
+}
+
+\title{\textbf{Statistics -- Module 3}\\
+\Large Measures of Dispersion -- Class 1}
+\author{Exam Preparation Notes}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{What is Dispersion?}
+
+\textbf{Dispersion} tells us how much the observations in a dataset are
+spread out or scattered.
+
+The topics covered in this class are:
+
+\begin{enumerate}
+    \item Range
+    \item Coefficient of Range
+    \item Quartiles
+    \item Interquartile Range (IQR)
+    \item Quartile Deviation (QD)
+    \item Coefficient of Quartile Deviation
+    \item Quartiles in Individual Series
+    \item Quartiles in Discrete Series
+    \item Quartiles in Continuous Series
+\end{enumerate}
+
+% ============================================================
+\section{1. Range}
+
+\subsection*{Meaning}
+
+Range is the difference between the largest and smallest observations.
+
+\boxformula{\text{Range}=L-S}
+
+where:
+\begin{itemize}
+    \item $L$ = largest value
+    \item $S$ = smallest value
+\end{itemize}
+
+\subsection*{Worked Question 1}
+
+\textbf{Find the range:}
+\[
+12,\;7,\;19,\;3,\;15,\;8
+\]
+
+Largest value:
+\[
+L=19
+\]
+
+Smallest value:
+\[
+S=3
+\]
+
+Therefore:
+\[
+R=19-3=\boxed{16}
+\]
+
+\subsection*{Worked Question 2: Negative Values}
+
+\textbf{Find the range:}
+\[
+-8,\;-3,\;4,\;11,\;-15,\;7
+\]
+
+Largest value:
+\[
+L=11
+\]
+
+Smallest value:
+\[
+S=-15
+\]
+
+Therefore:
+\[
+R=11-(-15)
+\]
+\[
+=11+15
+\]
+\[
+\boxed{R=26}
+\]
+
+\subsection*{Important}
+
+The data does not have to be sorted. Simply identify the maximum and minimum values.
+
+\subsection{Coefficient of Range}
+
+The coefficient of range expresses the range relative to the extreme values.
+
+\boxformula{
+\text{Coefficient of Range}
+=
+\frac{L-S}{L+S}
+}
+
+\subsection*{Worked Question 3}
+
+\textbf{For the data}
+\[
+10,\;20,\;30,\;40,\;50
+\]
+\textbf{find the range and coefficient of range.}
+
+Largest:
+\[
+L=50
+\]
+
+Smallest:
+\[
+S=10
+\]
+
+Range:
+\[
+R=50-10=\boxed{40}
+\]
+
+Coefficient of Range:
+\[
+\frac{50-10}{50+10}
+=
+\frac{40}{60}
+=
+\frac{2}{3}
+\]
+
+Therefore:
+\[
+\boxed{\text{Coefficient of Range}\approx0.667}
+\]
+
+% ============================================================
+\section{2. Quartiles}
+
+Quartiles divide ordered data into four parts.
+
+\[
+Q_1=25^{\text{th}}\text{ percentile}
+\]
+
+\[
+Q_2=50^{\text{th}}\text{ percentile}=\text{Median}
+\]
+
+\[
+Q_3=75^{\text{th}}\text{ percentile}
+\]
+
+Conceptually:
+
+\[
+\text{Minimum}
+\quad|\quad
+Q_1
+\quad|\quad
+Q_2
+\quad|\quad
+Q_3
+\quad|\quad
+\text{Maximum}
+\]
+
+The four sections each contain approximately $25\%$ of the observations.
+
+\subsection*{Important Convention Used in Class}
+
+For individual/ungrouped data, the class uses:
+
+\boxformula{
+Q_1=\text{size of }\frac{N+1}{4}\text{th item}
+}
+
+\boxformula{
+Q_3=\text{size of }\frac{3(N+1)}{4}\text{th item}
+}
+
+Here $N$ is the number of observations.
+
+% ============================================================
+\section{3. Interquartile Range}
+
+The Interquartile Range measures the spread of the middle $50\%$ of the data.
+
+\boxformula{IQR=Q_3-Q_1}
+
+It is the distance from $Q_1$ to $Q_3$.
+
+\[
+Q_1
+\quad\underbrace{\rule{3cm}{0.4pt}}_{\text{middle 50\%}}
+\quad Q_3
+\]
+
+Unlike ordinary range, IQR is less affected by extreme values.
+
+% ============================================================
+\section{4. Quartile Deviation}
+
+Quartile Deviation is also called the \textbf{Semi-Interquartile Range}.
+
+It is half of the Interquartile Range.
+
+\boxformula{
+QD=\frac{Q_3-Q_1}{2}
+}
+
+Since:
+\[
+IQR=Q_3-Q_1
+\]
+
+we can also write:
+\[
+\boxed{QD=\frac{IQR}{2}}
+\]
+
+% ============================================================
+\section{5. Coefficient of Quartile Deviation}
+
+The coefficient of quartile deviation is a relative measure of quartile dispersion.
+
+\boxformula{
+\text{Coefficient of QD}
+=
+\frac{Q_3-Q_1}{Q_3+Q_1}
+}
+
+% ============================================================
+\section{6. Individual Series -- Worked Example}
+
+\textbf{Question:} From the following data, compute Interquartile Range,
+Quartile Deviation and Coefficient of Quartile Deviation.
+
+\[
+24,\;7,\;11,\;9,\;17,\;3,\;20,\;14,\;4,\;22,\;27
+\]
+
+\subsection*{Step 1: Arrange in ascending order}
+
+\[
+3,\;4,\;7,\;9,\;11,\;14,\;17,\;20,\;22,\;24,\;27
+\]
+
+There are:
+\[
+N=11
+\]
+
+Number the observations:
+
+\[
+\begin{array}{c|ccccccccccc}
+\text{Position}
+&1&2&3&4&5&6&7&8&9&10&11\\
+\hline
+X
+&3&4&7&9&11&14&17&20&22&24&27
+\end{array}
+\]
+
+\subsection*{Step 2: Find $Q_1$}
+
+\[
+Q_1=\frac{N+1}{4}\text{th item}
+\]
+
+\[
+=\frac{11+1}{4}
+=\frac{12}{4}
+=3^{\text{rd}}\text{ item}
+\]
+
+The 3rd item is $7$.
+
+\[
+\boxed{Q_1=7}
+\]
+
+\subsection*{Step 3: Find $Q_3$}
+
+\[
+Q_3=\frac{3(N+1)}{4}\text{th item}
+\]
+
+\[
+=\frac{3(11+1)}{4}
+=\frac{36}{4}
+=9^{\text{th}}\text{ item}
+\]
+
+The 9th item is $22$.
+
+\[
+\boxed{Q_3=22}
+\]
+
+\subsection*{Step 4: Interquartile Range}
+
+\[
+IQR=Q_3-Q_1
+\]
+
+\[
+=22-7
+\]
+
+\[
+\boxed{IQR=15}
+\]
+
+\subsection*{Step 5: Quartile Deviation}
+
+\[
+QD=\frac{Q_3-Q_1}{2}
+\]
+
+\[
+=\frac{22-7}{2}
+=\frac{15}{2}
+\]
+
+\[
+\boxed{QD=7.5}
+\]
+
+\subsection*{Step 6: Coefficient of QD}
+
+\[
+\text{Coefficient of QD}
+=
+\frac{Q_3-Q_1}{Q_3+Q_1}
+\]
+
+\[
+=
+\frac{22-7}{22+7}
+=
+\frac{15}{29}
+\]
+
+\[
+\boxed{\text{Coefficient of QD}\approx0.52}
+\]
+
+% ============================================================
+\section{7. Discrete Series}
+
+\subsection*{What is Discrete Data?}
+
+In a discrete frequency distribution, we have:
+
+\begin{itemize}
+    \item $X$ = value
+    \item $f$ = frequency (how many times the value occurs)
+    \item $cf$ = cumulative frequency
+\end{itemize}
+
+Example:
+
+\[
+\begin{array}{c|c|c}
+X&f&cf\\
+\hline
+10&7&7\\
+20&18&25\\
+30&15&40\\
+40&25&65\\
+50&30&95\\
+60&20&115\\
+70&16&131\\
+80&7&138\\
+90&2&140
+\end{array}
+\]
+
+\subsection*{Meaning of Frequency}
+
+If:
+\[
+X=10,\quad f=7
+\]
+
+it means that the value $10$ occurs $7$ times.
+
+\subsection*{Meaning of Cumulative Frequency}
+
+\textbf{cf} is the running total of frequencies.
+
+For example:
+\[
+7+18=25
+\]
+
+\[
+25+15=40
+\]
+
+Therefore, the first three cumulative frequencies are:
+\[
+7,\;25,\;40
+\]
+
+\subsection*{Why is cf useful?}
+
+The cumulative frequency tells us where each observation lies in the ordered dataset.
+
+For the above table:
+
+\[
+\begin{array}{c|c}
+\text{X}&\text{Observation positions}\\
+\hline
+10&1\text{--}7\\
+20&8\text{--}25\\
+30&26\text{--}40\\
+40&41\text{--}65\\
+50&66\text{--}95\\
+60&96\text{--}115\\
+70&116\text{--}131\\
+80&132\text{--}138\\
+90&139\text{--}140
+\end{array}
+\]
+
+\textbf{Key idea:} The class/value tells us \emph{what the observations are}; the
+frequency tells us \emph{how many}; cumulative frequency tells us
+\emph{how many observations have been covered so far}.
+
+% ============================================================
+\subsection{Worked Example: Discrete Series}
+
+\textbf{Question:} Calculate Quartile Deviation and its coefficient.
+
+\[
+\begin{array}{c|ccccccccc}
+X&10&20&30&40&50&60&70&80&90\\
+\hline
+f&7&18&15&25&30&20&16&7&2
+\end{array}
+\]
+
+\subsection*{Step 1: Find $N$}
+
+\[
+N=\sum f
+\]
+
+\[
+=7+18+15+25+30+20+16+7+2
+\]
+
+\[
+\boxed{N=140}
+\]
+
+\subsection*{Step 2: Construct cf}
+
+\[
+\begin{array}{c|c|c}
+X&f&cf\\
+\hline
+10&7&7\\
+20&18&25\\
+30&15&40\\
+40&25&65\\
+50&30&95\\
+60&20&115\\
+70&16&131\\
+80&7&138\\
+90&2&140
+\end{array}
+\]
+
+\subsection*{Step 3: Find $Q_1$ position}
+
+Using the class method:
+
+\[
+Q_1=\frac{N+1}{4}\text{th item}
+\]
+
+\[
+=\frac{140+1}{4}
+=\frac{141}{4}
+=35.25^{\text{th}}\text{ item}
+\]
+
+Now find the first cf that is equal to or greater than $35.25$.
+
+\[
+7,\;25,\;\boxed{40}
+\]
+
+The corresponding value of $X$ is $30$.
+
+Therefore:
+\[
+\boxed{Q_1=30}
+\]
+
+Interpretation: the $35.25^{\text{th}}$ observation has the value $30$.
+
+\subsection*{Step 4: Find $Q_3$ position}
+
+\[
+Q_3=\frac{3(N+1)}{4}\text{th item}
+\]
+
+\[
+=\frac{3(141)}{4}
+=\frac{423}{4}
+=105.75^{\text{th}}\text{ item}
+\]
+
+Find the first cf that is equal to or greater than $105.75$:
+
+\[
+7,\;25,\;40,\;65,\;95,\;\boxed{115}
+\]
+
+The corresponding value is $60$.
+
+Therefore:
+\[
+\boxed{Q_3=60}
+\]
+
+\subsection*{Step 5: Quartile Deviation}
+
+\[
+QD=\frac{Q_3-Q_1}{2}
+\]
+
+\[
+=\frac{60-30}{2}
+\]
+
+\[
+\boxed{QD=15}
+\]
+
+\subsection*{Step 6: Coefficient of QD}
+
+\[
+\text{Coefficient of QD}
+=
+\frac{Q_3-Q_1}{Q_3+Q_1}
+\]
+
+\[
+=
+\frac{60-30}{60+30}
+=
+\frac{30}{90}
+\]
+
+\[
+\boxed{\text{Coefficient of QD}=0.33}
+\]
+
+\subsection*{Important Discrete-Series Trick}
+
+For discrete data:
+
+\[
+\boxed{
+\text{Position}\rightarrow cf\rightarrow X
+}
+\]
+
+That is:
+
+\begin{enumerate}
+    \item Calculate the quartile position.
+    \item Look down the cf column.
+    \item Find the first cf that reaches or passes the position.
+    \item Take the corresponding $X$ value.
+\end{enumerate}
+
+% ============================================================
+\section{8. Continuous Series}
+
+\subsection*{What is Continuous Data?}
+
+In a continuous frequency distribution, values are grouped into class intervals.
+
+Example:
+
+\[
+\begin{array}{c|c}
+\text{Class interval}&f\\
+\hline
+5\text{--}7&14\\
+8\text{--}10&24\\
+11\text{--}13&38\\
+14\text{--}16&20\\
+17\text{--}19&4
+\end{array}
+\]
+
+Here, $f$ tells us how many observations belong to each class.
+
+For example:
+
+\[
+5\text{--}7,\quad f=14
+\]
+
+means there are $14$ observations whose values lie in the $5$--$7$ class.
+
+It does \textbf{not} mean that observations numbered 5 through 7 are being referred to.
+
+% ============================================================
+\subsection{Worked Example: Continuous Series}
+
+\textbf{Question:} Calculate Quartile Deviation and its coefficient from:
+
+\[
+\begin{array}{c|ccccc}
+\text{Class interval}
+&5\text{--}7&8\text{--}10&11\text{--}13&14\text{--}16&17\text{--}19\\
+\hline
+f&14&24&38&20&4
+\end{array}
+\]
+
+\subsection*{Step 1: Find $N$}
+
+\[
+N=14+24+38+20+4
+\]
+
+\[
+\boxed{N=100}
+\]
+
+\subsection*{Step 2: Construct cf}
+
+\[
+\begin{array}{c|c|c}
+\text{Class}&f&cf\\
+\hline
+5\text{--}7&14&14\\
+8\text{--}10&24&38\\
+11\text{--}13&38&76\\
+14\text{--}16&20&96\\
+17\text{--}19&4&100
+\end{array}
+\]
+
+\subsection*{Step 3: Find the $Q_1$ class}
+
+For continuous series:
+
+\[
+\frac N4=\frac{100}{4}=25
+\]
+
+We need the 25th observation.
+
+Cumulative frequency:
+
+\[
+\begin{array}{c|c}
+\text{Class}&cf\\
+\hline
+5\text{--}7&14\\
+8\text{--}10&38\\
+11\text{--}13&76
+\end{array}
+\]
+
+The 25th observation falls between cf $14$ and cf $38$.
+
+Therefore:
+
+\[
+\boxed{Q_1\text{ class}=8\text{--}10}
+\]
+
+\subsection*{Step 4: Continuous $Q_1$ Formula}
+
+\boxformula{
+Q_1
+=
+L+
+\left(
+\frac{\frac N4-cf}{f}
+\right)i
+}
+
+where:
+\begin{itemize}
+    \item $L$ = lower boundary of the $Q_1$ class
+    \item $cf$ = cumulative frequency before the $Q_1$ class
+    \item $f$ = frequency of the $Q_1$ class
+    \item $i$ = class width
+\end{itemize}
+
+For the class $8$--$10$:
+
+\[
+L=7.5,\qquad cf=14,\qquad f=24,\qquad i=3
+\]
+
+Therefore:
+
+\[
+Q_1
+=
+7.5+
+\left(
+\frac{25-14}{24}
+\right)3
+\]
+
+\[
+=
+7.5+\frac{11}{24}\times3
+\]
+
+\[
+=
+7.5+1.375
+\]
+
+\[
+\boxed{Q_1=8.875}
+\]
+
+\textbf{Note:} The class slide used in class appears to show $8.75$, but
+$7.5+\frac{11}{24}\times3$ gives $8.875$. The displayed answer appears to
+contain an arithmetic/calculation inconsistency.
+
+% ============================================================
+\subsection*{Step 5: Find the $Q_3$ class}
+
+\[
+\frac{3N}{4}
+=
+\frac{3(100)}4
+=
+75
+\]
+
+We need the 75th observation.
+
+Cumulative frequencies:
+
+\[
+38<75\leq76
+\]
+
+Therefore:
+
+\[
+\boxed{Q_3\text{ class}=11\text{--}13}
+\]
+
+\subsection*{Step 6: Continuous $Q_3$ Formula}
+
+\boxformula{
+Q_3
+=
+L+
+\left(
+\frac{\frac{3N}{4}-cf}{f}
+\right)i
+}
+
+For the class $11$--$13$:
+
+\[
+L=10.5,\qquad cf=38,\qquad f=38,\qquad i=3
+\]
+
+Therefore:
+
+\[
+Q_3
+=
+10.5+
+\left(
+\frac{75-38}{38}
+\right)3
+\]
+
+\[
+=
+10.5+\frac{37}{38}\times3
+\]
+
+\[
+\approx10.5+2.921
+\]
+
+\[
+\boxed{Q_3\approx13.42}
+\]
+
+% ============================================================
+\subsection{Understanding Class Boundaries}
+
+This is important for continuous series.
+
+The classes are:
+
+\[
+5\text{--}7,\quad
+8\text{--}10,\quad
+11\text{--}13,\quad
+14\text{--}16,\quad
+17\text{--}19
+\]
+
+There is a gap of $1$ between consecutive class limits.
+
+To obtain continuous boundaries, place the boundary halfway between them.
+
+Between $10$ and $11$:
+
+\[
+\frac{10+11}{2}=10.5
+\]
+
+Therefore:
+
+\[
+11\text{--}13
+\quad\longrightarrow\quad
+10.5\text{--}13.5
+\]
+
+Hence the lower boundary of $11$--$13$ is:
+
+\[
+\boxed{L=10.5}
+\]
+
+Similarly:
+
+\[
+8\text{--}10
+\quad\longrightarrow\quad
+7.5\text{--}10.5
+\]
+
+Thus:
+
+\[
+\boxed{\text{Lower boundary}=\text{lower class limit}-0.5}
+\]
+
+for these integer-width classes.
+
+% ============================================================
+\subsection*{Step 7: Quartile Deviation}
+
+Using the calculated values:
+
+\[
+Q_1=8.875,\qquad Q_3\approx13.42
+\]
+
+\[
+QD=\frac{Q_3-Q_1}{2}
+\]
+
+\[
+=
+\frac{13.42-8.875}{2}
+\]
+
+\[
+\approx\boxed{2.27}
+\]
+
+\subsection*{Step 8: Coefficient of QD}
+
+\[
+\text{Coefficient of QD}
+=
+\frac{Q_3-Q_1}{Q_3+Q_1}
+\]
+
+\[
+=
+\frac{13.42-8.875}{13.42+8.875}
+\]
+
+\[
+\approx\boxed{0.20}
+\]
+
+If following the displayed classroom value $Q_1=8.75$, the slide obtains
+approximately $QD=2.34$ and coefficient $0.21$. The discrepancy originates
+from the displayed $Q_1$ calculation.
+
+% ============================================================
+\section{9. Master Formula Sheet}
+
+\subsection*{Range}
+
+\boxformula{R=L-S}
+
+\subsection*{Coefficient of Range}
+
+\boxformula{
+\text{Coefficient of Range}
+=
+\frac{L-S}{L+S}
+}
+
+\subsection*{Individual Series: $Q_1$}
+
+\boxformula{
+Q_1=\text{size of }\frac{N+1}{4}\text{th item}
+}
+
+\subsection*{Individual Series: $Q_3$}
+
+\boxformula{
+Q_3=\text{size of }\frac{3(N+1)}{4}\text{th item}
+}
+
+\subsection*{Interquartile Range}
+
+\boxformula{IQR=Q_3-Q_1}
+
+\subsection*{Quartile Deviation}
+
+\boxformula{
+QD=\frac{Q_3-Q_1}{2}
+}
+
+\subsection*{Coefficient of Quartile Deviation}
+
+\boxformula{
+\text{Coefficient of QD}
+=
+\frac{Q_3-Q_1}{Q_3+Q_1}
+}
+
+\subsection*{Continuous Series: $Q_1$}
+
+\boxformula{
+Q_1
+=
+L+
+\left(
+\frac{\frac N4-cf}{f}
+\right)i
+}
+
+\subsection*{Continuous Series: $Q_3$}
+
+\boxformula{
+Q_3
+=
+L+
+\left(
+\frac{\frac{3N}{4}-cf}{f}
+\right)i
+}
+
+% ============================================================
+\section{10. Exam Decision Guide}
+
+When you see a question, first identify the type of data.
+
+\begin{center}
+\begin{tabular}{p{4cm}p{8cm}}
+\toprule
+\textbf{Type} & \textbf{What to do} \\
+\midrule
+Individual data &
+Arrange values in ascending order and use the $(N+1)$ positional formulas.\\
+\addlinespace
+Discrete frequency data &
+Calculate $N$, construct cf, find the quartile position, then locate the
+corresponding $X$ using cf.\\
+\addlinespace
+Continuous frequency data &
+Calculate $N$, construct cf, identify the quartile class, then use the
+continuous-series quartile formula.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Discrete Data Shortcut}
+
+\[
+\boxed{\text{Position}\rightarrow cf\rightarrow X}
+\]
+
+\subsection*{Continuous Data Shortcut}
+
+\[
+\boxed{\text{Position}\rightarrow\text{Quartile class}
+\rightarrow L,cf,f,i\rightarrow Q_1/Q_3}
+\]
+
+% ============================================================
+\section{11. Final Memory Sheet}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item \textbf{Range} = maximum minus minimum.
+    \item \textbf{Coefficient of Range} = $(L-S)/(L+S)$.
+    \item $Q_1$ represents the 25th percentile.
+    \item $Q_2$ is the median.
+    \item $Q_3$ represents the 75th percentile.
+    \item \textbf{IQR} = $Q_3-Q_1$.
+    \item \textbf{QD} = $(Q_3-Q_1)/2$.
+    \item \textbf{Coefficient of QD} = $(Q_3-Q_1)/(Q_3+Q_1)$.
+    \item In discrete data, \textbf{cf tells you where an observation falls}.
+    \item In continuous data, use the \textbf{quartile class} and the $L,cf,f,i$
+    formula.
+    \item For the class intervals used here, the lower boundary is the lower
+    limit minus $0.5$.
+\end{enumerate}
+
+\section*{12. Exam Workflow}
+
+For any quartile-dispersion problem:
+
+\[
+\boxed{
+\text{Identify data type}
+\rightarrow
+\text{Find }N
+\rightarrow
+\text{Find }Q_1,Q_3
+\rightarrow
+IQR
+\rightarrow
+QD
+\rightarrow
+\text{Coefficient}
+}
+\]
+
+\textbf{Do not panic when you see a frequency table.}
+The mathematics is mostly addition, locating a position, subtraction,
+division, and substitution into a formula.
+
+\end{document}

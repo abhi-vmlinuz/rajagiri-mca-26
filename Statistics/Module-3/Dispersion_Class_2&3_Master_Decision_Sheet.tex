@@ -1,0 +1,253 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=0.55in]{geometry}
+\usepackage{amsmath,amssymb,array,booktabs,multicol,enumitem,fancyhdr}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\pagestyle{fancy}\fancyhf{}
+\lhead{Statistics -- Module 3}\rhead{Dispersion: MD + SD Decision Sheet}\cfoot{\thepage}
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\newcommand{\F}[1]{\[\boxed{\displaystyle #1}\]}
+
+\begin{document}
+\begin{center}
+{\Large\textbf{MODULE 3 -- DISPERSION}}\\
+{\large\textbf{Mean Deviation + Standard Deviation: Master Decision Sheet}}\\
+\textit{Individual, Discrete and Continuous Series}
+\end{center}\hrule
+
+\section*{1. The Master Idea}
+Do not memorize nine different methods. The common pattern is:
+\[
+\boxed{\text{Identify data type}\rightarrow\text{Find center}\rightarrow
+\text{Find deviations}\rightarrow\text{Apply formula}}
+\]
+
+\begin{center}
+\begin{tabular}{p{2.4cm}p{3.5cm}p{7cm}}
+\toprule
+\textbf{Data}&\textbf{Given}&\textbf{Main extra step}\\ \midrule
+Individual&Values only&No frequency; effectively $f=1$.\\
+Discrete&$X,f$&Use frequency; use cf when locating median/quartiles.\\
+Continuous&Class intervals,$f$&Use midpoint for mean/MD/SD; use grouped formulas for median/mode.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{2. Mean Deviation (MD)}
+Mean Deviation is the average distance of observations from a chosen center.
+The center can be mean $\bar X$, median $M$, or mode $Z$.
+
+\F{MD=\frac{\sum f|X-A|}{N}}
+For individual data, $f=1$:
+\F{MD=\frac{\sum|X-A|}{N}}
+where $A$ is the chosen center.
+
+\textbf{Absolute value:} $|X-A|$ means distance only; ignore the negative sign.
+
+\[
+\boxed{\text{CENTER}\rightarrow\text{DISTANCE}\rightarrow
+\text{WEIGHT BY }f\rightarrow\text{ADD}\rightarrow\text{DIVIDE}}
+\]
+
+\subsection*{Coefficients of MD}
+\[
+\boxed{C_{\text{MD, mean}}=\frac{MD}{\bar X}}
+\qquad
+\boxed{C_{\text{MD, median}}=\frac{MD}{M}}
+\qquad
+\boxed{C_{\text{MD, mode}}=\frac{MD}{Z}}
+\]
+
+\section*{3. MD: Three Data Arrangements}
+
+\subsection*{Individual Series}
+No frequency is given. Effectively $f=1$.
+\[
+\bar X=\frac{\sum X}{N}
+\]
+About mean:
+\[
+MD=\frac{\sum|X-\bar X|}{N}
+\]
+About median:
+\[
+MD=\frac{\sum|X-M|}{N}
+\]
+About mode:
+\[
+MD=\frac{\sum|X-Z|}{N}
+\]
+
+\subsection*{Discrete Series}
+First:
+\F{N=\sum f\qquad\bar X=\frac{\sum fX}{N}}
+Then calculate $|X-A|$, $f|X-A|$, and:
+\F{MD=\frac{\sum f|X-A|}{N}}
+
+Useful table:
+\[
+\boxed{X,\quad f,\quad fX,\quad |X-A|,\quad f|X-A|}
+\]
+
+\subsection*{Continuous Series}
+First convert each class to its midpoint:
+\F{X=\frac{\text{lower limit}+\text{upper limit}}{2}}
+Then use the same frequency MD formula:
+\F{MD=\frac{\sum f|X-A|}{N}}
+For median/mode, first find the grouped-data center, then use it as $A$.
+
+\section*{4. Standard Deviation (SD)}
+SD measures spread around the mean. Deviations are squared, averaged, then square-rooted.
+
+\F{\sigma=\sqrt{\frac{\sum (X-\bar X)^2}{N}}}
+For frequency data:
+\F{\sigma=\sqrt{\frac{\sum f(X-\bar X)^2}{N}}}
+
+\[
+\boxed{\text{MEAN}\rightarrow\text{DEVIATION}\rightarrow
+\text{SQUARE}\rightarrow\text{AVERAGE}\rightarrow\sqrt{\phantom{x}}}
+\]
+
+\textbf{Core difference:}
+\[
+\text{MD uses }|X-A|
+\qquad\qquad
+\text{SD uses }(X-\bar X)^2
+\]
+
+\section*{5. SD: Individual Series}
+Find:
+\F{\bar X=\frac{\sum X}{N}}
+Then:
+\[
+d=X-\bar X,\qquad d^2=(X-\bar X)^2
+\]
+and:
+\F{\sigma=\sqrt{\frac{\sum d^2}{N}}}
+Shortcut:
+\F{\sigma=\sqrt{\frac{\sum X^2}{N}-\bar X^2}}
+
+\section*{6. SD: Discrete Series}
+Given $X,f$:
+\F{N=\sum f\qquad\bar X=\frac{\sum fX}{N}}
+Direct method:
+\[
+d=X-\bar X,\qquad fd^2=f(X-\bar X)^2
+\]
+\F{\sigma=\sqrt{\frac{\sum f(X-\bar X)^2}{N}}}
+Shortcut:
+\F{\sigma=\sqrt{\frac{\sum fX^2}{N}-\bar X^2}}
+
+\section*{7. SD: Continuous Series}
+For every class, find the midpoint:
+\F{X=\frac{L+U}{2}}
+Then treat the midpoint as $X$ and use:
+\F{\sigma=\sqrt{\frac{\sum fX^2}{N}-\bar X^2}}
+with:
+\[
+\bar X=\frac{\sum fX}{N}
+\]
+Thus:
+\[
+\boxed{\text{Class interval}\rightarrow\text{midpoint }X
+\rightarrow fX,fX^2\rightarrow\bar X\rightarrow SD}
+\]
+
+\section*{8. Assumed Mean / Step-Deviation}
+If taught by your lecturer, let:
+\[
+d=X-A
+\]
+Then:
+\F{\sigma=\sqrt{\frac{\sum fd^2}{N}-
+\left(\frac{\sum fd}{N}\right)^2}}
+For equal class width $i$:
+\[
+u=\frac{X-A}{i}
+\]
+\F{\sigma=i\sqrt{\frac{\sum fu^2}{N}-
+\left(\frac{\sum fu}{N}\right)^2}}
+Only use these if this method is required in your class.
+
+\section*{9. Quick Comparison}
+
+\begin{center}
+\begin{tabular}{p{4cm}p{4.3cm}p{4.3cm}}
+\toprule
+&\textbf{Mean Deviation}&\textbf{Standard Deviation}\\ \midrule
+Basic idea&Average absolute distance&Square-root of average squared distance\\
+Deviation&$|X-A|$&$(X-\bar X)^2$\\
+Frequency formula&$\frac{\sum f|X-A|}{N}$&
+$\sqrt{\frac{\sum f(X-\bar X)^2}{N}}$\\
+Key operation&Absolute value&Square, average, square root\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{10. Formula Decision Sheet}
+
+\textbf{Range:}
+\[
+\boxed{R=L-S}
+\]
+
+\textbf{Coefficient of Range:}
+\[
+\boxed{\frac{L-S}{L+S}}
+\]
+
+\textbf{Interquartile Range:}
+\[
+\boxed{IQR=Q_3-Q_1}
+\]
+
+\textbf{Quartile Deviation:}
+\[
+\boxed{QD=\frac{Q_3-Q_1}{2}}
+\]
+
+\textbf{Coefficient of QD:}
+\[
+\boxed{\frac{Q_3-Q_1}{Q_3+Q_1}}
+\]
+
+\textbf{Mean Deviation:}
+\[
+\boxed{MD=\frac{\sum f|X-A|}{N}}
+\]
+
+Ask: ``About what?'' Then use $A=\bar X$, $M$, or $Z$.
+
+\textbf{Standard Deviation:}
+\[
+\boxed{\sigma=\sqrt{\frac{\sum f(X-\bar X)^2}{N}}}
+\]
+
+Shortcut:
+\[
+\boxed{\sigma=\sqrt{\frac{\sum fX^2}{N}-\bar X^2}}
+\]
+
+For individual data, take $f=1$.
+
+For continuous data:
+\[
+\boxed{X=\frac{\text{lower limit}+\text{upper limit}}{2}}
+\]
+
+\section*{11. Exam Panic Protocol}
+
+When a huge table appears, ask only:
+
+\[
+\boxed{1.\ \text{What type of data is this?}}
+\]
+\[
+\boxed{2.\ \text{What center/formula do they want?}}
+\]
+\[
+\boxed{3.\ \text{What column do I need next?}}
+\]
+
+
+\end{document}
