@@ -1,0 +1,99 @@
+- Layers in TCP/IP protocol suite
+
+- OSI Model
+	\_ PDU, example
+
+- Protocols in each layers
+
+- types of connection
+	\_ connection_oriented (TCP)
+	\_ connection less (UDP)
+
+- Routing Table
+
+- Network Layer Deep Dive
+	\_ Protocols used
+	\_ Services provided by the netwowrk layer
+
+- Data link layer Deep dive
+	\_ Protocols used
+	\_ PDU, Flags, packet info
+	\_ connection type (node-to-node)
+	\_ services offered
+	\_ data type (is it bits, frames or packets?)
+	\_ categories of link:
+		\_ point to point
+		\_ broadcast link
+	\_ sublayers
+		\_ DLC
+		\_ MAC
+	\_ layer addressing
+		\_ unicast
+		\_ multicast
+		\_ Broadcast
+	
+- Physical Layer Deep dive
+	\_ transmission media
+		\_ Guided Media
+		\_ Unguided Media
+	\_ PDU - bits
+	\_ encoding decoding (EASY ONE PLEASE)
+
+- Switching 
+	\_ Swtiching Techniques
+		\_ Circuit switching
+		\_ Packet switching
+		\_ message switching
+- throughput
+- Bandwidth
+
+- virtual circuit networks
+	\_ global addressing
+	\_ local addressing
+
+- virtual circuit identifier
+	\_ VC Network Phases
+	\_ efficiency
+
+- switching in devices (hub, switches) in different layer
+- switching techniques in different layer according to efficiency and delay
+- differences between circuit, packet and message switching
+{definition, purpose, hierarchy diagram, steps in each switching, conclusion with proof of needs}
+
+- Node and links 
+	\_ framing
+	\_ flow control
+	\_ error control
+
+- Multiplexing (VERY IMPORTANT)
+	\_ Diagram
+	\_  types such as:
+		\_ FDM
+		\_ TDM
+		\_ WDM
+- ARP ( Address resolution protocol ) IMPORTANT!
+	\_ ARP operations
+	\_ packet format
+
+- Media Access Control 
+	\_  Channel allocation problem
+	\_ carrier sense or no carrier sense
+	\_ Multiple Access protocol
+		\_ Random Access Protocol ( important ) 
+			\_ ALOHA 
+			\_ CSMA
+			\_ CSMA/CD
+- vulnerable time
+- slotted aloha, pure aloha
+- persistence methods
+- non persistence CSMA
+- p-persitence CSMA
+
+- RIP, IS-IS, OSPF ( brush off ) 	
+
+- Routing Algorithm (Unicast)
+	\_ Distance Vector Routing
+	\_ Bellman Ford Equation (reference only no math)0
+	\_ link state routing
+	\_ path vector routing
+		\_ spanning trees

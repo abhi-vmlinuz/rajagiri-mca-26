@@ -1,0 +1,761 @@
+LMAO yeah, that formatting broke 😭 I’ll be careful.
+
+## TCP vs UDP
+
+| TCP | UDP |
+|---|---|
+| **Transmission Control Protocol** | **User Datagram Protocol** |
+| Connection-oriented | Connectionless |
+| Establishes a connection before sending data | Sends data directly without connection setup |
+| Reliable delivery | No guarantee of delivery |
+| Ensures data arrives in order | Packets may arrive out of order |
+| Has error control, flow control, and congestion control | No built-in flow or congestion control |
+| Slower due to extra checking | Faster due to less overhead |
+| Uses acknowledgements and retransmission | No acknowledgements or retransmission |
+| Data is called a **segment** | Data is called a **datagram** |
+| Used in HTTP/HTTPS, FTP, SSH, email | Used in DNS, video calls, online gaming, streaming |
+
+
+**Example:**
+
+- Downloading a file → **TCP**, because every byte must arrive correctly.
+- Online gaming/video call → **UDP**, because speed matters more than retransmitting old packets.
+
+### Bandwidth vs Throughput
+
+| Bandwidth | Throughput |
+|---|---|
+| **Maximum possible data-carrying capacity** of a network | **Actual amount of data transferred** |
+| Theoretical limit | Real-world performance |
+| Usually measured in **bps, Mbps, Gbps** | Also measured in **bps, Mbps, Gbps** |
+| Does not account for network problems | Affected by congestion, delay, errors, interference, etc. |
+
+### Example
+
+Your internet connection has:
+
+- **Bandwidth:** 100 Mbps  
+- **Throughput:** 70 Mbps  
+
+Meaning: the connection can theoretically support up to **100 Mbps**, but you are actually receiving **70 Mbps** due to network conditions.
+
+**Easy memory:**
+
+- **Bandwidth = capacity**
+- **Throughput = actual speed achieved**
+
+## Guided and Unguided Transmission Media
+
+**Transmission media** is the path through which data travels from sender to receiver.
+
+### 1. Guided Media — Wired
+
+Data travels through a **physical cable**.
+
+Examples:
+
+- **Twisted-pair cable**
+- **Coaxial cable**
+- **Optical fiber cable**
+
+| Type | Main feature |
+|---|---|
+| Twisted pair | Cheap, common in Ethernet/LAN |
+| Coaxial | Better shielding than twisted pair |
+| Fiber optic | Uses light; very high speed and long distance |
+
+### 2. Unguided Media — Wireless
+
+Data travels through the **air or space** using electromagnetic waves.
+
+Examples:
+
+- Radio waves
+- Microwaves
+- Infrared
+- Satellite communication
+- Wi-Fi
+- Bluetooth
+
+| Type | Main feature |
+|---|---|
+| Radio waves | Used in Wi-Fi, radio, mobile communication |
+| Microwaves | Used in cellular and point-to-point links |
+| Infrared | Short-range communication |
+| Satellite | Long-distance/global communication |
+
+### Main Difference
+
+| Guided | Unguided |
+|---|---|
+| Uses physical cable | Uses air/space |
+| Usually more secure | More exposed to interference/interception |
+| Installation can be difficult | Easier to deploy in many places |
+| Examples: fiber, coaxial | Examples: Wi-Fi, satellite |
+
+**Exam line:**  
+> Guided media transmits data through a physical medium, while unguided media transmits data wirelessly through electromagnetic waves.
+
+## Node-to-Node Communication in the Data Link Layer
+
+**Node-to-node communication** means transferring data from **one directly connected device (node) to another device** over the same physical link.
+
+### Example
+
+::chatgpt-content-reference{index="0"}
+
+
+
+The Data Link Layer handles communication between **neighboring nodes**, such as:
+
+- Computer → Switch
+- Switch → Router
+- Router → Router
+
+### What does the DLL do?
+
+The Data Link Layer:
+
+1. **Frames** the data into frames.
+2. Adds **MAC addresses**.
+3. Detects transmission errors using methods such as CRC.
+4. Controls access to the shared medium.
+5. Delivers the frame to the **next directly connected node**.
+
+### Important distinction
+
+- **Data Link Layer:** Node-to-node delivery
+- **Network Layer:** Host-to-host delivery across networks
+- **Transport Layer:** Process-to-process delivery
+
+**Exam line:**
+> The Data Link Layer is responsible for reliable transfer of data frames between two directly connected nodes over a physical link.
+
+## Data Link Layer PDU
+
+The **PDU (Protocol Data Unit)** of the **Data Link Layer** is called a **Frame**.
+
+::chatgpt-content-reference{index="0"}
+
+
+
+### Frame structure
+
+::chatgpt-content-reference{index="1"}
+
+
+
+- **Header:** Contains source and destination **MAC addresses** and control information.
+- **Data/Payload:** Contains the packet received from the Network Layer.
+- **Trailer:** Usually contains error-detection information such as **FCS/CRC**.
+
+### Encapsulation
+
+::chatgpt-content-reference{index="2"}
+
+
+
+**Exam line:**
+> A frame is the PDU of the Data Link Layer.
+
+# Services Offered by the Data Link Layer
+
+The **Data Link Layer (DLL)** provides services for transferring frames between two directly connected nodes. The major services are:
+
+## 1. Unacknowledged Connectionless Service
+
+- Frames are sent independently.
+- No logical connection is established before transmission.
+- The receiver does **not send acknowledgements**.
+- If a frame is lost or damaged, the DLL does not retransmit it.
+- **Example:** Basic Ethernet service.
+
+## 2. Acknowledged Connectionless Service
+
+- No logical connection is established.
+- Each frame is sent independently.
+- However, the receiver sends an **acknowledgement** for each correctly received frame.
+- If a frame is lost, the sender may retransmit it.
+- Suitable when reliable delivery is required but establishing a connection is unnecessary.
+
+## 3. Acknowledged Connection-Oriented Service
+
+- A logical connection is established between the sender and receiver before data transfer.
+- Frames are usually:
+  - Numbered
+  - Acknowledged
+  - Delivered in the correct order
+- Lost or damaged frames can be retransmitted.
+- After transmission, the connection is terminated.
+- Provides more reliable and organized frame delivery.
+
+## 4. Framing
+
+- The Network Layer packet is divided into smaller units called **frames**.
+- Frames contain control information such as:
+  - Source MAC address
+  - Destination MAC address
+  - Error-detection information
+- Framing helps the receiver identify the beginning and end of each frame.
+
+## 5. Flow Control
+
+- Controls the rate at which data is transmitted.
+- Prevents a fast sender from overwhelming a slow receiver.
+- Ensures that the receiver has enough time and buffer space to process incoming frames.
+
+## 6. Error Control
+
+- Detects corrupted, lost, or duplicated frames.
+- Uses techniques such as:
+  - CRC
+  - Checksum
+  - Acknowledgements
+  - Retransmission
+  - Timers
+- Helps maintain accurate data transfer between nodes.
+
+## 7. Congestion Control
+
+- Controls excessive traffic on a link or network.
+- Prevents too many frames from being transmitted at the same time.
+- Helps reduce:
+  - Packet/frame loss
+  - Transmission delay
+  - Network overload
+
+## Comparison of the Three Delivery Services
+
+| Service | Logical connection | Acknowledgement | Reliability |
+|---|---|---|---|
+| Unacknowledged connectionless | No | No | Low |
+| Acknowledged connectionless | No | Yes, per frame | Moderate/High |
+| Acknowledged connection-oriented | Yes | Yes | High |
+
+### Conclusion
+
+> The Data Link Layer offers unacknowledged connectionless, acknowledged connectionless, and acknowledged connection-oriented services. It also performs framing, flow control, error control, and congestion control to support efficient and reliable node-to-node communication.
+
+## Point-to-Point and Broadcast Links
+
+These describe how devices are connected at the **Data Link Layer**.
+
+### 1. Point-to-Point Link
+
+A **point-to-point link** connects **exactly two devices**.
+
+::chatgpt-content-reference{index="0"}
+
+
+
+- Only two nodes share the link.
+- Data is sent from one device directly to the other.
+- No other device competes for the link.
+- Common in **router-to-router connections** and leased lines.
+
+**Example:** A direct cable connecting two routers.
+
+---
+
+### 2. Broadcast Link
+
+A **broadcast link** connects **multiple devices** to the same shared communication medium.
+
+::chatgpt-content-reference{index="1"}
+
+
+
+- Multiple nodes share the same link.
+- A frame transmitted by one device may be received by all connected devices.
+- The destination device processes the frame; others ignore it.
+- Requires **access control** to decide which device can transmit.
+
+**Examples:**
+
+- Traditional shared Ethernet
+- Wi-Fi network
+
+### Difference
+
+| Point-to-Point | Broadcast |
+|---|---|
+| Connects two devices | Connects multiple devices |
+| Dedicated link | Shared medium |
+| No competition between many devices | Devices may compete for access |
+| Example: Router-to-router cable | Example: Wi-Fi network |
+
+**Exam line:**
+> A point-to-point link provides a direct connection between two nodes, whereas a broadcast link allows multiple nodes to share the same communication medium.
+
+### Data Link Layer Sublayers
+
+The IEEE split the DLL into two parts because it has a double job: it needs to talk to the software/network layer above it, and it needs to handle the physical hardware cables below it.To manage this, the DLL was split into:
+
+- LLC (Logical Link Control) — The Software/Logic side (Top).
+
+- MAC (Media Access Control) — The Hardware/Physical side (Bottom).
+
+1. LLC — Logical Link Control
+The LLC sublayer communicates with the Network Layer and provides logical control over the data link.
+Functions
+- Identifies and manages Network Layer protocols.
+- Provides flow control.
+- Provides error control in supported protocols.
+- Handles communication between the Network Layer and MAC sublayer.
+Example: LLC identifies whether the carried packet belongs to IPv4, IPv6, etc.
+2. MAC — Media Access Control
+The MAC sublayer controls how devices access the transmission medium.
+Functions
+- Adds source and destination MAC addresses.
+- Controls access to a shared medium.
+- Creates and processes frames.
+- Helps detect transmission errors using FCS/CRC.
+- Handles collisions or channel access depending on the technology.
+Examples:
+- Ethernet MAC
+- Wi-Fi MAC
+
+## Link-Layer Addressing
+
+The **Data Link Layer uses MAC addresses** to deliver a frame across the **current local link**.
+
+### IP vs MAC addresses
+
+| Address | Used for | Scope |
+|---|---|---|
+| **IP address** | Identifies the final source and destination hosts | End-to-end |
+| **MAC address** | Identifies devices on the current link | Local hop |
+
+### Example
+
+Suppose Computer A sends data to Server B through two routers:
+
+```text
+Compute::chatgpt-content-reference{index="0"}
+
+ses remain the same
+
+```text
+IP Sour::chatgpt-content-reference{index="1"}
+
+ation remains **Server B** throughout the journey.
+
+### MAC addresses change at every hop
+
+| Hop | Source MAC | Destination MAC |
+|---|---|---|
+| Computer A → Router 1 | Computer A | Router 1 |
+| Router 1 → Router 2 | Router 1 | Router 2 |
+| Router 2 → Server B | Router 2 | Server B |
+
+A **new frame is created on every hop**.
+
+```text
+IP Packet stays the sa::chatgpt-content-reference{index="2"}
+
+P addresses identify the end-to-end communication, while MAC addresses identify the devices involved in the current local link.
+
+**Do not confuse them:**
+The **IP destination does not change** during routing, but the **MAC source and destination can change at every router-to-router or host-to-router link**.
+
+When you connect to a secure website, the Destination Port is always 443, and that never changes as it goes out of the router. However, the Source Port (your port) is the one that gets altered by your router to keep track of you.Here is exactly how the ports work on their way out of your home network:🛫 1. The Destination Port (Stays 443)The destination port is the service port on the server. Because you are visiting a secure HTTPS website, the destination port must stay 443. If your router changed this to something else, your packet would hit Google or Amazon's server, and the server would say, "I don't know what service this is," and drop it.🛬 2. The Source Port (The One That Changes)This is your return ticket number. When your web browser opens a tab, it picks a random, high-numbered port (like 54321) to listen for the reply.When that packet hits your home router, NAT (specifically PAT - Port Address Translation) steps in. If your brother, your mom, and you are all visiting Google at the exact same time, you are all sending packets to Destination Port 443. If your router left all your source ports alone, it wouldn't know whose reply was whose when they came back.So, your router deliberately swaps your source port for a unique tracking port that it controls.🔍 A Quick Look at the NAT Table ActionHere is exactly what happens inside the packet header as it passes through your router:Step A: Inside your house (Leaving your laptop)Source IP: 192.168.1.50 (Your Laptop)Source Port: 54321 (Picked by your browser)Destination IP: 8.8.8.8 (Google)Destination Port: 443 (HTTPS - Standard)Step B: Passing through the router (Going out to the Internet)The router rewrites the source fields, but leaves the destination fields alone:Source IP: 99.100.101.102 (Changed to Router's Public IP)Source Port: 9001 (Changed to a unique tracking port!)Destination IP: 8.8.8.8 (Stays Google)Destination Port: 443 (Stays HTTPS)The router logs this in its brain: "Anything coming back to me from Google on Port 9001 belongs to the guy at 192.168.1.50:54321."
+## Unicast, Multicast and Broadcast
+
+These describe **how data is delivered from a sender to receivers**.
+
+### 1. Unicast — One-to-One
+
+Data is sent from **one sender to one specific receiver**.
+
+::chatgpt-content-reference{index="0"}
+
+
+
+**Examples:**
+- Sending a message to one person
+- Loading a website from a server
+- Computer sending data to a specific router
+
+**MAC example:** One source MAC → one destination MAC.
+
+---
+
+### 2. Multicast — One-to-Many (Selected Group)
+
+Data is sent from **one sender to a specific group of receivers**.
+
+`::chatgpt-content-reference{index="1"}
+
+
+Only devices that joined the multicast group receive/process the data.
+
+**Examples:**
+- Online live streaming to subscribed users
+- Video conferencing
+- Routing protocol updates
+
+---
+
+### 3. Broadcast — One-to-All
+
+Data is sent from **one sender to all devices on the local network**.
+
+::chatgpt-content-reference{index="2"}
+
+
+
+All devices receive the frame, but only the relevant devices may process it.
+
+**Examples:**
+- ARP request in IPv4 Ethernet
+- DHCP Discover message
+
+**Broadcast MAC address:**
+::chatgpt-content-reference{index="3"}
+
+`
+
+## Comparison
+
+| Type | Delivery | Example |
+|---|---|---|
+| **Unicast** | One → One | Website request |
+| **Multicast** | One → Selected group | Live streaming group |
+| **Broadcast** | One → All local devices | ARP request |
+
+### Important distinction
+
+- **Point-to-point link:** Type of connection between two nodes.
+- **Broadcast link:** Shared medium used by multiple nodes.
+- **Unicast/multicast/broadcast:** Methods of delivering data.
+
+
+# Framing and Framing Methods
+
+## 1. What is Framing?
+
+Framing is the process of dividing a continuous stream of bits received from the Physical Layer into smaller, identifiable units called frames.
+
+```
+Continuous bit stream
+        ↓
++---------+---------+---------+
+| Frame 1 | Frame 2 | Frame 3 |
++---------+---------+---------+
+```
+
+### Need for framing
+
+The Data Link Layer needs to identify:
+
+* Where a frame starts
+
+* Where a frame ends
+
+* Which bits belong to each frame
+
+* Whether the frame contains errors
+
+The DLL divides the bit stream into discrete frames and may calculate a checksum for each frame to detect errors.
+
+DLL.pdf
+
+# Methods of Framing
+
+The main framing methods are:
+
+1. Byte Count
+
+2. Flag Bytes with Byte Stuffing
+
+3. Flag Bits with Bit Stuffing
+
+## 2. Byte Count
+
+In the byte count method, the frame header contains a field indicating the number of bytes in the frame.
+
+### Example
+
+Suppose the count field says `5`.
+
+```
++-------+------+------+------+------+------+
+| Count |  A   |  B   |  C   |  D   |  E   |
+|   5   |      |      |      |      |      |
++-------+------+------+------+------+------+
+```
+
+The receiver reads the count and knows that the frame contains 5 bytes of data.
+
+### Working
+
+1. Sender places the frame length in the count field.
+
+2. Receiver reads the count.
+
+3. Receiver collects that number of bytes.
+
+4. The frame ends after the specified number of bytes.
+
+### Disadvantage
+
+If the count field becomes corrupted, the receiver may lose frame synchronization.
+
+For example:
+
+```
+Actual count:   5
+Corrupted count: 8
+```
+
+The receiver may read bytes belonging to the next frame as part of the current frame.
+
+## 3. Flag Bytes with Byte Stuffing
+
+This method uses a special flag byte to mark the beginning and end of a frame.
+
+```
++------+----------------+------+
+| Flag |     Data       | Flag |
++------+----------------+------+
+```
+
+Example:
+
+```
+FLAG   A B C D E   FLAG
+```
+
+The receiver knows that the frame starts and ends at the flag byte.
+
+### Problem
+
+What if the flag byte appears inside the actual data?
+
+```
+FLAG   A B FLAG C D   FLAG
+```
+
+The receiver may mistakenly think the middle `FLAG` marks the end of the frame.
+
+### Solution: Byte Stuffing
+
+The sender inserts an escape byte before any flag byte appearing in the data.
+
+Suppose:
+
+```
+F = Flag byte
+E = Escape byte
+```
+
+Original data:
+
+```
+A B F C D
+```
+
+After byte stuffing:
+
+```
+A B E F C D
+```
+
+Complete frame:
+
+```
+F   A B E F C D   F
+```
+
+### Receiver operation
+
+When the receiver sees:
+
+```
+E F
+```
+
+it understands that this is an actual data byte `F`, not the end-of-frame flag.
+
+The receiver removes the escape byte. This process is called byte de-stuffing.
+
+### Summary
+
+* Flag byte marks frame boundaries.
+
+* Escape byte protects flag-like data.
+
+* Sender inserts escape bytes.
+
+* Receiver removes escape bytes.
+
+## 4. Flag Bits with Bit Stuffing
+
+This method uses a special bit pattern as the beginning and ending flag.
+
+A common flag pattern is:
+
+```
+01111110
+```
+
+Complete frame:
+
+```
+01111110   DATA   01111110
+  Flag              Flag
+```
+
+### Problem
+
+The flag pattern may accidentally appear inside the data.
+
+To prevent this, the sender uses bit stuffing.
+
+### Bit Stuffing Rule
+
+> Whenever the sender finds five consecutive 1s in the data, it automatically inserts a `0` bit.
+
+The source material describes this as inserting a zero after five consecutive 1s, and the receiver removes that zero during de-stuffing.
+
+DLL.pdf
+
+### Example
+
+Original data:
+
+```
+01111110
+```
+
+After five consecutive `1`s, the sender inserts `0`:
+
+```
+011111010
+```
+
+Another example:
+
+```
+Original:  111110
+Stuffed:   1111100
+```
+
+The inserted `0` is shown in bold conceptually:
+
+```
+11111 0 0
+     ↑ ↑
+ data stuffed zero
+```
+
+### Receiver operation
+
+When the receiver detects:
+
+```
+111110
+```
+
+it removes the `0`.
+
+```
+Received: 111110
+After de-stuffing: 11111
+```
+
+This process is called bit de-stuffing.
+
+### Advantages
+
+* Works at the bit level.
+
+* Prevents data from being confused with the flag pattern.
+
+* Maintains frame synchronization.
+
+# Byte Stuffing vs Bit Stuffing
+
+|
+Feature
+
+|
+
+Byte Stuffing
+
+|
+
+Bit Stuffing
+
+|
+| --- | --- | --- |
+|
+
+Works on
+
+|
+
+Bytes/characters
+
+|
+
+Individual bits
+
+|
+|
+
+Uses
+
+|
+
+Flag byte and escape byte
+
+|
+
+Flag bit pattern
+
+|
+|
+
+Stuffing rule
+
+|
+
+Insert escape before flag-like byte
+
+|
+
+Insert `0` after five consecutive `1`s
+
+|
+|
+
+Removal process
+
+|
+
+Byte de-stuffing
+
+|
+
+Bit de-stuffing
+
+|
+|
+
+Example
+
+|
+
+`E F` represents data `F`
+
+|
+
+`111110` becomes `11111`
+
+|
+
+## Final exam conclusion
+
+> Framing divides a continuous bit stream into identifiable frames. The major framing methods are byte count, flag bytes with byte stuffing, and flag bits with bit stuffing. Byte count uses a length field, byte stuffing uses escape bytes to protect flag bytes, and bit stuffing inserts a zero after five consecutive ones to prevent confusion with the flag pattern.
+
