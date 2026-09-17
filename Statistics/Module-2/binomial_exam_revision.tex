@@ -1,0 +1,131 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\definecolor{primary}{RGB}{31, 78, 121}
+\definecolor{secondary}{RGB}{89, 89, 89}
+
+\title{\textbf{Binomial Probability Exam Revision Guide}}
+\author{Prepared for Eli}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\noindent This guide covers the key binomial probability concepts and the exact practice problems we solved, complete with step-by-step translations and formulas to help you ace your exam.
+
+\section*{The Core Toolkit: How to Translate and Solve}
+Before diving into problems, remember the standard binomial formula:
+$$P(X = k) = \binom{n}{k} p^k q^{n-k}$$
+Where:
+\begin{itemize}
+    \item \textbf{$n$}: Total number of independent trials/items.
+    \item \textbf{$p$}: Probability of success on a single trial.
+    \item \textbf{$q$}: Probability of failure on a single trial ($1 - p$).
+    \item \textbf{$k$}: The specific target number of successes.
+\end{itemize}
+
+\subsection*{English-to-Math Decoder Ring}
+\begin{itemize}
+    \item \textbf{``At least $k$''} ($\ge k$): Sum from $k$ up to $n$, or use the complement rule: $1 - P(X < k)$.
+    \item \textbf{``At most $k$''} ($\le k$): Sum from $0$ up to $k$ ($P(0) + P(1) + \dots + P(k)$).
+    \item \textbf{``Fewer than $k$''} ($< k$): Strictly less than $k$ (e.g., fewer than 3 means $\le 2$).
+    \item \textbf{``Precisely / Exactly $k$''} ($= k$): Find that single exact probability term.
+\end{itemize}
+
+\hrule
+\vspace{0.5cm}
+
+\section*{Problem 1: The Insurance Salesman}
+\textbf{Question:} An insurance salesman sells policies to five men, all of identical age and good health. According to actuarial tables, the probability that a man of this particular age will be alive 30 years hence will be $2/3$. Find the probability that in 30 years: (i) all five men, (ii) at least one man, (iii) at least 3 men, (iv) at most 3 men, will be alive.
+
+\noindent\textbf{Variables:} $n = 5$, $p = 2/3$, $q = 1/3$.
+
+\begin{enumerate}
+    \item \textbf{(i) All five men ($k = 5$):}
+    $$P(X = 5) = \binom{5}{5} \left(\frac{2}{3}\right)^5 \left(\frac{1}{3}\right)^0 = 1 \times \frac{32}{243} \times 1 = \mathbf{\frac{32}{243}} \ (\approx 0.1317)$$
+    
+    \item \textbf{(ii) At least one man ($X \ge 1$):}
+    Use the complement rule: $1 - P(X = 0)$
+    $$P(X = 0) = \binom{5}{0} (1)(\frac{1}{3})^5 = \frac{1}{243} \implies 1 - \frac{1}{243} = \mathbf{\frac{242}{243}} \ (\approx 0.9959)$$
+    
+    \item \textbf{(iii) At least 3 men ($X \ge 3$):}
+    $$P(X \ge 3) = P(3) + P(4) + P(5) = \frac{80}{243} + \frac{80}{243} + \frac{32}{243} = \mathbf{\frac{64}{81}} \ (\approx 0.7901)$$
+    
+    \item \textbf{(iv) At most 3 men ($X \le 3$):}
+    Using the complement of 4 or 5: $1 - [P(4) + P(5)] = 1 - \frac{112}{243} = \mathbf{\frac{131}{243}} \ (\approx 0.5391)$
+\end{enumerate}
+
+\section*{Problem 2: The Multiple-Choice Quiz}
+\textbf{Question:} A student writes a five question multiple-choice quiz. Each question has four possible responses. The student guesses at random for each question. Calculate the probability for each possible score from 0 to 5.
+
+\noindent\textbf{Variables:} $n = 5$, $p = 1/4 = 0.25$, $q = 3/4 = 0.75$. Formula: $P(k) = \binom{5}{k} (0.25)^k (0.75)^{5-k}$
+
+\begin{itemize}
+    \item \textbf{Score = 0:} $\binom{5}{0}(1)(0.75)^5 = \mathbf{\frac{243}{1024}} \ (\approx 0.2373)$
+    \item \textbf{Score = 1:} $\binom{5}{1}(0.25)(0.75)^4 = \mathbf{\frac{405}{1024}} \ (\approx 0.3955)$
+    \item \textbf{Score = 2:} $\binom{5}{2}(0.25)^2(0.75)^3 = \mathbf{\frac{135}{512}} \ (\approx 0.2637)$
+    \item \textbf{Score = 3:} $\binom{5}{3}(0.25)^3(0.75)^2 = \mathbf{\frac{45}{512}} \ (\approx 0.0879)$
+    \item \textbf{Score = 4:} $\binom{5}{4}(0.25)^4(0.75)^1 = \mathbf{\frac{15}{1024}} \ (\approx 0.0146)$
+    \item \textbf{Score = 5:} $\binom{5}{5}(0.25)^5(1) = \mathbf{\frac{1}{1024}} \ (\approx 0.0010)$
+\end{itemize}
+
+\section*{Problem 3: Short-Sighted Students}
+\textbf{Question:} Thirty percent of students at a large university are known to be short-sighted. If twenty students are picked at random, find the probability that at most two of them are short-sighted.
+
+\noindent\textbf{Variables:} $n = 20$, $p = 0.3$, $q = 0.7$. Target: $P(X \le 2) = P(0) + P(1) + P(2)$.
+\begin{align*}
+    P(0) &= \binom{20}{0}(0.3)^0(0.7)^{20} \approx 0.00080 \\
+    P(1) &= \binom{20}{1}(0.3)^1(0.7)^{19} \approx 0.00684 \\
+    P(2) &= \binom{20}{2}(0.3)^2(0.7)^{18} \approx 0.02785 \\
+    P(X \le 2) &= 0.00080 + 0.00684 + 0.02785 = \mathbf{0.03548} \ (\approx 3.55\%)
+\end{align*}
+
+\section*{Problem 4: Committee Attendance}
+\textbf{Question:} There are 10 members on a committee. The probability of any member attending a randomly chosen meeting is 0.9. The committee cannot do business if more than 3 members are absent. What is the probability that 7 or more members will be present on a given date?
+
+\noindent\textbf{Variables:} $n = 10$, $p = 0.9$, $q = 0.1$. Target: $P(X \ge 7) = P(7) + P(8) + P(9) + P(10)$.
+\begin{align*}
+    P(7) &= \binom{10}{7}(0.9)^7(0.1)^3 \approx 0.05740 \\
+    P(8) &= \binom{10}{8}(0.9)^8(0.1)^2 \approx 0.19371 \\
+    P(9) &= \binom{10}{9}(0.9)^9(0.1)^1 \approx 0.38742 \\
+    P(10) &= \binom{10}{10}(0.9)^{10}(0.1)^0 \approx 0.34868 \\
+    P(X \ge 7) &= \mathbf{0.9872} \ (\text{exact fraction: } \frac{617,003,001}{625,000,000})
+\end{align*}
+
+\section*{Problem 5: Unbiased Coin Tosses}
+\textbf{Question:} An unbiased coin is tossed 10 times. Find the probability that there are fewer than 3 heads tossed.
+
+\noindent\textbf{Variables:} $n = 10$, $p = 0.5$, $q = 0.5$. Target: "Fewer than 3" means $X \le 2$ ($P(0) + P(1) + P(2)$).
+$$P(X < 3) = \frac{\binom{10}{0} + \binom{10}{1} + \binom{10}{2}}{1024} = \frac{1 + 10 + 45}{1024} = \frac{56}{1024} = \mathbf{\frac{7}{128}} \ (\approx 5.47\%)$$
+
+\section*{Problem 6: ACME Faulty Widgets}
+\textbf{Question:} ACME Inc. produces widgets sold in boxes of 8. 2% of them are faulty. Find the probability that a given box has at least one faulty widget in it.
+
+\noindent\textbf{Variables:} $n = 8$, $p = 0.02$, $q = 0.98$. Target: "At least one" $\implies 1 - P(0)$.
+$$P(X \ge 1) = 1 - \binom{8}{0}(0.02)^0(0.98)^8 = 1 - (0.98)^8 \approx \mathbf{0.1492} \ (\approx 14.92\%)$$
+
+\section*{Problem 7: Brian's Pizza Choices}
+\textbf{Question:} Brian eats pizza every night (7 days). Each night he picks mushroom with probability 0.35. Find the probability that he eats between 2 and 4 (inclusive) mushroom pizzas this week.
+
+\noindent\textbf{Variables:} $n = 7$, $p = 0.35$, $q = 0.65$. Target: $P(2 \le X \le 4) = P(2) + P(3) + P(4)$.
+\begin{align*}
+    P(2) &= \binom{7}{2}(0.35)^2(0.65)^5 \approx 0.29848 \\
+    P(3) &= \binom{7}{3}(0.35)^3(0.65)^4 \approx 0.26787 \\
+    P(4) &= \binom{7}{4}(0.35)^4(0.65)^3 \approx 0.14424 \\
+    P(2 \le X \le 4) &= 0.29848 + 0.26787 + 0.14424 = \mathbf{0.71059} \ (\approx 71.06\%)
+\end{align*}
+
+\section*{Problem 8: Covington High School C1 Module}
+\textbf{Question:} At Covington High School, 20% of sixth-form mathematics students retake their C1 module. There are 15 students in Mr Smither’s class; find the probability that precisely four of them retake this module.
+
+\noindent\textbf{Variables:} $n = 15$, $p = 0.2$, $q = 0.8$. Target: $P(X = 4)$.
+$$P(X = 4) = \binom{15}{4}(0.2)^4(0.8)^{11} = 1,365 \times 0.0016 \times 0.085899 \approx \mathbf{0.1876} \ (\approx 18.76\%)$$
+
+\end{document}

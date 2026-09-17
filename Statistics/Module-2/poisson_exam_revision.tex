@@ -1,0 +1,152 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\definecolor{primary}{RGB}{31, 78, 121}
+\definecolor{secondary}{RGB}{89, 89, 89}
+
+\title{\textbf{Poisson Distribution Exam Revision Guide}}
+\author{Prepared for Eli}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\noindent This guide covers all the Poisson distribution concepts, time-scaling tricks, Binomial-to-Poisson approximations, and the exact practice problems we worked through.
+
+\section*{The Poisson Core Toolkit}
+Unlike Binomial (which has a fixed number of trials $n$), Poisson is used for counting rare, independent events over a fixed interval of time or space at an average rate $\lambda$ (Lambda).
+
+\subsection*{The Formula}
+$$P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!}$$
+Where:
+\begin{itemize}
+    \item \textbf{$\lambda$}: Mean/average rate of events in the given time/space interval.
+    \item \textbf{$k$}: The target number of events you want to find.
+    \item \textbf{$e$}: Euler's constant ($\approx 2.71828$).
+    \item \textbf{$k!$}: Factorial of $k$ ($k \times (k-1) \times \dots \times 1$).
+\end{itemize}
+
+\subsection*{Golden Rules \& Exam Tricks}
+\begin{enumerate}
+    \item \textbf{Time Scaling:} If the time interval changes (e.g., from per week to per 2 weeks, or per minute to 15 seconds), scale $\lambda$ directly by multiplying it by the new time factor.
+    \item \textbf{Binomial Approximation (Large $n$, Small $p$):} If $n > 50$ and $p < 0.1$, don't use grueling binomial expansions—approximate using Poisson with $\lambda = n \times p$.
+    \item \textbf{Complement Rule:} For ``at least'' or ``more than'' ($X > k$), use $1 - P(X \le k)$ to save massive amounts of time.
+\end{enumerate}
+
+\hrule
+\vspace{0.5cm}
+
+\section*{Problem 1: Motorway Accidents}
+\textbf{Question:} Accidents occur on a certain stretch of motorway at the rate of three per month. Find the probability that on a given month there will be: (a) no accidents, (b) one accident, (c) two accidents, (d) three accidents, (e) four accidents.
+
+\noindent\textbf{Variables:} $\lambda = 3$ per month. Formula: $P(k) = \frac{e^{-3} 3^k}{k!}$
+\begin{align*}
+    \text{(a) No accidents ($k=0$):} &\quad P(0) = \frac{e^{-3} 3^0}{0!} = e^{-3} \approx \mathbf{0.0498} \ (4.98\%) \\
+    \text{(b) One accident ($k=1$):} &\quad P(1) = \frac{e^{-3} 3^1}{1!} = 3e^{-3} \approx \mathbf{0.1494} \ (14.94\%) \\
+    \text{(c) Two accidents ($k=2$):} &\quad P(2) = \frac{e^{-3} 3^2}{2!} = \frac{9e^{-3}}{2} \approx \mathbf{0.2240} \ (22.40\%) \\
+    \text{(d) Three accidents ($k=3$):} &\quad P(3) = \frac{e^{-3} 3^3}{3!} = \frac{27e^{-3}}{6} \approx \mathbf{0.2240} \ (22.40\%) \\
+    \text{(e) Four accidents ($k=4$):} &\quad P(4) = \frac{e^{-3} 3^4}{4!} = \frac{81e^{-3}}{24} \approx \mathbf{0.1680} \ (16.80\%)
+\end{align*}
+
+\section*{Problem 2: Cretan Airlines Late Arrivals (Time Scaling)}
+\textbf{Question:} Cretan Airlines services which arrive late to Athens Airport on a typical week can be modelled by a Poisson distribution with mean of $4.5$. 
+\begin{enumerate}
+    \item[a)] Determine the probability that on a given week there will be:
+    \begin{itemize}
+        \item \textbf{a. four late arrivals ($k=4$):} 
+        $$P(4) = \frac{e^{-4.5}(4.5)^4}{4!} \approx \mathbf{0.1898} \ (18.98\%)$$
+        \item \textbf{b. less than four late arrivals ($X < 4$):} 
+        $$P(X < 4) = P(0) + P(1) + P(2) + P(3) \approx \mathbf{0.3423} \ (34.23\%)$$
+        \item \textbf{c. at least seven late arrivals ($X \ge 7$):} 
+        $$P(X \ge 7) = 1 - P(X \le 6) \approx \mathbf{0.1690} \ (16.90\%)$$
+    \end{itemize}
+    \item[b)] Determine the probability that on a given \textbf{two week period} there will be between eight and thirteen (inclusive) late arrivals ($8 \le X \le 13$).
+    \begin{itemize}
+        \item \textbf{Scale $\lambda$:} New $\lambda = 4.5 \times 2 = 9.0$.
+        \item \textbf{Calculation:} Sum $P(8) + P(9) + \dots + P(13)$ using $\lambda = 9.0 \implies \mathbf{0.6023} \ (60.23\%)$.
+    \end{itemize}
+\end{enumerate}
+
+\section*{Problem 3: Estate Agent House Sales (Poisson + Binomial Combo)}
+\textbf{Question:} Houses sold follow a Poisson distribution with mean $2.5$ houses per week.
+\begin{enumerate}
+    \item[a)] In the next \textbf{four weeks}, find the probability of:
+    \begin{itemize}
+        \item \textbf{i. exactly 4 houses ($k=4$):} Scale $\lambda = 2.5 \times 4 = 10$. $P(4) = \frac{e^{-10}10^4}{4!} \dots$
+        \item \textbf{ii. more than 6 houses ($X > 6$):} $1 - P(X \le 6) = 1 - \sum_{k=0}^{6} \frac{e^{-10}10^k}{k!} \approx \mathbf{0.8699}$.
+    \end{itemize}
+    \item[b)] In the next \textbf{12 of those four-week periods}, find the probability that \textbf{exactly 7} periods have more than 6 houses sold.
+    \begin{itemize}
+        \item \textbf{Bridge to Binomial:} $n = 12$ periods, probability of success $p = 0.8699$, target $k = 7$.
+        \item \textbf{Formula:} $P(Y = 7) = \binom{12}{7} (0.8699)^7 (0.1301)^5 \approx \mathbf{0.0111} \ (1.11\%)$.
+    \end{itemize}
+\end{enumerate}
+
+\section*{Problem 4: Elevator Arrivals (Interval Adjustments \& Solving for $t$)}
+\textbf{Question:} Elevator arrivals average 4 people every 5 minutes ($\lambda_{\text{min}} = 4/5 = 0.8$ per minute).
+\begin{enumerate}
+    \item[\textbf{(i)}] \textbf{Exactly two people in a 1-minute period ($\lambda = 0.8, k=2$):}
+    $$P(2) = \frac{e^{-0.8}(0.8)^2}{2!} \approx \mathbf{0.1438} \ (14.38\%)$$
+    \item[\textbf{(ii)}] \textbf{Nobody arrives in a 15-second period:}
+    Scale $\lambda = 0.8 \times 0.25 = 0.2$. $P(0) = e^{-0.2} \approx \mathbf{0.8187} \ (81.87\%)$.
+    \item[\textbf{(iii)}] \textbf{Probability of at least one person in next $t$ minutes is $0.9$. Find $t$:}
+    $$P(X \ge 1) = 1 - P(0) = 1 - e^{-0.8t} = 0.9 \implies e^{-0.8t} = 0.1 \implies t = \frac{\ln(0.1)}{-0.8} \approx \mathbf{2.88} \text{ mins}$$
+\end{enumerate}
+
+\section*{Problem 5: Machine Rods (Binomial to Poisson Approximation)}
+\textbf{Question:} $1.2\%$ of rods made by a machine are bent ($p = 0.012$). Sample of $400$ rods ($n = 400$).
+\begin{enumerate}
+    \item[\textbf{(i)}] \textbf{State distribution of $X$:} $X \sim \text{B}(400, 0.012)$.
+    \item[\textbf{(ii)}] \textbf{Approximate distribution with reason:} $X \approx \text{Po}(4.8)$ (since $\lambda = 400 \times 0.012 = 4.8$). \textbf{Reason:} Because $n$ is large ($400$) and $p$ is small ($0.012$).
+    \item[\textbf{(iii)}] \textbf{Probability of more than 2 bent rods ($X > 2$):}
+    $$P(X > 2) = 1 - [P(0) + P(1) + P(2)] \text{ using } \lambda = 4.8 \approx \mathbf{0.8575} \ (85.75\%)$$
+\end{enumerate}
+
+
+\section*{Problem 6: Switchboard Phone Calls}
+\textbf{Question:} Between 2 PM and 4 PM, average calls per minute is $\lambda = 2.35$. Find the probability that during one particular minute there will be at most 2 phone calls ($X \le 2$). Given $e^{-2.35} = 0.095374$.
+
+\noindent\textbf{Variables:} $\lambda = 2.35$, Target: $P(X \le 2) = P(0) + P(1) + P(2)$.
+\begin{align*}
+    P(0) &= e^{-2.35}(1) \approx 0.09537 \\
+    P(1) &= e^{-2.35}(2.35) \approx 0.22413 \\
+    P(2) &= \frac{e^{-2.35}(2.35)^2}{2} \approx 0.26335 \\
+    P(X \le 2) &= 0.09537 + 0.22413 + 0.26335 = \mathbf{0.58285} \ (58.29\%)
+\end{align*}
+
+\section*{Problem 7: Lake Water Bacteria (Unit Conversion \& Scaling)}
+\textbf{Question:} Lake water contains an average of $3$ bacteria per litre ($3$ per $1000$ ml). 
+\begin{enumerate}
+    \item[a)] Sample of $250$ ml ($0.25$ L): $\lambda = 3 \times 0.25 = 0.75$.
+    \begin{itemize}
+        \item \textbf{i. Exactly two bacteria ($k=2$):} 
+        $$P(2) = \frac{e^{-0.75}(0.75)^2}{2!} \approx \mathbf{0.1329} \ (13.29\%)$$
+        \item \textbf{ii. At least two bacteria ($X \ge 2$):} 
+        $$P(X \ge 2) = 1 - [P(0) + P(1)] = 1 - e^{-0.75}(1 + 0.75) \approx \mathbf{0.1734} \ (17.34\%)$$
+    \end{itemize}
+    \item[b)] Larger sample of $2$ litres: $\lambda = 3 \times 2 = 6.0$. Find probability of less than ten but no less than six bacteria ($6 \le X \le 9$).
+    \begin{itemize}
+        \item \textbf{Calculation:} Sum $P(6) + P(7) + P(8) + P(9)$ using $\lambda = 6.0 \implies \mathbf{0.4704} \ (47.04\%).$
+    \end{itemize}
+\end{enumerate}
+
+\section*{Problem 8: Defective Electric Bulbs (Binomial-to-Poisson)}
+\textbf{Question:} $5\%$ of electric bulbs are defective. Use a Poisson distribution to find the probability that in a sample of $100$ bulbs: (i) none is defective, (ii) 5 bulbs are defective.
+
+\noindent\textbf{Variables:} $n = 100$, $p = 0.05 \implies \lambda = 100 \times 0.05 = 5.0$.
+\begin{enumerate}
+    \item[\textbf{(i)}] \textbf{None is defective ($k=0$):}
+    $$P(0) = \frac{e^{-5.0}(5.0)^0}{0!} = e^{-5.0} \approx \mathbf{0.0067} \ (0.67\%)$$
+    \item[\textbf{(ii)}] \textbf{5 bulbs are defective ($k=5$):}
+    $$P(5) = \frac{e^{-5.0}(5.0)^5}{5!} \approx \mathbf{0.1755} \ (17.55\%)$$
+\end{enumerate}
+
+\end{document}
+

@@ -1,0 +1,104 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{\textbf{Probability Theory Exam Cheat Sheet}}
+\author{Your Ultimate Study Resource}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Sample Spaces \& Language Traps}
+The sample space ($S$) is the set of all possible outcomes. Always use these three filters to interpret word problems correctly:
+\begin{itemize}
+    \item \textbf{Order Matters:} Look for phrases like \textit{"with respect to birth order"} or \textit{"in order"}. This means $(B, G) \neq (G, B)$.
+    \item \textbf{Can Things Repeat?} Look for \textit{"without replacement"} (items countdown, cannot repeat) vs. \textit{"with replacement"} (items reset, can repeat).
+    \item \textbf{Counted vs. Measured:} Counted scenarios are discrete sets (e.g., $S = \{2, 3, 4, \dots\}$). Measured scenarios are continuous intervals (e.g., $S = [0, \frac{1}{3}]$).
+\end{itemize}
+
+\subsection{Key Definitions}
+\begin{itemize}
+    \item \textbf{Exhaustive Events:} A set of events that completely covers the entire sample space. At least one of them \textbf{must} happen. 
+    \[ A_1 \cup A_2 \cup \dots \cup A_n = S \implies P(A_1 \cup A_2 \cup \dots \cup A_n) = 1 \]
+    \item \textbf{Mutually Exclusive Events:} Events that cannot physically happen at the same time ($A \cap B = \emptyset$). They have zero overlap: $P(A \cap B) = 0$.
+    \item \textbf{Independent Events:} The occurrence of one event has absolutely no effect on the probability of the other.
+\end{itemize}
+
+\section{Core Probability Theorems}
+
+\subsection{1. The Addition Theorem (The ``OR'' Rule)}
+Used to find the probability that \textbf{at least one} of two events happens.
+\[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]
+\textbf{Edge Case (Mutually Exclusive):} If they cannot overlap, drop the subtraction part:
+\[ P(A \cup B) = P(A) + P(B) \]
+
+\subsection{2. Conditional Probability}
+Calculates the likelihood of an event happening \textbf{given that} another event has already occurred. The term to the right of the vertical bar ($\mid$) is a guaranteed past fact.
+\[ P(B \mid A) = \frac{P(A \cap B)}{P(A)} \]
+
+\subsection{3. The Multiplication Theorem (The ``AND'' Rule)}
+Used to find the probability of a sequence of events happening together over a timeline.
+\[ P(A \cap B) = P(A) \times P(B \mid A) \]
+\textbf{Edge Case (Independent Events):} If the events do not affect each other, the formula simplifies to:
+\[ P(A \cap B) = P(A) \times P(B) \]
+
+\section{Bayes' Theorem \& The Tabular Method}
+Bayes' Theorem updates the probability of a cause (Hypothesis $H_i$) after an effect (Evidence $E$) has occurred. 
+\[ P(H_i \mid E) = \frac{P(H_i) \times P(E \mid H_i)}{\sum P(H_i) \times P(E \mid H_i)} \]
+
+\subsection{The Bayes' Table Shortcut}
+Instead of dealing with the large fraction, lay your data out in a systematic table. Work from left to right, column by column:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Hypothesis ($H_i$)} & \textbf{Prior Prob. $P(H_i$)} & \textbf{Conditional Prob. $P(E \mid H_i$)} & \textbf{Joint Prob. (Col 2 $\times$ Col 3)} & \textbf{Posterior Prob. (Joint / Total)} \\ \midrule
+$H_1$ & Given value & Given value & $P(H_1) \times P(E \mid H_1)$ & $\text{Joint}_1 / \text{Total Joint}$ \\
+$H_2$ & Given value & Given value & $P(H_2) \times P(E \mid H_2)$ & $\text{Joint}_2 / \text{Total Joint}$ \\ \midrule
+\textbf{Total} & \textbf{Must equal 1} & \textit{Do not add} & \textbf{Total Joint = $P(E)$} & \textbf{Must equal 1} \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\section{The Ultimate Exam Shortcuts}
+
+\subsection{1. The Complement Trick (Focus on Failure)}
+Whenever a question asks for the probability that a problem \textit{``gets solved''} or happens \textit{``at least once''} across independent paths, calculate total failure first, then subtract it from 1.
+\[ P(\text{Success}) = 1 - P(\text{Total Failure}) \]
+\[ P(\text{Success}) = 1 - \left[ P(\text{A Fails}) \times P(\text{B Fails}) \times P(\text{C Fails}) \right] \]
+
+\subsection{2. Parallel Path Modeling (Contradiction Puzzles)}
+When tracking scenarios where individuals disagree or cross paths:
+\begin{enumerate}
+    \item Map out all winning individual sequences using the \textbf{Multiplication Theorem}.
+    \item Add those distinct pathways together using the \textbf{Addition Theorem}.
+    \[ P(\text{Contradiction}) = P(\text{A Truth} \cap \text{B Lie}) + P(\text{A Lie} \cap \text{B Truth}) \]
+\end{enumerate}
+
+\section{Algebra \& Arithmetic Essentials}
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Tool Name} & \textbf{The Rule} & \textbf{Example} \\ \midrule
+\textbf{The Magic Bridge} & Moving a term across standard $=$ flips its sign. & $X = Y - Z \implies X + Z = Y$ \\
+\textbf{Keep-Change-Flip} & To divide fractions, multiply by the reciprocal. & $\frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \times \frac{d}{c}$ \\
+\textbf{Stack Eraser} & If stacked fractions share a denominator, erase them. & $\frac{4/52}{12/52} \implies \frac{4}{12} = \frac{1}{3}$ \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\section{Standard Deck Quick Reference}
+Total Cards = 52 \\
+Colors = 26 Red, 26 Black \\
+Suits = 13 Spades ($\spadesuit$), 13 Clubs ($\clubsuit$), 13 Hearts ($\heartsuit$), 13 Diamonds ($\diamondsuit$) \\
+Face Cards = 12 total (4 Jacks, 4 Queens, 4 Kings) \\
+Aces = 4 total
+
+\end{document}
+
