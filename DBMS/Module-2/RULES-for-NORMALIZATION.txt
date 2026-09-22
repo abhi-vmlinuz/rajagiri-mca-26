@@ -1,0 +1,22 @@
+1NF - No multivalue in relation
+2NF - LHS of the FD should be a proper subset of the candidate key and RHS should be a non prime attribute
+3NF - LHS should be a super key  / candidate or RHS should be a prime attribute
+BCNF - LHS should be a candidate / super key
+
+=== Decomposition ====
+
+Splitting the tables into smaller tables while preserving the data and ensuring mininal redundancy
+
+types of composition: 
+- loselesss decomposition : 1) Data isn't lost when decomposed : 2) Original relation can be reconstructed
+- lossy decomposition : 1) Data may get lost : 2) original table cannot be fully reconstructed
+- dependedncy preserving decomposition : ensures all functional dependencies are maintained
+
+JOIN = Cartesian product + selection
+AB x BC
+==A==  ==B==  ==B==   ==C==
+a1 	b1 	b1	c1
+a1 	b1	b2	c2
+a2	b1	b1	c1
+
+		

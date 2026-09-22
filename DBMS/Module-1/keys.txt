@@ -1,0 +1,49 @@
+Primary Key
+Definition: A unique identifier for a table. It uniquely identifies each record in a database table.
+- Only 1 primary key for a table
+
+
+Candidate Key (Minimal Superkey, unqiuely identifying a row using minimal super key attributes)
+Definition: A set of one or more columns that can uniquely identify a row in a table. A table can have multiple candidate keys, and one of them is chosen as the Primary Key.
+- No Nulls values
+
+
+Super Key
+Definition: Any combination of columns that can uniquely identify a row in a table. A super key is a superset of a candidate key.
+
+
+==== CLOSURE OF AN ATTRIBUTE SET ======
+
+Set of ALl those attributes which can be functionally determined from a single attribute / set of attributes are called a closure of that attribute. (key) 
+- For an attribute closure is denoted as A+
+
+R ( A B C ) FD are : A -> B, B->C, AB->C
+
+A+ = A
+A+ = AB
+A+ = {ABC}
+
+A was able to determine all the attributes on the relation with minimal attributes:
+therefore A - Candidate Key
+
+AB+ = {ABC} - Super Key
+A+ = {ABC} - Candidate Key
+
+==== Database Users ====
+
+- DataBase ADMINS : 
+Schema definitionStorage structure and access method definition Schema and physical organization modification Granting user authority to access the database Specifying integrity constraints
+
+
+- Application Programmers - Interact through DML Calls: 
+- Sophisticated users - form requests in databse query lanaguage
+- Naive Users: Invoke one of the permanent application programs that have been written previously
+
+=== Data Definition Language: ====
+create, alter, drop, trunc
+
+=== Data Manipulation Language: ===
+select, insert, update, delete
+
+=== Transaction Control Language: TCL ===
+COMMIT, ROLLBACK, Savepoint
