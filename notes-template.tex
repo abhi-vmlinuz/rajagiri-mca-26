@@ -1,0 +1,222 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=0.72in]{geometry}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{parskip}
+
+\definecolor{navy}{HTML}{183153}
+\definecolor{blue}{HTML}{2563EB}
+\definecolor{green}{HTML}{166534}
+\definecolor{red}{HTML}{B91C1C}
+\definecolor{gold}{HTML}{92400E}
+\definecolor{lightblue}{HTML}{EFF6FF}
+\definecolor{lightgreen}{HTML}{F0FDF4}
+\definecolor{lightred}{HTML}{FEF2F2}
+\definecolor{lightgold}{HTML}{FFFBEB}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{SUBJECT -- MODULE / UNIT}
+\rhead{Exam Study Notes}
+\cfoot{\thepage}
+
+\titleformat{\section}{\Large\bfseries\color{navy}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\color{navy}}{}{0pt}{}
+\titleformat{\subsubsection}{
+\normalsize\bfseries\color{blue}}{}{0pt}{}
+
+\setlist[itemize]{leftmargin=*,nosep}
+\setlist[enumerate]{leftmargin=*,nosep}
+
+
+\newtcolorbox{exambox}{colback=lightblue,colframe=blue,title=Exam Focus,fonttitle=\bfseries}
+
+\newtcolorbox{rememberbox}{colback=lightgold,colframe=gold,title=Remember,fonttitle=\bfseries}
+
+\newtcolorbox{dangerbox}{colback=lightred,colframe=red,title=Do Not Confuse,fonttitle=\bfseries}
+
+\newtcolorbox{answerbox}{colback=lightgreen,colframe=green,title=Answer Skeleton,fonttitle=\bfseries}
+
+
+\newcommand{\mkmarks}[1]{\hfill\textbf{[#1 marks]}}
+
+\newcommand{\cmd}[1]{\texttt{#1}}
+
+\begin{document}
+
+\begin{center}
+{\Huge\bfseries\color{navy} SUBJECT TITLE}\\[4pt]
+{\LARGE\bfseries COURSE / MODULE / UNIT}\\[8pt]
+{\large High-yield notes, comparisons, diagrams, and question bank}\\[10pt]
+\rule{0.85\textwidth}{0.6pt}
+\end{center}
+
+\begin{exambox}
+\textbf{Exam strategy.} [PLACEHOLDER: Add the exam pattern, marks distribution, priority guidance, and study strategy here.]
+\end{exambox}
+
+\tableofcontents
+
+\newpage
+
+\section{1. MAIN TOPIC}
+
+\subsection{1.1 Subtopic}
+[PLACEHOLDER: Definition / core concept / explanation.]
+
+\begin{center}
+\fbox{PLACEHOLDER DIAGRAM / FLOW / ARCHITECTURE}
+\end{center}
+
+\begin{rememberbox}
+\textbf{Remember:} [PLACEHOLDER: one high-yield memory point.]
+\end{rememberbox}
+
+\subsection{1.2 Another Subtopic}
+\begin{enumerate}
+    \item [PLACEHOLDER: Step / point 1]
+    \item [PLACEHOLDER: Step / point 2]
+    \item [PLACEHOLDER: Step / point 3]
+\end{enumerate}
+
+\begin{dangerbox}
+\textbf{Do not confuse:} [PLACEHOLDER: commonly confused terms or trap.]
+\end{dangerbox}
+
+\begin{exambox}
+\textbf{Likely question:} [PLACEHOLDER: exam question and marks.]
+\end{exambox}
+
+\section{2. COMPARISON / CLASSIFICATION}
+
+\subsection{2.1 Comparison Table}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.22\textwidth} X X}
+\toprule
+Feature & Concept A & Concept B \\ 
+\midrule
+Definition & [PLACEHOLDER] & [PLACEHOLDER] \\ 
+Working & [PLACEHOLDER] & [PLACEHOLDER] \\ 
+Advantages & [PLACEHOLDER] & [PLACEHOLDER] \\ 
+Limitations & [PLACEHOLDER] & [PLACEHOLDER] \\ 
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{3. MECHANISM / ALGORITHM / PROCESS}
+
+\subsection{3.1 Working}
+\begin{enumerate}
+    \item [PLACEHOLDER: Step 1]
+    \item [PLACEHOLDER: Step 2]
+    \item [PLACEHOLDER: Step 3]
+    \item [PLACEHOLDER: Step 4]
+\end{enumerate}
+
+\begin{center}
+\texttt{PLACEHOLDER: process / timeline / packet / architecture diagram}
+\end{center}
+
+\subsection{3.2 Formula / Technical Detail}
+\[
+    \text{PLACEHOLDER FORMULA}
+\]
+
+\section{4. IMPORTANT EXAM TOPICS}
+
+\begin{itemize}
+    \item [PLACEHOLDER: High-yield topic]
+    \item [PLACEHOLDER: High-yield topic]
+    \item [PLACEHOLDER: High-yield topic]
+\end{itemize}
+
+\section{5. 10-Mark Answer Templates}
+
+\subsection{Question A: [PLACEHOLDER QUESTION] \mkmarks{10}}
+\begin{answerbox}
+Write in this order:
+\begin{enumerate}
+    \item [PLACEHOLDER: Introduction / definition]
+    \item [PLACEHOLDER: Main concept 1]
+    \item [PLACEHOLDER: Main concept 2]
+    \item [PLACEHOLDER: Mechanism / diagram]
+    \item [PLACEHOLDER: Comparison / example]
+    \item [PLACEHOLDER: Conclusion]
+\end{enumerate}
+\end{answerbox}
+
+\subsection{Question B: [PLACEHOLDER QUESTION] \mkmarks{10}}
+\begin{answerbox}
+[PLACEHOLDER: Answer structure / points to include / diagram to draw.]
+\end{answerbox}
+
+\section{6. Question Bank}
+
+\subsection*{Definitions / 2--3 marks}
+\begin{enumerate}
+    \item [PLACEHOLDER QUESTION]
+    \item [PLACEHOLDER QUESTION]
+    \item [PLACEHOLDER QUESTION]
+\end{enumerate}
+
+\subsection*{5-mark questions}
+\begin{enumerate}
+    \item [PLACEHOLDER QUESTION]
+    \item [PLACEHOLDER QUESTION]
+    \item [PLACEHOLDER QUESTION]
+\end{enumerate}
+
+\subsection*{10-mark questions}
+\begin{enumerate}
+    \item [PLACEHOLDER QUESTION]
+    \item [PLACEHOLDER QUESTION]
+    \item [PLACEHOLDER QUESTION]
+\end{enumerate}
+
+\section{7. Last-Minute Revision Page}
+
+\begin{multicols}{2}
+\textbf{CORE CONCEPT}\\
+\textit{PLACEHOLDER: one-line summary.}
+
+\textbf{KEY TERMS}\\
+\textit{PLACEHOLDER: compact definitions.}
+
+\textbf{PROCESS}\\
+\textit{PLACEHOLDER: compressed mechanism.}
+
+\textbf{FORMULAS}\\
+\textit{PLACEHOLDER: formulas / relations.}
+
+\textbf{DO NOT CONFUSE}\\
+\textit{PLACEHOLDER: common traps.}
+
+\textbf{EXAM DIAGRAMS}\\
+\textit{PLACEHOLDER: diagrams to memorize/draw.}
+\end{multicols}
+
+\section*{Source Scope}
+\textit{PLACEHOLDER: List the supplied source files and state that terminology, organization, and emphasis should follow the source material.}
+
+\vfill
+\begin{center}
+\textit{Study principle: understand the mechanism first, then memorize the exam wording.}
+\end{center}
+
+\end{document}
