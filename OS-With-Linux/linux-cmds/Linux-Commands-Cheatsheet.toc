@@ -1,0 +1,46 @@
+\contentsline {section}{\numberline {1}1. Navigation: pwd, cd, ls, mkdir}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}1.1 pwd --- print working directory}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}1.2 cd --- change directory}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}1.3 ls --- list directory contents}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}1.4 mkdir --- make directories}{3}{subsection.1.4}%
+\contentsline {section}{\numberline {2}2. Creating and Viewing Files: touch, cat, head, tail, echo, wc}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}2.1 touch --- create empty files, update timestamps}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}2.2 cat --- view, concatenate, create}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}2.3 head --- first lines}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}2.4 tail --- last lines}{4}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}2.5 echo --- print text}{5}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}2.6 wc --- count lines, words, bytes}{5}{subsection.2.6}%
+\contentsline {section}{\numberline {3}3. Copy, Move, Delete: cp, mv, rm}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}3.1 cp --- copy files and directories}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}3.2 mv --- move and rename}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}3.3 rm --- remove files and directories}{6}{subsection.3.3}%
+\contentsline {section}{\numberline {4}4. Help: man}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}4.1 man --- read manual pages}{6}{subsection.4.1}%
+\contentsline {section}{\numberline {5}5. Text Processing: cut, paste, sort, grep, locate}{6}{section.5}%
+\contentsline {subsection}{\numberline {5.1}5.1 cut --- slice columns out of lines}{6}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}5.2 paste --- merge files side by side}{6}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}5.3 sort --- sort lines}{7}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}5.4 grep --- search text by pattern}{7}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}5.5 locate --- find files by name}{7}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}5.6 Piping text tools together}{7}{subsection.5.6}%
+\contentsline {section}{\numberline {6}6. Permissions and Privilege: chmod, sudo}{8}{section.6}%
+\contentsline {subsection}{\numberline {6.1}6.1 Reading permissions}{8}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}6.2 chmod --- change mode}{8}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}6.3 sudo --- run with elevated privilege}{8}{subsection.6.3}%
+\contentsline {section}{\numberline {7}7. Archives and Compression: tar, zip, gzip, bzip2, xz}{8}{section.7}%
+\contentsline {subsection}{\numberline {7.1}7.1 tar --- tape archive}{8}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}7.2 zip, gzip, bzip2, xz}{9}{subsection.7.2}%
+\contentsline {section}{\numberline {8}8. Disks, Memory, System: df, du, free, top, vmstat, uname}{9}{section.8}%
+\contentsline {subsection}{\numberline {8.1}8.1 df --- disk free}{9}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}8.2 du --- disk usage}{9}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}8.3 free --- memory overview}{10}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}8.4 top --- live process monitor}{10}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}8.5 vmstat --- virtual memory statistics}{10}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}8.6 uname --- system information}{10}{subsection.8.6}%
+\contentsline {section}{\numberline {9}9. Processes: fork, exec, ps, kill, nice}{10}{section.9}%
+\contentsline {subsection}{\numberline {9.1}9.1 fork() --- create a process}{10}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}9.2 exec() family --- run another program}{11}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}9.3 ps --- process status}{11}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}9.4 kill --- signal processes}{11}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}9.5 nice --- process priority}{11}{subsection.9.5}%
+\contentsline {section}{\numberline {10}10. Master Quick Reference}{11}{section.10}%

@@ -1,0 +1,741 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=0.72in]{geometry}
+\usepackage{mathptmx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{parskip}
+
+\definecolor{navy}{HTML}{183153}
+\definecolor{blue}{HTML}{2563EB}
+\definecolor{green}{HTML}{166534}
+\definecolor{red}{HTML}{B91C1C}
+\definecolor{gold}{HTML}{92400E}
+\definecolor{lightblue}{HTML}{EFF6FF}
+\definecolor{lightgreen}{HTML}{F0FDF4}
+\definecolor{lightred}{HTML}{FEF2F2}
+\definecolor{lightgold}{HTML}{FFFBEB}
+\definecolor{codebg}{HTML}{F5F5F5}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{OS with Linux -- Linux Commands}
+\rhead{Cheatsheet}
+\cfoot{\thepage}
+
+\titleformat{\section}{\Large\bfseries\color{navy}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\color{navy}}{}{0pt}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{blue}}{}{0pt}{}
+
+\setlist[itemize]{leftmargin=*,nosep}
+\setlist[enumerate]{leftmargin=*,nosep}
+
+\lstset{backgroundcolor=\color{codebg},basicstyle=\ttfamily\footnotesize,frame=single,rulecolor=\color{black!25},breaklines=true,columns=fullflexible,keepspaces=true,showstringspaces=false,aboveskip=2pt,belowskip=2pt}
+
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{3pt}
+\titlespacing*{\subsubsection}{0pt}{4pt}{2pt}
+\setlength{\parskip}{3pt}
+
+\newcommand{\cmd}[1]{\texttt{#1}}
+
+\begin{document}
+
+\begin{center}
+{\Huge\bfseries\color{navy} Linux Commands Cheatsheet}\\[4pt]
+{\LARGE\bfseries OS with Linux}\\[8pt]
+{\large Syntax, key options, and examples for every command in the source set}\\[10pt]
+\rule{0.85\textwidth}{0.6pt}
+\end{center}
+
+\tableofcontents
+
+\newpage
+
+\section{1. Navigation: pwd, cd, ls, mkdir}
+
+\subsection{1.1 pwd --- print working directory}
+Prints the absolute path of the current directory.
+\begin{lstlisting}
+pwd
+pwd -L    # logical path: as navigated, keeps symbolic links
+pwd -P    # physical path: resolves symbolic links to the real location
+\end{lstlisting}
+
+\subsection{1.2 cd --- change directory}
+With no argument (or \cmd{\textasciitilde}) it returns to the home directory.
+\begin{lstlisting}
+cd [directory]
+cd Documents                    # into a subdirectory
+cd /var/log                     # absolute path
+cd ~                            # home (bare cd does the same)
+cd ..                           # parent directory, one level up
+cd -                            # previous directory you were in
+cd /                            # filesystem root
+cd "My songs"                   # quoted name with spaces (or: cd My\ songs)
+cd Documents/geeksforgeeks/example   # nested path in one step
+cd /var/l + Tab                 # tab-completion of directory names
+\end{lstlisting}
+\cmd{cd ..} = parent, \cmd{cd -} = previous location, \cmd{cd \textasciitilde} = home, \cmd{cd /} = filesystem root. Verify where you landed with \cmd{pwd}; chain with \cmd{cd /path \&\& ls}; shortcut repeated jumps with \cmd{alias docs="cd \textasciitilde/Documents"} in \cmd{\textasciitilde/.bashrc}.
+
+\subsection{1.3 ls --- list directory contents}
+Lists files and directories; default order is alphabetical.
+\begin{lstlisting}
+ls [option] [file/directory]
+ls -l                 # long format: permissions, owner, size, date
+ls -lh                # long format, human-readable sizes (1K, 234M, 2G)
+ls -a                 # all files, including hidden dot-files
+ls -t | head -1       # most recently modified file
+ls -lt                # long format sorted by time, newest first
+ls -ltr               # oldest first (last-edited file on the last line)
+ls -1                 # one entry per line
+ls -R /etc/apt        # recursive listing through subdirectories
+ls -i                 # show inode number of each file
+ls -ld /etc           # info about the directory itself, not its contents
+ls -F                 # classify: / directory, * executable, @ link
+ls -n                 # numeric UID/GID instead of names
+\end{lstlisting}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+Option & Meaning \\
+\midrule
+\cmd{-l} & Long format: permissions, links, owner, group, size, date, name. \\
+\cmd{-a} / \cmd{-A} & All files including hidden ones (\cmd{-A} skips \cmd{.} and \cmd{..}). \\
+\cmd{-h} & Human-readable sizes; almost always combined as \cmd{ls -lh}. \\
+\cmd{-t} & Sort by modification time, newest first. \\
+\cmd{-r} & Reverse the order. \\
+\cmd{-S} & Sort by size, largest first. \\
+\cmd{-R} & Recurse into subdirectories. \\
+\cmd{-1} & One entry per line. \\
+\cmd{-i} & Show the inode number. \\
+\cmd{-d} & List the directory itself, not its contents. \\
+\cmd{-F} / \cmd{--color=auto} & Classify entries with symbols / colours. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+Reading \cmd{ls -l} output, field by field: type character (\cmd{-} regular file, \cmd{d} directory, \cmd{l} symlink, \cmd{s} socket), 9 permission characters (owner/group/others as \cmd{rwx} triples), link count, owner, group, size in bytes, modification date, file name.
+
+\subsection{1.4 mkdir --- make directories}
+Creates directories; silent on success, so verify with \cmd{ls} or use \cmd{-v}.
+\begin{lstlisting}
+mkdir [options] dir_name
+mkdir Linux                       # single directory
+mkdir dir1 dir2 dir3               # several at once
+mkdir dir{1..15}                   # brace expansion: dir1 ... dir15
+mkdir -p Linux/dirtest1/dirtest2   # create missing parents too
+mkdir -m 777 mydir                 # set permissions at creation
+mkdir -v newdir                    # verbose confirmation
+mkdir /Linux/example               # create at a specific path
+mkdir $USER                         # environment variables work in names
+\end{lstlisting}
+Without \cmd{-p}, a missing parent makes the command fail; \cmd{-p} also tolerates directories that already exist.
+
+\section{2. Creating and Viewing Files: touch, cat, head, tail, echo, wc}
+
+\subsection{2.1 touch --- create empty files, update timestamps}
+A file made by \cmd{touch} is empty; on existing files it updates timestamps.
+\begin{lstlisting}
+touch [options] file_name
+touch File1                    # one empty file
+touch Doc1 Doc2 Doc3           # several at once
+touch -a fileName              # access time only
+touch -m fileName              # modification time only
+touch -c fileName              # update only; do NOT create if missing
+touch -r ref target            # copy timestamps from ref file
+touch -t YYMMDDHHMM file       # explicit stamp
+touch -d "17 Mar 2023" Geek.txt
+\end{lstlisting}
+Alternatives for an empty file: \cmd{cat > empty.txt} (type, then Ctrl+D), the \cmd{>} operator alone (\cmd{> empty.txt}), or an editor (\cmd{vim empty.txt}, then \cmd{:wq}).
+
+\subsection{2.2 cat --- view, concatenate, create}
+Views contents, joins files, creates via redirection, appends.
+\begin{lstlisting}
+cat [OPTION] [FILE]
+cat notes.txt                    # view one file
+cat file1 file2                  # view two files back to back
+cat -n file2                     # with line numbers
+cat > newfile                    # create/overwrite (type, Ctrl+D to save)
+cat file1 file2 > merged.txt     # merge into one file
+cat file1 >> file2               # append file1 to the end of file2
+cat -s filename                  # squeeze repeated blank lines
+cat -E filename                  # show $ at each line end
+cat -A filename                  # -vET combined: visible non-printing chars, $ ends, ^I tabs
+cat -- "-dashfile"               # file whose name starts with -
+cat filename | more              # page through long output
+cat *.txt                        # every .txt file in the folder
+tac file2                        # reverse of cat: last line first
+\end{lstlisting}
+\cmd{>} overwrites, \cmd{>>} appends.
+
+\subsection{2.3 head --- first lines}
+Prints the first 10 lines by default; previews logs, configs, CSVs without opening them.
+\begin{lstlisting}
+head [options] [file(s)]
+head /etc/passwd
+head -n 3 /etc/hosts        # first 3 lines
+head -c 100 data.csv        # first 100 bytes
+head state.txt capital.txt  # headers ==> file <== before each file
+head -q a.txt b.txt         # quiet: no file headers
+head -v state.txt           # always print the header
+ls -t | head -n 3           # three most recently modified files
+head -n 20 f | tail -n 10   # lines 11--20 of the file
+\end{lstlisting}
+
+\subsection{2.4 tail --- last lines}
+Complement of \cmd{head}: last 10 lines by default; \cmd{-f} follows a growing log live.
+\begin{lstlisting}
+tail [OPTION]... [FILE]...
+tail /var/log/syslog
+tail -n 20 /var/log/auth.log   # or: tail -20 file
+tail +25 state.txt             # from line 25 to end of file (tail-only form)
+tail -c 200 notes.txt          # last 200 bytes
+tail -f /var/log/syslog        # follow: new lines appear as written (Ctrl+C to stop)
+tail -F app.log                # like -f, reopens the file after rotation
+tail -n 7 state.txt | sort -r  # pipe into other filters
+cat state.txt | head -n 20 | tail -n 5 > list.txt
+\end{lstlisting}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+Option & Meaning (head / tail) \\
+\midrule
+\cmd{-n} NUM & First / last NUM lines (default 10). \\
+\cmd{-c} NUM & First / last NUM bytes. \\
+\cmd{-q} & No file headers with multiple files. \\
+\cmd{-v} & Always print file headers. \\
+\cmd{-f} / \cmd{-F} & Tail only: follow the file live; \cmd{-F} survives log rotation. \\
+\cmd{+n} & Tail only: start printing from line \cmd{n}. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{2.5 echo --- print text}
+Shell builtin for messages, variables, and writing text into files.
+\begin{lstlisting}
+echo [option] [string]
+echo "Geeks for Geeks"
+echo $HOME                     # value of a variable
+echo *                         # file list, like ls
+echo "Welcome" > out.txt       # write to file (overwrite)
+echo "more" >> out.txt         # append to file
+echo -n "no trailing newline"
+echo -e "a\tb\nc"             # interpret escapes: \t tab, \n newline
+echo -e "x\bc"                 # \b backspace, \c stop output, \r carriage return, \a bell
+\end{lstlisting}
+
+\subsection{2.6 wc --- count lines, words, bytes}
+\begin{lstlisting}
+wc file.txt        # lines, words, bytes of the file
+wc -l file.txt     # line count only
+wc -w file.txt     # word count only
+wc -c file.txt     # byte count
+\end{lstlisting}
+
+\section{3. Copy, Move, Delete: cp, mv, rm}
+
+\subsection{3.1 cp --- copy files and directories}
+Needs at least two arguments; plain \cmd{cp} overwrites without warning.
+\begin{lstlisting}
+cp source_file destination
+cp a.txt b.txt                 # copy file (overwrites b.txt silently)
+cp a.txt b.txt c.txt new/      # several files into a directory
+cp -R src_dir dest_dir         # recursive: copy a whole directory
+cp -r geeksforgeeks gfg
+cp -i a.txt b.txt              # interactive: ask before overwriting
+cp -f a.txt b.txt              # force: overwrite even write-protected files
+cp -n a.txt b.txt              # no-clobber: never overwrite
+cp -p a.txt c.txt              # preserve timestamps and ownership
+cp -v a.txt backup/            # verbose progress
+cp -u a.txt backup/            # copy only if source is newer
+cp *.txt Folder1               # wildcard: all .txt files
+\end{lstlisting}
+If \cmd{dest\_dir} does not exist, \cmd{cp -R src dest} creates it as a copy of src; if it exists, src lands inside it as a subdirectory.
+
+\subsection{3.2 mv --- move and rename}
+One command for renaming and relocating; on the same filesystem a rename keeps the timestamp and duplicates no data.
+\begin{lstlisting}
+mv [options] source... destination
+mv jayesh_gfg geeksforgeeks          # rename a file
+mv jkj new_gfg                       # rename a directory
+mv geeksforgeeks /home/user/jkj/     # move into a directory
+mv gfg_1 gfg_2 /home/user/jkj/       # move several files at once
+mv -i old new                        # ask before overwriting (y/n)
+mv -f old new                        # force overwrite, even write-protected
+mv -n old new                        # no-clobber: keep the existing file
+mv -b old new                        # back up the overwritten file with ~ suffix
+\end{lstlisting}
+
+\subsection{3.3 rm --- remove files and directories}
+Silent on success and unrecoverable: deleted files cannot be restored.
+\begin{lstlisting}
+rm [OPTION]... FILE...
+rm a.txt                # one file
+rm b.txt c.txt          # several files
+rm -i d.txt             # ask before each deletion
+rm -f e.txt             # force: remove write-protected files without asking
+rm -r dir/              # recursive: delete a directory tree (same as -R)
+rm -- -file.txt         # delete a file whose name starts with -
+\end{lstlisting}
+\cmd{rm *} refuses directories (\cmd{cannot remove 'B': Is a directory}); \cmd{rm -r *} deletes everything inside. \cmd{-f} overrides file protection but not write-protected directories.
+
+\section{4. Help: man}
+
+\subsection{4.1 man --- read manual pages}
+\cmd{man} (manual) shows full documentation: usage, options, examples.
+\begin{lstlisting}
+man [option] [command]
+man ls                  # manual page for ls
+man 2 intro             # section 2 (system calls) entry for intro
+man -f ls               # which sections document this command (= whatis)
+man -a intro            # all matching pages in succession
+man -k cd               # search all pages for "cd" (= apropos)
+man -w ls               # path of the manual file on disk
+man -I printf           # case-sensitive search
+man vmstat              # manuals exist for commands like vmstat too
+\end{lstlisting}
+Navigate an open page with Spacebar (next page), Enter (next line), \cmd{B} (back a page), \cmd{Q} (quit). Pages have sections DESCRIPTION, OPTIONS, EXAMPLES, SEE ALSO; section 1 = shell commands, 2 = system calls, 3 = library calls, 5 = file formats, 8 = admin commands. Lighter alternatives: \cmd{whatis cmd} (one-line summary), \cmd{apropos keyword} (search descriptions), \cmd{tldr cmd} (short examples), \cmd{info cmd} (hyperlinked docs), \cmd{man2html} (GUI-readable HTML).
+
+\section{5. Text Processing: cut, paste, sort, grep, locate}
+
+\subsection{5.1 cut --- slice columns out of lines}
+Cuts by byte, character, or delimited field; an option is mandatory (bare \cmd{cut file} errors). With no FILE it reads stdin.
+\begin{lstlisting}
+cut OPTION... [FILE]
+cut -b 1,2,3 state.txt      # bytes 1, 2 and 3 of each line
+cut -b 1-3,5-7 state.txt    # byte ranges
+cut -b 1- state.txt         # from byte 1 to end of line
+cut -c 2,5,7 state.txt      # characters 2, 5, 7
+cut -c 1-7 state.txt        # first 7 characters
+cut -d " " -f 1 state.txt   # field 1 with space delimiter
+cut -d " " -f 1-4 state.txt # fields 1 through 4
+cut -f 1 state.txt          # default delimiter is TAB
+cat state.txt | cut -d ' ' -f 1 | sort -r
+\end{lstlisting}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+Option & Meaning \\
+\midrule
+\cmd{-b} LIST & Bytes, e.g. \cmd{-b 1-3,7}. Tabs count as one byte. \\
+\cmd{-c} LIST & Characters, e.g. \cmd{-c 2,5,7} or \cmd{-c 1-7}. \\
+\cmd{-d} DELIM & Field delimiter instead of TAB, e.g. \cmd{-d " "} or \cmd{-d,}. \\
+\cmd{-f} LIST & Fields to keep, e.g. \cmd{-f 1} or \cmd{-f 1-4}. \\
+\cmd{-n} & Do not split multi-byte characters (with \cmd{-b}/\cmd{-c}). \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{5.2 paste --- merge files side by side}
+Joins corresponding lines of files horizontally, TAB-separated by default; \cmd{-} reads stdin.
+\begin{lstlisting}
+paste [OPTION]... [FILES]...
+paste number state capital          # parallel merge, tab delimiter
+paste -d ":" number state capital   # custom delimiter (cycles if several given)
+paste -s number state capital       # serial: each file becomes one long line
+paste -s -d ":" number state capital
+cat capital | paste - -             # join consecutive lines pairwise
+cut -d' ' -f1 state | paste capital -   # pipe shell data in as one side
+\end{lstlisting}
+
+\subsection{5.3 sort --- sort lines}
+Sorts alphabetically by default (uppercase before lowercase, numbers before letters); never modifies the input file unless \cmd{-o} is used.
+\begin{lstlisting}
+sort [OPTION]... [FILE]...
+sort file.txt              # alphabetical
+sort -n file1.txt          # numeric (2 < 10 < 100)
+sort -r example.txt        # reverse (Z to A)
+sort -nr data.txt          # numeric, descending
+sort -u names.txt          # sort and drop duplicates
+sort -f mix.txt            # ignore case
+sort -k3 employee_data.txt # sort by 3rd field (blank = default separator)
+sort -t, -k2 -n data.csv   # CSV: numeric sort on 2nd column
+sort -c file.txt           # check: report if file is not sorted
+sort -M months.txt         # month order (JAN..DEC)
+sort -o sorted.txt file.txt  # write result to a file (safe: same name OK)
+du -sh * | sort -hr        # human sizes, largest first
+\end{lstlisting}
+
+\subsection{5.4 grep --- search text by pattern}
+Prints lines matching a pattern (name from editor command \cmd{g/re/p}: globally search a regular expression and print).
+\begin{lstlisting}
+grep [options] pattern [files]
+grep "python" notes.txt        # lines containing python
+grep -r "error" /var/log       # recursive search through a directory
+grep -i "unix" geekfile.txt    # case-insensitive
+grep -c "unix" geekfile.txt    # count of matching lines
+grep -l "unix" *.txt           # only the matching file names
+grep -w "unix" geekfile.txt    # whole word only
+grep -o "unix" geekfile.txt    # only the matched text, not whole lines
+grep -n "unix" geekfile.txt    # with line numbers
+grep -v "unix" geekfile.txt    # invert: lines that do NOT match
+grep "^unix" f                 # lines starting with unix
+grep "os$" f                   # lines ending with os
+grep -e "a" -e "b" f           # several patterns
+grep -f patterns.txt f         # patterns read from a file
+grep -A1 learn geekfile.txt    # match + 1 line after (-B before, -C both)
+grep -E "a|b" f                # extended regex
+sudo grep -r "fail" /var/log   # sudo for protected logs
+\end{lstlisting}
+
+\subsection{5.5 locate --- find files by name}
+Searches a filename database instead of the disk, so it is faster than \cmd{find} but misses files created after the last database update and may list deleted ones.
+\begin{lstlisting}
+locate [OPTION]... PATTERN...
+locate sample.txt          # files named sample.txt
+locate "*.html" -n 20      # first 20 matches
+locate -c "*.txt"          # count matches only
+locate -i *SAMPLE.txt*     # case-insensitive
+locate -i -0 *sample*      # NUL-separated output (for xargs -0)
+\end{lstlisting}
+
+\subsection{5.6 Piping text tools together}
+\begin{lstlisting}
+cat state.txt | head -n 20 | tail -n 5 > list.txt  # lines 16-20 into a file
+cat state.txt | cut -d ' ' -f 1 | sort -r          # first words, reverse-sorted
+tail -n 7 state.txt | sort -r                      # last 7 lines, reversed
+ls -t | head -n 3 | sort                           # 3 newest files, alphabetical
+tar tvf file.tar | grep "pattern"                  # search inside an archive listing
+du -sh /home/user/* | sort -hr                     # disk hogs, largest first
+\end{lstlisting}
+
+\section{6. Permissions and Privilege: chmod, sudo}
+
+\subsection{6.1 Reading permissions}
+\cmd{ls -l} shows e.g. \cmd{-rw-r--r--}: first character is the type (\cmd{-} file, \cmd{d} directory), then owner/group/others triples of \cmd{r} read (4), \cmd{w} write (2), \cmd{x} execute (1). Checks run in order owner, then group, then others -- exactly one triple applies. On directories, \cmd{r} lists entries, \cmd{w} creates/deletes entries, \cmd{x} allows \cmd{cd} and \cmd{ls -l} into it.
+
+\subsection{6.2 chmod --- change mode}
+\begin{lstlisting}
+chmod [OPTIONS] MODE FILE
+chmod 755 script.sh        # rwxr-xr-x: standard executable
+chmod 644 file             # rw-r--r--: standard data file
+chmod 600 secret.txt       # owner read/write only
+chmod 700 private/         # owner full access only
+chmod 777 file             # everyone everything (avoid)
+chmod +x script.sh         # add execute for everyone
+chmod u+x file             # add execute for owner
+chmod g-w file             # remove write from group
+chmod o-r file             # remove read from others
+chmod a+r file             # read for all
+chmod u=rwx,g=rx,o= file   # exact per-class setting
+chmod ug+rwx example.txt
+chmod -R 755 public_html/  # recursive over a directory tree
+\end{lstlisting}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+Value & Meaning \\
+\midrule
+4 / 2 / 1 & read / write / execute; add per class, e.g. \cmd{rwx} = 4+2+1 = 7. \\
+\cmd{755} & Owner \cmd{rwx}, group/others \cmd{r-x}. Scripts, public dirs. \\
+\cmd{644} & Owner \cmd{rw-}, rest \cmd{r--}. Ordinary files. \\
+\cmd{600} & Owner \cmd{rw-} only. Secrets. \\
+\cmd{700} & Owner \cmd{rwx} only. Private dirs. \\
+\cmd{u g o a} & Symbolic classes: user owner, group, others, all; \cmd{+ - =} grant, remove, set. \\
+Special bits & SUID (run as file owner), SGID (run as group / inherit group in dirs), sticky bit (only owners delete their files, e.g. \cmd{/tmp}). \\
+\bottomrule
+\end{tabularx}
+\end{center}
+Ownership itself changes with \cmd{chown user:group file} and \cmd{chgrp group file}.
+
+\subsection{6.3 sudo --- run with elevated privilege}
+Prefix for commands only superusers may run (the ``run as administrator'' of Linux). Users need an entry in \cmd{/etc/sudoers}; always edit it with \cmd{visudo}, never a plain editor. Authentication uses the user's own password.
+\begin{lstlisting}
+sudo COMMAND               # run one command as root
+sudo apt update
+sudo nano /etc/hostname
+sudo -u www-data whoami    # run as another user
+sudo -i                    # interactive root shell
+sudo -l                    # list your allowed commands
+sudo -v                    # refresh the password timestamp
+sudo -k                    # invalidate it (next sudo asks again)
+sudo -V                    # version
+\end{lstlisting}
+Typical sudoers lines: \cmd{user1 ALL=(ALL) ALL} (full access), \cmd{user2 ALL=(ALL) NOPASSWD: ALL} (no password), \cmd{\%admin ALL=(ALL) ALL} (whole group), \cmd{user3 ALL=/sbin/shutdown} (one command only).
+
+\section{7. Archives and Compression: tar, zip, gzip, bzip2, xz}
+
+\subsection{7.1 tar --- tape archive}
+Bundles files (optionally compressed); preserves permissions and directory structure.
+\begin{lstlisting}
+tar [options] [archive-file] [files...]
+tar cvf file.tar *.c               # create uncompressed archive
+tar xvf file.tar                   # extract
+tar tvf file.tar                   # list contents (verbose table)
+tar tf file.tar                    # list names only
+tar cvzf file.tar.gz *.c           # create, gzip-compressed
+tar xvzf file.tar.gz               # extract gzip archive
+tar cvfj file.tar.tbz example.cpp  # create, bzip2-compressed (smaller, slower)
+tar xvf file.tar -C /dest/dir      # extract into a directory
+tar xvf file.tar "fileA" "fileB"   # extract selected members
+tar rvf file.tar *.c               # append to an existing archive
+tar tvf file.tar --wildcards '*.png'  # list only PNG members
+tar tvf file.tar | grep "pattern"  # search an archive listing
+tar czf file.tar | wc -c           # size of the archive in bytes
+\end{lstlisting}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+Flag & Meaning \\
+\midrule
+\cmd{-c} / \cmd{-x} / \cmd{-t} & Create / extract / list. \\
+\cmd{-f} FILE & Archive file name (must precede the name). \\
+\cmd{-v} & Verbose file listing. \\
+\cmd{-z} / \cmd{-j} / \cmd{-J} & Compress with gzip (\cmd{.tar.gz}) / bzip2 (\cmd{.tar.bz2}) / xz (\cmd{.tar.xz}). \\
+\cmd{-C} DIR & Extract into DIR. \\
+\cmd{-r} / \cmd{-u} / \cmd{-A} & Append files / add newer files / merge whole archives. \\
+\cmd{-W} & Verify archive integrity. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{7.2 zip, gzip, bzip2, xz}
+\begin{lstlisting}
+zip [options] zipfile files...   # zip keeps originals, tar-like tools replace them
+zip -r myfiles.zip Documents/    # recurse a directory
+zip -e -r secure.zip sensitive/  # password-encrypted
+zip -9 -r a.zip files/           # max compression (0..9)
+zip -u a.zip newfile             # update archive / -d delete / -x exclude pattern
+unzip myfiles.zip                # extract a zip archive
+gzip bigfile                     # in-place -> bigfile.gz (original replaced)
+bzip2 bigfile                    # in-place -> bigfile.bz2 (tighter, slower than gzip)
+xz bigfile                       # in-place -> bigfile.xz (tightest, slowest)
+\end{lstlisting}
+Rule of thumb: \cmd{zip} for portable/Windows-compatible archives, \cmd{tar -czf} for Linux backups, \cmd{bzip2}/\cmd{xz} when size matters more than speed.
+
+\section{8. Disks, Memory, System: df, du, free, top, vmstat, uname}
+
+\subsection{8.1 df --- disk free}
+Reports filesystem usage (from \cmd{/proc/mounts} or \cmd{/etc/mtab}); default sizes are 1K blocks.
+\begin{lstlisting}
+df [options] [filesystems]
+df                      # all mounted filesystems
+df jayesh.txt           # filesystem holding that file
+df -h                   # human-readable, powers of 1024 (use this by default)
+df -H                   # human-readable, powers of 1000
+df -T                   # include filesystem type (e.g. ext4)
+df -i                   # inode usage instead of blocks
+df -a                   # include pseudo filesystems
+df -x tmpfs             # exclude a filesystem type
+df --total              # grand-total line
+\end{lstlisting}
+Columns: Filesystem, Size, Used, Avail, Use\%, Mounted on.
+
+\subsection{8.2 du --- disk usage}
+Sizes files and directories recursively; defaults to the current directory.
+\begin{lstlisting}
+du [options] [directory/file]
+du /home/user/test
+du -h /home/user/test        # human-readable
+du -sh /home/user/test       # summary: one total line (the classic form)
+du -a -h dir                 # all files, not just directories
+du -c -h dir                 # plus a grand total line
+du -d 1 dir                  # limit depth to 1 level
+du --time -h dir             # with last-modification timestamps
+du -sh /home/user/* | sort -hr   # find the space hogs
+\end{lstlisting}
+
+\subsection{8.3 free --- memory overview}
+Total/used/free RAM and swap; plain \cmd{free} prints kilobytes.
+\begin{lstlisting}
+free [OPTION]
+free -h          # human-readable (use this by default)
+free -m          # megabytes (-b bytes, -k kilobytes, -g gigabytes)
+free -t          # extra totals line
+free -s 3 -c 3   # repeat 3 times, every 3 seconds
+\end{lstlisting}
+Columns: total, used, free, shared (tmpfs), buffers, cached, available.
+
+\subsection{8.4 top --- live process monitor}
+Full-screen, real-time view of load, CPU, memory, and the process list (\cmd{q} to quit).
+\begin{lstlisting}
+top
+top -d 5                 # refresh every 5 seconds
+top -u www-data          # only one user's processes
+top -p 1234              # only PID 1234
+top -b -n 1 > status.txt # batch mode: one snapshot to a file
+\end{lstlisting}
+Header lines: uptime + users + load averages (1/5/15 min), task counts, \cmd{\%Cpu} split (\cmd{us} user, \cmd{sy} system, \cmd{ni} niced, \cmd{id} idle, \cmd{wa} I/O wait), RAM and swap summaries. Per-process columns: PID, USER, PR, NI (nice value), VIRT, RES, SHR, S (R running, S sleeping, Z zombie), \%CPU, \%MEM, TIME+, COMMAND.
+
+\subsection{8.5 vmstat --- virtual memory statistics}
+One-line snapshots of processes, memory, swap, I/O, and CPU; the first report averages since boot, later ones cover the sampling interval.
+\begin{lstlisting}
+vmstat [options] [delay [count]]
+vmstat               # single snapshot
+vmstat 1 5           # every 1 second, 5 times
+vmstat -a            # active vs inactive memory
+vmstat -f            # fork count since boot
+vmstat -m            # slab info (kernel-dependent)
+vmstat -s            # event counters and memory statistics table
+vmstat -d            # disk statistics
+vmstat -t 1 3        # with timestamps
+vmstat -S M 1 3      # memory figures in megabytes
+vmstat -n            # header printed only once
+\end{lstlisting}
+Watch \cmd{free} (idle memory) and \cmd{si}/\cmd{so} (swap in/out per second): nonzero \cmd{so} under load means the box is paging.
+
+\subsection{8.6 uname --- system information}
+\cmd{uname} = Unix name: kernel and hardware identity.
+\begin{lstlisting}
+uname [OPTIONs]
+uname -a    # everything: kernel, hostname, release, version, arch, OS
+uname -s    # kernel name (Linux)
+uname -n    # hostname
+uname -r    # kernel release
+uname -v    # kernel version / build date
+uname -m    # machine hardware (e.g. x86_64)
+uname -p    # processor type
+uname -i    # hardware platform
+uname -o    # operating system (GNU/Linux)
+\end{lstlisting}
+
+\section{9. Processes: fork, exec, ps, kill, nice}
+
+\subsection{9.1 fork() --- create a process}
+System call that duplicates the running process. The original is the parent, the copy is the child: new PID, copied memory, same code, environment, and open files; both continue after the \cmd{fork()} call.
+\begin{lstlisting}
+pid_t fork(void);   /* parent gets child PID (>0), child gets 0, -1 on failure */
+\end{lstlisting}
+Used for child processes, parallel tasks, servers handling many clients, and every shell command launch.
+
+\subsection{9.2 exec() family --- run another program}
+Replaces the current program image with a new one: same PID, new memory. The standard pattern is \cmd{fork()} then \cmd{exec()}: the shell forks, the child execs \cmd{ls}, the parent waits.
+\begin{lstlisting}
+execl("/bin/ls", "ls", "-l", NULL);
+\end{lstlisting}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+Function & Style \\
+\midrule
+\cmd{execl()} / \cmd{execv()} & Argument list / argument array. \\
+\cmd{execlp()} / \cmd{execvp()} & As above but search PATH. \\
+\cmd{execle()} / \cmd{execve()} & Custom environment; \cmd{execve} is the real system call. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\cmd{fork()} creates (new PID, returns twice) while \cmd{exec()} replaces (same PID, returns only on failure).
+
+\subsection{9.3 ps --- process status}
+\begin{lstlisting}
+ps                 # your processes on this terminal (PID TTY TIME CMD)
+ps -e              # every process (same as ps -A)
+ps -ef             # full details: UID PID PPID C STIME TTY TIME CMD
+ps -u ann          # one user's processes
+ps aux             # BSD form: USER PID %CPU %MEM COMMAND (most-used form)
+ps -l              # long form incl. NI nice-value column
+\end{lstlisting}
+Key fields: PID, PPID (parent), UID/USER, TTY, \%CPU, \%MEM, CMD.
+
+\subsection{9.4 kill --- signal processes}
+Sends signals, not just death: default is graceful SIGTERM (15).
+\begin{lstlisting}
+kill PID             # SIGTERM: polite shutdown (same as kill -15 PID)
+kill -9 2000         # SIGKILL: force kill, cannot be caught
+kill -STOP 2000      # pause  (resume with kill -CONT 2000)
+kill -2 2000         # SIGINT: like Ctrl+C
+kill 1001 1002 1003  # several PIDs at once
+pkill firefox        # kill by name
+killall firefox      # kill all processes with this name
+\end{lstlisting}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{lll}
+\toprule
+Signal & Number & Purpose \\
+\midrule
+SIGHUP & 1 & Reload configuration. \\
+SIGINT & 2 & Interrupt (Ctrl+C). \\
+SIGTERM & 15 & Graceful termination (default). \\
+SIGKILL & 9 & Force kill, uncatchable. \\
+SIGSTOP / SIGCONT & 19 / 18 & Pause / resume. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{9.5 nice --- process priority}
+Nice values run -20 (highest CPU priority) through 0 (default) to 19 (lowest); only root can set negative values. Lower nice = more CPU.
+\begin{lstlisting}
+nice -n 10 firefox        # start with low priority
+nice ls                   # start at default priority
+sudo nice -n -10 firefox  # start with highest priority (root only)
+renice 5 -p 2200          # change a RUNNING process (PID 2200)
+ps -l                     # check the NI column
+\end{lstlisting}
+
+\section{10. Master Quick Reference}
+
+\begin{center}
+\small
+\begin{longtable}{ll}
+\toprule
+Command & Purpose / flagship syntax \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\cmd{pwd} & Where am I: \cmd{pwd [-L|-P]}. \\
+\cmd{cd} & Go elsewhere: \cmd{cd [dir]; cd \textasciitilde; cd ..; cd -; cd /}. \\
+\cmd{ls} & List: \cmd{ls -lh}, \cmd{ls -a}, \cmd{ls -t}, \cmd{ls -R}. \\
+\cmd{mkdir} & Create dirs: \cmd{mkdir -p a/b/c}, \cmd{-m 777}, \cmd{-v}. \\
+\cmd{touch} & Empty file / timestamps: \cmd{touch f}, \cmd{-a -m -c -r -t -d}. \\
+\cmd{cat} & View/join/create: \cmd{cat f}, \cmd{-n -s -E -A}, \cmd{>}/\cmd{>>}. \\
+\cmd{head} / \cmd{tail} & First / last 10 lines: \cmd{-n}, \cmd{-c}; \cmd{tail -f}. \\
+\cmd{echo} & Print text/variables: \cmd{echo -n}, \cmd{-e}, \cmd{>}/\cmd{>>}. \\
+\cmd{wc} & Count: \cmd{wc -l -w -c file}. \\
+\cmd{cp} & Copy: \cmd{cp -R -i -f -n -p -u -v}. \\
+\cmd{mv} & Move/rename: \cmd{mv -i -f -n -b}. \\
+\cmd{rm} & Delete (unrecoverable): \cmd{rm -i -f -r}, \cmd{rm -- -f}. \\
+\cmd{man} & Manuals: \cmd{man cmd}, \cmd{-f -k -a -w}, navigate Space/B/Q. \\
+\cmd{cut} & Slice lines: \cmd{-b -c -d -f}. \\
+\cmd{paste} & Merge side by side: \cmd{-d}, \cmd{-s}, \cmd{-} = stdin. \\
+\cmd{sort} & Sort lines: \cmd{-n -r -u -f -k -t -o}. \\
+\cmd{grep} & Search: \cmd{-i -v -c -n -l -r -w -o -A/-B/-C -E}. \\
+\cmd{locate} & Find by name via DB: \cmd{-i -c}, \cmd{-n 20}. \\
+\cmd{chmod} & Permissions: \cmd{755 644 600 700}, \cmd{u+x}, \cmd{-R}. \\
+\cmd{chown/chgrp} & Owner/group: \cmd{chown user:group f}. \\
+\cmd{sudo} & As root: \cmd{sudo cmd}, \cmd{-u -i -l -k}; edit via \cmd{visudo}. \\
+\cmd{tar} & Archive: \cmd{-c -x -t -f -v -z -j -J -C}. \\
+\cmd{zip/unzip} & Portable archives: \cmd{zip -r -e -9}. \\
+\cmd{gzip/bzip2/xz} & In-place compress: \cmd{.gz} fast, \cmd{.bz2} tighter, \cmd{.xz} tightest. \\
+\cmd{df} & Filesystem free space: \cmd{df -h -T -i --total}. \\
+\cmd{du} & Directory sizes: \cmd{du -sh}, \cmd{-a -c -d N --time}. \\
+\cmd{free} & RAM/swap: \cmd{free -h -m -t -s N}. \\
+\cmd{top} & Live monitor: \cmd{-d -u -p -b -n}. \\
+\cmd{vmstat} & VM stats: \cmd{vmstat [delay [count]]}, \cmd{-a -s -d -S M}. \\
+\cmd{uname} & System identity: \cmd{-a -s -n -r -v -m -p -i -o}. \\
+\cmd{fork/exec} & Create process / replace program: \cmd{fork(); execl(...)}. \\
+\cmd{ps} & List processes: \cmd{ps aux}, \cmd{ps -ef}, \cmd{ps -l}. \\
+\cmd{kill} & Signal: \cmd{kill [-9|-15] PID}, \cmd{pkill/killall name}. \\
+\cmd{nice/renice} & Priority -20..19: \cmd{nice -n 10 cmd}, \cmd{renice 5 -p PID}. \\
+\end{longtable}
+\end{center}
+
+\section*{Source Scope}
+Compiled from every file in \cmd{linux-cmds/}: all 27 \cmd{.docx} notes (pwd/cd/ls/mkdir/touch/cat/mv/cp/rm/man/echo/cut/locate/ls/head/tail/chmod/df/du/free/grep/sort/sudo/tar+zip/top/uname/vmstat/paste/fork-ps-exec-kill-nice), the \cmd{Linux\_Commands\_Guide.pptx} deck (df, du, tar, zip, uname, chmod, head, tail, sort, grep, sudo, top, free, vmstat), the \cmd{pwd mkdir Commands.pptx} deck (pwd \cmd{-L/-P}, mkdir \cmd{-p/-m/-v}, brace expansion), and \cmd{Basic Shell Commands in Linux.pdf} (command categories, \cmd{wc}, \cmd{chown/chgrp}, \cmd{ps/kill} examples). Terminology, syntax forms, and option sets follow the sources; overlapping coverage was merged into single per-command sections. Peripheral items mentioned only in the overview PDF (networking: \cmd{ping, wget, curl, ssh, scp, ftp}; packages: \cmd{dnf, yum, apt-get}; jobs: \cmd{bg, killall}) are listed here for completeness but are outside this cheatsheet's command set.
+
+\vfill
+\begin{center}
+\textit{Study principle: understand the mechanism first, then memorize the exam wording.}
+\end{center}
+
+\end{document}
