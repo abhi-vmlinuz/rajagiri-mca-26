@@ -1,0 +1,561 @@
+\documentclass[11pt,a4paper]{article}
+
+% Times New Roman-like typography. On Overleaf, compile with pdfLaTeX.
+% newtxtext/newtxmath provide a Times-style font compatible with pdfLaTeX.
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext}
+\usepackage{newtxmath}\renewcommand{\ttdefault}{cmtt}
+\usepackage[a4paper,margin=22mm,headheight=14pt]{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{microtype}
+
+\definecolor{codebg}{RGB}{246,248,251}
+\definecolor{codeframe}{RGB}{205,213,223}
+\definecolor{linkblue}{RGB}{25,75,145}
+\definecolor{noteBG}{RGB}{240,246,255}
+\definecolor{warnBG}{RGB}{255,247,230}
+\hypersetup{colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,pdftitle={RCSS Campus Network: Beginner Step-by-Step Guide}}
+\providecommand{\theHpage}{\arabic{page}}
+\lstdefinestyle{cli}{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeframe},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  xleftmargin=4pt,
+  xrightmargin=4pt,
+  aboveskip=7pt,
+  belowskip=7pt
+}
+\lstset{style=cli}
+\titleformat{\section}{\Large\bfseries}{Step \thesection:}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.5em}{}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small RCSS Campus Network}
+\rhead{\small Beginner Packet Tracer Guide}
+\cfoot{\thepage}
+\setlist[itemize]{leftmargin=1.5em,itemsep=3pt,topsep=4pt}
+\setlist[enumerate]{leftmargin=1.8em,itemsep=4pt,topsep=4pt}
+
+\newcommand{\clickpath}[1]{\noindent\colorbox{noteBG}{\parbox{0.96\linewidth}{\textbf{Where to click:} #1}}\par\vspace{5pt}}
+\newcommand{\expected}[1]{\noindent\colorbox{noteBG}{\parbox{0.96\linewidth}{\textbf{Expected result:} #1}}\par\vspace{5pt}}
+\newcommand{\ifnot}[1]{\noindent\colorbox{warnBG}{\parbox{0.96\linewidth}{\textbf{If you do not see this:} #1}}\par\vspace{5pt}}
+\newcommand{\term}[2]{\noindent\textbf{#1:} #2\par\vspace{3pt}}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{20mm}
+{\Huge\bfseries RCSS Campus Network\par}
+\vspace{5mm}
+{\LARGE Beginner's Step-by-Step Packet Tracer Guide\par}
+\vspace{12mm}
+{\large VLANs \textbullet\ 802.1Q Trunks \textbullet\ Router-on-a-Stick \textbullet\ DHCP \textbullet\ Connectivity Testing\par}
+\vfill
+\begin{minipage}{0.88\textwidth}
+\textbf{What this guide does}\\
+This guide walks through the campus network from placing devices and connecting cables to configuring VLANs, routing, DHCP, end devices, testing, troubleshooting, and saving the project. Each configuration stage includes where to click, what to type, what success looks like, and what to check if the result differs.
+\end{minipage}
+\vfill
+{\large Cisco Packet Tracer \par}
+\vspace{8mm}
+\end{titlepage}
+
+% A manually written, clickable contents page is used so the contents list
+% appears on the first compilation rather than requiring a second LaTeX run.
+\clearpage
+\section*{Contents}
+\addcontentsline{toc}{section}{Contents}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2em,itemsep=5pt]
+\item \hyperref[sec:before]{Before you start}
+\item \hyperref[sec:concepts]{Concepts explained in plain English}
+\item \hyperref[sec:topology]{Place and cable the devices}
+\item \hyperref[sec:core]{Configure the core switch}
+\item \hyperref[sec:assumption]{Configure the Assumption switch}
+\item \hyperref[sec:carmel]{Configure the Carmel switch}
+\item \hyperref[sec:oldblock]{Configure the Old Block switch}
+\item \hyperref[sec:router]{Configure the router and subinterfaces}
+\item \hyperref[sec:dhcp]{Configure DHCP}
+\item \hyperref[sec:server]{Give the server a static IP address}
+\item \hyperref[sec:clients]{Configure client devices}
+\item \hyperref[sec:tests]{Test connectivity}
+\item \hyperref[sec:save]{Save all configurations and the project}
+\item \hyperref[sec:trouble]{Troubleshooting guide}
+\item \hyperref[sec:reference]{Command and addressing reference}
+\end{enumerate}
+\clearpage
+
+\section{Before you start}\label{sec:before}
+\subsection*{What you need}
+\begin{itemize}
+\item Cisco Packet Tracer installed and open.
+\item A new or existing Packet Tracer project.
+\item The device list and cable map in this guide.
+\end{itemize}
+
+\subsection*{How to use CLI commands}
+When a step says to open a device's CLI, click the device, choose the \textbf{CLI} tab, and press Enter if you see a prompt asking you to begin. Commands in a shaded box should be typed into the CLI in the same order shown. Do not type explanatory text outside the command boxes.
+
+Cisco IOS has different command modes:
+\begin{itemize}
+\item \texttt{Router>} or \texttt{Switch>} is user EXEC mode.
+\item \texttt{Router\#} or \texttt{Switch\#} is privileged EXEC mode. Type \texttt{enable} to enter it.
+\item \texttt{Router(config)\#} is global configuration mode. Type \texttt{configure terminal} to enter it.
+\item \texttt{Router(config-if)\#} is interface configuration mode.
+\end{itemize}
+The prompt changes as you move between modes. Commands must be entered in the correct mode.
+
+\term{Useful navigation commands}{\texttt{exit} moves back one configuration level; \texttt{end} returns directly to privileged EXEC mode. They do not erase configuration.}
+\term{Avoiding a CLI delay}{If a misspelled command causes the switch/router to show \texttt{Translating ...}, press \texttt{Ctrl+Shift+6} or \texttt{Ctrl+C} to interrupt, then enter \texttt{no ip domain-lookup} in global configuration mode.}
+
+\section{Concepts explained in plain English}\label{sec:concepts}
+\term{VLAN}{A Virtual LAN is a logical Layer 2 network. VLAN 10 and VLAN 20 can use the same physical switches but remain separate broadcast domains.}
+\term{Access port}{A switch port for an endpoint such as a PC, printer, or server. Its access VLAN decides which VLAN the endpoint belongs to.}
+\term{Trunk port}{A link between network devices that carries traffic for multiple VLANs. The core-to-building uplinks and router-to-core link are trunks in this design.}
+\term{IEEE 802.1Q / dot1Q}{A standard that adds a VLAN tag to Ethernet frames travelling over a trunk. The tag tells the receiving device which VLAN the frame belongs to.}
+\term{Router-on-a-stick}{One physical router interface handles multiple VLANs by using logical subinterfaces. Each subinterface has a VLAN ID and gateway IP address.}
+\term{Subinterface naming}{\texttt{Gi0/0.10} is a logical subinterface of physical interface \texttt{Gi0/0}. The \texttt{.10} suffix is a chosen name; \texttt{encapsulation dot1Q 10} is the command that associates it with VLAN 10.}
+\term{Default gateway}{The router IP a device sends traffic to when the destination is outside its local subnet. Each VLAN has its own gateway IP in this design.}
+\term{DHCP}{A service that automatically leases IP settings to clients. A DHCP pool specifies a subnet and default gateway.}
+\term{Excluded addresses}{An exclusion tells DHCP not to lease an address or range. It does not automatically configure those addresses on devices; static settings must be entered separately.}
+\term{Subnet mask}{\texttt{255.255.255.0} is \texttt{/24}. It leaves 8 host bits, giving 256 total addresses and usually 254 usable host addresses after excluding network and broadcast addresses.}
+\term{ACL}{An Access Control List can permit or deny traffic. No ACLs are configured in this project, so inter-VLAN routing is permitted by default.}
+
+\subsection*{The address plan}
+\begin{center}
+\begin{tabular}{@{}clll@{}}
+\toprule
+VLAN & Purpose & Subnet & Gateway\\
+\midrule
+10 & Assumption and selected shared devices & \texttt{192.168.10.0/24} & \texttt{192.168.10.1}\\
+20 & Carmel Faculty & \texttt{192.168.20.0/24} & \texttt{192.168.20.1}\\
+30 & Old Block lab/reception & \texttt{192.168.30.0/24} & \texttt{192.168.30.1}\\
+40 & Servers & \texttt{192.168.40.0/24} & \texttt{192.168.40.1}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The intended port assignments are:
+\begin{itemize}
+\item Assumption: Fa0/1 Admin01 (VLAN 10), Fa0/2 Admin02 (VLAN 10), Fa0/3 Server (VLAN 40), Fa0/4 Faculty01 (VLAN 10).
+\item Carmel: Fa0/1 Printer (VLAN 10), Fa0/2 Faculty01 (VLAN 20), Fa0/3 Reception (VLAN 10), Fa0/4 Office (VLAN 10).
+\item Old Block: Fa0/1 Lab01, Fa0/2 Lab02, Fa0/3 Old Reception (all VLAN 30).
+\end{itemize}
+The printer is physically at Carmel but assigned to VLAN 10 because its switch port is configured for VLAN 10. Physical location does not decide VLAN membership.
+
+\section{Place and cable the devices}\label{sec:topology}
+\subsection*{A. Add and rename devices}
+In the bottom device palette, select the router and switch categories and drag these into the workspace:
+\begin{enumerate}
+\item One Cisco 2911 router. Rename it \texttt{RCSS-R1}.
+\item One Cisco 2960-24TT switch. Rename it \texttt{RCSS-SW-CORE}.
+\item Three Cisco 2960 switches. Rename them \texttt{RCSS-SW-ASSUMPTION}, \texttt{RCSS-SW-CARMEL}, and \texttt{RCSS-SW-OLDBLOCK}.
+\item Add the end devices and rename them using the names in the address plan and port assignments above.
+\end{enumerate}
+To rename a device, click it and edit its Display Name/Config name field, depending on the Packet Tracer version.
+
+\subsection*{B. Connect the uplinks}
+Click the lightning-bolt \textbf{Connections} icon at the bottom-left. Select \textbf{Copper Straight-Through}. Click the first device and select the listed port, then click the second device and select its port.
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+First device and port & Second device and port\\
+\midrule
+RCSS-R1 \texttt{Gi0/0} & Core \texttt{Gi0/1}\\
+Core \texttt{Gi0/2} & Assumption \texttt{Gi0/1}\\
+Core \texttt{Fa0/1} & Carmel \texttt{Gi0/1}\\
+Core \texttt{Fa0/2} & Old Block \texttt{Gi0/1}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{C. Connect endpoint devices}
+Use Copper Straight-Through for each endpoint-to-switch link:
+\begin{itemize}
+\item Assumption switch Fa0/1 to Admin01; Fa0/2 to Admin02; Fa0/3 to Server; Fa0/4 to Faculty01.
+\item Carmel switch Fa0/1 to Printer; Fa0/2 to Carmel Faculty01; Fa0/3 to Reception; Fa0/4 to Office.
+\item Old Block switch Fa0/1 to Lab01; Fa0/2 to Lab02; Fa0/3 to Old Reception.
+\end{itemize}
+
+\expected{Links should turn green after a short wait.}
+\ifnot{Check that you selected the intended ports and cable. The router's \texttt{Gi0/0} must connect to the core's \texttt{Gi0/1}. Later, the router interface will be enabled with \texttt{no shutdown}. A red link at this stage may be normal until the router interface is enabled.}
+
+\section{Configure the core switch}\label{sec:core}
+\clickpath{Click \texttt{RCSS-SW-CORE} \(\rightarrow\) \textbf{CLI}. Press Enter if asked. Type the following commands in order.}
+\begin{lstlisting}
+enable
+configure terminal
+no ip domain-lookup
+vlan 10
+ name ASSUMPTION-BLOCK
+exit
+vlan 20
+ name CARMEL-BLOCK
+exit
+vlan 30
+ name OLDBLOCK_LAB
+exit
+vlan 40
+ name SERVERS
+exit
+\end{lstlisting}
+These commands create VLAN IDs 10, 20, 30, and 40 on the core switch. The VLAN name is a human-readable label; the numeric VLAN ID is what must match across the network.
+
+Now configure the router uplink and three building uplinks as trunks:
+\begin{lstlisting}
+interface gigabitEthernet 0/1
+ switchport mode trunk
+exit
+interface gigabitEthernet 0/2
+ switchport mode trunk
+exit
+interface fastEthernet 0/1
+ switchport mode trunk
+exit
+interface fastEthernet 0/2
+ switchport mode trunk
+exit
+end
+show vlan brief
+show interfaces trunk
+\end{lstlisting}
+\expected{\texttt{show interfaces trunk} should list Gi0/1, Gi0/2, Fa0/1, and Fa0/2 with status \texttt{trunking}. The active VLAN list should include VLANs 10, 20, 30, and 40.}
+\ifnot{If a port is missing from the trunk output, re-enter \texttt{configure terminal}, select that exact interface, enter \texttt{switchport mode trunk}, then \texttt{end} and check again. Verify the cable is connected to the same port you configured. If a VLAN is missing, create it with \texttt{vlan <ID>} on the core.}
+
+\section{Configure the Assumption switch}\label{sec:assumption}
+\clickpath{Click \texttt{RCSS-SW-ASSUMPTION} \(\rightarrow\) CLI.}
+\begin{lstlisting}
+enable
+configure terminal
+no ip domain-lookup
+vlan 10
+ name ASSUMPTION-BLOCK
+exit
+vlan 40
+ name SERVERS
+exit
+interface gigabitEthernet 0/1
+ switchport mode trunk
+exit
+interface range fastEthernet 0/1 - 2
+ switchport mode access
+ switchport access vlan 10
+exit
+interface fastEthernet 0/3
+ switchport mode access
+ switchport access vlan 40
+exit
+interface fastEthernet 0/4
+ switchport mode access
+ switchport access vlan 10
+exit
+end
+show vlan brief
+show interfaces trunk
+\end{lstlisting}
+\expected{In \texttt{show vlan brief}, Fa0/1, Fa0/2, and Fa0/4 should appear under VLAN 10; Fa0/3 should appear under VLAN 40. \texttt{Gi0/1} should be trunking.}
+\ifnot{If an endpoint port appears under VLAN 1, repeat the \texttt{interface} commands for that port and verify the \texttt{switchport access vlan} command. If the uplink is not trunking, check the cable and configure \texttt{Gi0/1} as a trunk again.}
+
+\section{Configure the Carmel switch}\label{sec:carmel}
+\clickpath{Click \texttt{RCSS-SW-CARMEL} \(\rightarrow\) CLI.}
+\begin{lstlisting}
+enable
+configure terminal
+no ip domain-lookup
+vlan 10
+ name ASSUMPTION-BLOCK
+exit
+vlan 20
+ name CARMEL-BLOCK
+exit
+interface gigabitEthernet 0/1
+ switchport mode trunk
+exit
+interface fastEthernet 0/1
+ switchport mode access
+ switchport access vlan 10
+exit
+interface fastEthernet 0/2
+ switchport mode access
+ switchport access vlan 20
+exit
+interface range fastEthernet 0/3 - 4
+ switchport mode access
+ switchport access vlan 10
+exit
+end
+show vlan brief
+show interfaces trunk
+\end{lstlisting}
+\expected{Fa0/1, Fa0/3, and Fa0/4 should appear under VLAN 10. Fa0/2 should appear under VLAN 20. Gi0/1 should be trunking.}
+\ifnot{If the printer is accidentally assigned to VLAN 20, configure Fa0/1 as access VLAN 10. Remember that its intended VLAN is based on the port assignment, not the fact it is connected to the Carmel switch.}
+
+\section{Configure the Old Block switch}\label{sec:oldblock}
+\clickpath{Click \texttt{RCSS-SW-OLDBLOCK} \(\rightarrow\) CLI.}
+\begin{lstlisting}
+enable
+configure terminal
+no ip domain-lookup
+vlan 30
+ name OLDBLOCK-LAB
+exit
+interface gigabitEthernet 0/1
+ switchport mode trunk
+exit
+interface range fastEthernet 0/1 - 3
+ switchport mode access
+ switchport access vlan 30
+exit
+end
+show vlan brief
+show interfaces trunk
+\end{lstlisting}
+\expected{Fa0/1, Fa0/2, and Fa0/3 should appear under VLAN 30. Gi0/1 should be trunking and VLAN 30 should be active.}
+\ifnot{If the VLAN name differs from the core switch's name, that is not a problem. VLAN ID 30 must match. If VLAN 30 is missing, create it with \texttt{vlan 30}.}
+
+\section{Configure the router and subinterfaces}\label{sec:router}
+\clickpath{Click \texttt{RCSS-R1} \(\rightarrow\) CLI. Press Enter if needed.}
+\begin{lstlisting}
+enable
+configure terminal
+no ip domain-lookup
+interface gigabitEthernet 0/0
+ no ip address
+ no shutdown
+exit
+interface gigabitEthernet 0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+exit
+interface gigabitEthernet 0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+exit
+interface gigabitEthernet 0/0.30
+ encapsulation dot1Q 30
+ ip address 192.168.30.1 255.255.255.0
+exit
+interface gigabitEthernet 0/0.40
+ encapsulation dot1Q 40
+ ip address 192.168.40.1 255.255.255.0
+exit
+end
+show ip interface brief
+\end{lstlisting}
+
+\expected{The parent \texttt{GigabitEthernet0/0} and all four subinterfaces should show \texttt{up} for Status and \texttt{up} for Protocol. The four subinterfaces should have gateway IPs ending in .1 for their respective subnets.}
+\ifnot{If the parent interface is \texttt{administratively down}, enter configuration mode, select \texttt{interface gigabitEthernet 0/0}, and type \texttt{no shutdown}. If the interface is down/down, check the physical cable and core switch port. If a subinterface has no IP, re-enter its interface configuration and the correct \texttt{ip address} command. Check that its \texttt{encapsulation dot1Q} VLAN ID matches its intended VLAN.}
+
+\subsection*{Why one cable supports four VLANs}
+The router has one physical cable to the core switch. The trunk carries Ethernet frames tagged with VLAN IDs. Subinterface \texttt{Gi0/0.10} processes VLAN 10, \texttt{Gi0/0.20} processes VLAN 20, and so on. The router can then route packets between the four IP subnets.
+
+\section{Configure DHCP}\label{sec:dhcp}
+DHCP will automatically assign addresses to endpoint clients. We reserve .1 through .20 in each subnet. The gateway uses .1; other addresses in the excluded range can be used for static devices if needed.
+
+\clickpath{On \texttt{RCSS-R1}, enter global configuration mode.}
+\begin{lstlisting}
+enable
+configure terminal
+ip dhcp excluded-address 192.168.10.1 192.168.10.20
+ip dhcp excluded-address 192.168.20.1 192.168.20.20
+ip dhcp excluded-address 192.168.30.1 192.168.30.20
+ip dhcp excluded-address 192.168.40.1 192.168.40.20
+\end{lstlisting}
+\term{What the exclusion means}{The first address is the start of the excluded range and the second is the end. Both ends are included. The first line reserves 20 addresses, from \texttt{192.168.10.1} to \texttt{192.168.10.20}.}
+
+Create each DHCP pool:
+\begin{lstlisting}
+ip dhcp pool ASSUMPTION
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.1
+exit
+ip dhcp pool CARMEL
+ network 192.168.20.0 255.255.255.0
+ default-router 192.168.20.1
+exit
+ip dhcp pool OLDBLOCK
+ network 192.168.30.0 255.255.255.0
+ default-router 192.168.30.1
+exit
+ip dhcp pool SERVERS
+ network 192.168.40.0 255.255.255.0
+ default-router 192.168.40.1
+exit
+end
+show ip dhcp pool
+show ip dhcp binding
+show ip dhcp conflict
+\end{lstlisting}
+
+\expected{\texttt{show ip dhcp pool} should list ASSUMPTION, CARMEL, OLDBLOCK, and SERVERS. Before clients request addresses, \texttt{show ip dhcp binding} may show no records; that is normal.}
+\ifnot{If a pool is missing, re-enter its \texttt{ip dhcp pool} commands and verify the network and default-router values. If the excluded count looks surprising in Packet Tracer, verify the four \texttt{ip dhcp excluded-address} lines with \texttt{show running-config}. Do not delete and recreate the pools without checking the configuration first.}
+
+\section{Give the server a static IP address}\label{sec:server}
+\clickpath{Click \texttt{RCSS-SRV01} \(\rightarrow\) \textbf{Desktop} tab \(\rightarrow\) \textbf{IP Configuration} \(\rightarrow\) select \textbf{Static}.}
+Enter the values exactly:
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Field & Value\\
+\midrule
+IPv4 Address & \texttt{192.168.40.2}\\
+Subnet Mask & \texttt{255.255.255.0}\\
+Default Gateway & \texttt{192.168.40.1}\\
+DNS Server & Leave blank for this project\\
+\bottomrule
+\end{tabular}
+\end{center}
+\expected{The server should show IP \texttt{192.168.40.2}, mask \texttt{255.255.255.0}, and gateway \texttt{192.168.40.1}.}
+\ifnot{Make sure you selected \textbf{Static}, not DHCP. Check that the server is connected to Assumption switch Fa0/3 and that Fa0/3 is assigned to VLAN 40. Do not set the server gateway to .2; .2 is the server address, while .1 is the router gateway.}
+
+\section{Configure client devices}\label{sec:clients}
+For each DHCP client, follow this exact click path:
+\clickpath{Click the endpoint (PC or printer) \(\rightarrow\) \textbf{Desktop} \(\rightarrow\) \textbf{IP Configuration} \(\rightarrow\) click \textbf{DHCP}.}
+Configure:
+\begin{itemize}
+\item VLAN 10: Admin01, Admin02, Assumption Faculty01, Printer, Reception, Office.
+\item VLAN 20: Carmel Faculty01.
+\item VLAN 30: Lab01, Lab02, Old Reception.
+\item VLAN 40: Server is static, not DHCP, in this guide.
+\end{itemize}
+\expected{A VLAN 10 device should get a \texttt{192.168.10.x} address and gateway \texttt{192.168.10.1}; VLAN 20 should get \texttt{192.168.20.x} and gateway \texttt{192.168.20.1}; VLAN 30 should get \texttt{192.168.30.x} and gateway \texttt{192.168.30.1}. Because .1--.20 are excluded, DHCP will usually start at .21 if that address is available.}
+\ifnot{If the client shows 0.0.0.0 or an automatic 169.254.x.x address, click DHCP again and wait. If it still fails, check that the switch port is in the intended VLAN, the uplink trunk is working, the router subinterface is up/up, and the corresponding DHCP pool exists. Compare the device's IP and gateway with the address plan.}
+
+\section{Test connectivity}\label{sec:tests}
+Do tests in this order. Run pings from each device's \textbf{Desktop} \(\rightarrow\) \textbf{Command Prompt}. Replace example addresses if the target device received a different address.
+
+\subsection*{Test A: Admin01 to its gateway}
+On \texttt{ASSUMPTION-ADMIN01}, enter:
+\begin{lstlisting}
+ping 192.168.10.1
+\end{lstlisting}
+\expected{Replies from \texttt{192.168.10.1}; ideally 0\% packet loss.}
+\ifnot{Check Admin01's IP, mask, gateway, Fa0/1 VLAN 10 assignment, trunk path, and router subinterface \texttt{Gi0/0.10}.}
+
+\subsection*{Test B: Server to its gateway}
+On \texttt{RCSS-SRV01}, enter:
+\begin{lstlisting}
+ping 192.168.40.1
+\end{lstlisting}
+\expected{Replies from \texttt{192.168.40.1}.}
+\ifnot{Check the server's static IP/mask/gateway and confirm Assumption Fa0/3 is in VLAN 40. Verify the VLAN 40 router subinterface and trunks.}
+
+\subsection*{Test C: Server to Admin01 (VLAN 40 to VLAN 10)}
+On the server, enter:
+\begin{lstlisting}
+ping 192.168.10.21
+\end{lstlisting}
+If Admin01 has a different address, ping that actual address instead.
+\expected{Replies from Admin01. This is an inter-VLAN endpoint test; it verifies more than simply pinging the router's own gateway address.}
+\ifnot{Check both endpoints' IP/gateway settings, VLAN 10 and VLAN 40 access-port assignments, all required trunks, and the router's .10 and .40 subinterfaces.}
+
+\subsection*{Test D: Assumption Admin01 to Carmel Faculty01}
+On Admin01, ping the actual address shown on Carmel Faculty01's IP Configuration page. It should be in \texttt{192.168.20.0/24}.
+\expected{Replies from Carmel Faculty01. This tests routed communication between VLAN 10 and VLAN 20.}
+\ifnot{Check Carmel Faculty01's IP and gateway, Carmel Fa0/2 VLAN 20 assignment, VLAN 20 on the core, the Carmel trunk, and router subinterface \texttt{Gi0/0.20}.}
+
+\subsection*{Test E: Old Block Lab01 to the server}
+On \texttt{RCSS-LAB01}, enter:
+\begin{lstlisting}
+ping 192.168.40.2
+\end{lstlisting}
+\expected{Replies from \texttt{192.168.40.2}. This tests communication between VLAN 30 and VLAN 40.}
+\ifnot{Check Lab01's IP/gateway, Old Block Fa0/1 VLAN 30, the Old Block trunk, VLAN 30 on the core, and router subinterfaces .30 and .40.}
+
+\subsection*{Understanding ping output}
+\term{Sent / Received}{Shows how many echo requests were sent and how many replies came back.}
+\term{Lost}{If Sent = 4, Received = 4, and Lost = 0, the test had 0\% packet loss.}
+\term{First ping timeout}{The first ping can time out while ARP resolves a MAC address. Run the ping again before assuming the network is broken.}
+\term{TTL}{Time To Live is decremented by routers. A TTL value such as 127 can be consistent with a host that began at 128 and passed through one router; TTL alone is not proof of the entire path.}
+
+\section{Save all configurations and the project}\label{sec:save}
+Saving a device's running configuration and saving the Packet Tracer file are separate tasks. Do both.
+
+\subsection*{A. Save the router}
+\clickpath{Click \texttt{RCSS-R1} \(\rightarrow\) CLI.}
+\begin{lstlisting}
+enable
+copy running-config startup-config
+\end{lstlisting}
+If asked \texttt{Destination filename [startup-config]?}, press Enter.
+\expected{Look for a success message such as \texttt{[OK]}.}
+
+\subsection*{B. Save each switch}
+Repeat on each of the four switches: \texttt{RCSS-SW-CORE}, \texttt{RCSS-SW-ASSUMPTION}, \texttt{RCSS-SW-CARMEL}, and \texttt{RCSS-SW-OLDBLOCK}.
+\begin{lstlisting}
+enable
+copy running-config startup-config
+\end{lstlisting}
+Press Enter if prompted for the destination filename.
+\ifnot{If the command says it failed, read the error message and retry in privileged EXEC mode (prompt ends in \texttt{\#}). Do not assume the save worked unless you see a success confirmation.}
+
+\subsection*{C. Save the Packet Tracer file}
+\clickpath{In Packet Tracer, click \textbf{File} \(\rightarrow\) \textbf{Save As}. Choose a folder you can find again. Name the file \texttt{RCSS-Campus-Network.pkt}, then click Save.}
+If you already have a saved file, use \textbf{File} \(\rightarrow\) \textbf{Save} after the final changes. Confirm the file name in the title bar if your version shows it.
+
+\section{Troubleshooting guide}\label{sec:trouble}
+\begin{longtable}{@{}p{0.28\textwidth}p{0.65\textwidth}@{}}
+\toprule
+Problem & What to check, in order\\
+\midrule
+CLI says \texttt{Translating ...} & Press Ctrl+Shift+6 or Ctrl+C. Enter \texttt{configure terminal}, then \texttt{no ip domain-lookup}.\\
+A link remains red & Verify cable type, both selected ports, and whether the router interface has \texttt{no shutdown}. Wait a few seconds for switch ports to come up.\\
+Router subinterface is down & Check the parent \texttt{Gi0/0} status, the router-to-core cable, and the core port Gi0/1 trunk. A subinterface relies on its parent physical interface.\\
+PC has no DHCP address & Click DHCP again. Check switch access VLAN, trunk links, router subinterface state, DHCP pool network, and excluded addresses.\\
+PC receives the wrong subnet & The connected switch port may be assigned to the wrong VLAN. Run \texttt{show vlan brief} on that switch and correct the port's access VLAN.\\
+Gateway ping fails & Check IP, subnet mask, and gateway on the endpoint; then check its access port, trunk path, and router subinterface.\\
+Gateway ping works but another endpoint fails & Check the destination device's IP/gateway and its VLAN. A gateway ping does not prove all endpoints are reachable. Check trunks and any ACLs if configured.\\
+Trunk missing from output & Run \texttt{show interfaces trunk}. Verify the correct physical uplink and configure that interface with \texttt{switchport mode trunk}.\\
+DHCP binding table is empty & This is normal before any clients obtain a lease. After selecting DHCP on a PC, run \texttt{show ip dhcp binding} again.\\
+One ping is lost & Repeat the ping. The first request may be lost during ARP resolution; investigate if repeated tests continue to fail.\\
+\bottomrule
+\end{longtable}
+
+\section{Command and addressing reference}\label{sec:reference}
+\subsection*{Useful show commands}
+\begin{longtable}{@{}p{0.44\textwidth}p{0.49\textwidth}@{}}
+\toprule
+Command & What it tells you\\
+\midrule
+\texttt{show vlan brief} & VLAN IDs, names, and access ports\\
+\texttt{show interfaces trunk} & Which ports are trunking and which VLANs are allowed/active\\
+\texttt{show ip interface brief} & Router interface addresses and up/down status\\
+\texttt{show ip route} & Routes known to the router\\
+\texttt{show ip dhcp pool} & DHCP pool and address utilization summary\\
+\texttt{show ip dhcp binding} & Addresses currently leased to DHCP clients\\
+\texttt{show ip dhcp conflict} & Addresses marked as conflicts\\
+\texttt{show running-config} & Current active configuration\\
+\texttt{copy running-config startup-config} & Saves current configuration for next reload\\
+\bottomrule
+\end{longtable}
+
+\subsection*{Completion checklist}
+\begin{itemize}
+\item[$\square$] All devices are named and cabled to the intended ports.
+\item[$\square$] VLANs and access-port assignments match the plan.
+\item[$\square$] Core and building uplinks show as trunks.
+\item[$\square$] Router subinterfaces are up/up and have the intended gateway IPs.
+\item[$\square$] DHCP clients receive addresses from the correct subnet.
+\item[$\square$] Server uses static IP \texttt{192.168.40.2/24} and gateway \texttt{192.168.40.1}.
+\item[$\square$] Gateway pings and representative inter-VLAN pings succeed.
+\item[$\square$] Router and all switches have saved configurations.
+\item[$\square$] Packet Tracer project is saved as \texttt{RCSS-Campus-Network.pkt}.
+\end{itemize}
+
+\vfill
+\noindent\textit{End of guide. Keep this document with the Packet Tracer project so you can use it as both a build procedure and a troubleshooting reference.}
+\end{document}
