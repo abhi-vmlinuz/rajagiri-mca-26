@@ -1,0 +1,129 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{5}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Objectives}{5}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Tools and Technologies}{6}{section.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Technologies used in the project}}{6}{table.caption.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Requirements and Assumptions}{6}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Requirements}{6}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Assumptions and scope}{6}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Physical Topology}{7}{section.5}\protected@file@percent }
+\newlabel{sec:topology}{{5}{7}{Physical Topology}{section.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Complete RCSS campus network topology in Cisco Packet Tracer. The router \texttt  {RCSS-R1} connects to the core switch \texttt  {RCSS-SW-CORE}, which in turn connects to the three building switches and, through them, to the eleven end devices.}}{8}{figure.caption.2}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:topology}{{1}{8}{Complete RCSS campus network topology in Cisco Packet Tracer. The router \texttt {RCSS-R1} connects to the core switch \texttt {RCSS-SW-CORE}, which in turn connects to the three building switches and, through them, to the eleven end devices}{figure.caption.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Core uplinks and the cables that implement them}}{9}{table.caption.3}\protected@file@percent }
+\newlabel{tab:uplinks}{{2}{9}{Core uplinks and the cables that implement them}{table.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Enlarged left half of the topology: the Assumption block with \texttt  {ASSUMPTION-ADMIN01}, \texttt  {ASSUMPTION-ADMIN02}, \texttt  {ASSUMPTION-FACULTY01} and the server \texttt  {RCSS-SRV01}, together with the core switch and the router.}}{10}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:topology-assumption}{{2}{10}{Enlarged left half of the topology: the Assumption block with \texttt {ASSUMPTION-ADMIN01}, \texttt {ASSUMPTION-ADMIN02}, \texttt {ASSUMPTION-FACULTY01} and the server \texttt {RCSS-SRV01}, together with the core switch and the router}{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Enlarged right half of the topology: the Carmel block (printer, faculty PC, reception and office devices), the Old Block laboratory (two lab PCs and the old reception device) and their uplinks to the core switch.}}{11}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:topology-carmel}{{3}{11}{Enlarged right half of the topology: the Carmel block (printer, faculty PC, reception and office devices), the Old Block laboratory (two lab PCs and the old reception device) and their uplinks to the core switch}{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Logical Design and VLAN Plan}{11}{section.6}\protected@file@percent }
+\newlabel{sec:logical}{{6}{11}{Logical Design and VLAN Plan}{section.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces VLAN plan with the corresponding IP subnets and gateways}}{11}{table.caption.6}\protected@file@percent }
+\newlabel{tab:vlans}{{3}{11}{VLAN plan with the corresponding IP subnets and gateways}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Endpoint to VLAN assignment}{12}{subsection.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Endpoint devices, their access ports and their assigned VLAN}}{12}{table.caption.7}\protected@file@percent }
+\newlabel{tab:endpoints}{{4}{12}{Endpoint devices, their access ports and their assigned VLAN}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Router interface state}{12}{subsection.6.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \texttt  {show ip interface brief} on \texttt  {RCSS-R1}. The four subinterfaces \texttt  {Gi0/0.10} to \texttt  {Gi0/0.40} are up/up with the gateway addresses of VLANs 10, 20, 30 and 40; the physical \texttt  {Gi0/0} is up/up and carries the trunk.}}{12}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:router-if}{{4}{12}{\texttt {show ip interface brief} on \texttt {RCSS-R1}. The four subinterfaces \texttt {Gi0/0.10} to \texttt {Gi0/0.40} are up/up with the gateway addresses of VLANs 10, 20, 30 and 40; the physical \texttt {Gi0/0} is up/up and carries the trunk}{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Core switch VLANs and trunks}{13}{subsection.6.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \texttt  {show vlan brief} on \texttt  {RCSS-SW-CORE}. VLANs 10, 20, 30 and 40 are active; no access ports are listed because every core port is a trunk.}}{13}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:core-vlan}{{5}{13}{\texttt {show vlan brief} on \texttt {RCSS-SW-CORE}. VLANs 10, 20, 30 and 40 are active; no access ports are listed because every core port is a trunk}{figure.caption.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \texttt  {show interfaces trunk} on \texttt  {RCSS-SW-CORE}. Ports \texttt  {Fa0/1}, \texttt  {Fa0/2}, \texttt  {Gi0/1} and \texttt  {Gi0/2} are all 802.1Q trunks carrying VLANs 1, 10, 20, 30 and 40.}}{14}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:core-trunk}{{6}{14}{\texttt {show interfaces trunk} on \texttt {RCSS-SW-CORE}. Ports \texttt {Fa0/1}, \texttt {Fa0/2}, \texttt {Gi0/1} and \texttt {Gi0/2} are all 802.1Q trunks carrying VLANs 1, 10, 20, 30 and 40}{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Building switch access ports}{14}{subsection.6.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces \texttt  {show vlan brief} on \texttt  {RCSS-SW-ASSUMPTION}. VLAN 10 carries the access ports Fa0/1, Fa0/2 and Fa0/4; VLAN 40 carries Fa0/3, the server port.}}{14}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:assumption-vlan}{{7}{14}{\texttt {show vlan brief} on \texttt {RCSS-SW-ASSUMPTION}. VLAN 10 carries the access ports Fa0/1, Fa0/2 and Fa0/4; VLAN 40 carries Fa0/3, the server port}{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces \texttt  {show vlan brief} on \texttt  {RCSS-SW-CARMEL}. VLAN 10 carries Fa0/1, Fa0/3 and Fa0/4; VLAN 20 carries Fa0/2. The port \texttt  {Gi0/2} is listed under the default VLAN 1 and is unused (see Section~\ref {sec:discrepancies}).}}{15}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:carmel-vlan}{{8}{15}{\texttt {show vlan brief} on \texttt {RCSS-SW-CARMEL}. VLAN 10 carries Fa0/1, Fa0/3 and Fa0/4; VLAN 20 carries Fa0/2. The port \texttt {Gi0/2} is listed under the default VLAN 1 and is unused (see Section~\ref {sec:discrepancies})}{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces \texttt  {show vlan brief} on \texttt  {RCSS-SW-OLDBLOCK}. VLAN 30 (\texttt  {OLDBLOCK-LAB}) carries the three access ports Fa0/1, Fa0/2 and Fa0/3.}}{15}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:oldblock-vlan}{{9}{15}{\texttt {show vlan brief} on \texttt {RCSS-SW-OLDBLOCK}. VLAN 30 (\texttt {OLDBLOCK-LAB}) carries the three access ports Fa0/1, Fa0/2 and Fa0/3}{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Building switch uplinks}{15}{subsection.6.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces \texttt  {show interfaces trunk} on \texttt  {RCSS-SW-ASSUMPTION}. The uplink \texttt  {Gi0/1} is trunking and carries VLANs 1, 10 and 40.}}{16}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:assumption-trunk}{{10}{16}{\texttt {show interfaces trunk} on \texttt {RCSS-SW-ASSUMPTION}. The uplink \texttt {Gi0/1} is trunking and carries VLANs 1, 10 and 40}{figure.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces \texttt  {show interfaces trunk} on \texttt  {RCSS-SW-CARMEL}. The uplink \texttt  {Gi0/1} is trunking and carries VLANs 1, 10 and 20. This confirms that \texttt  {Gi0/1}, and not \texttt  {Gi0/2}, is the active Carmel uplink.}}{16}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:carmel-trunk}{{11}{16}{\texttt {show interfaces trunk} on \texttt {RCSS-SW-CARMEL}. The uplink \texttt {Gi0/1} is trunking and carries VLANs 1, 10 and 20. This confirms that \texttt {Gi0/1}, and not \texttt {Gi0/2}, is the active Carmel uplink}{figure.caption.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces \texttt  {show interfaces trunk} on \texttt  {RCSS-SW-OLDBLOCK}. The uplink \texttt  {Gi0/1} is trunking and carries VLANs 1 and 30.}}{17}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:oldblock-trunk}{{12}{17}{\texttt {show interfaces trunk} on \texttt {RCSS-SW-OLDBLOCK}. The uplink \texttt {Gi0/1} is trunking and carries VLANs 1 and 30}{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Subnetting Calculations}{17}{section.7}\protected@file@percent }
+\newlabel{sec:subnet}{{7}{17}{Subnetting Calculations}{section.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Address arithmetic for the four /24 subnets}}{17}{table.caption.17}\protected@file@percent }
+\newlabel{tab:subnets}{{5}{17}{Address arithmetic for the four /24 subnets}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}IP Addressing and DHCP Plan}{17}{section.8}\protected@file@percent }
+\newlabel{sec:ipdhcp}{{8}{17}{IP Addressing and DHCP Plan}{section.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Client addressing}{17}{subsection.8.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces DHCP scopes after the reserved low range}}{18}{table.caption.18}\protected@file@percent }
+\newlabel{tab:dhcp}{{6}{18}{DHCP scopes after the reserved low range}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Static addressing of the server}{18}{subsection.8.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Static configuration of \texttt  {RCSS-SRV01}}}{18}{table.caption.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}DHCP pool state}{18}{subsection.8.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces \texttt  {show ip dhcp pool} on \texttt  {RCSS-R1}. Four pools are defined; six clients are leased in the Assumption pool, one in Carmel, three in Old Block and none in the server pool, which is consistent with the static server address.}}{19}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:dhcp}{{13}{19}{\texttt {show ip dhcp pool} on \texttt {RCSS-R1}. Four pools are defined; six clients are leased in the Assumption pool, one in Carmel, three in Old Block and none in the server pool, which is consistent with the static server address}{figure.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces \texttt  {show ip dhcp binding} on \texttt  {RCSS-R1}. Six leases in the VLAN 10 subnet, one in VLAN 20 and two in VLAN 30; every lease starts at .21 or above, and no lease exists in the server subnet.}}{20}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:dhcp-bindings}{{14}{20}{\texttt {show ip dhcp binding} on \texttt {RCSS-R1}. Six leases in the VLAN 10 subnet, one in VLAN 20 and two in VLAN 30; every lease starts at .21 or above, and no lease exists in the server subnet}{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Configuration Procedure}{20}{section.9}\protected@file@percent }
+\newlabel{sec:config}{{9}{20}{Configuration Procedure}{section.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Core switch}{20}{subsection.9.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Core switch \texttt  {RCSS-SW-CORE}}}{20}{lstlisting.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Building switches}{21}{subsection.9.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}{\ignorespaces Assumption switch \texttt  {RCSS-SW-ASSUMPTION}}}{21}{lstlisting.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Router and 802.1Q subinterfaces}{21}{subsection.9.3}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3}{\ignorespaces Router \texttt  {RCSS-R1} --- router-on-a-stick}}{21}{lstlisting.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}DHCP pools and exclusions}{22}{subsection.9.4}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4}{\ignorespaces DHCP configuration on \texttt  {RCSS-R1}}}{22}{lstlisting.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5}End devices, verification and save}{22}{subsection.9.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Verification and Results}{22}{section.10}\protected@file@percent }
+\newlabel{sec:verify}{{10}{22}{Verification and Results}{section.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}What was verified}{22}{subsection.10.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Routing table and saved configuration}{23}{subsection.10.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces \texttt  {show ip route} on \texttt  {RCSS-R1}. The four campus subnets are connected through the subinterfaces Gi0/0.10, Gi0/0.20, Gi0/0.30 and Gi0/0.40; there is no default route.}}{23}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:ip-route}{{15}{23}{\texttt {show ip route} on \texttt {RCSS-R1}. The four campus subnets are connected through the subinterfaces Gi0/0.10, Gi0/0.20, Gi0/0.30 and Gi0/0.40; there is no default route}{figure.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces DHCP section of \texttt  {show running-config} on \texttt  {RCSS-R1}. The excluded ranges .\textit  {x}.1 to .\textit  {x}.20 and the four pools with their networks and default routers are present in the running configuration.}}{24}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:running-config}{{16}{24}{DHCP section of \texttt {show running-config} on \texttt {RCSS-R1}. The excluded ranges .\textit {x}.1 to .\textit {x}.20 and the four pools with their networks and default routers are present in the running configuration}{figure.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}Connectivity test}{24}{subsection.10.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces ICMP ping to 192.168.20.21. Four requests were sent and three replies were received (25\% loss); the first request timed out during address resolution.}}{25}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:ping}{{17}{25}{ICMP ping to 192.168.20.21. Four requests were sent and three replies were received (25\% loss); the first request timed out during address resolution}{figure.caption.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.4}Test results table}{25}{subsection.10.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Connectivity tests and the evidence available for each of them}}{25}{table.caption.25}\protected@file@percent }
+\newlabel{tab:tests}{{8}{25}{Connectivity tests and the evidence available for each of them}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.5}Discrepancies between the plan and the captured output}{25}{subsection.10.5}\protected@file@percent }
+\newlabel{sec:discrepancies}{{10.5}{25}{Discrepancies between the plan and the captured output}{subsection.10.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {11}Discussion}{26}{section.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {12}Limitations and Future Improvements}{27}{section.12}\protected@file@percent }
+\newlabel{sec:limitations}{{12}{27}{Limitations and Future Improvements}{section.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.1}Limitations}{27}{subsection.12.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.2}Recommended future improvements}{27}{subsection.12.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {13}Conclusion}{27}{section.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Router Configuration}{28}{section.A}\protected@file@percent }
+\newlabel{app:router}{{A}{28}{Router Configuration}{section.A}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5}{\ignorespaces Full router configuration \texttt  {RCSS-R1}}}{28}{lstlisting.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Switch Configuration}{29}{section.B}\protected@file@percent }
+\newlabel{app:switch}{{B}{29}{Switch Configuration}{section.B}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {6}{\ignorespaces Core switch \texttt  {RCSS-SW-CORE}}}{29}{lstlisting.6}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {7}{\ignorespaces Carmel switch \texttt  {RCSS-SW-CARMEL}}}{29}{lstlisting.7}\protected@file@percent }
+\gdef \LT@i {\LT@entry 
+    {1}{116.35837pt}\LT@entry 
+    {1}{76.84447pt}\LT@entry 
+    {1}{109.91003pt}\LT@entry 
+    {1}{139.9684pt}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {8}{\ignorespaces Old Block switch \texttt  {RCSS-SW-OLDBLOCK}}}{30}{lstlisting.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {C}Device and Port Map}{30}{section.C}\protected@file@percent }
+\newlabel{app:map}{{C}{30}{Device and Port Map}{section.C}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Complete device, port and VLAN map of the campus}}{30}{table.9}\protected@file@percent }
+\newlabel{tab:map}{{9}{30}{Complete device, port and VLAN map of the campus}{table.9}{}}
+\gdef \LT@ii {\LT@entry 
+    {1}{173.03395pt}\LT@entry 
+    {1}{72.12392pt}\LT@entry 
+    {1}{210.82008pt}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Evidence Register and Outstanding Captures}{31}{section.D}\protected@file@percent }
+\newlabel{app:evidence}{{D}{31}{Evidence Register and Outstanding Captures}{section.D}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Evidence captured and evidence still required}}{31}{table.10}\protected@file@percent }
+\newlabel{tab:evidence}{{10}{31}{Evidence captured and evidence still required}{table.10}{}}
+\gdef \LT@iii {\LT@entry 
+    {1}{343.06792pt}\LT@entry 
+    {1}{97.4617pt}}
+\gdef \@abspage@last{33}

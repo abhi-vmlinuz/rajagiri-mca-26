@@ -1,0 +1,39 @@
+\contentsline {section}{\numberline {1}Introduction}{5}{section.1}%
+\contentsline {section}{\numberline {2}Objectives}{5}{section.2}%
+\contentsline {section}{\numberline {3}Tools and Technologies}{6}{section.3}%
+\contentsline {section}{\numberline {4}Requirements and Assumptions}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Requirements}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Assumptions and scope}{6}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Physical Topology}{7}{section.5}%
+\contentsline {section}{\numberline {6}Logical Design and VLAN Plan}{11}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Endpoint to VLAN assignment}{12}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Router interface state}{12}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Core switch VLANs and trunks}{13}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Building switch access ports}{14}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Building switch uplinks}{15}{subsection.6.5}%
+\contentsline {section}{\numberline {7}Subnetting Calculations}{17}{section.7}%
+\contentsline {section}{\numberline {8}IP Addressing and DHCP Plan}{17}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Client addressing}{17}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Static addressing of the server}{18}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}DHCP pool state}{18}{subsection.8.3}%
+\contentsline {section}{\numberline {9}Configuration Procedure}{20}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Core switch}{20}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Building switches}{21}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Router and 802.1Q subinterfaces}{21}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}DHCP pools and exclusions}{22}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}End devices, verification and save}{22}{subsection.9.5}%
+\contentsline {section}{\numberline {10}Verification and Results}{22}{section.10}%
+\contentsline {subsection}{\numberline {10.1}What was verified}{22}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Routing table and saved configuration}{23}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Connectivity test}{24}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Test results table}{25}{subsection.10.4}%
+\contentsline {subsection}{\numberline {10.5}Discrepancies between the plan and the captured output}{25}{subsection.10.5}%
+\contentsline {section}{\numberline {11}Discussion}{26}{section.11}%
+\contentsline {section}{\numberline {12}Limitations and Future Improvements}{27}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Limitations}{27}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Recommended future improvements}{27}{subsection.12.2}%
+\contentsline {section}{\numberline {13}Conclusion}{27}{section.13}%
+\contentsline {section}{\numberline {A}Router Configuration}{28}{section.A}%
+\contentsline {section}{\numberline {B}Switch Configuration}{29}{section.B}%
+\contentsline {section}{\numberline {C}Device and Port Map}{30}{section.C}%
+\contentsline {section}{\numberline {D}Evidence Register and Outstanding Captures}{31}{section.D}%
