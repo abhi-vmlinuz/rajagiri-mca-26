@@ -1,0 +1,41 @@
+% ---- Section B / question 4
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{4.}}\ Display each book title and the names of its authors.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT b.title, a.author_name
+FROM book b
+JOIN book_author ba ON ba.book_id = b.book_id
+JOIN author a ON a.author_id = ba.author_id
+ORDER BY b.book_id, ba.author_order;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+TITLE                       AUTHOR_NAME         
+--------------------------  --------------------
+1984                        George Orwell
+Pride and Prejudice         Jane Austen
+Clean Code                  Robert C. Martin
+Sapiens                     Yuval Noah Harari
+Wings of Fire               A. P. J. Abdul Kalam
+The God of Small Things     Arundhati Roy
+Introduction to Algorithms  Thomas H. Cormen
+Introduction to Algorithms  Charles E. Leiserson
+Introduction to Algorithms  Ronald L. Rivest
+Introduction to Algorithms  Clifford Stein
+Modern Operating Systems    Andrew S. Tanenbaum
+Aarachar                    K. R. Meera
+India 2020                  A. P. J. Abdul Kalam
+
+13 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

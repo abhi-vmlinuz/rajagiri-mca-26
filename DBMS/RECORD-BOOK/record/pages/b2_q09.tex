@@ -1,0 +1,43 @@
+% ---- Section B / question 9
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{9.}}\ Display all members and their loan IDs. Include members who have never borrowed a book.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT m.full_name, l.loan_id
+FROM member m
+LEFT JOIN loan l ON l.member_id = m.member_id
+ORDER BY m.member_id, l.loan_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+FULL_NAME       LOAN_ID
+--------------  -------
+Aarav Menon        7002
+Aarav Menon        7014
+Diya Nair          7001
+Meera Thomas       7006
+Rohan Joseph       7005
+Ananya Pillai      7003
+Nikhil Raj         7011
+Sara Mathew        7007
+Vivek Krishnan     7013
+Ishita Rao         7008
+Adil Khan          7004
+Liya George        7009
+Harish Kumar       7016
+Neha Varma         7010
+Joel Antony        7015
+Fathima Noor       7012
+
+16 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

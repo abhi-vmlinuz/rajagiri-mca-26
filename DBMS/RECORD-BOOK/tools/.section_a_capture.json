@@ -1,0 +1,962 @@
+{
+ "alter": {
+  "02": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC student;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " STUDENT_ID                                NOT NULL CHAR(5)",
+    " STUDENT_NAME                              NOT NULL VARCHAR2(50)",
+    " DOB                                                DATE",
+    " GENDER                                             CHAR(1)",
+    " MOBILE_NUMBER                                      VARCHAR2(10)",
+    " EMAIL_ID                                           VARCHAR2(50)",
+    " DEPT_ID                                            VARCHAR2(10)",
+    " ADMISSION_DATE                                     DATE",
+    " CGPA                                               NUMBER(4,2)",
+    " ADDRESS                                            VARCHAR2(200)"
+   ]
+  },
+  "03": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC student;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " STUDENT_ID                                NOT NULL CHAR(5)",
+    " STUDENT_NAME                              NOT NULL VARCHAR2(50)",
+    " DOB                                                DATE",
+    " GENDER                                             CHAR(1)",
+    " MOBILE_NUMBER                                      VARCHAR2(10)",
+    " EMAIL_ID                                           VARCHAR2(50)",
+    " DEPT_ID                                            VARCHAR2(10)",
+    " ADMISSION_DATE                                     DATE",
+    " CGPA                                               NUMBER(4,2)",
+    " ADDRESS                                            VARCHAR2(200)",
+    " CITY                                               VARCHAR2(30)",
+    " STATE                                              VARCHAR2(30)"
+   ]
+  },
+  "04": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC faculty;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " FACULTY_ID                                NOT NULL CHAR(5)",
+    " FACULTY_NAME                              NOT NULL VARCHAR2(50)",
+    " QUALIFICATION                                      VARCHAR2(30)",
+    " DESIGNATION                                        VARCHAR2(30)",
+    " JOINING_DATE                                       DATE",
+    " SALARY                                             NUMBER(10,2)",
+    " EMAIL_ID                                           VARCHAR2(50)",
+    " DEPT_ID                                            VARCHAR2(10)",
+    " EXPERIENCE_YEARS                                   NUMBER(2)"
+   ]
+  },
+  "05": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC student;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " STUDENT_ID                                NOT NULL CHAR(5)",
+    " STUDENT_NAME                              NOT NULL VARCHAR2(100)",
+    " DOB                                                DATE",
+    " GENDER                                             CHAR(1)",
+    " MOBILE_NUMBER                                      VARCHAR2(10)",
+    " EMAIL_ID                                           VARCHAR2(50)",
+    " DEPT_ID                                            VARCHAR2(10)",
+    " ADMISSION_DATE                                     DATE",
+    " CGPA                                               NUMBER(4,2)",
+    " ADDRESS                                            VARCHAR2(200)",
+    " CITY                                               VARCHAR2(30)",
+    " STATE                                              VARCHAR2(30)"
+   ]
+  },
+  "06": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC student;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " STUDENT_ID                                NOT NULL CHAR(5)",
+    " STUDENT_NAME                              NOT NULL VARCHAR2(100)",
+    " DOB                                                DATE",
+    " GENDER                                             CHAR(1)",
+    " MOBILE_NUMBER                                      VARCHAR2(15)",
+    " EMAIL_ID                                           VARCHAR2(50)",
+    " DEPT_ID                                            VARCHAR2(10)",
+    " ADMISSION_DATE                                     DATE",
+    " CGPA                                               NUMBER(4,2)",
+    " ADDRESS                                            VARCHAR2(200)",
+    " CITY                                               VARCHAR2(30)",
+    " STATE                                              VARCHAR2(30)"
+   ]
+  },
+  "07": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC student;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " STUDENT_ID                                NOT NULL CHAR(5)",
+    " STUDENT_NAME                              NOT NULL VARCHAR2(100)",
+    " DOB                                                DATE",
+    " GENDER                                             CHAR(1)",
+    " CONTACT_NUMBER                                     VARCHAR2(15)",
+    " EMAIL_ID                                           VARCHAR2(50)",
+    " DEPT_ID                                            VARCHAR2(10)",
+    " ADMISSION_DATE                                     DATE",
+    " CGPA                                               NUMBER(4,2)",
+    " ADDRESS                                            VARCHAR2(200)",
+    " CITY                                               VARCHAR2(30)",
+    " STATE                                              VARCHAR2(30)"
+   ]
+  },
+  "08": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC course;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " COURSE_ID                                 NOT NULL CHAR(5)",
+    " COURSE_TITLE                              NOT NULL VARCHAR2(50)",
+    " CREDITS                                            NUMBER(1)",
+    " SEMESTER                                           NUMBER(1)",
+    " DEPT_ID                                            VARCHAR2(10)",
+    " FACULTY_ID                                         CHAR(5)"
+   ]
+  },
+  "09": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC student;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " STUDENT_ID                                NOT NULL CHAR(5)",
+    " STUDENT_NAME                              NOT NULL VARCHAR2(100)",
+    " DOB                                                DATE",
+    " GENDER                                             CHAR(1)",
+    " CONTACT_NUMBER                                     VARCHAR2(15)",
+    " EMAIL_ID                                           VARCHAR2(50)",
+    " DEPT_ID                                            VARCHAR2(10)",
+    " ADMISSION_DATE                                     DATE",
+    " CGPA                                               NUMBER(4,2)",
+    " CITY                                               VARCHAR2(30)",
+    " STATE                                              VARCHAR2(30)"
+   ]
+  },
+  "10": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC faculty;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " FACULTY_ID                                NOT NULL CHAR(5)",
+    " FACULTY_NAME                              NOT NULL VARCHAR2(50)",
+    " DESIGNATION                                        VARCHAR2(30)",
+    " JOINING_DATE                                       DATE",
+    " SALARY                                             NUMBER(10,2)",
+    " EMAIL_ID                                           VARCHAR2(50)",
+    " DEPT_ID                                            VARCHAR2(10)",
+    " EXPERIENCE_YEARS                                   NUMBER(2)"
+   ]
+  },
+  "11": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC faculty;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " FACULTY_ID                                NOT NULL CHAR(5)",
+    " FACULTY_NAME                              NOT NULL VARCHAR2(50)",
+    " DESIGNATION                                        VARCHAR2(30)",
+    " JOINING_DATE                                       DATE",
+    " SALARY                                             NUMBER(10,2)",
+    " EMAIL_ID                                           VARCHAR2(50)",
+    " DEPT_ID                                            VARCHAR2(10)",
+    " EXPERIENCE_YEARS                                   NUMBER(2)"
+   ],
+   "violation_sql": "UPDATE faculty SET salary = -5000 WHERE faculty_id = 'F101';",
+   "violation": [
+    "UPDATE faculty SET salary = -5000 WHERE faculty_id = 'F101'",
+    "*",
+    "ERROR at line 1:",
+    "ORA-02290: check constraint (MCA.SYS_C009682) violated",
+    "Help: https://docs.oracle.com/error-help/db/ora-02290/"
+   ]
+  },
+  "12": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC student;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " STUDENT_ID                                NOT NULL CHAR(5)",
+    " STUDENT_NAME                              NOT NULL VARCHAR2(100)",
+    " DOB                                                DATE",
+    " GENDER                                             CHAR(1)",
+    " CONTACT_NUMBER                                     VARCHAR2(15)",
+    " EMAIL_ID                                           VARCHAR2(50)",
+    " DEPT_ID                                            VARCHAR2(10)",
+    " ADMISSION_DATE                                     DATE",
+    " CGPA                                               NUMBER(4,2)",
+    " CITY                                               VARCHAR2(30)",
+    " STATE                                              VARCHAR2(30)"
+   ],
+   "violation_sql": "UPDATE student SET cgpa = 12 WHERE student_id = 'S101';",
+   "violation": [
+    "UPDATE student SET cgpa = 12 WHERE student_id = 'S101'",
+    "*",
+    "ERROR at line 1:",
+    "ORA-02290: check constraint (MCA.SYS_C009677) violated",
+    "Help: https://docs.oracle.com/error-help/db/ora-02290/"
+   ]
+  },
+  "13": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC event;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " EVENT_ID                                  NOT NULL CHAR(5)",
+    " EVENT_NAME                                NOT NULL VARCHAR2(50)",
+    " EVENT_DATE                                         DATE",
+    " VENUE                                              VARCHAR2(50)",
+    " FACULTY_ID                                         CHAR(5)",
+    " MAX_PARTICIPANTS                                   NUMBER(5)",
+    " REGISTRATION_FEE                                   NUMBER(8,2)"
+   ]
+  },
+  "14": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC student;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " STUDENT_ID                                NOT NULL CHAR(5)",
+    " STUDENT_NAME                              NOT NULL VARCHAR2(100)",
+    " DOB                                                DATE",
+    " GENDER                                             CHAR(1)",
+    " CONTACT_NUMBER                                     VARCHAR2(15)",
+    " EMAIL_ID                                           VARCHAR2(50)",
+    " DEPT_ID                                            VARCHAR2(10)",
+    " ADMISSION_DATE                                     DATE",
+    " CGPA                                               NUMBER(4,2)",
+    " CITY                                               VARCHAR2(30)",
+    " STATE                                              VARCHAR2(30)"
+   ]
+  },
+  "15": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC college_event;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " EVENT_ID                                  NOT NULL CHAR(5)",
+    " EVENT_NAME                                NOT NULL VARCHAR2(50)",
+    " EVENT_DATE                                         DATE",
+    " VENUE                                              VARCHAR2(50)",
+    " FACULTY_ID                                         CHAR(5)",
+    " MAX_PARTICIPANTS                                   NUMBER(5)",
+    " REGISTRATION_FEE                                   NUMBER(8,2)"
+   ]
+  },
+  "16": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC event;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " EVENT_ID                                  NOT NULL CHAR(5)",
+    " EVENT_NAME                                NOT NULL VARCHAR2(50)",
+    " EVENT_DATE                                         DATE",
+    " VENUE                                              VARCHAR2(50)",
+    " FACULTY_ID                                         CHAR(5)",
+    " MAX_PARTICIPANTS                                   NUMBER(5)",
+    " REGISTRATION_FEE                                   NUMBER(8,2)"
+   ]
+  },
+  "17": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC department;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " DEPT_ID                                   NOT NULL VARCHAR2(10)",
+    " DEPT_NAME                                 NOT NULL VARCHAR2(20)",
+    " HOD_NAME                                           VARCHAR2(50)",
+    " OFFICE_LOCATION                                    VARCHAR2(50)",
+    " CONTACT_NUMBER                                     VARCHAR2(15)",
+    " HOD_FACULTY_ID                                     CHAR(5)"
+   ]
+  },
+  "18": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC department;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " DEPT_ID                                   NOT NULL VARCHAR2(10)",
+    " DEPT_NAME                                 NOT NULL VARCHAR2(20)",
+    " HOD_NAME                                           VARCHAR2(50)",
+    " OFFICE_LOCATION                                    VARCHAR2(50)",
+    " CONTACT_NUMBER                                     VARCHAR2(15)",
+    " HOD_FACULTY_ID                                     CHAR(5)"
+   ]
+  },
+  "19": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC department;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " DEPT_ID                                   NOT NULL VARCHAR2(10)",
+    " DEPT_NAME                                 NOT NULL VARCHAR2(20)",
+    " OFFICE_LOCATION                                    VARCHAR2(50)",
+    " CONTACT_NUMBER                                     VARCHAR2(15)",
+    " HOD_FACULTY_ID                                     CHAR(5)"
+   ]
+  },
+  "20": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC course;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " COURSE_ID                                 NOT NULL CHAR(5)",
+    " COURSE_TITLE                              NOT NULL VARCHAR2(50)",
+    " CREDITS                                            NUMBER(1)",
+    " SEMESTER                                           NUMBER(1)",
+    " DEPT_ID                                            VARCHAR2(10)",
+    " FACULTY_ID                                         CHAR(5)"
+   ]
+  },
+  "21": {
+   "status": [
+    "Table altered."
+   ],
+   "desc_sql": "DESC course;",
+   "desc": [
+    " Name                                      Null?    Type",
+    " ----------------------------------------- -------- ----------------------------",
+    " COURSE_ID                                 NOT NULL CHAR(5)",
+    " COURSE_TITLE                              NOT NULL VARCHAR2(50)",
+    " CREDITS                                            NUMBER(1)",
+    " SEMESTER                                           NUMBER(1)",
+    " DEPT_ID                                            VARCHAR2(10)",
+    " FACULTY_ID                                         CHAR(5)"
+   ]
+  }
+ },
+ "dml": {
+  "01": {
+   "status": [
+    "1 row created."
+   ],
+   "headers": [
+    "DEPT_ID",
+    "DEPT_NAME",
+    "OFFICE_LOCATION",
+    "CONTACT_NUMBER",
+    "HOD_FACULTY_ID"
+   ],
+   "types": [
+    "VARCHAR2",
+    "VARCHAR2",
+    "VARCHAR2",
+    "VARCHAR2",
+    "CHAR"
+   ],
+   "rows": [
+    [
+     "D01",
+     "Computer Science",
+     "Carmel Block",
+     "9876543210",
+     ""
+    ]
+   ]
+  },
+  "02": {
+   "status": [
+    "1 row created."
+   ],
+   "headers": [
+    "STUDENT_ID",
+    "STUDENT_NAME",
+    "DOB",
+    "GENDER",
+    "CONTACT_NUMBER",
+    "EMAIL_ID",
+    "DEPT_ID",
+    "ADMISSION_DATE",
+    "CGPA",
+    "CITY",
+    "STATE"
+   ],
+   "types": [
+    "CHAR",
+    "VARCHAR2",
+    "DATE",
+    "CHAR",
+    "VARCHAR2",
+    "VARCHAR2",
+    "VARCHAR2",
+    "DATE",
+    "NUMBER",
+    "VARCHAR2",
+    "VARCHAR2"
+   ],
+   "rows": [
+    [
+     "S101",
+     "Akhil Raj",
+     "15-AUG-05",
+     "M",
+     "9876501234",
+     "akhil@gmail.com",
+     "D01",
+     "24-OCT-26",
+     "8.2",
+     "",
+     ""
+    ]
+   ]
+  },
+  "03": {
+   "status": [
+    "1 row created."
+   ],
+   "headers": [
+    "STUDENT_ID",
+    "STUDENT_NAME",
+    "DOB",
+    "GENDER",
+    "CONTACT_NUMBER",
+    "EMAIL_ID",
+    "DEPT_ID",
+    "ADMISSION_DATE",
+    "CGPA",
+    "CITY",
+    "STATE"
+   ],
+   "types": [
+    "CHAR",
+    "VARCHAR2",
+    "DATE",
+    "CHAR",
+    "VARCHAR2",
+    "VARCHAR2",
+    "VARCHAR2",
+    "DATE",
+    "NUMBER",
+    "VARCHAR2",
+    "VARCHAR2"
+   ],
+   "rows": [
+    [
+     "S101",
+     "Akhil Raj",
+     "15-AUG-05",
+     "M",
+     "9876501234",
+     "akhil@gmail.com",
+     "D01",
+     "24-OCT-26",
+     "8.2",
+     "",
+     ""
+    ],
+    [
+     "S102",
+     "Neha Thomas",
+     "22-MAR-06",
+     "F",
+     "9876501235",
+     "neha@gmail.com",
+     "D01",
+     "24-OCT-26",
+     "",
+     "",
+     ""
+    ]
+   ]
+  },
+  "04": {
+   "status": [
+    "2 rows created."
+   ],
+   "headers": [
+    "FACULTY_ID",
+    "FACULTY_NAME",
+    "DESIGNATION",
+    "JOINING_DATE",
+    "SALARY",
+    "EMAIL_ID",
+    "DEPT_ID",
+    "EXPERIENCE_YEARS"
+   ],
+   "types": [
+    "CHAR",
+    "VARCHAR2",
+    "VARCHAR2",
+    "DATE",
+    "NUMBER",
+    "VARCHAR2",
+    "VARCHAR2",
+    "NUMBER"
+   ],
+   "rows": [
+    [
+     "F102",
+     "Ravi Kumar",
+     "Assistant Professor",
+     "10-JUL-24",
+     "25000",
+     "ravi@rajagiri.edu",
+     "D01",
+     ""
+    ],
+    [
+     "F103",
+     "Anita Thomas",
+     "Professor",
+     "01-JUN-11",
+     "90000",
+     "anita@rajagiri.edu",
+     "D01",
+     ""
+    ]
+   ]
+  },
+  "05": {
+   "status": [
+    "1 row created."
+   ],
+   "headers": [
+    "FACULTY_ID",
+    "FACULTY_NAME",
+    "DESIGNATION",
+    "JOINING_DATE",
+    "SALARY",
+    "EMAIL_ID",
+    "DEPT_ID",
+    "EXPERIENCE_YEARS"
+   ],
+   "types": [
+    "CHAR",
+    "VARCHAR2",
+    "VARCHAR2",
+    "DATE",
+    "NUMBER",
+    "VARCHAR2",
+    "VARCHAR2",
+    "NUMBER"
+   ],
+   "rows": [
+    [
+     "F102",
+     "Ravi Kumar",
+     "Assistant Professor",
+     "10-JUL-24",
+     "25000",
+     "ravi@rajagiri.edu",
+     "D01",
+     ""
+    ],
+    [
+     "F103",
+     "Anita Thomas",
+     "Professor",
+     "01-JUN-11",
+     "90000",
+     "anita@rajagiri.edu",
+     "D01",
+     ""
+    ],
+    [
+     "F101",
+     "Meera Joseph",
+     "Assistant Professor",
+     "01-JUN-22",
+     "55000",
+     "meera@rajagiri.edu",
+     "D01",
+     ""
+    ]
+   ]
+  },
+  "06": {
+   "status": [
+    "1 row created."
+   ],
+   "headers": [
+    "COURSE_ID",
+    "COURSE_TITLE",
+    "CREDITS",
+    "SEMESTER",
+    "DEPT_ID",
+    "FACULTY_ID"
+   ],
+   "types": [
+    "CHAR",
+    "VARCHAR2",
+    "NUMBER",
+    "NUMBER",
+    "VARCHAR2",
+    "CHAR"
+   ],
+   "rows": [
+    [
+     "C101",
+     "Database Management Systems",
+     "4",
+     "3",
+     "D01",
+     "F101"
+    ]
+   ]
+  },
+  "07": {
+   "status": [
+    "1 row created."
+   ],
+   "headers": [
+    "COURSE_ID",
+    "COURSE_TITLE",
+    "CREDITS",
+    "SEMESTER",
+    "DEPT_ID",
+    "FACULTY_ID"
+   ],
+   "types": [
+    "CHAR",
+    "VARCHAR2",
+    "NUMBER",
+    "NUMBER",
+    "VARCHAR2",
+    "CHAR"
+   ],
+   "rows": [
+    [
+     "C101",
+     "Database Management Systems",
+     "4",
+     "3",
+     "D01",
+     "F101"
+    ],
+    [
+     "C102",
+     "Operating Systems",
+     "3",
+     "8",
+     "D01",
+     "F102"
+    ]
+   ]
+  },
+  "08": {
+   "status": [
+    "1 row created."
+   ],
+   "headers": [
+    "ENROLLMENT_ID",
+    "STUDENT_ID",
+    "COURSE_ID",
+    "ENROLLMENT_DATE",
+    "ACADEMIC_YEAR"
+   ],
+   "types": [
+    "CHAR",
+    "CHAR",
+    "CHAR",
+    "DATE",
+    "VARCHAR2"
+   ],
+   "rows": [
+    [
+     "E101",
+     "S101",
+     "C101",
+     "24-OCT-26",
+     "2025-2026"
+    ]
+   ]
+  },
+  "09": {
+   "status": [
+    "1 row created."
+   ],
+   "headers": [
+    "RESULT_ID",
+    "ENROLLMENT_ID",
+    "INTERNAL_MARKS",
+    "EXTERNAL_MARKS",
+    "TOTAL_MARKS",
+    "GRADE",
+    "RESULT_STATUS"
+   ],
+   "types": [
+    "CHAR",
+    "CHAR",
+    "NUMBER",
+    "NUMBER",
+    "NUMBER",
+    "CHAR",
+    "VARCHAR2"
+   ],
+   "rows": [
+    [
+     "R101",
+     "E101",
+     "18",
+     "22",
+     "40",
+     "F",
+     "FAIL"
+    ]
+   ]
+  },
+  "10": {
+   "status": [
+    "3 rows created."
+   ],
+   "headers": [
+    "EVENT_ID",
+    "EVENT_NAME",
+    "EVENT_DATE",
+    "VENUE",
+    "FACULTY_ID",
+    "MAX_PARTICIPANTS",
+    "REGISTRATION_FEE"
+   ],
+   "types": [
+    "CHAR",
+    "VARCHAR2",
+    "DATE",
+    "VARCHAR2",
+    "CHAR",
+    "NUMBER",
+    "NUMBER"
+   ],
+   "rows": [
+    [
+     "EV01",
+     "Tech Fest",
+     "15-MAR-26",
+     "Main Auditorium",
+     "F101",
+     "150",
+     "200"
+    ],
+    [
+     "EV02",
+     "Workshop on AI",
+     "10-APR-24",
+     "Seminar Hall",
+     "F102",
+     "50",
+     ""
+    ],
+    [
+     "EV03",
+     "National Seminar",
+     "20-NOV-25",
+     "Seminar Hall",
+     "F103",
+     "300",
+     "100"
+    ]
+   ]
+  },
+  "11": {
+   "status": [
+    "1 row created."
+   ],
+   "headers": [
+    "REGISTRATION_ID",
+    "EVENT_ID",
+    "STUDENT_ID",
+    "REGISTRATION_DATE",
+    "PARTICIPATION_STATUS"
+   ],
+   "types": [
+    "CHAR",
+    "CHAR",
+    "CHAR",
+    "DATE",
+    "VARCHAR2"
+   ],
+   "rows": [
+    [
+     "REG01",
+     "EV01",
+     "S101",
+     "24-OCT-26",
+     "ABSENT"
+    ]
+   ]
+  },
+  "12": {
+   "status": [
+    "1 row updated.",
+    "Commit complete."
+   ]
+  },
+  "13": {
+   "status": [
+    "3 rows updated.",
+    "Commit complete."
+   ]
+  },
+  "14": {
+   "status": [
+    "1 row updated.",
+    "Commit complete."
+   ]
+  },
+  "15": {
+   "status": [
+    "1 row updated.",
+    "Commit complete."
+   ]
+  },
+  "16": {
+   "status": [
+    "1 row updated.",
+    "Commit complete."
+   ]
+  },
+  "17": {
+   "status": [
+    "1 row deleted.",
+    "Commit complete."
+   ]
+  },
+  "18": {
+   "status": [
+    "1 row deleted.",
+    "Commit complete."
+   ]
+  },
+  "19": {
+   "status": [
+    "1 row deleted.",
+    "Commit complete."
+   ]
+  },
+  "20": {
+   "status": [
+    "1 row deleted.",
+    "Commit complete.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "1 row created.",
+    "Commit complete."
+   ]
+  }
+ }
+}

@@ -1,0 +1,35 @@
+% ---- Section B / question 13
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{13.}}\ Display authors born before 1960 who have received at least 2 awards. Show author name, nationality, birth year and awards count, ordered by awards count descending and then birth year ascending.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT author_name, nationality, birth_year, awards_count
+FROM author
+WHERE birth_year < 1960
+  AND awards_count >= 2
+ORDER BY awards_count DESC, birth_year;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+AUTHOR_NAME           NATIONALITY     BIRTH_YEAR  AWARDS_COUNT
+--------------------  --------------  ----------  ------------
+A. P. J. Abdul Kalam  Indian                1931             8
+Ronald L. Rivest      American              1947             5
+George Orwell         British               1903             3
+Andrew S. Tanenbaum   Dutch-American        1944             3
+Jane Austen           British               1775             2
+Charles E. Leiserson  American              1953             2
+Thomas H. Cormen      American              1956             2
+
+7 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

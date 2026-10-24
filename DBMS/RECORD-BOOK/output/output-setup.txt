@@ -1,0 +1,262 @@
+podman exec -i oracledb bash -c "cd /tmp/sql && sqlplus mca/mca@localhost:1521/FREEPDB1 @A0_setup.sql"
+
+SQL*Plus: Release 23.26.2.0.0 - Production on Fri Oct 23 19:16:29 2026
+Version 23.26.2.0.0
+
+Copyright (c) 1982, 2026, Oracle.  All rights reserved.
+
+Last Successful login time: Fri Oct 23 2026 19:10:44 +00:00
+
+Connected to:
+Oracle AI Database 26ai Free Release 23.26.2.0.0 - Develop, Learn, and Run for Free
+Version 23.26.2.0.0
+
+============================================================
+1/3  dropping the 8 record tables (if present)
+============================================================
+dropped EVENT_REGISTRATION
+dropped RESULT
+dropped ENROLLMENT
+dropped EVENT
+dropped COURSE
+dropped STUDENT
+dropped FACULTY
+skipped DEPARTMENT (not present)
+
+PL/SQL procedure successfully completed.
+
+============================================================
+2/3  creating the 8 tables  (Section A, question 1)
+============================================================
+
+Table created.
+
+ Name					  Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPT_ID				  NOT NULL VARCHAR2(10)
+ DEPT_NAME				  NOT NULL VARCHAR2(20)
+ HOD_NAME					   VARCHAR2(50)
+ OFFICE_LOCATION				   VARCHAR2(50)
+ CONTACT_NUMBER 				   VARCHAR2(15)
+
+
+===== TABLE 2 : STUDENT =====
+
+Table created.
+
+ Name					  Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID				  NOT NULL CHAR(5)
+ STUDENT_NAME				  NOT NULL VARCHAR2(50)
+ DOB						   DATE
+ GENDER 					   CHAR(1)
+ MOBILE_NUMBER					   VARCHAR2(10)
+ EMAIL_ID					   VARCHAR2(50)
+ DEPT_ID					   VARCHAR2(10)
+ ADMISSION_DATE 				   DATE
+ CGPA						   NUMBER(4,2)
+
+
+===== TABLE 3 : FACULTY =====
+
+Table created.
+
+ Name					  Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FACULTY_ID				  NOT NULL CHAR(5)
+ FACULTY_NAME				  NOT NULL VARCHAR2(50)
+ QUALIFICATION					   VARCHAR2(30)
+ DESIGNATION					   VARCHAR2(30)
+ JOINING_DATE					   DATE
+ SALARY 					   NUMBER(10,2)
+ EMAIL_ID					   VARCHAR2(50)
+ DEPT_ID					   VARCHAR2(10)
+
+
+===== TABLE 4 : COURSE =====
+
+Table created.
+
+ Name					  Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ COURSE_ID				  NOT NULL CHAR(5)
+ COURSE_NAME				  NOT NULL VARCHAR2(50)
+ CREDITS					   NUMBER(1)
+ SEMESTER					   NUMBER(1)
+ DEPT_ID					   VARCHAR2(10)
+ FACULTY_ID					   CHAR(5)
+
+
+===== TABLE 5 : ENROLLMENT =====
+
+Table created.
+
+ Name					  Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ENROLLMENT_ID				  NOT NULL CHAR(5)
+ STUDENT_ID					   CHAR(5)
+ COURSE_ID					   CHAR(5)
+ ENROLLMENT_DATE				   DATE
+ ACADEMIC_YEAR					   VARCHAR2(9)
+
+
+===== TABLE 6 : RESULT =====
+
+Table created.
+
+ Name					  Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ RESULT_ID				  NOT NULL CHAR(5)
+ ENROLLMENT_ID					   CHAR(5)
+ INTERNAL_MARKS 				   NUMBER(5,2)
+ EXTERNAL_MARKS 				   NUMBER(5,2)
+ TOTAL_MARKS					   NUMBER(6,2)
+ GRADE						   CHAR(1)
+ RESULT_STATUS					   VARCHAR2(10)
+
+
+===== TABLE 7 : EVENT =====
+
+Table created.
+
+ Name					  Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EVENT_ID				  NOT NULL CHAR(5)
+ EVENT_NAME					   VARCHAR2(50)
+ EVENT_DATE					   DATE
+ VENUE						   VARCHAR2(50)
+ FACULTY_ID					   CHAR(5)
+ MAX_PARTICIPANTS				   NUMBER(5)
+ REGISTRATION_FEE				   NUMBER(8,2)
+
+
+===== TABLE 8 : EVENT_REGISTRATION =====
+
+Table created.
+
+ Name					  Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ REGISTRATION_ID			  NOT NULL CHAR(5)
+ EVENT_ID					   CHAR(5)
+ STUDENT_ID					   CHAR(5)
+ REGISTRATION_DATE				   DATE
+ PARTICIPATION_STATUS				   VARCHAR2(15)
+
+============================================================
+3/3  applying the 20 ALTER statements  (questions 2-21)
+============================================================
+
+===== Q2 =====
+
+Table altered.
+
+
+===== Q3 =====
+
+Table altered.
+
+
+===== Q4 =====
+
+Table altered.
+
+
+===== Q5 =====
+
+Table altered.
+
+
+===== Q6 =====
+
+Table altered.
+
+
+===== Q7 =====
+
+Table altered.
+
+
+===== Q8 =====
+
+Table altered.
+
+
+===== Q9 =====
+
+Table altered.
+
+
+===== Q10 =====
+
+Table altered.
+
+
+===== Q11 =====
+
+Table altered.
+
+
+===== Q12 =====
+
+Table altered.
+
+
+===== Q13 =====
+
+Table altered.
+
+
+===== Q14 =====
+
+Table altered.
+
+
+===== Q15 =====
+
+Table altered.
+
+
+===== Q16 =====
+
+Table altered.
+
+
+===== Q17 =====
+
+Table altered.
+
+
+===== Q18 =====
+
+Table altered.
+
+
+===== Q19 =====
+
+Table altered.
+
+ Name					  Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPT_ID				  NOT NULL VARCHAR2(10)
+ DEPT_NAME				  NOT NULL VARCHAR2(20)
+ OFFICE_LOCATION				   VARCHAR2(50)
+ CONTACT_NUMBER 				   VARCHAR2(15)
+ HOD_FACULTY_ID 				   CHAR(5)
+
+
+===== Q20 =====
+
+Table altered.
+
+
+===== Q21 =====
+
+Table altered.
+
+
+============================================================
+setup complete - schema now matches the record
+============================================================
+SQL> exit
+Disconnected from Oracle AI Database 26ai Free Release 23.26.2.0.0 - Develop, Learn, and Run for Free
+Version 23.26.2.0.0

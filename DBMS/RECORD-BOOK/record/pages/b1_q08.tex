@@ -1,0 +1,31 @@
+% ---- Section B / question 8
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{8.}}\ Display staff name, role, shift and salary for staff earning from 32,000 to 56,000 inclusive, excluding GENERAL shift staff. Sort from highest to lowest salary.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT full_name, role_name, shift_name, salary
+FROM staff
+WHERE salary BETWEEN 32000 AND 56000
+  AND shift_name != 'GENERAL'
+ORDER BY salary DESC;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+FULL_NAME    ROLE_NAME            SHIFT_NAME  SALARY
+-----------  -------------------  ----------  ------
+Arun Das     Assistant Librarian  MORNING      48000
+Manu Suresh  Library Assistant    MORNING      34000
+Rahul Dev    Library Assistant    EVENING      32000
+
+3 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

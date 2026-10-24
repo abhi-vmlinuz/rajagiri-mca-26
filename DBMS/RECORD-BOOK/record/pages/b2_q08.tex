@@ -1,0 +1,51 @@
+% ---- Section B / question 8
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{8.}}\ Display all books and their physical copy IDs. Include books that do not have any physical copies.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT b.title, c.copy_id
+FROM book b
+LEFT JOIN book_copy c ON c.book_id = b.book_id
+ORDER BY b.book_id, c.copy_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+TITLE                                       COPY_ID
+------------------------------------------  -------
+1984                                           6001
+1984                                           6002
+Pride and Prejudice                            6003
+Clean Code                                     6004
+Clean Code                                     6005
+Sapiens                                        6006
+Wings of Fire                                  6007
+The God of Small Things                        6008
+Introduction to Algorithms                     6009
+Introduction to Algorithms                     6010
+Modern Operating Systems                       6011
+Aarachar                                       6012
+The Picture of Dorian Gray                     6013
+Designing Data-Intensive Applications          6014
+Designing Data-Intensive Applications          6024
+Learning SQL                                   6015
+Artificial Intelligence: A Modern Approach     6016
+To Kill a Mockingbird                          6017
+India 2020                                     6018
+Deep Learning                                  6019
+A Brief History of Time                        6020
+The Alchemist                                  6021
+Machine Learning with Python                   6022
+Qabar                                          6023
+
+24 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

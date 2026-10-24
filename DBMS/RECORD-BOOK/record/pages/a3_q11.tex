@@ -1,0 +1,26 @@
+% ---- Section A / question 11
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{11.}}\ Display events for which the registration fee is greater than 500.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT * FROM event WHERE registration_fee > 500;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\scriptsize]
+EVENT_ID  EVENT_NAME     EVENT_DATE  VENUE            FACULTY_ID  MAX_PARTICIPANTS  REGISTRATION_FEE
+--------  -------------  ----------  ---------------  ----------  ----------------  ----------------
+EV04      Cultural Fest  10-FEB-26   Open Ground      F105                     500               750
+EV06      Alumni Meet    05-DEC-25   Main Auditorium  F104                      80              1500
+
+2 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

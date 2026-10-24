@@ -1,0 +1,50 @@
+% ---- Section B / question 20
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{20.}}\ Categorise every book using a CASE expression: price below 400 is BUDGET, price from 400 to 799 is STANDARD and price 800 or above is PREMIUM. Display book title, price and the computed price category, sorted by price descending.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT title, price,
+       CAST(CASE WHEN price < 400 THEN 'BUDGET'
+                 WHEN price BETWEEN 400 AND 799 THEN 'STANDARD'
+                 WHEN price >= 800 THEN 'PREMIUM'
+            END AS VARCHAR2(14)) AS price_category
+FROM book
+ORDER BY price DESC;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+TITLE                                       PRICE  PRICE_CATEGORY
+------------------------------------------  -----  --------------
+Artificial Intelligence: A Modern Approach   1199  PREMIUM
+Introduction to Algorithms                   1099  PREMIUM
+Deep Learning                                1050  PREMIUM
+Designing Data-Intensive Applications         999  PREMIUM
+Modern Operating Systems                      950  PREMIUM
+Clean Code                                    899  PREMIUM
+Machine Learning with Python                  875  PREMIUM
+Learning SQL                                  799  STANDARD
+Sapiens                                       699  STANDARD
+Aarachar                                      525  STANDARD
+To Kill a Mockingbird                         499  STANDARD
+The God of Small Things                       499  STANDARD
+Pride and Prejudice                           450  STANDARD
+A Brief History of Time                       425  STANDARD
+1984                                          399  BUDGET
+The Picture of Dorian Gray                    375  BUDGET
+Wings of Fire                                 350  BUDGET
+India 2020                                    325  BUDGET
+The Alchemist                                 299  BUDGET
+Qabar                                         280  BUDGET
+
+20 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

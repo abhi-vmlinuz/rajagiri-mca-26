@@ -1,0 +1,23 @@
+% ---- Section B / question 1
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{1.}}\ Create a view named BOOK\_DETAILS to display the book ID, book title, publisher ID, and price from the BOOK table.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE VIEW book_details AS
+SELECT book_id, title, publisher_id, price
+FROM book;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+View created.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

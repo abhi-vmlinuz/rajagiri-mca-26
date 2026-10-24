@@ -1,0 +1,22 @@
+% ---- Section A / question 17
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{17.}}\ Delete courses offered in Semester 8.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+DELETE FROM course WHERE semester = 8;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+1 row deleted.
+Commit complete.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

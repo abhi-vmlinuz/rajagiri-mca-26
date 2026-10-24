@@ -1,0 +1,42 @@
+% ---- Section B / question 4
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{4.}}\ Display member name, join date and the number of complete years they have been members as of SYSDATE. Show the longest-standing members first.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT full_name, join_date,
+       TRUNC(MONTHS_BETWEEN(SYSDATE, join_date) / 12) AS completed_years
+FROM member
+ORDER BY completed_years DESC;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+FULL_NAME       JOIN_DATE  COMPLETED_YEARS
+--------------  ---------  ---------------
+Adil Khan       01-OCT-19                7
+Sara Mathew     10-FEB-20                6
+Ananya Pillai   20-AUG-21                5
+Meera Thomas    15-JAN-22                4
+Joel Antony     15-JUN-22                4
+Rohan Joseph    11-SEP-23                3
+Nikhil Raj      05-JUN-23                3
+Harish Kumar    20-NOV-22                3
+Neha Varma      03-MAR-23                3
+Ishita Rao      10-JUN-24                2
+Fathima Noor    18-APR-24                2
+Aarav Menon     10-JUN-24                2
+Diya Nair       01-JUL-24                2
+Vivek Krishnan  05-JAN-25                1
+Liya George     12-JUN-25                1
+
+15 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

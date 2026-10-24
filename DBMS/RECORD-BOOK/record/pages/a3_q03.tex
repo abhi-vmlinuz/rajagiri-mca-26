@@ -1,0 +1,37 @@
+% ---- Section A / question 3
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{3.}}\ Display the student name and CGPA using the aliases Student\_Name and Grade\_Point\_Average.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT student_name AS Student_Name, cgpa AS Grade_Point_Average
+FROM student;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+STUDENT_NAME    GRADE_POINT_AVERAGE
+--------------  -------------------
+Akhil Raj       8.7
+Neha Thomas
+Anjali Menon    9.1
+Arjun Nair      8.4
+Aparna Pillai   7.2
+Rahul Varma     6.5
+Sneha George    8.9
+Aditya Kumar    5.8
+Meera Krishnan  9.6
+Anoop Joseph    7.8
+Divya Ramesh    8
+Kiran Mathew    6.9
+
+12 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

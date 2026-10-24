@@ -1,0 +1,23 @@
+% ---- Section A / question 15
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{15.}}\ Update the credits of the course Database Management Systems from 4 to 5.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+UPDATE course SET credits = 5
+WHERE course_title = 'Database Management Systems';
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+1 row updated.
+Commit complete.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

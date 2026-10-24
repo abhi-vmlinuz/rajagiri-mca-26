@@ -1,0 +1,69 @@
+% ---------------------------------------------------------------------
+% Section A / Table 3 : FACULTY
+% ---------------------------------------------------------------------
+
+\textbf{Table Name:} FACULTY \hspace{1em plus 1fill}
+\textbf{Description:} Stores the details of the teaching faculty.
+
+\vspace{8pt}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+\textbf{Column Name} & \textbf{Description} & \textbf{Data Type} & \textbf{Constraint} \\
+\hline
+faculty\_id & Faculty ID & CHAR(5) & PRIMARY KEY \\
+\hline
+faculty\_name & Faculty Name & VARCHAR2(50) & NOT NULL \\
+\hline
+qualification & Qualification & VARCHAR2(30) & -- \\
+\hline
+designation & Designation & VARCHAR2(30) & -- \\
+\hline
+joining\_date & Date of Joining & DATE & -- \\
+\hline
+salary & Salary & NUMBER(10,2) & CHECK (salary > 0) \\
+\hline
+email\_id & Email ID & VARCHAR2(50) & UNIQUE \\
+\hline
+dept\_id & Department ID & VARCHAR2(10) & FOREIGN KEY REFERENCES department (dept\_id) \\
+\hline
+\end{tabularx}
+
+\vspace{14pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE TABLE faculty (
+    faculty_id    CHAR(5)       PRIMARY KEY,
+    faculty_name  VARCHAR2(50)  NOT NULL,
+    qualification VARCHAR2(30),
+    designation   VARCHAR2(30),
+    joining_date  DATE,
+    salary        NUMBER(10,2)  CHECK (salary > 0),
+    email_id      VARCHAR2(50)  UNIQUE,
+    dept_id       VARCHAR2(10)  REFERENCES department(dept_id)
+);
+\end{sqlcode}
+
+\vspace{16pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}
+Table created.
+
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FACULTY_ID                                NOT NULL CHAR(5)
+ FACULTY_NAME                              NOT NULL VARCHAR2(50)
+ QUALIFICATION                                      VARCHAR2(30)
+ DESIGNATION                                        VARCHAR2(30)
+ JOINING_DATE                                       DATE
+ SALARY                                             NUMBER(10,2)
+ EMAIL_ID                                           VARCHAR2(50)
+ DEPT_ID                                            VARCHAR2(10)
+\end{sqlout}
+
+\clearpage

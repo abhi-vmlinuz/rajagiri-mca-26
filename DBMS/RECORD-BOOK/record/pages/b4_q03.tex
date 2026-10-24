@@ -1,0 +1,24 @@
+% ---- Section B / question 3
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{3.}}\ Update the availability status of book copy 6001 to REPAIR, so that it can no longer be issued. Commit the transaction.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+UPDATE book_copy SET availability_status = 'REPAIR'
+WHERE copy_id = 6001;
+COMMIT;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+1 row updated.
+Commit complete.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

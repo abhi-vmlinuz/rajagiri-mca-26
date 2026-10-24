@@ -1,0 +1,35 @@
+% ---- Section B / question 6
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{6.}}\ Display the fine ID, member name, loan ID, fine amount, and payment status for fines recorded in the library.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT f.fine_id, m.full_name, f.loan_id, f.amount, f.payment_status
+FROM fine f
+JOIN member m ON m.member_id = f.member_id
+ORDER BY f.fine_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+FINE_ID  FULL_NAME       LOAN_ID  AMOUNT  PAYMENT_STATUS
+-------  --------------  -------  ------  --------------
+   9001  Aarav Menon        7002      90  UNPAID
+   9002  Adil Khan          7004     250  PARTIAL
+   9003  Sara Mathew        7007      30  PAID
+   9004  Neha Varma         7010      70  PAID
+   9005  Nikhil Raj         7011      60  WAIVED
+   9006  Vivek Krishnan     7013      70  PAID
+   9007  Joel Antony        7015     100  PARTIAL
+   9008  Harish Kumar       7016     480  UNPAID
+
+8 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

@@ -1,0 +1,33 @@
+% ---- Section A / question 4
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{4.}}\ Display the faculty name, monthly salary, and annual salary. Calculate annual salary as monthly salary multiplied by 12.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT faculty_name, salary, salary * 12 AS annual_salary
+FROM faculty;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+FACULTY_NAME  SALARY  ANNUAL_SALARY
+------------  ------  -------------
+Ravi Kumar     27500         330000
+Anita Thomas   99000        1188000
+Meera Joseph   60500         726000
+Suresh Menon   95000        1140000
+Latha Nair     72000         864000
+Vinod Kumar    48000         576000
+Priya Sharma   52000         624000
+arun das       45000         540000
+
+8 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

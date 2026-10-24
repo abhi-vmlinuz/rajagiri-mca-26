@@ -1,0 +1,35 @@
+% ---- Section B / question 15
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{15.}}\ Display book ID, title, category, publication year and price for books published from 2014 onward with price above 700. Sort by price descending.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT book_id, title, category, publication_year, price
+FROM book
+WHERE publication_year >= 2014
+  AND price > 700
+ORDER BY price DESC;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\footnotesize]
+BOOK_ID  TITLE                                       CATEGORY          PUBLICATION_YEAR  PRICE
+-------  ------------------------------------------  ----------------  ----------------  -----
+   4013  Artificial Intelligence: A Modern Approach  Computer Science              2021   1199
+   4007  Introduction to Algorithms                  Computer Science              2022   1099
+   4016  Deep Learning                               Computer Science              2016   1050
+   4011  Designing Data-Intensive Applications       Computer Science              2017    999
+   4008  Modern Operating Systems                    Computer Science              2014    950
+   4019  Machine Learning with Python                Computer Science              2022    875
+   4012  Learning SQL                                Computer Science              2020    799
+
+7 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

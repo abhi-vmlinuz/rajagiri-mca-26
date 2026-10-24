@@ -1,0 +1,47 @@
+% ---- Section B / question 14
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{14.}}\ Display publisher name, book title, and price using a RIGHT OUTER JOIN. Include all books, even if a matching publisher record is not found.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT p.publisher_name, b.title, b.price
+FROM publisher p
+RIGHT JOIN book b ON b.publisher_id = p.publisher_id
+ORDER BY b.book_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+PUBLISHER_NAME           TITLE                                       PRICE
+-----------------------  ------------------------------------------  -----
+Penguin Random House     1984                                          399
+Penguin Random House     Pride and Prejudice                           450
+Pearson Education        Clean Code                                    899
+HarperCollins            Sapiens                                       699
+DC Books                 Wings of Fire                                 350
+Penguin Random House     The God of Small Things                       499
+MIT Press                Introduction to Algorithms                   1099
+Pearson Education        Modern Operating Systems                      950
+DC Books                 Aarachar                                      525
+Oxford University Press  The Picture of Dorian Gray                    375
+O'Reilly Media           Designing Data-Intensive Applications         999
+O'Reilly Media           Learning SQL                                  799
+Pearson Education        Artificial Intelligence: A Modern Approach   1199
+HarperCollins            To Kill a Mockingbird                         499
+HarperCollins            India 2020                                    325
+MIT Press                Deep Learning                                1050
+Oxford University Press  A Brief History of Time                       425
+HarperCollins            The Alchemist                                 299
+Springer                 Machine Learning with Python                  875
+DC Books                 Qabar                                         280
+
+20 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

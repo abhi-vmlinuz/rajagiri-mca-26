@@ -1,0 +1,24 @@
+% ---- Section B / question 1
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{1.}}\ Increase the price of all books published by publisher 201 by 10\%. Save the changes permanently using COMMIT.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+UPDATE book SET price = price * 1.10
+WHERE publisher_id = 201;
+COMMIT;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+3 rows updated.
+Commit complete.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

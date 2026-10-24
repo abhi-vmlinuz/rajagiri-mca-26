@@ -1,0 +1,33 @@
+% ---- Section B / question 7
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{7.}}\ Display cities having at least 2 registered members. Show the city, number of members and total outstanding amount for that city, arranged by number of members descending.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT city, COUNT(*) AS no_of_members,
+       SUM(outstanding_amt) AS total_out_amt
+FROM member
+GROUP BY city
+HAVING COUNT(member_id) >= 2
+ORDER BY no_of_members DESC;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+CITY            NO_OF_MEMBERS  TOTAL_OUT_AMT
+--------------  -------------  -------------
+Kochi                       5            190
+Aluva                       4            610
+Kakkanad                    4            250
+Thrippunithura              2              0
+
+4 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

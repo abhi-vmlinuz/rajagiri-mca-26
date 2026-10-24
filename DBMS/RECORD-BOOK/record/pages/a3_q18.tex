@@ -1,0 +1,32 @@
+% ---- Section A / question 18
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{18.}}\ Display faculty names with the first letter of each word capitalised using INITCAP.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT INITCAP(faculty_name) AS faculty_name FROM faculty;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+FACULTY_NAME
+------------
+Ravi Kumar
+Anita Thomas
+Meera Joseph
+Suresh Menon
+Latha Nair
+Vinod Kumar
+Priya Sharma
+Arun Das
+
+8 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

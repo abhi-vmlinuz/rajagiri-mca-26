@@ -1,0 +1,30 @@
+% ---- Section A / question 10
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{10.}}\ Display results in which total marks are greater than or equal to 80.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT * FROM result WHERE total_marks >= 80;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\footnotesize]
+RESULT_ID  ENROLLMENT_ID  INTERNAL_MARKS  EXTERNAL_MARKS  TOTAL_MARKS  GRADE  RESULT_STATUS
+---------  -------------  --------------  --------------  -----------  -----  -------------
+R102       E102                       45              40           85  A      PASS
+R104       E104                       42              38           80  A      PASS
+R107       E107                       48              45           93  A      PASS
+R110       E110                       40              42           82  A      PASS
+R112       E112                       44              41           85  A      PASS
+R115       E115                       46              44           90  A      PASS
+
+6 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

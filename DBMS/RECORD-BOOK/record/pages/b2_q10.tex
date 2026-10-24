@@ -1,0 +1,41 @@
+% ---- Section B / question 10
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{10.}}\ Display all authors and the titles of books associated with them through BOOK\_AUTHOR. Include authors who are not linked to any book.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT a.author_name, b.title
+FROM author a
+LEFT JOIN book_author ba ON ba.author_id = a.author_id
+LEFT JOIN book b ON b.book_id = ba.book_id
+ORDER BY a.author_id, b.title;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+AUTHOR_NAME           TITLE                     
+--------------------  --------------------------
+George Orwell         1984
+Jane Austen           Pride and Prejudice
+Robert C. Martin      Clean Code
+Yuval Noah Harari     Sapiens
+A. P. J. Abdul Kalam  India 2020
+A. P. J. Abdul Kalam  Wings of Fire
+Arundhati Roy         The God of Small Things
+Thomas H. Cormen      Introduction to Algorithms
+Charles E. Leiserson  Introduction to Algorithms
+Ronald L. Rivest      Introduction to Algorithms
+Clifford Stein        Introduction to Algorithms
+Andrew S. Tanenbaum   Modern Operating Systems
+K. R. Meera           Aarachar
+
+13 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

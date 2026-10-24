@@ -1,0 +1,45 @@
+% ---- Section B / question 19
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{19.}}\ Display member name, book title, copy accession number, issue date, and loan status for books that have been loaned.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT m.full_name, b.title, c.accession_no, l.issue_date, l.loan_status
+FROM loan l
+JOIN member m ON m.member_id = l.member_id
+JOIN book_copy c ON c.copy_id = l.copy_id
+JOIN book b ON b.book_id = c.book_id
+ORDER BY l.loan_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\footnotesize]
+FULL_NAME       TITLE                                  ACCESSION_NO  ISSUE_DAT  LOAN_STATUS
+--------------  -------------------------------------  ------------  ---------  -----------
+Diya Nair       1984                                   ACC-R-0001    20-AUG-26  ISSUED
+Aarav Menon     Clean Code                             ACC-C-0003    12-AUG-26  OVERDUE
+Ananya Pillai   Introduction to Algorithms             ACC-K-0002    24-AUG-26  ISSUED
+Adil Khan       Designing Data-Intensive Applications  ACC-K-0003    01-AUG-26  OVERDUE
+Rohan Joseph    To Kill a Mockingbird                  ACC-R-0004    22-AUG-26  ISSUED
+Meera Thomas    1984                                   ACC-C-0001    02-JUL-26  RETURNED
+Sara Mathew     Pride and Prejudice                    ACC-C-0002    11-JUN-26  RETURNED
+Ishita Rao      Wings of Fire                          ACC-R-0002    18-JUL-26  RETURNED
+Liya George     The God of Small Things                ACC-C-0004    21-JUL-26  RETURNED
+Neha Varma      Introduction to Algorithms             ACC-C-0005    02-MAY-26  RETURNED
+Nikhil Raj      Modern Operating Systems               ACC-T-0002    14-APR-26  RETURNED
+Fathima Noor    Aarachar                               ACC-T-0003    05-MAR-26  RETURNED
+Vivek Krishnan  The Picture of Dorian Gray             ACC-R-0003    01-FEB-26  RETURNED
+Aarav Menon     Learning SQL                           ACC-C-0006    12-JAN-26  RETURNED
+Joel Antony     India 2020                             ACC-C-0007    10-DEC-25  RETURNED
+Harish Kumar    The Alchemist                          ACC-C-0008    01-JUN-26  LOST
+
+16 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

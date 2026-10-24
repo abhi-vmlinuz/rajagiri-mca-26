@@ -1,0 +1,66 @@
+% ---------------------------------------------------------------------
+% Section A / Table 6 : RESULT
+% ---------------------------------------------------------------------
+
+\textbf{Table Name:} RESULT \hspace{1em plus 1fill}
+\textbf{Description:} Stores the internal, external and total marks of each enrollment.
+
+\vspace{8pt}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+\textbf{Column Name} & \textbf{Description} & \textbf{Data Type} & \textbf{Constraint} \\
+\hline
+result\_id & Result ID & CHAR(5) & PRIMARY KEY \\
+\hline
+enrollment\_id & Enrollment ID & CHAR(5) & FOREIGN KEY REFERENCES enrollment (enrollment\_id) \\
+\hline
+internal\_marks & Internal Marks & NUMBER(5,2) & CHECK (0 to 50) \\
+\hline
+external\_marks & External Marks & NUMBER(5,2) & CHECK (0 to 50) \\
+\hline
+total\_marks & Total Marks & NUMBER(6,2) & -- \\
+\hline
+grade & Grade & CHAR(1) & CHECK (A, B, C, D, F) \\
+\hline
+result\_status & PASS / FAIL & VARCHAR2(10) & CHECK (PASS or FAIL) \\
+\hline
+\end{tabularx}
+
+\vspace{14pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE TABLE result (
+    result_id      CHAR(5)       PRIMARY KEY,
+    enrollment_id  CHAR(5)       REFERENCES enrollment(enrollment_id),
+    internal_marks NUMBER(5,2)   CHECK (internal_marks BETWEEN 0 AND 50),
+    external_marks NUMBER(5,2)   CHECK (external_marks BETWEEN 0 AND 50),
+    total_marks    NUMBER(6,2),
+    grade          CHAR(1)
+        CHECK (grade IN ('A', 'B', 'C', 'D', 'F')),
+    result_status  VARCHAR2(10)  CHECK (result_status IN ('PASS', 'FAIL'))
+);
+\end{sqlcode}
+
+\vspace{16pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}
+Table created.
+
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ RESULT_ID                                 NOT NULL CHAR(5)
+ ENROLLMENT_ID                                      CHAR(5)
+ INTERNAL_MARKS                                     NUMBER(5,2)
+ EXTERNAL_MARKS                                     NUMBER(5,2)
+ TOTAL_MARKS                                        NUMBER(6,2)
+ GRADE                                              CHAR(1)
+ RESULT_STATUS                                      VARCHAR2(10)
+\end{sqlout}
+
+\clearpage

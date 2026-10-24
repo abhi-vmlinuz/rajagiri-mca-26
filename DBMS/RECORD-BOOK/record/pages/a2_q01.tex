@@ -1,0 +1,28 @@
+% ---- Section A / question 1
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{1.}}\ Insert a new department with Department ID D01, Department Name Computer Science, Office Location Carmel Block and Contact Number 9876543210.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+INSERT INTO department (dept_id, dept_name, office_location, contact_number)
+VALUES ('D01', 'Computer Science', 'Carmel Block', '9876543210');
+
+SELECT * FROM department;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+DEPT_ID  DEPT_NAME         OFFICE_LOCATION  CONTACT_NUMBER  HOD_FACULTY_ID
+-------  ----------------  ---------------  --------------  --------------
+D01      Computer Science  Carmel Block     9876543210
+
+1 row selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

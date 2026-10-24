@@ -1,0 +1,65 @@
+% ---------------------------------------------------------------------
+% Section A / 1. Basic DDL Commands / Table 1 : DEPARTMENT
+% ---------------------------------------------------------------------
+
+\mainheading{Section A}
+
+\subheading{1. Basic DDL Commands}
+
+{\fontsize{14}{17}\selectfont\textbf{1.}}\ Create a database schema for a
+college academic management system. The system should manage students, departments,
+faculty, courses, enrollments, results, and events.\par\vspace{10pt}
+
+\textbf{Table Name:} DEPARTMENT \hfill
+\textbf{Description:} Stores the details of each academic department.
+
+\vspace{8pt}
+
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+\textbf{Column Name} & \textbf{Description} & \textbf{Data Type} & \textbf{Constraint} \\
+\hline
+dept\_id         & Department ID             & VARCHAR2(10) & PRIMARY KEY        \\
+\hline
+dept\_name       & Department Name           & VARCHAR2(20) & NOT NULL, UNIQUE   \\
+\hline
+hod\_name        & Head of Department        & VARCHAR2(50) & --                 \\
+\hline
+office\_location & Office Location           & VARCHAR2(50) & --                 \\
+\hline
+contact\_number  & Department Contact Number & VARCHAR2(15) & --                 \\
+\hline
+\end{tabularx}
+
+\vspace{16pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE TABLE department (
+    dept_id         VARCHAR2(10)  PRIMARY KEY,
+    dept_name       VARCHAR2(20)  NOT NULL UNIQUE,
+    hod_name        VARCHAR2(50),
+    office_location VARCHAR2(50),
+    contact_number  VARCHAR2(15)
+);
+\end{sqlcode}
+
+\vspace{24pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}
+Table created.
+
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPT_ID                                   NOT NULL VARCHAR2(10)
+ DEPT_NAME                                 NOT NULL VARCHAR2(20)
+ HOD_NAME                                           VARCHAR2(50)
+ OFFICE_LOCATION                                    VARCHAR2(50)
+ CONTACT_NUMBER                                     VARCHAR2(15)
+\end{sqlout}
+
+\clearpage

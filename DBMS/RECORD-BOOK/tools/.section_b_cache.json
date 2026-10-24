@@ -1,0 +1,2794 @@
+{
+ "b1_q01": {
+  "headers": [
+   "MEMBER_ID",
+   "FULL_NAME",
+   "MEMBER_TYPE",
+   "CITY"
+  ],
+  "rows": [
+   [
+    "1003",
+    "Meera Thomas",
+    "FACULTY",
+    "Kakkanad"
+   ],
+   [
+    "1013",
+    "Neha Varma",
+    "FACULTY",
+    "Kakkanad"
+   ],
+   [
+    "1007",
+    "Sara Mathew",
+    "FACULTY",
+    "Kochi"
+   ],
+   [
+    "1004",
+    "Rohan Joseph",
+    "PUBLIC",
+    "Kochi"
+   ],
+   [
+    "1010",
+    "Adil Khan",
+    "RESEARCHER",
+    "Kakkanad"
+   ],
+   [
+    "1005",
+    "Ananya Pillai",
+    "RESEARCHER",
+    "Thrippunithura"
+   ],
+   [
+    "1015",
+    "Fathima Noor",
+    "RESEARCHER",
+    "Aluva"
+   ],
+   [
+    "1001",
+    "Aarav Menon",
+    "STUDENT",
+    "Kochi"
+   ],
+   [
+    "1002",
+    "Diya Nair",
+    "STUDENT",
+    "Aluva"
+   ],
+   [
+    "1009",
+    "Ishita Rao",
+    "STUDENT",
+    "Kochi"
+   ],
+   [
+    "1011",
+    "Liya George",
+    "STUDENT",
+    "Thrippunithura"
+   ]
+  ]
+ },
+ "b1_q02": {
+  "headers": [
+   "MEMBER_ID",
+   "FULL_NAME",
+   "OUTSTANDING_AMT",
+   "STATUS"
+  ],
+  "rows": [
+   [
+    "1010",
+    "Adil Khan",
+    "250",
+    "ACTIVE"
+   ],
+   [
+    "1004",
+    "Rohan Joseph",
+    "120",
+    "ACTIVE"
+   ],
+   [
+    "1006",
+    "Nikhil Raj",
+    "75",
+    "EXPIRED"
+   ],
+   [
+    "1014",
+    "Joel Antony",
+    "60",
+    "EXPIRED"
+   ]
+  ]
+ },
+ "b1_q03": {
+  "headers": [
+   "MEMBER_ID",
+   "FULL_NAME",
+   "MEMBER_TYPE",
+   "MAX_BOOKS"
+  ],
+  "rows": [
+   [
+    "1015",
+    "Fathima Noor",
+    "RESEARCHER",
+    "10"
+   ],
+   [
+    "1005",
+    "Ananya Pillai",
+    "RESEARCHER",
+    "10"
+   ],
+   [
+    "1010",
+    "Adil Khan",
+    "RESEARCHER",
+    "10"
+   ],
+   [
+    "1011",
+    "Liya George",
+    "STUDENT",
+    "4"
+   ],
+   [
+    "1014",
+    "Joel Antony",
+    "STUDENT",
+    "4"
+   ],
+   [
+    "1006",
+    "Nikhil Raj",
+    "STUDENT",
+    "4"
+   ],
+   [
+    "1002",
+    "Diya Nair",
+    "STUDENT",
+    "4"
+   ],
+   [
+    "1001",
+    "Aarav Menon",
+    "STUDENT",
+    "4"
+   ],
+   [
+    "1009",
+    "Ishita Rao",
+    "STUDENT",
+    "4"
+   ]
+  ]
+ },
+ "b1_q04": {
+  "headers": [
+   "FULL_NAME",
+   "JOIN_DATE",
+   "COMPLETED_YEARS"
+  ],
+  "rows": [
+   [
+    "Adil Khan",
+    "01-OCT-19",
+    "7"
+   ],
+   [
+    "Sara Mathew",
+    "10-FEB-20",
+    "6"
+   ],
+   [
+    "Ananya Pillai",
+    "20-AUG-21",
+    "5"
+   ],
+   [
+    "Meera Thomas",
+    "15-JAN-22",
+    "4"
+   ],
+   [
+    "Joel Antony",
+    "15-JUN-22",
+    "4"
+   ],
+   [
+    "Rohan Joseph",
+    "11-SEP-23",
+    "3"
+   ],
+   [
+    "Nikhil Raj",
+    "05-JUN-23",
+    "3"
+   ],
+   [
+    "Harish Kumar",
+    "20-NOV-22",
+    "3"
+   ],
+   [
+    "Neha Varma",
+    "03-MAR-23",
+    "3"
+   ],
+   [
+    "Ishita Rao",
+    "10-JUN-24",
+    "2"
+   ],
+   [
+    "Fathima Noor",
+    "18-APR-24",
+    "2"
+   ],
+   [
+    "Aarav Menon",
+    "10-JUN-24",
+    "2"
+   ],
+   [
+    "Diya Nair",
+    "01-JUL-24",
+    "2"
+   ],
+   [
+    "Vivek Krishnan",
+    "05-JAN-25",
+    "1"
+   ],
+   [
+    "Liya George",
+    "12-JUN-25",
+    "1"
+   ]
+  ]
+ },
+ "b1_q05": {
+  "headers": [
+   "NAME",
+   "EMAIL"
+  ],
+  "rows": [
+   [
+    "aarav menon",
+    "aarav.m@example.com"
+   ],
+   [
+    "diya nair",
+    "diya.n@example.com"
+   ],
+   [
+    "meera thomas",
+    "meera.t@example.com"
+   ],
+   [
+    "rohan joseph",
+    "rohan.j@example.com"
+   ],
+   [
+    "ananya pillai",
+    "ananya.p@example.com"
+   ],
+   [
+    "sara mathew",
+    "sara.m@example.com"
+   ],
+   [
+    "ishita rao",
+    "ishita.r@example.com"
+   ],
+   [
+    "adil khan",
+    "adil.k@example.com"
+   ],
+   [
+    "liya george",
+    "liya.g@example.com"
+   ],
+   [
+    "neha varma",
+    "neha.v@example.com"
+   ],
+   [
+    "fathima noor",
+    "fathima.n@example.com"
+   ]
+  ]
+ },
+ "b1_q06": {
+  "headers": [
+   "STATUS",
+   "NO_OF_MEMBERS",
+   "AVERAGE_OUT_AMT"
+  ],
+  "rows": [
+   [
+    "ACTIVE",
+    "11",
+    "39.55"
+   ],
+   [
+    "EXPIRED",
+    "3",
+    "45"
+   ],
+   [
+    "SUSPENDED",
+    "1",
+    "480"
+   ]
+  ]
+ },
+ "b1_q07": {
+  "headers": [
+   "CITY",
+   "NO_OF_MEMBERS",
+   "TOTAL_OUT_AMT"
+  ],
+  "rows": [
+   [
+    "Kochi",
+    "5",
+    "190"
+   ],
+   [
+    "Aluva",
+    "4",
+    "610"
+   ],
+   [
+    "Kakkanad",
+    "4",
+    "250"
+   ],
+   [
+    "Thrippunithura",
+    "2",
+    "0"
+   ]
+  ]
+ },
+ "b1_q08": {
+  "headers": [
+   "FULL_NAME",
+   "ROLE_NAME",
+   "SHIFT_NAME",
+   "SALARY"
+  ],
+  "rows": [
+   [
+    "Arun Das",
+    "Assistant Librarian",
+    "MORNING",
+    "48000"
+   ],
+   [
+    "Manu Suresh",
+    "Library Assistant",
+    "MORNING",
+    "34000"
+   ],
+   [
+    "Rahul Dev",
+    "Library Assistant",
+    "EVENING",
+    "32000"
+   ]
+  ]
+ },
+ "b1_q09": {
+  "headers": [
+   "SHIFT_NAME",
+   "NO_OF_EMPLOYEES",
+   "MIN_SALARY",
+   "MAX_SALARY",
+   "AVG_SALARY"
+  ],
+  "rows": [
+   [
+    "EVENING",
+    "2",
+    "30000",
+    "32000",
+    "31000"
+   ],
+   [
+    "GENERAL",
+    "4",
+    "52000",
+    "72000",
+    "58750"
+   ],
+   [
+    "MORNING",
+    "2",
+    "34000",
+    "48000",
+    "41000"
+   ]
+  ]
+ },
+ "b1_q10": {
+  "headers": [
+   "STAFF_ID",
+   "FULL_NAME",
+   "HIRE_DATE",
+   "SALARY"
+  ],
+  "rows": [
+   [
+    "501",
+    "Lakshmi Menon",
+    "01-JUN-10",
+    "72000"
+   ],
+   [
+    "503",
+    "Jency Paul",
+    "20-JAN-16",
+    "55000"
+   ],
+   [
+    "505",
+    "Priya Raman",
+    "11-SEP-17",
+    "56000"
+   ],
+   [
+    "507",
+    "Elsa John",
+    "13-MAY-19",
+    "52000"
+   ]
+  ]
+ },
+ "b1_q11": {
+  "headers": [
+   "PUBLISHER_NAME",
+   "COUNTRY",
+   "AGE"
+  ],
+  "rows": [
+   [
+    "Oxford University Press",
+    "United Kingdom",
+    "440"
+   ],
+   [
+    "Springer",
+    "Germany",
+    "184"
+   ],
+   [
+    "Pearson Education",
+    "United Kingdom",
+    "182"
+   ],
+   [
+    "MIT Press",
+    "United States",
+    "64"
+   ],
+   [
+    "DC Books",
+    "India",
+    "52"
+   ],
+   [
+    "O'Reilly Media",
+    "United States",
+    "48"
+   ],
+   [
+    "HarperCollins",
+    "United States",
+    "37"
+   ],
+   [
+    "Penguin Random House",
+    "United States",
+    "13"
+   ]
+  ]
+ },
+ "b1_q12": {
+  "headers": [
+   "COUNTRY",
+   "NO_OF_PUBLISHERS"
+  ],
+  "rows": [
+   [
+    "United Kingdom",
+    "2"
+   ],
+   [
+    "United States",
+    "4"
+   ]
+  ]
+ },
+ "b1_q13": {
+  "headers": [
+   "AUTHOR_NAME",
+   "NATIONALITY",
+   "BIRTH_YEAR",
+   "AWARDS_COUNT"
+  ],
+  "rows": [
+   [
+    "A. P. J. Abdul Kalam",
+    "Indian",
+    "1931",
+    "8"
+   ],
+   [
+    "Ronald L. Rivest",
+    "American",
+    "1947",
+    "5"
+   ],
+   [
+    "George Orwell",
+    "British",
+    "1903",
+    "3"
+   ],
+   [
+    "Andrew S. Tanenbaum",
+    "Dutch-American",
+    "1944",
+    "3"
+   ],
+   [
+    "Jane Austen",
+    "British",
+    "1775",
+    "2"
+   ],
+   [
+    "Charles E. Leiserson",
+    "American",
+    "1953",
+    "2"
+   ],
+   [
+    "Thomas H. Cormen",
+    "American",
+    "1956",
+    "2"
+   ]
+  ]
+ },
+ "b1_q14": {
+  "headers": [
+   "NATIONALITY",
+   "NO_OF_AUTHORS",
+   "TOTAL_AWARDS"
+  ],
+  "rows": [
+   [
+    "American",
+    "5",
+    "11"
+   ],
+   [
+    "British",
+    "2",
+    "5"
+   ],
+   [
+    "Indian",
+    "3",
+    "21"
+   ]
+  ]
+ },
+ "b1_q15": {
+  "headers": [
+   "BOOK_ID",
+   "TITLE",
+   "CATEGORY",
+   "PUBLICATION_YEAR",
+   "PRICE"
+  ],
+  "rows": [
+   [
+    "4013",
+    "Artificial Intelligence: A Modern Approach",
+    "Computer Science",
+    "2021",
+    "1199"
+   ],
+   [
+    "4007",
+    "Introduction to Algorithms",
+    "Computer Science",
+    "2022",
+    "1099"
+   ],
+   [
+    "4016",
+    "Deep Learning",
+    "Computer Science",
+    "2016",
+    "1050"
+   ],
+   [
+    "4011",
+    "Designing Data-Intensive Applications",
+    "Computer Science",
+    "2017",
+    "999"
+   ],
+   [
+    "4008",
+    "Modern Operating Systems",
+    "Computer Science",
+    "2014",
+    "950"
+   ],
+   [
+    "4019",
+    "Machine Learning with Python",
+    "Computer Science",
+    "2022",
+    "875"
+   ],
+   [
+    "4012",
+    "Learning SQL",
+    "Computer Science",
+    "2020",
+    "799"
+   ]
+  ]
+ },
+ "b1_q16": {
+  "headers": [
+   "TITLE",
+   "CATEGORY",
+   "PUBLICATION_YEAR",
+   "PAGES",
+   "RATING"
+  ],
+  "rows": [
+   [
+    "Designing Data-Intensive Applications",
+    "Computer Science",
+    "2017",
+    "616",
+    "4.8"
+   ],
+   [
+    "Learning SQL",
+    "Computer Science",
+    "2020",
+    "384",
+    "4.4"
+   ],
+   [
+    "Deep Learning",
+    "Computer Science",
+    "2016",
+    "800",
+    "4.5"
+   ],
+   [
+    "Machine Learning with Python",
+    "Computer Science",
+    "2022",
+    "540",
+    "4.2"
+   ]
+  ]
+ },
+ "b1_q18": {
+  "headers": [
+   "CATEGORY",
+   "NO_OF_BOOKS",
+   "AVG_PRICE",
+   "AVG_RATING"
+  ],
+  "rows": [
+   [
+    "Computer Science",
+    "8",
+    "983.75",
+    "4.53"
+   ],
+   [
+    "Fiction",
+    "8",
+    "415.75",
+    "4.48"
+   ]
+  ]
+ },
+ "b1_q19": {
+  "headers": [
+   "PUBLICATION_YEAR",
+   "NO_OF_BOOKS",
+   "AVG_PRICE"
+  ],
+  "rows": [
+   [
+    "1988",
+    "2",
+    "362"
+   ],
+   [
+    "2014",
+    "2",
+    "824.5"
+   ],
+   [
+    "2020",
+    "2",
+    "539.5"
+   ],
+   [
+    "2022",
+    "2",
+    "987"
+   ]
+  ]
+ },
+ "b2_q01": {
+  "headers": [
+   "TITLE",
+   "PUBLISHER_NAME"
+  ],
+  "rows": [
+   [
+    "1984",
+    "Penguin Random House"
+   ],
+   [
+    "Pride and Prejudice",
+    "Penguin Random House"
+   ],
+   [
+    "Clean Code",
+    "Pearson Education"
+   ],
+   [
+    "Sapiens",
+    "HarperCollins"
+   ],
+   [
+    "Wings of Fire",
+    "DC Books"
+   ],
+   [
+    "The God of Small Things",
+    "Penguin Random House"
+   ],
+   [
+    "Introduction to Algorithms",
+    "MIT Press"
+   ],
+   [
+    "Modern Operating Systems",
+    "Pearson Education"
+   ],
+   [
+    "Aarachar",
+    "DC Books"
+   ],
+   [
+    "The Picture of Dorian Gray",
+    "Oxford University Press"
+   ],
+   [
+    "Designing Data-Intensive Applications",
+    "O'Reilly Media"
+   ],
+   [
+    "Learning SQL",
+    "O'Reilly Media"
+   ],
+   [
+    "Artificial Intelligence: A Modern Approach",
+    "Pearson Education"
+   ],
+   [
+    "To Kill a Mockingbird",
+    "HarperCollins"
+   ],
+   [
+    "India 2020",
+    "HarperCollins"
+   ],
+   [
+    "Deep Learning",
+    "MIT Press"
+   ],
+   [
+    "A Brief History of Time",
+    "Oxford University Press"
+   ],
+   [
+    "The Alchemist",
+    "HarperCollins"
+   ],
+   [
+    "Machine Learning with Python",
+    "Springer"
+   ],
+   [
+    "Qabar",
+    "DC Books"
+   ]
+  ]
+ },
+ "b2_q02": {
+  "headers": [
+   "FULL_NAME",
+   "MEMBER_TYPE",
+   "BRANCH_NAME"
+  ],
+  "rows": [
+   [
+    "Aarav Menon",
+    "STUDENT",
+    "Central Library"
+   ],
+   [
+    "Diya Nair",
+    "STUDENT",
+    "Riverside Branch"
+   ],
+   [
+    "Meera Thomas",
+    "FACULTY",
+    "Knowledge Hub"
+   ],
+   [
+    "Rohan Joseph",
+    "PUBLIC",
+    "Central Library"
+   ],
+   [
+    "Ananya Pillai",
+    "RESEARCHER",
+    "Community Library"
+   ],
+   [
+    "Nikhil Raj",
+    "STUDENT",
+    "Riverside Branch"
+   ],
+   [
+    "Sara Mathew",
+    "FACULTY",
+    "Central Library"
+   ],
+   [
+    "Vivek Krishnan",
+    "PUBLIC",
+    "Knowledge Hub"
+   ],
+   [
+    "Ishita Rao",
+    "STUDENT",
+    "Central Library"
+   ],
+   [
+    "Adil Khan",
+    "RESEARCHER",
+    "Knowledge Hub"
+   ],
+   [
+    "Liya George",
+    "STUDENT",
+    "Community Library"
+   ],
+   [
+    "Harish Kumar",
+    "PUBLIC",
+    "Riverside Branch"
+   ],
+   [
+    "Neha Varma",
+    "FACULTY",
+    "Knowledge Hub"
+   ],
+   [
+    "Joel Antony",
+    "STUDENT",
+    "Central Library"
+   ],
+   [
+    "Fathima Noor",
+    "RESEARCHER",
+    "Riverside Branch"
+   ]
+  ]
+ },
+ "b2_q03": {
+  "headers": [
+   "FULL_NAME",
+   "ROLE_NAME",
+   "BRANCH_NAME"
+  ],
+  "rows": [
+   [
+    "Lakshmi Menon",
+    "Chief Librarian",
+    "Central Library"
+   ],
+   [
+    "Arun Das",
+    "Assistant Librarian",
+    "Central Library"
+   ],
+   [
+    "Jency Paul",
+    "Librarian",
+    "Riverside Branch"
+   ],
+   [
+    "Rahul Dev",
+    "Library Assistant",
+    "Riverside Branch"
+   ],
+   [
+    "Priya Raman",
+    "Librarian",
+    "Knowledge Hub"
+   ],
+   [
+    "Manu Suresh",
+    "Library Assistant",
+    "Knowledge Hub"
+   ],
+   [
+    "Elsa John",
+    "Librarian",
+    "Community Library"
+   ],
+   [
+    "Akhil Babu",
+    "Library Assistant",
+    "Community Library"
+   ]
+  ]
+ },
+ "b2_q04": {
+  "headers": [
+   "TITLE",
+   "AUTHOR_NAME"
+  ],
+  "rows": [
+   [
+    "1984",
+    "George Orwell"
+   ],
+   [
+    "Pride and Prejudice",
+    "Jane Austen"
+   ],
+   [
+    "Clean Code",
+    "Robert C. Martin"
+   ],
+   [
+    "Sapiens",
+    "Yuval Noah Harari"
+   ],
+   [
+    "Wings of Fire",
+    "A. P. J. Abdul Kalam"
+   ],
+   [
+    "The God of Small Things",
+    "Arundhati Roy"
+   ],
+   [
+    "Introduction to Algorithms",
+    "Thomas H. Cormen"
+   ],
+   [
+    "Introduction to Algorithms",
+    "Charles E. Leiserson"
+   ],
+   [
+    "Introduction to Algorithms",
+    "Ronald L. Rivest"
+   ],
+   [
+    "Introduction to Algorithms",
+    "Clifford Stein"
+   ],
+   [
+    "Modern Operating Systems",
+    "Andrew S. Tanenbaum"
+   ],
+   [
+    "Aarachar",
+    "K. R. Meera"
+   ],
+   [
+    "India 2020",
+    "A. P. J. Abdul Kalam"
+   ]
+  ]
+ },
+ "b2_q05": {
+  "headers": [
+   "RESERVATION_ID",
+   "FULL_NAME",
+   "TITLE",
+   "RESERVATION_STA"
+  ],
+  "rows": [
+   [
+    "8001",
+    "Meera Thomas",
+    "Introduction to Algorithms",
+    "WAITING"
+   ],
+   [
+    "8002",
+    "Ishita Rao",
+    "Sapiens",
+    "WAITING"
+   ],
+   [
+    "8003",
+    "Liya George",
+    "Designing Data-Intensive Applications",
+    "WAITING"
+   ],
+   [
+    "8004",
+    "Ananya Pillai",
+    "Clean Code",
+    "FULFILLED"
+   ],
+   [
+    "8005",
+    "Diya Nair",
+    "Artificial Intelligence: A Modern Approach",
+    "CANCELLED"
+   ],
+   [
+    "8006",
+    "Fathima Noor",
+    "Aarachar",
+    "EXPIRED"
+   ],
+   [
+    "8007",
+    "Sara Mathew",
+    "Deep Learning",
+    "WAITING"
+   ],
+   [
+    "8008",
+    "Adil Khan",
+    "Machine Learning with Python",
+    "WAITING"
+   ]
+  ]
+ },
+ "b2_q06": {
+  "headers": [
+   "FINE_ID",
+   "FULL_NAME",
+   "LOAN_ID",
+   "AMOUNT",
+   "PAYMENT_STATUS"
+  ],
+  "rows": [
+   [
+    "9001",
+    "Aarav Menon",
+    "7002",
+    "90",
+    "UNPAID"
+   ],
+   [
+    "9002",
+    "Adil Khan",
+    "7004",
+    "250",
+    "PARTIAL"
+   ],
+   [
+    "9003",
+    "Sara Mathew",
+    "7007",
+    "30",
+    "PAID"
+   ],
+   [
+    "9004",
+    "Neha Varma",
+    "7010",
+    "70",
+    "PAID"
+   ],
+   [
+    "9005",
+    "Nikhil Raj",
+    "7011",
+    "60",
+    "WAIVED"
+   ],
+   [
+    "9006",
+    "Vivek Krishnan",
+    "7013",
+    "70",
+    "PAID"
+   ],
+   [
+    "9007",
+    "Joel Antony",
+    "7015",
+    "100",
+    "PARTIAL"
+   ],
+   [
+    "9008",
+    "Harish Kumar",
+    "7016",
+    "480",
+    "UNPAID"
+   ]
+  ]
+ },
+ "b2_q07": {
+  "headers": [
+   "BRANCH_NAME",
+   "FULL_NAME"
+  ],
+  "rows": [
+   [
+    "Central Library",
+    "Aarav Menon"
+   ],
+   [
+    "Central Library",
+    "Rohan Joseph"
+   ],
+   [
+    "Central Library",
+    "Sara Mathew"
+   ],
+   [
+    "Central Library",
+    "Ishita Rao"
+   ],
+   [
+    "Central Library",
+    "Joel Antony"
+   ],
+   [
+    "Riverside Branch",
+    "Diya Nair"
+   ],
+   [
+    "Riverside Branch",
+    "Nikhil Raj"
+   ],
+   [
+    "Riverside Branch",
+    "Harish Kumar"
+   ],
+   [
+    "Riverside Branch",
+    "Fathima Noor"
+   ],
+   [
+    "Knowledge Hub",
+    "Meera Thomas"
+   ],
+   [
+    "Knowledge Hub",
+    "Vivek Krishnan"
+   ],
+   [
+    "Knowledge Hub",
+    "Adil Khan"
+   ],
+   [
+    "Knowledge Hub",
+    "Neha Varma"
+   ],
+   [
+    "Community Library",
+    "Ananya Pillai"
+   ],
+   [
+    "Community Library",
+    "Liya George"
+   ]
+  ]
+ },
+ "b2_q08": {
+  "headers": [
+   "TITLE",
+   "COPY_ID"
+  ],
+  "rows": [
+   [
+    "1984",
+    "6001"
+   ],
+   [
+    "1984",
+    "6002"
+   ],
+   [
+    "Pride and Prejudice",
+    "6003"
+   ],
+   [
+    "Clean Code",
+    "6004"
+   ],
+   [
+    "Clean Code",
+    "6005"
+   ],
+   [
+    "Sapiens",
+    "6006"
+   ],
+   [
+    "Wings of Fire",
+    "6007"
+   ],
+   [
+    "The God of Small Things",
+    "6008"
+   ],
+   [
+    "Introduction to Algorithms",
+    "6009"
+   ],
+   [
+    "Introduction to Algorithms",
+    "6010"
+   ],
+   [
+    "Modern Operating Systems",
+    "6011"
+   ],
+   [
+    "Aarachar",
+    "6012"
+   ],
+   [
+    "The Picture of Dorian Gray",
+    "6013"
+   ],
+   [
+    "Designing Data-Intensive Applications",
+    "6014"
+   ],
+   [
+    "Designing Data-Intensive Applications",
+    "6024"
+   ],
+   [
+    "Learning SQL",
+    "6015"
+   ],
+   [
+    "Artificial Intelligence: A Modern Approach",
+    "6016"
+   ],
+   [
+    "To Kill a Mockingbird",
+    "6017"
+   ],
+   [
+    "India 2020",
+    "6018"
+   ],
+   [
+    "Deep Learning",
+    "6019"
+   ],
+   [
+    "A Brief History of Time",
+    "6020"
+   ],
+   [
+    "The Alchemist",
+    "6021"
+   ],
+   [
+    "Machine Learning with Python",
+    "6022"
+   ],
+   [
+    "Qabar",
+    "6023"
+   ]
+  ]
+ },
+ "b2_q09": {
+  "headers": [
+   "FULL_NAME",
+   "LOAN_ID"
+  ],
+  "rows": [
+   [
+    "Aarav Menon",
+    "7002"
+   ],
+   [
+    "Aarav Menon",
+    "7014"
+   ],
+   [
+    "Diya Nair",
+    "7001"
+   ],
+   [
+    "Meera Thomas",
+    "7006"
+   ],
+   [
+    "Rohan Joseph",
+    "7005"
+   ],
+   [
+    "Ananya Pillai",
+    "7003"
+   ],
+   [
+    "Nikhil Raj",
+    "7011"
+   ],
+   [
+    "Sara Mathew",
+    "7007"
+   ],
+   [
+    "Vivek Krishnan",
+    "7013"
+   ],
+   [
+    "Ishita Rao",
+    "7008"
+   ],
+   [
+    "Adil Khan",
+    "7004"
+   ],
+   [
+    "Liya George",
+    "7009"
+   ],
+   [
+    "Harish Kumar",
+    "7016"
+   ],
+   [
+    "Neha Varma",
+    "7010"
+   ],
+   [
+    "Joel Antony",
+    "7015"
+   ],
+   [
+    "Fathima Noor",
+    "7012"
+   ]
+  ]
+ },
+ "b2_q10": {
+  "headers": [
+   "AUTHOR_NAME",
+   "TITLE"
+  ],
+  "rows": [
+   [
+    "George Orwell",
+    "1984"
+   ],
+   [
+    "Jane Austen",
+    "Pride and Prejudice"
+   ],
+   [
+    "Robert C. Martin",
+    "Clean Code"
+   ],
+   [
+    "Yuval Noah Harari",
+    "Sapiens"
+   ],
+   [
+    "A. P. J. Abdul Kalam",
+    "India 2020"
+   ],
+   [
+    "A. P. J. Abdul Kalam",
+    "Wings of Fire"
+   ],
+   [
+    "Arundhati Roy",
+    "The God of Small Things"
+   ],
+   [
+    "Thomas H. Cormen",
+    "Introduction to Algorithms"
+   ],
+   [
+    "Charles E. Leiserson",
+    "Introduction to Algorithms"
+   ],
+   [
+    "Ronald L. Rivest",
+    "Introduction to Algorithms"
+   ],
+   [
+    "Clifford Stein",
+    "Introduction to Algorithms"
+   ],
+   [
+    "Andrew S. Tanenbaum",
+    "Modern Operating Systems"
+   ],
+   [
+    "K. R. Meera",
+    "Aarachar"
+   ]
+  ]
+ },
+ "b2_q11": {
+  "headers": [
+   "PUBLISHER_NAME",
+   "TITLE"
+  ],
+  "rows": [
+   [
+    "Pearson Education",
+    "Clean Code"
+   ],
+   [
+    "Pearson Education",
+    "Modern Operating Systems"
+   ],
+   [
+    "Pearson Education",
+    "Artificial Intelligence: A Modern Approach"
+   ],
+   [
+    "Penguin Random House",
+    "1984"
+   ],
+   [
+    "Penguin Random House",
+    "Pride and Prejudice"
+   ],
+   [
+    "Penguin Random House",
+    "The God of Small Things"
+   ],
+   [
+    "O'Reilly Media",
+    "Designing Data-Intensive Applications"
+   ],
+   [
+    "O'Reilly Media",
+    "Learning SQL"
+   ],
+   [
+    "HarperCollins",
+    "Sapiens"
+   ],
+   [
+    "HarperCollins",
+    "To Kill a Mockingbird"
+   ],
+   [
+    "HarperCollins",
+    "India 2020"
+   ],
+   [
+    "HarperCollins",
+    "The Alchemist"
+   ],
+   [
+    "Oxford University Press",
+    "The Picture of Dorian Gray"
+   ],
+   [
+    "Oxford University Press",
+    "A Brief History of Time"
+   ],
+   [
+    "MIT Press",
+    "Introduction to Algorithms"
+   ],
+   [
+    "MIT Press",
+    "Deep Learning"
+   ],
+   [
+    "DC Books",
+    "Wings of Fire"
+   ],
+   [
+    "DC Books",
+    "Aarachar"
+   ],
+   [
+    "DC Books",
+    "Qabar"
+   ],
+   [
+    "Springer",
+    "Machine Learning with Python"
+   ]
+  ]
+ },
+ "b2_q12": {
+  "headers": [
+   "BRANCH_NAME",
+   "CITY",
+   "FULL_NAME"
+  ],
+  "rows": [
+   [
+    "Central Library",
+    "Kochi",
+    "Lakshmi Menon"
+   ],
+   [
+    "Central Library",
+    "Kochi",
+    "Arun Das"
+   ],
+   [
+    "Riverside Branch",
+    "Aluva",
+    "Jency Paul"
+   ],
+   [
+    "Riverside Branch",
+    "Aluva",
+    "Rahul Dev"
+   ],
+   [
+    "Knowledge Hub",
+    "Kakkanad",
+    "Priya Raman"
+   ],
+   [
+    "Knowledge Hub",
+    "Kakkanad",
+    "Manu Suresh"
+   ],
+   [
+    "Community Library",
+    "Thrippunithura",
+    "Elsa John"
+   ],
+   [
+    "Community Library",
+    "Thrippunithura",
+    "Akhil Babu"
+   ]
+  ]
+ },
+ "b2_q13": {
+  "headers": [
+   "TITLE",
+   "COPY_ID",
+   "AVAILABILITY_STATUS"
+  ],
+  "rows": [
+   [
+    "1984",
+    "6001",
+    "AVAILABLE"
+   ],
+   [
+    "1984",
+    "6002",
+    "ISSUED"
+   ],
+   [
+    "Pride and Prejudice",
+    "6003",
+    "AVAILABLE"
+   ],
+   [
+    "Clean Code",
+    "6004",
+    "ISSUED"
+   ],
+   [
+    "Clean Code",
+    "6005",
+    "AVAILABLE"
+   ],
+   [
+    "Sapiens",
+    "6006",
+    "RESERVED"
+   ],
+   [
+    "Wings of Fire",
+    "6007",
+    "AVAILABLE"
+   ],
+   [
+    "The God of Small Things",
+    "6008",
+    "AVAILABLE"
+   ],
+   [
+    "Introduction to Algorithms",
+    "6009",
+    "ISSUED"
+   ],
+   [
+    "Introduction to Algorithms",
+    "6010",
+    "AVAILABLE"
+   ],
+   [
+    "Modern Operating Systems",
+    "6011",
+    "AVAILABLE"
+   ],
+   [
+    "Aarachar",
+    "6012",
+    "AVAILABLE"
+   ],
+   [
+    "The Picture of Dorian Gray",
+    "6013",
+    "REPAIR"
+   ],
+   [
+    "Designing Data-Intensive Applications",
+    "6014",
+    "ISSUED"
+   ],
+   [
+    "Learning SQL",
+    "6015",
+    "AVAILABLE"
+   ],
+   [
+    "Artificial Intelligence: A Modern Approach",
+    "6016",
+    "AVAILABLE"
+   ],
+   [
+    "To Kill a Mockingbird",
+    "6017",
+    "ISSUED"
+   ],
+   [
+    "India 2020",
+    "6018",
+    "AVAILABLE"
+   ],
+   [
+    "Deep Learning",
+    "6019",
+    "AVAILABLE"
+   ],
+   [
+    "A Brief History of Time",
+    "6020",
+    "AVAILABLE"
+   ],
+   [
+    "The Alchemist",
+    "6021",
+    "LOST"
+   ],
+   [
+    "Machine Learning with Python",
+    "6022",
+    "AVAILABLE"
+   ],
+   [
+    "Qabar",
+    "6023",
+    "AVAILABLE"
+   ],
+   [
+    "Designing Data-Intensive Applications",
+    "6024",
+    "RESERVED"
+   ]
+  ]
+ },
+ "b2_q14": {
+  "headers": [
+   "PUBLISHER_NAME",
+   "TITLE",
+   "PRICE"
+  ],
+  "rows": [
+   [
+    "Penguin Random House",
+    "1984",
+    "399"
+   ],
+   [
+    "Penguin Random House",
+    "Pride and Prejudice",
+    "450"
+   ],
+   [
+    "Pearson Education",
+    "Clean Code",
+    "899"
+   ],
+   [
+    "HarperCollins",
+    "Sapiens",
+    "699"
+   ],
+   [
+    "DC Books",
+    "Wings of Fire",
+    "350"
+   ],
+   [
+    "Penguin Random House",
+    "The God of Small Things",
+    "499"
+   ],
+   [
+    "MIT Press",
+    "Introduction to Algorithms",
+    "1099"
+   ],
+   [
+    "Pearson Education",
+    "Modern Operating Systems",
+    "950"
+   ],
+   [
+    "DC Books",
+    "Aarachar",
+    "525"
+   ],
+   [
+    "Oxford University Press",
+    "The Picture of Dorian Gray",
+    "375"
+   ],
+   [
+    "O'Reilly Media",
+    "Designing Data-Intensive Applications",
+    "999"
+   ],
+   [
+    "O'Reilly Media",
+    "Learning SQL",
+    "799"
+   ],
+   [
+    "Pearson Education",
+    "Artificial Intelligence: A Modern Approach",
+    "1199"
+   ],
+   [
+    "HarperCollins",
+    "To Kill a Mockingbird",
+    "499"
+   ],
+   [
+    "HarperCollins",
+    "India 2020",
+    "325"
+   ],
+   [
+    "MIT Press",
+    "Deep Learning",
+    "1050"
+   ],
+   [
+    "Oxford University Press",
+    "A Brief History of Time",
+    "425"
+   ],
+   [
+    "HarperCollins",
+    "The Alchemist",
+    "299"
+   ],
+   [
+    "Springer",
+    "Machine Learning with Python",
+    "875"
+   ],
+   [
+    "DC Books",
+    "Qabar",
+    "280"
+   ]
+  ]
+ },
+ "b2_q15": {
+  "headers": [
+   "BRANCH_NAME",
+   "FULL_NAME"
+  ],
+  "rows": [
+   [
+    "Central Library",
+    "Aarav Menon"
+   ],
+   [
+    "Central Library",
+    "Rohan Joseph"
+   ],
+   [
+    "Central Library",
+    "Sara Mathew"
+   ],
+   [
+    "Central Library",
+    "Ishita Rao"
+   ],
+   [
+    "Central Library",
+    "Joel Antony"
+   ],
+   [
+    "Riverside Branch",
+    "Diya Nair"
+   ],
+   [
+    "Riverside Branch",
+    "Nikhil Raj"
+   ],
+   [
+    "Riverside Branch",
+    "Harish Kumar"
+   ],
+   [
+    "Riverside Branch",
+    "Fathima Noor"
+   ],
+   [
+    "Knowledge Hub",
+    "Meera Thomas"
+   ],
+   [
+    "Knowledge Hub",
+    "Vivek Krishnan"
+   ],
+   [
+    "Knowledge Hub",
+    "Adil Khan"
+   ],
+   [
+    "Knowledge Hub",
+    "Neha Varma"
+   ],
+   [
+    "Community Library",
+    "Ananya Pillai"
+   ],
+   [
+    "Community Library",
+    "Liya George"
+   ]
+  ]
+ },
+ "b2_q16": {
+  "headers": [
+   "TITLE",
+   "RESERVATION_ID"
+  ],
+  "rows": [
+   [
+    "1984",
+    ""
+   ],
+   [
+    "Pride and Prejudice",
+    ""
+   ],
+   [
+    "Clean Code",
+    "8004"
+   ],
+   [
+    "Sapiens",
+    "8002"
+   ],
+   [
+    "Wings of Fire",
+    ""
+   ],
+   [
+    "The God of Small Things",
+    ""
+   ],
+   [
+    "Introduction to Algorithms",
+    "8001"
+   ],
+   [
+    "Modern Operating Systems",
+    ""
+   ],
+   [
+    "Aarachar",
+    "8006"
+   ],
+   [
+    "The Picture of Dorian Gray",
+    ""
+   ],
+   [
+    "Designing Data-Intensive Applications",
+    "8003"
+   ],
+   [
+    "Learning SQL",
+    ""
+   ],
+   [
+    "Artificial Intelligence: A Modern Approach",
+    "8005"
+   ],
+   [
+    "To Kill a Mockingbird",
+    ""
+   ],
+   [
+    "India 2020",
+    ""
+   ],
+   [
+    "Deep Learning",
+    "8007"
+   ],
+   [
+    "A Brief History of Time",
+    ""
+   ],
+   [
+    "The Alchemist",
+    ""
+   ],
+   [
+    "Machine Learning with Python",
+    "8008"
+   ],
+   [
+    "Qabar",
+    ""
+   ]
+  ]
+ },
+ "b2_q17": {
+  "headers": [
+   "FULL_NAME",
+   "FINE_ID"
+  ],
+  "rows": [
+   [
+    "Aarav Menon",
+    "9001"
+   ],
+   [
+    "Diya Nair",
+    ""
+   ],
+   [
+    "Meera Thomas",
+    ""
+   ],
+   [
+    "Rohan Joseph",
+    ""
+   ],
+   [
+    "Ananya Pillai",
+    ""
+   ],
+   [
+    "Nikhil Raj",
+    "9005"
+   ],
+   [
+    "Sara Mathew",
+    "9003"
+   ],
+   [
+    "Vivek Krishnan",
+    "9006"
+   ],
+   [
+    "Ishita Rao",
+    ""
+   ],
+   [
+    "Adil Khan",
+    "9002"
+   ],
+   [
+    "Liya George",
+    ""
+   ],
+   [
+    "Harish Kumar",
+    "9008"
+   ],
+   [
+    "Neha Varma",
+    "9004"
+   ],
+   [
+    "Joel Antony",
+    "9007"
+   ],
+   [
+    "Fathima Noor",
+    ""
+   ]
+  ]
+ },
+ "b2_q18": {
+  "headers": [
+   "TITLE",
+   "COPY_ID",
+   "BRANCH_NAME"
+  ],
+  "rows": [
+   [
+    "1984",
+    "6001",
+    "Central Library"
+   ],
+   [
+    "1984",
+    "6002",
+    "Riverside Branch"
+   ],
+   [
+    "Pride and Prejudice",
+    "6003",
+    "Central Library"
+   ],
+   [
+    "Clean Code",
+    "6004",
+    "Central Library"
+   ],
+   [
+    "Clean Code",
+    "6005",
+    "Knowledge Hub"
+   ],
+   [
+    "Sapiens",
+    "6006",
+    "Community Library"
+   ],
+   [
+    "Wings of Fire",
+    "6007",
+    "Riverside Branch"
+   ],
+   [
+    "The God of Small Things",
+    "6008",
+    "Central Library"
+   ],
+   [
+    "Introduction to Algorithms",
+    "6009",
+    "Knowledge Hub"
+   ],
+   [
+    "Introduction to Algorithms",
+    "6010",
+    "Central Library"
+   ],
+   [
+    "Modern Operating Systems",
+    "6011",
+    "Community Library"
+   ],
+   [
+    "Aarachar",
+    "6012",
+    "Community Library"
+   ],
+   [
+    "The Picture of Dorian Gray",
+    "6013",
+    "Riverside Branch"
+   ],
+   [
+    "Designing Data-Intensive Applications",
+    "6014",
+    "Knowledge Hub"
+   ],
+   [
+    "Learning SQL",
+    "6015",
+    "Central Library"
+   ],
+   [
+    "Artificial Intelligence: A Modern Approach",
+    "6016",
+    "Knowledge Hub"
+   ],
+   [
+    "To Kill a Mockingbird",
+    "6017",
+    "Riverside Branch"
+   ],
+   [
+    "India 2020",
+    "6018",
+    "Central Library"
+   ],
+   [
+    "Deep Learning",
+    "6019",
+    "Knowledge Hub"
+   ],
+   [
+    "A Brief History of Time",
+    "6020",
+    "Community Library"
+   ],
+   [
+    "The Alchemist",
+    "6021",
+    "Central Library"
+   ],
+   [
+    "Machine Learning with Python",
+    "6022",
+    "Riverside Branch"
+   ],
+   [
+    "Qabar",
+    "6023",
+    "Community Library"
+   ],
+   [
+    "Designing Data-Intensive Applications",
+    "6024",
+    "Central Library"
+   ]
+  ]
+ },
+ "b2_q19": {
+  "headers": [
+   "FULL_NAME",
+   "TITLE",
+   "ACCESSION_NO",
+   "ISSUE_DAT",
+   "LOAN_STATUS"
+  ],
+  "rows": [
+   [
+    "Diya Nair",
+    "1984",
+    "ACC-R-0001",
+    "20-AUG-26",
+    "ISSUED"
+   ],
+   [
+    "Aarav Menon",
+    "Clean Code",
+    "ACC-C-0003",
+    "12-AUG-26",
+    "OVERDUE"
+   ],
+   [
+    "Ananya Pillai",
+    "Introduction to Algorithms",
+    "ACC-K-0002",
+    "24-AUG-26",
+    "ISSUED"
+   ],
+   [
+    "Adil Khan",
+    "Designing Data-Intensive Applications",
+    "ACC-K-0003",
+    "01-AUG-26",
+    "OVERDUE"
+   ],
+   [
+    "Rohan Joseph",
+    "To Kill a Mockingbird",
+    "ACC-R-0004",
+    "22-AUG-26",
+    "ISSUED"
+   ],
+   [
+    "Meera Thomas",
+    "1984",
+    "ACC-C-0001",
+    "02-JUL-26",
+    "RETURNED"
+   ],
+   [
+    "Sara Mathew",
+    "Pride and Prejudice",
+    "ACC-C-0002",
+    "11-JUN-26",
+    "RETURNED"
+   ],
+   [
+    "Ishita Rao",
+    "Wings of Fire",
+    "ACC-R-0002",
+    "18-JUL-26",
+    "RETURNED"
+   ],
+   [
+    "Liya George",
+    "The God of Small Things",
+    "ACC-C-0004",
+    "21-JUL-26",
+    "RETURNED"
+   ],
+   [
+    "Neha Varma",
+    "Introduction to Algorithms",
+    "ACC-C-0005",
+    "02-MAY-26",
+    "RETURNED"
+   ],
+   [
+    "Nikhil Raj",
+    "Modern Operating Systems",
+    "ACC-T-0002",
+    "14-APR-26",
+    "RETURNED"
+   ],
+   [
+    "Fathima Noor",
+    "Aarachar",
+    "ACC-T-0003",
+    "05-MAR-26",
+    "RETURNED"
+   ],
+   [
+    "Vivek Krishnan",
+    "The Picture of Dorian Gray",
+    "ACC-R-0003",
+    "01-FEB-26",
+    "RETURNED"
+   ],
+   [
+    "Aarav Menon",
+    "Learning SQL",
+    "ACC-C-0006",
+    "12-JAN-26",
+    "RETURNED"
+   ],
+   [
+    "Joel Antony",
+    "India 2020",
+    "ACC-C-0007",
+    "10-DEC-25",
+    "RETURNED"
+   ],
+   [
+    "Harish Kumar",
+    "The Alchemist",
+    "ACC-C-0008",
+    "01-JUN-26",
+    "LOST"
+   ]
+  ]
+ },
+ "b2_q20": {
+  "headers": [
+   "TITLE",
+   "PUBLISHER_NAME",
+   "AUTHOR_NAME",
+   "CONTRIBUTION_ROLE"
+  ],
+  "rows": [
+   [
+    "1984",
+    "Penguin Random House",
+    "George Orwell",
+    "AUTHOR"
+   ],
+   [
+    "Pride and Prejudice",
+    "Penguin Random House",
+    "Jane Austen",
+    "AUTHOR"
+   ],
+   [
+    "Clean Code",
+    "Pearson Education",
+    "Robert C. Martin",
+    "AUTHOR"
+   ],
+   [
+    "Sapiens",
+    "HarperCollins",
+    "Yuval Noah Harari",
+    "AUTHOR"
+   ],
+   [
+    "Wings of Fire",
+    "DC Books",
+    "A. P. J. Abdul Kalam",
+    "AUTHOR"
+   ],
+   [
+    "The God of Small Things",
+    "Penguin Random House",
+    "Arundhati Roy",
+    "AUTHOR"
+   ],
+   [
+    "Introduction to Algorithms",
+    "MIT Press",
+    "Thomas H. Cormen",
+    "AUTHOR"
+   ],
+   [
+    "Introduction to Algorithms",
+    "MIT Press",
+    "Charles E. Leiserson",
+    "CO-AUTHOR"
+   ],
+   [
+    "Introduction to Algorithms",
+    "MIT Press",
+    "Ronald L. Rivest",
+    "CO-AUTHOR"
+   ],
+   [
+    "Introduction to Algorithms",
+    "MIT Press",
+    "Clifford Stein",
+    "CO-AUTHOR"
+   ],
+   [
+    "Modern Operating Systems",
+    "Pearson Education",
+    "Andrew S. Tanenbaum",
+    "AUTHOR"
+   ],
+   [
+    "Aarachar",
+    "DC Books",
+    "K. R. Meera",
+    "AUTHOR"
+   ],
+   [
+    "India 2020",
+    "HarperCollins",
+    "A. P. J. Abdul Kalam",
+    "AUTHOR"
+   ]
+  ]
+ },
+ "b3_q01": {
+  "lines": [
+   "View created."
+  ]
+ },
+ "b3_q02": {
+  "lines": [
+   "View created."
+  ]
+ },
+ "b3_q03": {
+  "lines": [
+   "View created."
+  ]
+ },
+ "b3_q04": {
+  "lines": [
+   "View created."
+  ]
+ },
+ "b3_q05": {
+  "lines": [
+   "View created."
+  ]
+ },
+ "b3_q06": {
+  "headers": [
+   "FULL_NAME",
+   "BRANCH_NAME"
+  ],
+  "rows": [
+   [
+    "Aarav Menon",
+    "Central Library"
+   ],
+   [
+    "Adil Khan",
+    "Knowledge Hub"
+   ],
+   [
+    "Ananya Pillai",
+    "Community Library"
+   ],
+   [
+    "Diya Nair",
+    "Riverside Branch"
+   ],
+   [
+    "Fathima Noor",
+    "Riverside Branch"
+   ],
+   [
+    "Harish Kumar",
+    "Riverside Branch"
+   ],
+   [
+    "Ishita Rao",
+    "Central Library"
+   ],
+   [
+    "Joel Antony",
+    "Central Library"
+   ],
+   [
+    "Liya George",
+    "Community Library"
+   ],
+   [
+    "Meera Thomas",
+    "Knowledge Hub"
+   ],
+   [
+    "Neha Varma",
+    "Knowledge Hub"
+   ],
+   [
+    "Nikhil Raj",
+    "Riverside Branch"
+   ],
+   [
+    "Rohan Joseph",
+    "Central Library"
+   ],
+   [
+    "Sara Mathew",
+    "Central Library"
+   ],
+   [
+    "Vivek Krishnan",
+    "Knowledge Hub"
+   ]
+  ]
+ },
+ "b3_q07": {
+  "headers": [
+   "TITLE",
+   "PUBLISHER_NAME",
+   "PRICE"
+  ],
+  "rows": [
+   [
+    "Artificial Intelligence: A Modern Approach",
+    "Pearson Education",
+    "1199"
+   ],
+   [
+    "Introduction to Algorithms",
+    "MIT Press",
+    "1099"
+   ],
+   [
+    "Deep Learning",
+    "MIT Press",
+    "1050"
+   ],
+   [
+    "Designing Data-Intensive Applications",
+    "O'Reilly Media",
+    "999"
+   ],
+   [
+    "Modern Operating Systems",
+    "Pearson Education",
+    "950"
+   ],
+   [
+    "Clean Code",
+    "Pearson Education",
+    "899"
+   ],
+   [
+    "Machine Learning with Python",
+    "Springer",
+    "875"
+   ],
+   [
+    "Learning SQL",
+    "O'Reilly Media",
+    "799"
+   ],
+   [
+    "Sapiens",
+    "HarperCollins",
+    "699"
+   ],
+   [
+    "Aarachar",
+    "DC Books",
+    "525"
+   ]
+  ]
+ },
+ "b4_q01": {
+  "lines": [
+   "3 rows updated.",
+   "Commit complete."
+  ]
+ },
+ "b4_q02": {
+  "lines": [
+   "1 row updated.",
+   "Commit complete."
+  ]
+ },
+ "b4_q04": {
+  "lines": [
+   "1 row updated.",
+   "Savepoint created.",
+   "1 row updated.",
+   "Rollback complete."
+  ]
+ },
+ "b4_q05": {
+  "lines": [
+   "1 row updated.",
+   "Savepoint created.",
+   "1 row updated.",
+   "Rollback complete.",
+   "Commit complete."
+  ]
+ },
+ "b4_q06": {
+  "lines": [
+   "1 row updated.",
+   "Savepoint created.",
+   "1 row updated.",
+   "Rollback complete."
+  ]
+ },
+ "b4_q07": {
+  "lines": [
+   "Grant succeeded."
+  ]
+ },
+ "b4_q08": {
+  "lines": [
+   "Grant succeeded."
+  ]
+ },
+ "b4_q09": {
+  "lines": [
+   "Grant succeeded."
+  ]
+ },
+ "b4_q10": {
+  "lines": [
+   "Grant succeeded."
+  ]
+ },
+ "b4_q11": {
+  "lines": [
+   "Grant succeeded."
+  ]
+ },
+ "b4_q12": {
+  "lines": [
+   "Revoke succeeded."
+  ]
+ },
+ "b4_q13": {
+  "lines": [
+   "Revoke succeeded."
+  ]
+ },
+ "b4_q14": {
+  "lines": [
+   "Revoke succeeded."
+  ]
+ },
+ "b4_q15": {
+  "lines": [
+   "Revoke succeeded."
+  ]
+ },
+ "b1_q17": {
+  "headers": [
+   "TITLE",
+   "PAGES",
+   "RATING",
+   "PRICE_PER_100_PAGES"
+  ],
+  "rows": [
+   [
+    "Introduction to Algorithms",
+    "1312",
+    "4.7",
+    "83.77"
+   ],
+   [
+    "Artificial Intelligence: A Modern Approach",
+    "1168",
+    "4.6",
+    "102.65"
+   ],
+   [
+    "Modern Operating Systems",
+    "1136",
+    "4.5",
+    "83.63"
+   ],
+   [
+    "Deep Learning",
+    "800",
+    "4.5",
+    "131.25"
+   ],
+   [
+    "Designing Data-Intensive Applications",
+    "616",
+    "4.8",
+    "162.18"
+   ],
+   [
+    "Aarachar",
+    "552",
+    "4.6",
+    "95.11"
+   ]
+  ]
+ },
+ "b4_q03": {
+  "lines": [
+   "1 row updated.",
+   "Commit complete."
+  ]
+ },
+ "b1_q20": {
+  "headers": [
+   "TITLE",
+   "PRICE",
+   "PRICE_CATEGORY"
+  ],
+  "rows": [
+   [
+    "Artificial Intelligence: A Modern Approach",
+    "1199",
+    "PREMIUM"
+   ],
+   [
+    "Introduction to Algorithms",
+    "1099",
+    "PREMIUM"
+   ],
+   [
+    "Deep Learning",
+    "1050",
+    "PREMIUM"
+   ],
+   [
+    "Designing Data-Intensive Applications",
+    "999",
+    "PREMIUM"
+   ],
+   [
+    "Modern Operating Systems",
+    "950",
+    "PREMIUM"
+   ],
+   [
+    "Clean Code",
+    "899",
+    "PREMIUM"
+   ],
+   [
+    "Machine Learning with Python",
+    "875",
+    "PREMIUM"
+   ],
+   [
+    "Learning SQL",
+    "799",
+    "STANDARD"
+   ],
+   [
+    "Sapiens",
+    "699",
+    "STANDARD"
+   ],
+   [
+    "Aarachar",
+    "525",
+    "STANDARD"
+   ],
+   [
+    "To Kill a Mockingbird",
+    "499",
+    "STANDARD"
+   ],
+   [
+    "The God of Small Things",
+    "499",
+    "STANDARD"
+   ],
+   [
+    "Pride and Prejudice",
+    "450",
+    "STANDARD"
+   ],
+   [
+    "A Brief History of Time",
+    "425",
+    "STANDARD"
+   ],
+   [
+    "1984",
+    "399",
+    "BUDGET"
+   ],
+   [
+    "The Picture of Dorian Gray",
+    "375",
+    "BUDGET"
+   ],
+   [
+    "Wings of Fire",
+    "350",
+    "BUDGET"
+   ],
+   [
+    "India 2020",
+    "325",
+    "BUDGET"
+   ],
+   [
+    "The Alchemist",
+    "299",
+    "BUDGET"
+   ],
+   [
+    "Qabar",
+    "280",
+    "BUDGET"
+   ]
+  ]
+ }
+}

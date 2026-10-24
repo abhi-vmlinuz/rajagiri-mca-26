@@ -1,0 +1,22 @@
+% ---- Section A / question 12
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{12.}}\ Update the CGPA of student S101 to 8.7.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+UPDATE student SET cgpa = 8.7 WHERE student_id = 'S101';
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+1 row updated.
+Commit complete.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

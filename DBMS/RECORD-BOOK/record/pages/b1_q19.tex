@@ -1,0 +1,33 @@
+% ---- Section B / question 19
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{19.}}\ Display publication years in which at least 2 books in the BOOK table were published. Show the year, number of books and average price.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT publication_year, COUNT(*) AS no_of_books,
+       ROUND(AVG(price), 2) AS avg_price
+FROM book
+GROUP BY publication_year
+HAVING COUNT(book_id) >= 2
+ORDER BY publication_year;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+PUBLICATION_YEAR  NO_OF_BOOKS  AVG_PRICE
+----------------  -----------  ---------
+            1988            2        362
+            2014            2      824.5
+            2020            2      539.5
+            2022            2        987
+
+4 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

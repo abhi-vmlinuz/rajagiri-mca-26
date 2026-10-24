@@ -1,0 +1,32 @@
+% ---- Section B / question 10
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{10.}}\ Display staff members hired before 1 January 2020 whose salary is above 50,000. Show staff ID, name, hire date and salary.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT staff_id, full_name, hire_date, salary
+FROM staff
+WHERE hire_date < TO_DATE('01-01-2020', 'DD-MM-YYYY')
+  AND salary > 50000
+ORDER BY staff_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+STAFF_ID  FULL_NAME      HIRE_DATE  SALARY
+--------  -------------  ---------  ------
+     501  Lakshmi Menon  01-JUN-10   72000
+     503  Jency Paul     20-JAN-16   55000
+     505  Priya Raman    11-SEP-17   56000
+     507  Elsa John      13-MAY-19   52000
+
+4 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

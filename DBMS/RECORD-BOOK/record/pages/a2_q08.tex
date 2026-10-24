@@ -1,0 +1,28 @@
+% ---- Section A / question 8
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{8.}}\ Insert an enrollment record and allow the enrollment\_date column to take its default value.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+INSERT INTO enrollment (enrollment_id, student_id, course_id, academic_year)
+VALUES ('E101', 'S101', 'C101', '2025-2026');
+
+SELECT * FROM enrollment;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+ENROLLMENT_ID  STUDENT_ID  COURSE_ID  ENROLLMENT_DATE  ACADEMIC_YEAR
+-------------  ----------  ---------  ---------------  -------------
+E101           S101        C101       24-OCT-26        2025-2026
+
+1 row selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

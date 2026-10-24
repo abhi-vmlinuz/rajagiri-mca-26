@@ -1,0 +1,32 @@
+% ---- Section B / question 16
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{16.}}\ Display books whose title contains either the word 'Data' or the word 'Learning', ignoring case. Show title, category, year, pages and rating.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT title, category, publication_year, pages, rating
+FROM book
+WHERE LOWER(title) LIKE '%data%'
+   OR LOWER(title) LIKE '%learning%'
+ORDER BY book_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\footnotesize]
+TITLE                                  CATEGORY          PUBLICATION_YEAR  PAGES  RATING
+-------------------------------------  ----------------  ----------------  -----  ------
+Designing Data-Intensive Applications  Computer Science              2017    616     4.8
+Learning SQL                           Computer Science              2020    384     4.4
+Deep Learning                          Computer Science              2016    800     4.5
+Machine Learning with Python           Computer Science              2022    540     4.2
+
+4 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

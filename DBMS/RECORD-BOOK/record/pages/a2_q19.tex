@@ -1,0 +1,22 @@
+% ---- Section A / question 19
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{19.}}\ Delete event registrations where the participation status is ABSENT.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+DELETE FROM event_registration WHERE participation_status = 'ABSENT';
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+1 row deleted.
+Commit complete.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

@@ -1,0 +1,21 @@
+% ---- Section B / question 11
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{11.}}\ Grant SELECT permission on the MEMBER\_BRANCH\_DETAILS view to user LIBUSER.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+GRANT SELECT ON member_branch_details TO libuser;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+Grant succeeded.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

@@ -1,0 +1,30 @@
+% ---- Section A / question 2
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{2.}}\ Insert the student record of Akhil Raj (S101) into the STUDENT table.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+INSERT INTO student (student_id, student_name, dob, gender, contact_number,
+                     email_id, dept_id, admission_date, cgpa)
+VALUES ('S101', 'Akhil Raj', TO_DATE('15-08-2005', 'DD-MM-YYYY'), 'M',
+        '9876501234', 'akhil@gmail.com', 'D01', SYSDATE, 8.2);
+
+SELECT * FROM student;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\scriptsize]
+STUDENT_ID STUDENT_NAME DOB       GENDER CONTACT_NUMBER EMAIL_ID        DEPT_ID ADMISSION_DATE CGPA CITY STATE
+---------- ------------ --------- ------ -------------- --------------- ------- -------------- ---- ---- -----
+S101       Akhil Raj    15-AUG-05 M      9876501234     akhil@gmail.com D01     24-OCT-26       8.2
+
+1 row selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

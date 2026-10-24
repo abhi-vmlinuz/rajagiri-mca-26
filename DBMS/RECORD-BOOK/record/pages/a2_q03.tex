@@ -1,0 +1,31 @@
+% ---- Section A / question 3
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{3.}}\ Insert a student record without providing the CGPA value.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+INSERT INTO student (student_id, student_name, dob, gender, contact_number,
+                     email_id, dept_id, admission_date)
+VALUES ('S102', 'Neha Thomas', TO_DATE('22-03-2006', 'DD-MM-YYYY'), 'F',
+        '9876501235', 'neha@gmail.com', 'D01', SYSDATE);
+
+SELECT * FROM student;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\scriptsize]
+STUDENT_ID STUDENT_NAME DOB       GENDER CONTACT_NUMBER EMAIL_ID        DEPT_ID ADMISSION_DATE CGPA CITY STATE
+---------- ------------ --------- ------ -------------- --------------- ------- -------------- ---- ---- -----
+S101       Akhil Raj    15-AUG-05 M      9876501234     akhil@gmail.com D01     24-OCT-26       8.2
+S102       Neha Thomas  22-MAR-06 F      9876501235     neha@gmail.com  D01     24-OCT-26
+
+2 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

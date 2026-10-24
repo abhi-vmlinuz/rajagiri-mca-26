@@ -1,0 +1,32 @@
+% ---- Section B / question 9
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{9.}}\ For each shift in the STAFF table, display the number of employees, minimum salary, maximum salary and average salary, rounded to two decimal places.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT shift_name, COUNT(*) AS no_of_employees,
+       MIN(salary) AS min_salary, MAX(salary) AS max_salary,
+       ROUND(AVG(salary), 2) AS avg_salary
+FROM staff
+GROUP BY shift_name
+ORDER BY shift_name;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+SHIFT_NAME  NO_OF_EMPLOYEES  MIN_SALARY  MAX_SALARY  AVG_SALARY
+----------  ---------------  ----------  ----------  ----------
+EVENING                   2       30000       32000       31000
+GENERAL                   4       52000       72000       58750
+MORNING                   2       34000       48000       41000
+
+3 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

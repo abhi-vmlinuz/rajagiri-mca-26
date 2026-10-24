@@ -1,0 +1,73 @@
+% ---------------------------------------------------------------------
+% Section A / Table 2 : STUDENT
+% ---------------------------------------------------------------------
+
+\textbf{Table Name:} STUDENT \hspace{1em plus 1fill}
+\textbf{Description:} Stores the personal and academic details of every student.
+
+\vspace{8pt}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+\textbf{Column Name} & \textbf{Description} & \textbf{Data Type} & \textbf{Constraint} \\
+\hline
+student\_id & Student ID & CHAR(5) & PRIMARY KEY \\
+\hline
+student\_name & Student Name & VARCHAR2(50) & NOT NULL \\
+\hline
+dob & Date of Birth & DATE & -- \\
+\hline
+gender & Gender & CHAR(1) & CHECK (M or F) \\
+\hline
+mobile\_number & Mobile Number & VARCHAR2(10) & -- \\
+\hline
+email\_id & Email ID & VARCHAR2(50) & UNIQUE \\
+\hline
+dept\_id & Department ID & VARCHAR2(10) & FOREIGN KEY REFERENCES department (dept\_id) \\
+\hline
+admission\_date & Admission Date & DATE & -- \\
+\hline
+cgpa & CGPA & NUMBER(4,2) & CHECK (0 to 10) \\
+\hline
+\end{tabularx}
+
+\vspace{14pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE TABLE student (
+    student_id     CHAR(5)       PRIMARY KEY,
+    student_name   VARCHAR2(50)  NOT NULL,
+    dob            DATE,
+    gender         CHAR(1)       CHECK (gender IN ('M', 'F')),
+    mobile_number  VARCHAR2(10),
+    email_id       VARCHAR2(50)  UNIQUE,
+    dept_id        VARCHAR2(10)  REFERENCES department(dept_id),
+    admission_date DATE,
+    cgpa           NUMBER(4,2)   CHECK (cgpa BETWEEN 0 AND 10)
+);
+\end{sqlcode}
+
+\vspace{16pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}
+Table created.
+
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                NOT NULL CHAR(5)
+ STUDENT_NAME                              NOT NULL VARCHAR2(50)
+ DOB                                                DATE
+ GENDER                                             CHAR(1)
+ MOBILE_NUMBER                                      VARCHAR2(10)
+ EMAIL_ID                                           VARCHAR2(50)
+ DEPT_ID                                            VARCHAR2(10)
+ ADMISSION_DATE                                     DATE
+ CGPA                                               NUMBER(4,2)
+\end{sqlout}
+
+\clearpage

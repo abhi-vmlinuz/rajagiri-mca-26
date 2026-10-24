@@ -1,0 +1,37 @@
+% ---- Section A / question 19
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{19.}}\ Display student names along with the number of characters in each name.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT student_name, LENGTH(student_name) AS name_length
+FROM student;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+STUDENT_NAME    NAME_LENGTH
+--------------  -----------
+Akhil Raj                 9
+Neha Thomas              11
+Anjali Menon             12
+Arjun Nair               10
+Aparna Pillai            13
+Rahul Varma              11
+Sneha George             12
+Aditya Kumar             12
+Meera Krishnan           14
+Anoop Joseph             12
+Divya Ramesh             12
+Kiran Mathew             12
+
+12 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

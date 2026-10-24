@@ -1,0 +1,28 @@
+% ---- Section A / question 2
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{2.}}\ Display the different semesters in which courses are offered.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT DISTINCT semester FROM course;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+SEMESTER
+--------
+       3
+       1
+       5
+       7
+
+4 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

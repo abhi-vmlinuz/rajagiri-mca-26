@@ -1,0 +1,31 @@
+% ---------------------------------------------------------------------
+% Section A / question 19
+% ---------------------------------------------------------------------
+
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{19.}}\ Remove the existing hod\_name column from the DEPARTMENT table, as required in the database redesign, and display the structure of the modified table.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+ALTER TABLE department DROP COLUMN hod_name;
+DESC department;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPT_ID                                   NOT NULL VARCHAR2(10)
+ DEPT_NAME                                 NOT NULL VARCHAR2(20)
+ OFFICE_LOCATION                                    VARCHAR2(50)
+ CONTACT_NUMBER                                     VARCHAR2(15)
+ HOD_FACULTY_ID                                     CHAR(5)
+\end{sqlout}
+\end{minipage}\par\vspace{30pt}
+

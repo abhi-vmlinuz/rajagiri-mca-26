@@ -1,0 +1,212 @@
+% =====================================================================
+%  DBMS Lab Record Book
+%  Build: latexmk -pdf record.tex
+% =====================================================================
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{fontspec}
+\setmainfont{Liberation Serif}         % metric-compatible with Times New Roman
+\setmonofont{Nimbus Mono PS}[Scale=0.87]
+\usepackage[a4paper,left=0.75in,right=0.75in,top=1in,bottom=1in]{geometry}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{fancyvrb}
+\usepackage[normalem]{ulem}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% ---------- page border (single line, 30pt from the page edge) ----------
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \draw[line width=0.5pt]
+      ([xshift=30pt,yshift=-30pt]current page.north west)
+      rectangle
+      ([xshift=-30pt,yshift=30pt]current page.south east);
+  \end{tikzpicture}%
+}
+
+% ---------- page number: outside the border, 13pt from the page edge ------
+\AddToShipoutPictureFG{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=south, inner sep=0pt] at ([yshift=13pt]current page.south)
+      {\fontsize{12}{14}\selectfont\thepage};
+  \end{tikzpicture}%
+}
+
+% ---------- headings (sizes taken from DBMS_lab_Format.docx) ----------
+\newcommand{\mainheading}[1]{%
+  \begin{center}\textbf{\fontsize{18}{22}\selectfont #1}\end{center}\vspace{6pt}}
+\newcommand{\subheading}[1]{%
+  \textbf{\fontsize{16}{19}\selectfont\uline{#1}}\par\vspace{10pt}}
+\newcommand{\subsubheading}[1]{%
+  \textbf{\fontsize{14}{17}\selectfont\uline{#1}}\par\vspace{10pt}}
+\newcommand{\qheading}[1]{%
+  \textbf{\fontsize{14}{17}\selectfont\uline{#1}}\par\vspace{10pt}}
+\newcommand{\codeheading}[1]{%
+  \textbf{\fontsize{12}{15}\selectfont\uline{#1}}\par\vspace{4pt}}
+
+% ---------- code / output blocks ----------
+\DefineVerbatimEnvironment{sqlcode}{Verbatim}%
+  {fontsize=\small,formatcom=\ttfamily,xleftmargin=0pt}
+\DefineVerbatimEnvironment{sqlout}{Verbatim}%
+  {fontsize=\small,formatcom=\ttfamily,xleftmargin=0pt}
+
+\begin{document}
+
+\input{pages/a1_department}
+\input{pages/a1_02_student}
+\input{pages/a1_03_faculty}
+\input{pages/a1_04_course}
+\input{pages/a1_05_enrollment}
+\input{pages/a1_06_result}
+\input{pages/a1_07_event}
+\input{pages/a1_08_event_registration}
+\input{pages/a1_q02}
+\input{pages/a1_q03}
+\input{pages/a1_q04}
+\input{pages/a1_q05}
+\input{pages/a1_q06}
+\input{pages/a1_q07}
+\input{pages/a1_q08}
+\input{pages/a1_q09}
+\input{pages/a1_q10}
+\input{pages/a1_q11}
+\input{pages/a1_q12}
+\input{pages/a1_q13}
+\input{pages/a1_q14}
+\input{pages/a1_q15}
+\input{pages/a1_q16}
+\input{pages/a1_q17}
+\input{pages/a1_q18}
+\input{pages/a1_q19}
+\input{pages/a1_q20}
+\input{pages/a1_q21}
+
+\clearpage
+\subheading{2. Basic DML Commands}
+\input{pages/a2_q01}
+\input{pages/a2_q02}
+\input{pages/a2_q03}
+\input{pages/a2_q04}
+\input{pages/a2_q05}
+\input{pages/a2_q06}
+\input{pages/a2_q07}
+\input{pages/a2_q08}
+\input{pages/a2_q09}
+\input{pages/a2_q10}
+\input{pages/a2_q11}
+\input{pages/a2_q12}
+\input{pages/a2_q13}
+\input{pages/a2_q14}
+\input{pages/a2_q15}
+\input{pages/a2_q16}
+\input{pages/a2_q17}
+\input{pages/a2_q18}
+\input{pages/a2_q19}
+\input{pages/a2_q20}
+
+\clearpage
+\subheading{3. Basic SQL}
+\input{pages/a3_q01}
+\input{pages/a3_q02}
+\input{pages/a3_q03}
+\input{pages/a3_q04}
+\input{pages/a3_q05}
+\input{pages/a3_q06}
+\input{pages/a3_q07}
+\input{pages/a3_q08}
+\input{pages/a3_q09}
+\input{pages/a3_q10}
+\input{pages/a3_q11}
+\input{pages/a3_q12}
+\input{pages/a3_q13}
+\input{pages/a3_q14}
+\input{pages/a3_q15}
+\input{pages/a3_q16}
+\input{pages/a3_q17}
+\input{pages/a3_q18}
+\input{pages/a3_q19}
+\input{pages/a3_q20}
+
+\clearpage
+\mainheading{Section B}
+\subheading{4. Advanced SQL}
+
+\subsubheading{4.1  Select Queries}
+\input{pages/b1_q01}
+\input{pages/b1_q02}
+\input{pages/b1_q03}
+\input{pages/b1_q04}
+\input{pages/b1_q05}
+\input{pages/b1_q06}
+\input{pages/b1_q07}
+\input{pages/b1_q08}
+\input{pages/b1_q09}
+\input{pages/b1_q10}
+\input{pages/b1_q11}
+\input{pages/b1_q12}
+\input{pages/b1_q13}
+\input{pages/b1_q14}
+\input{pages/b1_q15}
+\input{pages/b1_q16}
+\input{pages/b1_q17}
+\input{pages/b1_q18}
+\input{pages/b1_q19}
+\input{pages/b1_q20}
+
+\clearpage
+\subsubheading{4.2  Joins}
+\input{pages/b2_q01}
+\input{pages/b2_q02}
+\input{pages/b2_q03}
+\input{pages/b2_q04}
+\input{pages/b2_q05}
+\input{pages/b2_q06}
+\input{pages/b2_q07}
+\input{pages/b2_q08}
+\input{pages/b2_q09}
+\input{pages/b2_q10}
+\input{pages/b2_q11}
+\input{pages/b2_q12}
+\input{pages/b2_q13}
+\input{pages/b2_q14}
+\input{pages/b2_q15}
+\input{pages/b2_q16}
+\input{pages/b2_q17}
+\input{pages/b2_q18}
+\input{pages/b2_q19}
+\input{pages/b2_q20}
+
+\clearpage
+\subsubheading{4.3  Views}
+\input{pages/b3_q01}
+\input{pages/b3_q02}
+\input{pages/b3_q03}
+\input{pages/b3_q04}
+\input{pages/b3_q05}
+\input{pages/b3_q06}
+\input{pages/b3_q07}
+
+\clearpage
+\subsubheading{4.4  TCL and DCL Commands}
+\input{pages/b4_q01}
+\input{pages/b4_q02}
+\input{pages/b4_q03}
+\input{pages/b4_q04}
+\input{pages/b4_q05}
+\input{pages/b4_q06}
+\input{pages/b4_q07}
+\input{pages/b4_q08}
+\input{pages/b4_q09}
+\input{pages/b4_q10}
+\input{pages/b4_q11}
+\input{pages/b4_q12}
+\input{pages/b4_q13}
+\input{pages/b4_q14}
+\input{pages/b4_q15}
+
+\end{document}

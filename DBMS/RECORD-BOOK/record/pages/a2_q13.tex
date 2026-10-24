@@ -1,0 +1,22 @@
+% ---- Section A / question 13
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{13.}}\ Increase the salary of all faculty members by 10\%.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+UPDATE faculty SET salary = salary * 1.10;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+3 rows updated.
+Commit complete.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

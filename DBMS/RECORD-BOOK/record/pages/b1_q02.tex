@@ -1,0 +1,31 @@
+% ---- Section B / question 2
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{2.}}\ List the members whose outstanding amount is between 50 and 300, inclusive. Show member ID, name, outstanding amount and status in descending order of outstanding amount.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT member_id, full_name, outstanding_amt, status
+FROM member
+WHERE outstanding_amt BETWEEN 50 AND 300
+ORDER BY outstanding_amt DESC;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+MEMBER_ID  FULL_NAME     OUTSTANDING_AMT  STATUS 
+---------  ------------  ---------------  -------
+     1010  Adil Khan                 250  ACTIVE
+     1004  Rohan Joseph              120  ACTIVE
+     1006  Nikhil Raj                 75  EXPIRED
+     1014  Joel Antony                60  EXPIRED
+
+4 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

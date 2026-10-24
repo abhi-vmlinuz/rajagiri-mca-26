@@ -1,0 +1,65 @@
+% ---------------------------------------------------------------------
+% Section A / Table 7 : EVENT
+% ---------------------------------------------------------------------
+
+\textbf{Table Name:} EVENT \hspace{1em plus 1fill}
+\textbf{Description:} Stores the details of events conducted by the college.
+
+\vspace{8pt}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+\textbf{Column Name} & \textbf{Description} & \textbf{Data Type} & \textbf{Constraint} \\
+\hline
+event\_id & Event ID & CHAR(5) & PRIMARY KEY \\
+\hline
+event\_name & Event Name & VARCHAR2(50) & -- \\
+\hline
+event\_date & Event Date & DATE & -- \\
+\hline
+venue & Venue & VARCHAR2(50) & -- \\
+\hline
+faculty\_id & Coordinator Faculty ID & CHAR(5) & FOREIGN KEY REFERENCES faculty (faculty\_id) \\
+\hline
+max\_participants & Maximum Participants & NUMBER(5) & CHECK (max\_participants > 0) \\
+\hline
+registration\_fee & Registration Fee & NUMBER(8,2) & CHECK (registration\_fee >= 0) \\
+\hline
+\end{tabularx}
+
+\vspace{14pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE TABLE event (
+    event_id         CHAR(5)       PRIMARY KEY,
+    event_name       VARCHAR2(50),
+    event_date       DATE,
+    venue            VARCHAR2(50),
+    faculty_id       CHAR(5)       REFERENCES faculty(faculty_id),
+    max_participants NUMBER(5)     CHECK (max_participants > 0),
+    registration_fee NUMBER(8,2)   CHECK (registration_fee >= 0)
+);
+\end{sqlcode}
+
+\vspace{16pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}
+Table created.
+
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EVENT_ID                                  NOT NULL CHAR(5)
+ EVENT_NAME                                         VARCHAR2(50)
+ EVENT_DATE                                         DATE
+ VENUE                                              VARCHAR2(50)
+ FACULTY_ID                                         CHAR(5)
+ MAX_PARTICIPANTS                                   NUMBER(5)
+ REGISTRATION_FEE                                   NUMBER(8,2)
+\end{sqlout}
+
+\clearpage

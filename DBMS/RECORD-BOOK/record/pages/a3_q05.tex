@@ -1,0 +1,33 @@
+% ---- Section A / question 5
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{5.}}\ Display the faculty name, current salary, and salary after a 10\% increase without modifying the table.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT faculty_name, salary, salary * 1.10 AS increased_salary
+FROM faculty;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+FACULTY_NAME  SALARY  INCREASED_SALARY
+------------  ------  ----------------
+Ravi Kumar     27500             30250
+Anita Thomas   99000            108900
+Meera Joseph   60500             66550
+Suresh Menon   95000            104500
+Latha Nair     72000             79200
+Vinod Kumar    48000             52800
+Priya Sharma   52000             57200
+arun das       45000             49500
+
+8 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

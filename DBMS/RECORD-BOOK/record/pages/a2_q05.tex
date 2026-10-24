@@ -1,0 +1,32 @@
+% ---- Section A / question 5
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{5.}}\ Insert the faculty member Meera Joseph (F101) into the FACULTY table.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}[fontsize=\footnotesize]
+INSERT INTO faculty (faculty_id, faculty_name, designation, joining_date, salary,
+                     email_id, dept_id)
+VALUES ('F101', 'Meera Joseph', 'Assistant Professor', TO_DATE('01-06-2022','DD-MM-YYYY'),
+        55000, 'meera@rajagiri.edu', 'D01');
+
+SELECT * FROM faculty;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\scriptsize]
+FACULTY_ID  FACULTY_NAME  DESIGNATION          JOINING_DATE  SALARY  EMAIL_ID            DEPT_ID  EXPERIENCE_YEARS
+----------  ------------  -------------------  ------------  ------  ------------------  -------  ----------------
+F102        Ravi Kumar    Assistant Professor  10-JUL-24      25000  ravi@rajagiri.edu   D01
+F103        Anita Thomas  Professor            01-JUN-11      90000  anita@rajagiri.edu  D01
+F101        Meera Joseph  Assistant Professor  01-JUN-22      55000  meera@rajagiri.edu  D01
+
+3 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

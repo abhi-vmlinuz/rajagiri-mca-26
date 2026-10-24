@@ -1,0 +1,24 @@
+% ---- Section B / question 2
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{2.}}\ Update the status of library member 1006 from EXPIRED to ACTIVE and permanently save the change using COMMIT.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+UPDATE member SET status = 'ACTIVE'
+WHERE member_id = 1006 AND status = 'EXPIRED';
+COMMIT;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+1 row updated.
+Commit complete.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

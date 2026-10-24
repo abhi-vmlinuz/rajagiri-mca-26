@@ -1,0 +1,38 @@
+% ---- Section B / question 1
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{1.}}\ Display the member ID, full name, member type and city of all ACTIVE members, arranged first by member type and then alphabetically by name.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT member_id, full_name, member_type, city
+FROM member
+WHERE status = 'ACTIVE'
+ORDER BY member_type, full_name;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+MEMBER_ID  FULL_NAME      MEMBER_TYPE  CITY          
+---------  -------------  -----------  --------------
+     1003  Meera Thomas   FACULTY      Kakkanad
+     1013  Neha Varma     FACULTY      Kakkanad
+     1007  Sara Mathew    FACULTY      Kochi
+     1004  Rohan Joseph   PUBLIC       Kochi
+     1010  Adil Khan      RESEARCHER   Kakkanad
+     1005  Ananya Pillai  RESEARCHER   Thrippunithura
+     1015  Fathima Noor   RESEARCHER   Aluva
+     1001  Aarav Menon    STUDENT      Kochi
+     1002  Diya Nair      STUDENT      Aluva
+     1009  Ishita Rao     STUDENT      Kochi
+     1011  Liya George    STUDENT      Thrippunithura
+
+11 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

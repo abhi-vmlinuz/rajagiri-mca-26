@@ -1,0 +1,27 @@
+% ---- Section B / question 6
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{6.}}\ Perform two different updates on the BOOK table with a savepoint between them. Roll back only the second update using ROLLBACK TO SAVEPOINT.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+UPDATE book SET price = 420 WHERE book_id = 4002;
+SAVEPOINT second_update;
+UPDATE book SET price = 780 WHERE book_id = 4005;
+ROLLBACK TO second_update;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+1 row updated.
+Savepoint created.
+1 row updated.
+Rollback complete.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

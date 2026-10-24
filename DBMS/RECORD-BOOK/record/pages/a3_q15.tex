@@ -1,0 +1,31 @@
+% ---- Section A / question 15
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{15.}}\ Display faculty members whose email addresses belong to the rajagiri.edu domain.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT faculty_id, faculty_name, email_id
+FROM faculty WHERE email_id LIKE '%@rajagiri.edu';
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+FACULTY_ID  FACULTY_NAME  EMAIL_ID           
+----------  ------------  -------------------
+F102        Ravi Kumar    ravi@rajagiri.edu
+F103        Anita Thomas  anita@rajagiri.edu
+F101        Meera Joseph  meera@rajagiri.edu
+F104        Suresh Menon  suresh@rajagiri.edu
+F105        Latha Nair    latha@rajagiri.edu
+F107        Priya Sharma  priya@rajagiri.edu
+
+6 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

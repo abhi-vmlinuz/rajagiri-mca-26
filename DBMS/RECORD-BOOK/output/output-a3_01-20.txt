@@ -1,0 +1,345 @@
+podman exec -i oracledb sqlplus mca/mca@localhost:1521/FREEPDB1 < sql/A3_01_to_20_basic_sql.sql
+
+SQL*Plus: Release 23.26.2.0.0 - Production on Fri Oct 23 19:17:07 2026
+Version 23.26.2.0.0
+
+Copyright (c) 1982, 2026, Oracle.  All rights reserved.
+
+Last Successful login time: Fri Oct 23 2026 19:17:03 +00:00
+
+Connected to:
+Oracle AI Database 26ai Free Release 23.26.2.0.0 - Develop, Learn, and Run for Free
+Version 23.26.2.0.0
+
+SQL> SQL> SQL> SQL> SQL> SQL> SQL> SQL> SQL> SQL> SQL>
+SQL> ===== Q1 =====
+SQL> SQL>
+DESIGNATION
+------------------------------
+Assistant Professor
+Professor
+Associate Professor
+
+3 rows selected.
+
+SQL> SQL>
+SQL> ===== Q2 =====
+SQL> SQL>
+  SEMESTER
+----------
+	3
+	1
+	5
+	7
+
+4 rows selected.
+
+SQL> SQL>
+SQL> ===== Q3 =====
+SQL> SQL>   2
+STUDENT_NAME											    GRADE_POINT_AVERAGE
+---------------------------------------------------------------------------------------------------- -------------------
+Akhil Raj													    8.7
+Neha Thomas
+Anjali Menon													    9.1
+Arjun Nair													    8.4
+Aparna Pillai													    7.2
+Rahul Varma													    6.5
+Sneha George													    8.9
+Aditya Kumar													    5.8
+Meera Krishnan													    9.6
+Anoop Joseph													    7.8
+Divya Ramesh													      8
+Kiran Mathew													    6.9
+
+12 rows selected.
+
+SQL> SQL>
+SQL> ===== Q4 =====
+SQL> SQL>   2
+FACULTY_NAME					      SALARY ANNUAL_SALARY
+-------------------------------------------------- ---------- -------------
+Ravi Kumar						27500	    330000
+Anita Thomas						99000	   1188000
+Meera Joseph						60500	    726000
+Suresh Menon						95000	   1140000
+Latha Nair						72000	    864000
+Vinod Kumar						48000	    576000
+Priya Sharma						52000	    624000
+arun das						45000	    540000
+
+8 rows selected.
+
+SQL> SQL>
+SQL> ===== Q5 =====
+SQL> SQL>   2
+FACULTY_NAME					      SALARY INCREASED_SALARY
+-------------------------------------------------- ---------- ----------------
+Ravi Kumar						27500		30250
+Anita Thomas						99000		108900
+Meera Joseph						60500		66550
+Suresh Menon						95000		104500
+Latha Nair						72000		79200
+Vinod Kumar						48000		52800
+Priya Sharma						52000		57200
+arun das						45000		49500
+
+8 rows selected.
+
+SQL> SQL>
+SQL> ===== Q6 =====
+SQL> SQL>   2    3
+RESUL INTERNAL_MARKS EXTERNAL_MARKS	TOTAL
+----- -------------- -------------- ----------
+R102		 45		40	   85
+R103		 38		35	   73
+R104		 42		38	   80
+R105		 25		20	   45
+R106		 30		28	   58
+R107		 48		45	   93
+R108		 35		30	   65
+R109		 20		15	   35
+R110		 40		42	   82
+R111		 28		25	   53
+R112		 44		41	   85
+R113		 33		32	   65
+R114		 22		18	   40
+R115		 46		44	   90
+
+14 rows selected.
+
+SQL> SQL>
+SQL> ===== Q7 =====
+SQL> SQL>   2    3
+EVENT_NAME					  REGISTRATION_FEE FEE_WITH_TAX
+-------------------------------------------------- ---------------- ------------
+Tech Fest							200	    236
+National Seminar						100	    118
+Cultural Fest							750	    885
+Sports Meet							 0	      0
+Alumni Meet						      1500	   1770
+
+5 rows selected.
+
+SQL> SQL>
+SQL> ===== Q8 =====
+SQL> SQL>
+FACUL FACULTY_NAME					DESIGNATION			JOINING_D     SALARY
+----- -------------------------------------------------- ------------------------------ --------- ----------
+EMAIL_ID					  DEPT_ID    EXPERIENCE_YEARS
+-------------------------------------------------- ---------- ----------------
+F103  Anita Thomas					Professor			01-JUN-11      99000
+anita@rajagiri.edu				  D01
+
+F101  Meera Joseph					Assistant Professor		01-JUN-22      60500
+meera@rajagiri.edu				  D01
+
+F104  Suresh Menon					Professor			12-JUL-08      95000
+suresh@rajagiri.edu				  D02			   18
+
+F105  Latha Nair					Associate Professor		05-AUG-15      72000
+latha@rajagiri.edu				  D03			   11
+
+F107  Priya Sharma					Assistant Professor		02-MAR-21      52000
+priya@rajagiri.edu				  D05			    5
+
+
+5 rows selected.
+
+SQL> SQL>
+SQL> ===== Q9 =====
+SQL> SQL>
+COURS COURSE_TITLE					   CREDITS   SEMESTER DEPT_ID	 FACUL
+----- -------------------------------------------------- ---------- ---------- ---------- -----
+C101  Database Management Systems				 5	    3 D01	 F101
+C103  Data Structures						 4	    3 D01	 F106
+C105  Thermodynamics						 4	    3 D03	 F105
+
+3 rows selected.
+
+SQL> SQL>
+SQL> ===== Q10 =====
+SQL> SQL>
+RESUL ENROL INTERNAL_MARKS EXTERNAL_MARKS TOTAL_MARKS G RESULT_STA
+----- ----- -------------- -------------- ----------- - ----------
+R102  E102		45	      40	  85 A PASS
+R104  E104		42	      38	  80 A PASS
+R107  E107		48	      45	  93 A PASS
+R110  E110		40	      42	  82 A PASS
+R112  E112		44	      41	  85 A PASS
+R115  E115		46	      44	  90 A PASS
+
+6 rows selected.
+
+SQL> SQL>
+SQL> ===== Q11 =====
+SQL> SQL>
+EVENT EVENT_NAME					EVENT_DAT VENUE
+----- -------------------------------------------------- --------- --------------------------------------------------
+FACUL MAX_PARTICIPANTS REGISTRATION_FEE
+----- ---------------- ----------------
+EV04  Cultural Fest					10-FEB-26 Open Ground
+F105		  500		   750
+
+EV06  Alumni Meet					05-DEC-25 Main Auditorium
+F104		   80		  1500
+
+
+2 rows selected.
+
+SQL> SQL>
+SQL> ===== Q12 =====
+SQL> SQL>   2
+STUDE STUDENT_NAME												CGPA
+----- ---------------------------------------------------------------------------------------------------- ----------
+DEPT_ID
+----------
+S101  Akhil Raj 												 8.7
+D01
+
+S104  Arjun Nair												 8.4
+D02
+
+S105  Aparna Pillai												 7.2
+D01
+
+S107  Sneha George												 8.9
+D02
+
+S110  Anoop Joseph												 7.8
+D05
+
+S111  Divya Ramesh												   8
+D03
+
+
+6 rows selected.
+
+SQL> SQL>
+SQL> ===== Q13 =====
+SQL> SQL>   2
+COURS COURSE_TITLE					  SEMESTER
+----- -------------------------------------------------- ----------
+C101  Database Management Systems				 3
+C103  Data Structures						 3
+C104  Digital Electronics					 1
+C105  Thermodynamics						 3
+C106  Surveying 						 5
+C107  Operating Systems 					 5
+C109  Software Engineering					 5
+C110  Web Technologies						 1
+
+8 rows selected.
+
+SQL> SQL>
+SQL> ===== Q14 =====
+SQL> SQL>   2
+STUDE STUDENT_NAME												CGPA
+----- ---------------------------------------------------------------------------------------------------- ----------
+S101  Akhil Raj 												 8.7
+S103  Anjali Menon												 9.1
+S104  Arjun Nair												 8.4
+S105  Aparna Pillai												 7.2
+S108  Aditya Kumar												 5.8
+S110  Anoop Joseph												 7.8
+
+6 rows selected.
+
+SQL> SQL>
+SQL> ===== Q15 =====
+SQL> SQL>   2
+FACUL FACULTY_NAME					EMAIL_ID
+----- -------------------------------------------------- --------------------------------------------------
+F102  Ravi Kumar					ravi@rajagiri.edu
+F103  Anita Thomas					anita@rajagiri.edu
+F101  Meera Joseph					meera@rajagiri.edu
+F104  Suresh Menon					suresh@rajagiri.edu
+F105  Latha Nair					latha@rajagiri.edu
+F107  Priya Sharma					priya@rajagiri.edu
+
+6 rows selected.
+
+SQL> SQL>
+SQL> ===== Q16 =====
+SQL> SQL>   2
+STUDE STUDENT_NAME
+----- ----------------------------------------------------------------------------------------------------
+S102  Neha Thomas
+
+1 row selected.
+
+SQL> SQL>
+SQL> ===== Q17 =====
+SQL> SQL>
+STUDENT_NAME
+----------------------------------------------------------------------------------------------------
+AKHIL RAJ
+NEHA THOMAS
+ANJALI MENON
+ARJUN NAIR
+APARNA PILLAI
+RAHUL VARMA
+SNEHA GEORGE
+ADITYA KUMAR
+MEERA KRISHNAN
+ANOOP JOSEPH
+DIVYA RAMESH
+KIRAN MATHEW
+
+12 rows selected.
+
+SQL> SQL>
+SQL> ===== Q18 =====
+SQL> SQL>
+FACULTY_NAME
+--------------------------------------------------
+Ravi Kumar
+Anita Thomas
+Meera Joseph
+Suresh Menon
+Latha Nair
+Vinod Kumar
+Priya Sharma
+Arun Das
+
+8 rows selected.
+
+SQL> SQL>
+SQL> ===== Q19 =====
+SQL> SQL>   2
+STUDENT_NAME											    NAME_LENGTH
+---------------------------------------------------------------------------------------------------- -----------
+Akhil Raj												      9
+Neha Thomas												     11
+Anjali Menon												     12
+Arjun Nair												     10
+Aparna Pillai												     13
+Rahul Varma												     11
+Sneha George												     12
+Aditya Kumar												     12
+Meera Krishnan												     14
+Anoop Joseph												     12
+Divya Ramesh												     12
+Kiran Mathew												     12
+
+12 rows selected.
+
+SQL> SQL>
+SQL> ===== Q20 =====
+SQL> SQL>
+TOTAL_STUDENTS
+--------------
+	   12
+
+1 row selected.
+
+SQL> SQL>   2    3
+   HIGHEST     LOWEST	AVERAGE
+---------- ---------- ----------
+       9.6	 5.8	    7.9
+
+1 row selected.
+
+SQL> Disconnected from Oracle AI Database 26ai Free Release 23.26.2.0.0 - Develop, Learn, and Run for Free
+Version 23.26.2.0.0
+  ~/../../RECORD-BOOK  git:main

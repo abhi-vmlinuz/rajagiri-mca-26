@@ -1,0 +1,36 @@
+% ---- Section B / question 5
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{5.}}\ Display the reservation ID, member name, book title, and reservation status for all reservations.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT r.reservation_id, m.full_name, b.title, r.reservation_status
+FROM reservation r
+JOIN member m ON m.member_id = r.member_id
+JOIN book b ON b.book_id = r.book_id
+ORDER BY r.reservation_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\footnotesize]
+RESERVATION_ID  FULL_NAME      TITLE                                       RESERVATION_STA
+--------------  -------------  ------------------------------------------  ---------------
+          8001  Meera Thomas   Introduction to Algorithms                  WAITING
+          8002  Ishita Rao     Sapiens                                     WAITING
+          8003  Liya George    Designing Data-Intensive Applications       WAITING
+          8004  Ananya Pillai  Clean Code                                  FULFILLED
+          8005  Diya Nair      Artificial Intelligence: A Modern Approach  CANCELLED
+          8006  Fathima Noor   Aarachar                                    EXPIRED
+          8007  Sara Mathew    Deep Learning                               WAITING
+          8008  Adil Khan      Machine Learning with Python                WAITING
+
+8 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

@@ -1,0 +1,35 @@
+% ---- Section B / question 17
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{17.}}\ Display books with more than 500 pages and a rating of at least 4.5. Add a computed column named PRICE\_PER\_100\_PAGES showing the approximate price per 100 pages, rounded to two decimals.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT title, pages, rating,
+       ROUND((price / pages) * 100, 2) AS price_per_100_pages
+FROM book
+WHERE pages > 500
+  AND rating >= 4.5
+ORDER BY pages DESC;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+TITLE                                       PAGES  RATING  PRICE_PER_100_PAGES
+------------------------------------------  -----  ------  -------------------
+Introduction to Algorithms                   1312     4.7                83.77
+Artificial Intelligence: A Modern Approach   1168     4.6               102.65
+Modern Operating Systems                     1136     4.5                83.63
+Deep Learning                                 800     4.5               131.25
+Designing Data-Intensive Applications         616     4.8               162.18
+Aarachar                                      552     4.6                95.11
+
+6 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

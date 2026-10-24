@@ -1,0 +1,38 @@
+% ---------------------------------------------------------------------
+% Section A / question 5
+% ---------------------------------------------------------------------
+
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{5.}}\ Modify the size of the student\_name column to VARCHAR2(100).\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+ALTER TABLE student MODIFY (student_name VARCHAR2(100));
+DESC student;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                NOT NULL CHAR(5)
+ STUDENT_NAME                              NOT NULL VARCHAR2(100)
+ DOB                                                DATE
+ GENDER                                             CHAR(1)
+ MOBILE_NUMBER                                      VARCHAR2(10)
+ EMAIL_ID                                           VARCHAR2(50)
+ DEPT_ID                                            VARCHAR2(10)
+ ADMISSION_DATE                                     DATE
+ CGPA                                               NUMBER(4,2)
+ ADDRESS                                            VARCHAR2(200)
+ CITY                                               VARCHAR2(30)
+ STATE                                              VARCHAR2(30)
+\end{sqlout}
+\end{minipage}\par\vspace{30pt}
+

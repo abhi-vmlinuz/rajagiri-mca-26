@@ -1,0 +1,32 @@
+% ---- Section B / question 18
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{18.}}\ Display the category-wise number of books, average price and average rating. Show only categories containing at least 2 books. Round averages to two decimals.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT category, COUNT(*) AS no_of_books,
+       ROUND(AVG(price), 2) AS avg_price,
+       ROUND(AVG(rating), 2) AS avg_rating
+FROM book
+GROUP BY category
+HAVING COUNT(book_id) >= 2
+ORDER BY category;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+CATEGORY          NO_OF_BOOKS  AVG_PRICE  AVG_RATING
+----------------  -----------  ---------  ----------
+Computer Science            8     983.75        4.53
+Fiction                     8     415.75        4.48
+
+2 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

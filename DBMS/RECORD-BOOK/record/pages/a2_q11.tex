@@ -1,0 +1,29 @@
+% ---- Section A / question 11
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{11.}}\ Insert an event-registration record and allow the registration date to take the current date automatically.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+INSERT INTO event_registration (registration_id, event_id, student_id,
+                               participation_status)
+VALUES ('REG01', 'EV01', 'S101', 'ABSENT');
+
+SELECT * FROM event_registration;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+REGISTRATION_ID  EVENT_ID  STUDENT_ID  REGISTRATION_DATE  PARTICIPATION_STATUS
+---------------  --------  ----------  -----------------  --------------------
+REG01            EV01      S101        24-OCT-26          ABSENT
+
+1 row selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

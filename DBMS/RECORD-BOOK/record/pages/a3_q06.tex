@@ -1,0 +1,40 @@
+% ---- Section A / question 6
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{6.}}\ Display the result ID, internal marks, external marks, and a calculated total obtained by adding the two marks.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT result_id, internal_marks, external_marks,
+       internal_marks + external_marks AS total
+FROM result;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+RESULT_ID  INTERNAL_MARKS  EXTERNAL_MARKS  TOTAL
+---------  --------------  --------------  -----
+R102                   45              40     85
+R103                   38              35     73
+R104                   42              38     80
+R105                   25              20     45
+R106                   30              28     58
+R107                   48              45     93
+R108                   35              30     65
+R109                   20              15     35
+R110                   40              42     82
+R111                   28              25     53
+R112                   44              41     85
+R113                   33              32     65
+R114                   22              18     40
+R115                   46              44     90
+
+14 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

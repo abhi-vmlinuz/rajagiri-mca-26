@@ -1,0 +1,30 @@
+% ---------------------------------------------------------------------
+% Section A / question 11
+% ---------------------------------------------------------------------
+
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{11.}}\ Add a CHECK constraint to ensure that faculty salary is greater than zero.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+ALTER TABLE faculty ADD CONSTRAINT chk_faculty_salary CHECK (salary > 0);
+UPDATE faculty SET salary = -5000 WHERE faculty_id = 'F101';
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}
+Table altered.
+
+UPDATE faculty SET salary = -5000 WHERE faculty_id = 'F101'
+*
+ERROR at line 1:
+ORA-02290: check constraint (MCA.SYS_C009682) violated
+\end{sqlout}
+\end{minipage}\par\vspace{30pt}
+

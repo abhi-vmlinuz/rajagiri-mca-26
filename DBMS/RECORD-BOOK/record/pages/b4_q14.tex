@@ -1,0 +1,21 @@
+% ---- Section B / question 14
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{14.}}\ Revoke the UPDATE and DELETE privileges on the BOOK\_COPY table from user LIBUSER.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+REVOKE UPDATE, DELETE ON book_copy FROM libuser;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+Revoke succeeded.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

@@ -1,0 +1,32 @@
+% ---------------------------------------------------------------------
+% Section A / question 8
+% ---------------------------------------------------------------------
+
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{8.}}\ Rename the column course\_name in the COURSE table to course\_title.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+ALTER TABLE course RENAME COLUMN course_name TO course_title;
+DESC course;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ COURSE_ID                                 NOT NULL CHAR(5)
+ COURSE_TITLE                              NOT NULL VARCHAR2(50)
+ CREDITS                                            NUMBER(1)
+ SEMESTER                                           NUMBER(1)
+ DEPT_ID                                            VARCHAR2(10)
+ FACULTY_ID                                         CHAR(5)
+\end{sqlout}
+\end{minipage}\par\vspace{30pt}
+

@@ -1,0 +1,34 @@
+% ---------------------------------------------------------------------
+% Section A / question 10
+% ---------------------------------------------------------------------
+
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{10.}}\ Drop the qualification column from the FACULTY table.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+ALTER TABLE faculty DROP COLUMN qualification;
+DESC faculty;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FACULTY_ID                                NOT NULL CHAR(5)
+ FACULTY_NAME                              NOT NULL VARCHAR2(50)
+ DESIGNATION                                        VARCHAR2(30)
+ JOINING_DATE                                       DATE
+ SALARY                                             NUMBER(10,2)
+ EMAIL_ID                                           VARCHAR2(50)
+ DEPT_ID                                            VARCHAR2(10)
+ EXPERIENCE_YEARS                                   NUMBER(2)
+\end{sqlout}
+\end{minipage}\par\vspace{30pt}
+

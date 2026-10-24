@@ -1,0 +1,52 @@
+% ---- Section B / question 18
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{18.}}\ Display book title, copy ID, and branch name using a NATURAL JOIN between BOOK\_COPY and LIBRARY\_BRANCH.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT b.title, c.copy_id, l.branch_name
+FROM book_copy c
+NATURAL JOIN library_branch l
+JOIN book b ON b.book_id = c.book_id
+ORDER BY c.copy_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+TITLE                                       COPY_ID  BRANCH_NAME      
+------------------------------------------  -------  -----------------
+1984                                           6001  Central Library
+1984                                           6002  Riverside Branch
+Pride and Prejudice                            6003  Central Library
+Clean Code                                     6004  Central Library
+Clean Code                                     6005  Knowledge Hub
+Sapiens                                        6006  Community Library
+Wings of Fire                                  6007  Riverside Branch
+The God of Small Things                        6008  Central Library
+Introduction to Algorithms                     6009  Knowledge Hub
+Introduction to Algorithms                     6010  Central Library
+Modern Operating Systems                       6011  Community Library
+Aarachar                                       6012  Community Library
+The Picture of Dorian Gray                     6013  Riverside Branch
+Designing Data-Intensive Applications          6014  Knowledge Hub
+Learning SQL                                   6015  Central Library
+Artificial Intelligence: A Modern Approach     6016  Knowledge Hub
+To Kill a Mockingbird                          6017  Riverside Branch
+India 2020                                     6018  Central Library
+Deep Learning                                  6019  Knowledge Hub
+A Brief History of Time                        6020  Community Library
+The Alchemist                                  6021  Central Library
+Machine Learning with Python                   6022  Riverside Branch
+Qabar                                          6023  Community Library
+Designing Data-Intensive Applications          6024  Central Library
+
+24 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

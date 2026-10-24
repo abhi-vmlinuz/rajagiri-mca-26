@@ -1,0 +1,31 @@
+% ---------------------------------------------------------------------
+% Section A / question 12
+% ---------------------------------------------------------------------
+
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{12.}}\ Add a CHECK constraint to ensure that student CGPA remains between 0 and 10.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+ALTER TABLE student
+    ADD CONSTRAINT chk_student_cgpa CHECK (cgpa BETWEEN 0 AND 10);
+UPDATE student SET cgpa = 12 WHERE student_id = 'S101';
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}
+Table altered.
+
+UPDATE student SET cgpa = 12 WHERE student_id = 'S101'
+*
+ERROR at line 1:
+ORA-02290: check constraint (MCA.SYS_C009677) violated
+\end{sqlout}
+\end{minipage}\par\vspace{30pt}
+

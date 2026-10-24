@@ -1,0 +1,35 @@
+% ---- Section B / question 12
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{12.}}\ Display branch name, city, and staff name using a RIGHT OUTER JOIN. Include all branches, even if a branch has no staff.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT br.branch_name, br.city, s.full_name
+FROM staff s
+RIGHT JOIN library_branch br ON br.branch_id = s.branch_id
+ORDER BY br.branch_id, s.staff_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+BRANCH_NAME        CITY            FULL_NAME    
+-----------------  --------------  -------------
+Central Library    Kochi           Lakshmi Menon
+Central Library    Kochi           Arun Das
+Riverside Branch   Aluva           Jency Paul
+Riverside Branch   Aluva           Rahul Dev
+Knowledge Hub      Kakkanad        Priya Raman
+Knowledge Hub      Kakkanad        Manu Suresh
+Community Library  Thrippunithura  Elsa John
+Community Library  Thrippunithura  Akhil Babu
+
+8 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

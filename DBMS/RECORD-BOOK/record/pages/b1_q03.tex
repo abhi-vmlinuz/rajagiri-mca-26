@@ -1,0 +1,37 @@
+% ---- Section B / question 3
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{3.}}\ Display all members who are either STUDENT or RESEARCHER and whose maximum borrowing limit is at least 4 books. Sort by max\_books descending.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT member_id, full_name, member_type, max_books
+FROM member
+WHERE member_type IN ('RESEARCHER', 'STUDENT')
+  AND max_books >= 4
+ORDER BY max_books DESC;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+MEMBER_ID  FULL_NAME      MEMBER_TYPE  MAX_BOOKS
+---------  -------------  -----------  ---------
+     1015  Fathima Noor   RESEARCHER          10
+     1005  Ananya Pillai  RESEARCHER          10
+     1010  Adil Khan      RESEARCHER          10
+     1011  Liya George    STUDENT              4
+     1014  Joel Antony    STUDENT              4
+     1006  Nikhil Raj     STUDENT              4
+     1002  Diya Nair      STUDENT              4
+     1001  Aarav Menon    STUDENT              4
+     1009  Ishita Rao     STUDENT              4
+
+9 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

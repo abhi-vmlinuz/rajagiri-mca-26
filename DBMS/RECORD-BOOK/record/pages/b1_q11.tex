@@ -1,0 +1,35 @@
+% ---- Section B / question 11
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{11.}}\ Display each publisher's name, country and age in years in 2026 (2026 - established\_year). Show the oldest publishers first.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT publisher_name, country,
+       (EXTRACT(YEAR FROM SYSDATE) - established_year) AS age
+FROM publisher
+ORDER BY age DESC;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+PUBLISHER_NAME           COUNTRY         AGE
+-----------------------  --------------  ---
+Oxford University Press  United Kingdom  440
+Springer                 Germany         184
+Pearson Education        United Kingdom  182
+MIT Press                United States    64
+DC Books                 India            52
+O'Reilly Media           United States    48
+HarperCollins            United States    37
+Penguin Random House     United States    13
+
+8 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

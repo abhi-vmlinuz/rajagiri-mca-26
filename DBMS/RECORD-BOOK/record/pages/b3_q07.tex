@@ -1,0 +1,37 @@
+% ---- Section B / question 7
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{7.}}\ Display books from the BOOK\_PUBLISHER\_DETAILS view whose price is greater than 500.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT title, publisher_name, price
+FROM book_publisher_details
+WHERE price > 500
+ORDER BY price DESC;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+TITLE                                       PUBLISHER_NAME     PRICE
+------------------------------------------  -----------------  -----
+Artificial Intelligence: A Modern Approach  Pearson Education   1199
+Introduction to Algorithms                  MIT Press           1099
+Deep Learning                               MIT Press           1050
+Designing Data-Intensive Applications       O'Reilly Media       999
+Modern Operating Systems                    Pearson Education    950
+Clean Code                                  Pearson Education    899
+Machine Learning with Python                Springer             875
+Learning SQL                                O'Reilly Media       799
+Sapiens                                     HarperCollins        699
+Aarachar                                    DC Books             525
+
+10 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

@@ -1,0 +1,36 @@
+% ---- Section A / question 10
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{10.}}\ Insert three events into the EVENT table using an Oracle INSERT ALL statement.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+INSERT ALL
+  INTO event VALUES ('EV01', 'Tech Fest', TO_DATE('15-03-2026','DD-MM-YYYY'),
+                     'Main Auditorium', 'F101', 150, 200)
+  INTO event VALUES ('EV02', 'Workshop on AI', TO_DATE('10-04-2024','DD-MM-YYYY'),
+                     'Seminar Hall', 'F102', 50, NULL)
+  INTO event VALUES ('EV03', 'National Seminar', TO_DATE('20-11-2025','DD-MM-YYYY'),
+                     'Seminar Hall', 'F103', 300, 100)
+SELECT * FROM dual;
+
+SELECT * FROM event;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\scriptsize]
+EVENT_ID  EVENT_NAME        EVENT_DATE  VENUE            FACULTY_ID  MAX_PARTICIPANTS  REGISTRATION_FEE
+--------  ----------------  ----------  ---------------  ----------  ----------------  ----------------
+EV01      Tech Fest         15-MAR-26   Main Auditorium  F101                     150               200
+EV02      Workshop on AI    10-APR-24   Seminar Hall     F102                      50
+EV03      National Seminar  20-NOV-25   Seminar Hall     F103                     300               100
+
+3 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

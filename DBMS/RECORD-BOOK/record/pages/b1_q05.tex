@@ -1,0 +1,38 @@
+% ---- Section B / question 5
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{5.}}\ Display the names and email addresses of members whose name contains the letter 'a' anywhere, ignoring case, and whose account is ACTIVE.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT LOWER(full_name) AS name, email
+FROM member
+WHERE LOWER(full_name) LIKE '%a%'
+  AND status = 'ACTIVE';
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+NAME           EMAIL                
+-------------  ---------------------
+aarav menon    aarav.m@example.com
+diya nair      diya.n@example.com
+meera thomas   meera.t@example.com
+rohan joseph   rohan.j@example.com
+ananya pillai  ananya.p@example.com
+sara mathew    sara.m@example.com
+ishita rao     ishita.r@example.com
+adil khan      adil.k@example.com
+liya george    liya.g@example.com
+neha varma     neha.v@example.com
+fathima noor   fathima.n@example.com
+
+11 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

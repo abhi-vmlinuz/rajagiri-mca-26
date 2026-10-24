@@ -1,0 +1,47 @@
+% ---- Section B / question 1
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{1.}}\ Display each book title along with its publisher name.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT b.title, p.publisher_name
+FROM book b
+JOIN publisher p ON p.publisher_id = b.publisher_id
+ORDER BY b.book_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+TITLE                                       PUBLISHER_NAME         
+------------------------------------------  -----------------------
+1984                                        Penguin Random House
+Pride and Prejudice                         Penguin Random House
+Clean Code                                  Pearson Education
+Sapiens                                     HarperCollins
+Wings of Fire                               DC Books
+The God of Small Things                     Penguin Random House
+Introduction to Algorithms                  MIT Press
+Modern Operating Systems                    Pearson Education
+Aarachar                                    DC Books
+The Picture of Dorian Gray                  Oxford University Press
+Designing Data-Intensive Applications       O'Reilly Media
+Learning SQL                                O'Reilly Media
+Artificial Intelligence: A Modern Approach  Pearson Education
+To Kill a Mockingbird                       HarperCollins
+India 2020                                  HarperCollins
+Deep Learning                               MIT Press
+A Brief History of Time                     Oxford University Press
+The Alchemist                               HarperCollins
+Machine Learning with Python                Springer
+Qabar                                       DC Books
+
+20 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

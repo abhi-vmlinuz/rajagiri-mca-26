@@ -1,0 +1,62 @@
+% ---------------------------------------------------------------------
+% Section A / Table 4 : COURSE
+% ---------------------------------------------------------------------
+
+\textbf{Table Name:} COURSE \hspace{1em plus 1fill}
+\textbf{Description:} Stores the courses offered by each department.
+
+\vspace{8pt}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+\textbf{Column Name} & \textbf{Description} & \textbf{Data Type} & \textbf{Constraint} \\
+\hline
+course\_id & Course Code & CHAR(5) & PRIMARY KEY \\
+\hline
+course\_name & Course Name & VARCHAR2(50) & NOT NULL \\
+\hline
+credits & Number of Credits & NUMBER(1) & CHECK (1 to 6) \\
+\hline
+semester & Semester & NUMBER(1) & CHECK (1 to 8) \\
+\hline
+dept\_id & Department ID & VARCHAR2(10) & FOREIGN KEY REFERENCES department (dept\_id) \\
+\hline
+faculty\_id & Faculty ID & CHAR(5) & FOREIGN KEY REFERENCES faculty (faculty\_id) \\
+\hline
+\end{tabularx}
+
+\vspace{14pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE TABLE course (
+    course_id   CHAR(5)       PRIMARY KEY,
+    course_name VARCHAR2(50)  NOT NULL,
+    credits     NUMBER(1)     CHECK (credits BETWEEN 1 AND 6),
+    semester    NUMBER(1)     CHECK (semester BETWEEN 1 AND 8),
+    dept_id     VARCHAR2(10)  REFERENCES department(dept_id),
+    faculty_id  CHAR(5)
+        CONSTRAINT fk_course_faculty REFERENCES faculty(faculty_id)
+);
+\end{sqlcode}
+
+\vspace{16pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}
+Table created.
+
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ COURSE_ID                                 NOT NULL CHAR(5)
+ COURSE_NAME                               NOT NULL VARCHAR2(50)
+ CREDITS                                            NUMBER(1)
+ SEMESTER                                           NUMBER(1)
+ DEPT_ID                                            VARCHAR2(10)
+ FACULTY_ID                                         CHAR(5)
+\end{sqlout}
+
+\clearpage

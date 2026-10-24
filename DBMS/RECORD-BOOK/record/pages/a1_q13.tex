@@ -1,0 +1,33 @@
+% ---------------------------------------------------------------------
+% Section A / question 13
+% ---------------------------------------------------------------------
+
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{13.}}\ Add a NOT NULL constraint to the event\_name column.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+ALTER TABLE event MODIFY (event_name NOT NULL);
+DESC event;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EVENT_ID                                  NOT NULL CHAR(5)
+ EVENT_NAME                                NOT NULL VARCHAR2(50)
+ EVENT_DATE                                         DATE
+ VENUE                                              VARCHAR2(50)
+ FACULTY_ID                                         CHAR(5)
+ MAX_PARTICIPANTS                                   NUMBER(5)
+ REGISTRATION_FEE                                   NUMBER(8,2)
+\end{sqlout}
+\end{minipage}\par\vspace{30pt}
+

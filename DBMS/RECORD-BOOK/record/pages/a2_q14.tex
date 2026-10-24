@@ -1,0 +1,23 @@
+% ---- Section A / question 14
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{14.}}\ Change the office location of the Computer Science department to Golden Aureole Block.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+UPDATE department SET office_location = 'Golden Aureole Block'
+WHERE dept_name = 'Computer Science';
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+1 row updated.
+Commit complete.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

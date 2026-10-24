@@ -1,0 +1,42 @@
+% ---- Section B / question 2
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{2.}}\ Display each library member's name, member type, and the name of the branch to which the member belongs.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT m.full_name, m.member_type, br.branch_name
+FROM member m
+JOIN library_branch br ON br.branch_id = m.branch_id
+ORDER BY m.member_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+FULL_NAME       MEMBER_TYPE  BRANCH_NAME      
+--------------  -----------  -----------------
+Aarav Menon     STUDENT      Central Library
+Diya Nair       STUDENT      Riverside Branch
+Meera Thomas    FACULTY      Knowledge Hub
+Rohan Joseph    PUBLIC       Central Library
+Ananya Pillai   RESEARCHER   Community Library
+Nikhil Raj      STUDENT      Riverside Branch
+Sara Mathew     FACULTY      Central Library
+Vivek Krishnan  PUBLIC       Knowledge Hub
+Ishita Rao      STUDENT      Central Library
+Adil Khan       RESEARCHER   Knowledge Hub
+Liya George     STUDENT      Community Library
+Harish Kumar    PUBLIC       Riverside Branch
+Neha Varma      FACULTY      Knowledge Hub
+Joel Antony     STUDENT      Central Library
+Fathima Noor    RESEARCHER   Riverside Branch
+
+15 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

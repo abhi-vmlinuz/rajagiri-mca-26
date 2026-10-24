@@ -1,0 +1,27 @@
+% ---- Section B / question 4
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{4.}}\ Update the price of book 4001. Create a savepoint named price\_update, perform another update on the same book, and then roll back to the price\_update savepoint.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+UPDATE book SET price = 500 WHERE book_id = 4001;
+SAVEPOINT price_update;
+UPDATE book SET price = 900 WHERE book_id = 4001;
+ROLLBACK TO price_update;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+1 row updated.
+Savepoint created.
+1 row updated.
+Rollback complete.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

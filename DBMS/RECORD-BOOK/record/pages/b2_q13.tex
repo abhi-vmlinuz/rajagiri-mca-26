@@ -1,0 +1,51 @@
+% ---- Section B / question 13
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{13.}}\ Display book title, copy ID, and availability status using a RIGHT OUTER JOIN. Include all physical copies in BOOK\_COPY.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT b.title, c.copy_id, c.availability_status
+FROM book b
+RIGHT JOIN book_copy c ON c.book_id = b.book_id
+ORDER BY c.copy_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+TITLE                                       COPY_ID  AVAILABILITY_STATUS
+------------------------------------------  -------  -------------------
+1984                                           6001  AVAILABLE
+1984                                           6002  ISSUED
+Pride and Prejudice                            6003  AVAILABLE
+Clean Code                                     6004  ISSUED
+Clean Code                                     6005  AVAILABLE
+Sapiens                                        6006  RESERVED
+Wings of Fire                                  6007  AVAILABLE
+The God of Small Things                        6008  AVAILABLE
+Introduction to Algorithms                     6009  ISSUED
+Introduction to Algorithms                     6010  AVAILABLE
+Modern Operating Systems                       6011  AVAILABLE
+Aarachar                                       6012  AVAILABLE
+The Picture of Dorian Gray                     6013  REPAIR
+Designing Data-Intensive Applications          6014  ISSUED
+Learning SQL                                   6015  AVAILABLE
+Artificial Intelligence: A Modern Approach     6016  AVAILABLE
+To Kill a Mockingbird                          6017  ISSUED
+India 2020                                     6018  AVAILABLE
+Deep Learning                                  6019  AVAILABLE
+A Brief History of Time                        6020  AVAILABLE
+The Alchemist                                  6021  LOST
+Machine Learning with Python                   6022  AVAILABLE
+Qabar                                          6023  AVAILABLE
+Designing Data-Intensive Applications          6024  RESERVED
+
+24 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

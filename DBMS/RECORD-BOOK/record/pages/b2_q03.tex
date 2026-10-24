@@ -1,0 +1,35 @@
+% ---- Section B / question 3
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{3.}}\ Display the staff name, role, and branch name for all staff members.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT s.full_name, s.role_name, br.branch_name
+FROM staff s
+JOIN library_branch br ON br.branch_id = s.branch_id
+ORDER BY s.staff_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+FULL_NAME      ROLE_NAME            BRANCH_NAME      
+-------------  -------------------  -----------------
+Lakshmi Menon  Chief Librarian      Central Library
+Arun Das       Assistant Librarian  Central Library
+Jency Paul     Librarian            Riverside Branch
+Rahul Dev      Library Assistant    Riverside Branch
+Priya Raman    Librarian            Knowledge Hub
+Manu Suresh    Library Assistant    Knowledge Hub
+Elsa John      Librarian            Community Library
+Akhil Babu     Library Assistant    Community Library
+
+8 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

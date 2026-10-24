@@ -1,0 +1,30 @@
+% ---- Section B / question 6
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{6.}}\ Produce a member-status summary showing each status, the number of members in that status and the average outstanding amount for that status, rounded to two decimal places.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT status, COUNT(*) AS no_of_members,
+       ROUND(AVG(outstanding_amt), 2) AS average_out_amt
+FROM member
+GROUP BY status;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+STATUS     NO_OF_MEMBERS  AVERAGE_OUT_AMT
+---------  -------------  ---------------
+ACTIVE                11            39.55
+EXPIRED                3               45
+SUSPENDED              1              480
+
+3 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

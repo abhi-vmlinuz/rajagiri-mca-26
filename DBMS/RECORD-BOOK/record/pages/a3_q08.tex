@@ -1,0 +1,29 @@
+% ---- Section A / question 8
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{8.}}\ Display faculty members whose salary is greater than 50,000.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT * FROM faculty WHERE salary > 50000;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\scriptsize]
+FACULTY_ID  FACULTY_NAME  DESIGNATION          JOINING_DATE  SALARY  EMAIL_ID             DEPT_ID  EXPERIENCE_YEARS
+----------  ------------  -------------------  ------------  ------  -------------------  -------  ----------------
+F103        Anita Thomas  Professor            01-JUN-11      99000  anita@rajagiri.edu   D01
+F101        Meera Joseph  Assistant Professor  01-JUN-22      60500  meera@rajagiri.edu   D01
+F104        Suresh Menon  Professor            12-JUL-08      95000  suresh@rajagiri.edu  D02                    18
+F105        Latha Nair    Associate Professor  05-AUG-15      72000  latha@rajagiri.edu   D03                    11
+F107        Priya Sharma  Assistant Professor  02-MAR-21      52000  priya@rajagiri.edu   D05                     5
+
+5 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

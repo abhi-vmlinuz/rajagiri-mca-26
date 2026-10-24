@@ -1,0 +1,21 @@
+% ---- Section B / question 10
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{10.}}\ Grant SELECT, UPDATE, and DELETE privileges on the BOOK\_COPY table to user LIBUSER.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+GRANT SELECT, UPDATE, DELETE ON book_copy TO libuser;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+Grant succeeded.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

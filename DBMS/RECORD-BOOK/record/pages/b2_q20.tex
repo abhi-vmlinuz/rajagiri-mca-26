@@ -1,0 +1,43 @@
+% ---- Section B / question 20
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{20.}}\ Display book title, publisher name, author name, and contribution role for books linked to authors.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT b.title, p.publisher_name, a.author_name,
+       ba.contribution_role
+FROM book b
+JOIN publisher p ON p.publisher_id = b.publisher_id
+JOIN book_author ba ON ba.book_id = b.book_id
+JOIN author a ON a.author_id = ba.author_id
+ORDER BY b.book_id, ba.author_order;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\footnotesize]
+TITLE                       PUBLISHER_NAME        AUTHOR_NAME           CONTRIBUTION_ROLE
+--------------------------  --------------------  --------------------  -----------------
+1984                        Penguin Random House  George Orwell         AUTHOR
+Pride and Prejudice         Penguin Random House  Jane Austen           AUTHOR
+Clean Code                  Pearson Education     Robert C. Martin      AUTHOR
+Sapiens                     HarperCollins         Yuval Noah Harari     AUTHOR
+Wings of Fire               DC Books              A. P. J. Abdul Kalam  AUTHOR
+The God of Small Things     Penguin Random House  Arundhati Roy         AUTHOR
+Introduction to Algorithms  MIT Press             Thomas H. Cormen      AUTHOR
+Introduction to Algorithms  MIT Press             Charles E. Leiserson  CO-AUTHOR
+Introduction to Algorithms  MIT Press             Ronald L. Rivest      CO-AUTHOR
+Introduction to Algorithms  MIT Press             Clifford Stein        CO-AUTHOR
+Modern Operating Systems    Pearson Education     Andrew S. Tanenbaum   AUTHOR
+Aarachar                    DC Books              K. R. Meera           AUTHOR
+India 2020                  HarperCollins         A. P. J. Abdul Kalam  AUTHOR
+
+13 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

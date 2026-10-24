@@ -1,0 +1,118 @@
+podman exec -i oracledb sqlplus mca/mca@localhost:1521/FREEPDB1 < sql/A2_01_to_20_dml.sql
+
+SQL*Plus: Release 23.26.2.0.0 - Production on Fri Oct 23 19:16:51 2026
+Version 23.26.2.0.0
+
+Copyright (c) 1982, 2026, Oracle.  All rights reserved.
+
+Last Successful login time: Fri Oct 23 2026 19:16:29 +00:00
+
+Connected to:
+Oracle AI Database 26ai Free Release 23.26.2.0.0 - Develop, Learn, and Run for Free
+Version 23.26.2.0.0
+
+SQL> SQL> SQL> SQL> SQL> SQL> SQL> SQL> SQL> SQL> SQL> SQL>
+SQL> ===== Q1 =====
+SQL> SQL>   2
+1 row created.
+
+SQL> SQL>
+SQL> ===== Q2 =====
+SQL> SQL>   2    3    4
+1 row created.
+
+SQL> SQL>
+SQL> ===== Q3 =====
+SQL> SQL>   2    3    4
+1 row created.
+
+SQL> SQL>
+SQL> ===== Q4 =====
+SQL> SQL>   2    3    4    5    6    7    8    9   10
+2 rows created.
+
+SQL> SQL>
+SQL> ===== Q5 =====
+SQL> SQL>   2    3    4
+1 row created.
+
+SQL> SQL>
+SQL> ===== Q6 =====
+SQL> SQL>   2
+1 row created.
+
+SQL> SQL>
+SQL> ===== Q7 =====
+SQL> SQL>   2
+1 row created.
+
+SQL> SQL>
+SQL> ===== Q8 =====
+SQL> SQL>   2
+1 row created.
+
+SQL> SQL>
+SQL> ===== Q9 =====
+SQL> SQL>   2    3
+1 row created.
+
+SQL> SQL>
+SQL> ===== Q10 =====
+SQL> SQL>   2    3    4    5    6    7    8
+3 rows created.
+
+SQL> SQL>
+SQL> ===== Q11 =====
+SQL> SQL>   2    3
+1 row created.
+
+SQL> SQL>
+SQL> ===== Q12 =====
+SQL> SQL>
+1 row updated.
+
+SQL> SQL>
+SQL> ===== Q13 =====
+SQL> SQL>
+3 rows updated.
+
+SQL> SQL>
+SQL> ===== Q14 =====
+SQL> SQL>   2
+1 row updated.
+
+SQL> SQL>
+SQL> ===== Q15 =====
+SQL> SQL>   2
+1 row updated.
+
+SQL> SQL>
+SQL> ===== Q16 =====
+SQL> SQL>   2
+1 row updated.
+
+SQL> SQL>
+SQL> ===== Q17 =====
+SQL> SQL>
+1 row deleted.
+
+SQL> SQL>
+SQL> ===== Q18 =====
+SQL> SQL>
+1 row deleted.
+
+SQL> SQL>
+SQL> ===== Q19 =====
+SQL> SQL>
+1 row deleted.
+
+SQL> SQL>
+SQL> ===== Q20 =====
+SQL> SQL>
+1 row deleted.
+
+SQL> SQL>
+Commit complete.
+
+SQL> Disconnected from Oracle AI Database 26ai Free Release 23.26.2.0.0 - Develop, Learn, and Run for Free
+Version 23.26.2.0.0

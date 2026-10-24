@@ -1,0 +1,31 @@
+% ---- Section A / question 7
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{7.}}\ Display the event name, registration fee, and registration fee after adding 18\% tax.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT event_name, registration_fee,
+       registration_fee * 1.18 AS fee_with_tax
+FROM event;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+EVENT_NAME        REGISTRATION_FEE  FEE_WITH_TAX
+----------------  ----------------  ------------
+Tech Fest                      200           236
+National Seminar               100           118
+Cultural Fest                  750           885
+Sports Meet                      0             0
+Alumni Meet                   1500          1770
+
+5 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

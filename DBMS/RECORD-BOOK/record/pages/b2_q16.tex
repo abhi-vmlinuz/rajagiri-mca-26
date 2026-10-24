@@ -1,0 +1,47 @@
+% ---- Section B / question 16
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{16.}}\ Display all books and all reservations, including books that have never been reserved and reservation records without a matching book.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT b.title, r.reservation_id
+FROM book b
+FULL OUTER JOIN reservation r ON r.book_id = b.book_id
+ORDER BY b.book_id, r.reservation_id;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+TITLE                                       RESERVATION_ID
+------------------------------------------  --------------
+1984
+Pride and Prejudice
+Clean Code                                            8004
+Sapiens                                               8002
+Wings of Fire
+The God of Small Things
+Introduction to Algorithms                            8001
+Modern Operating Systems
+Aarachar                                              8006
+The Picture of Dorian Gray
+Designing Data-Intensive Applications                 8003
+Learning SQL
+Artificial Intelligence: A Modern Approach            8005
+To Kill a Mockingbird
+India 2020
+Deep Learning                                         8007
+A Brief History of Time
+The Alchemist
+Machine Learning with Python                          8008
+Qabar
+
+20 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

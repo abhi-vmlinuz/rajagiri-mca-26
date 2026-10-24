@@ -1,0 +1,35 @@
+% ---- Section A / question 20
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{20.}}\ Find the total number of students, and the highest, lowest and average CGPA of all students.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT COUNT(*) AS total_students FROM student;
+
+SELECT MAX(cgpa) AS highest, MIN(cgpa) AS lowest,
+       AVG(cgpa) AS average
+FROM student;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+TOTAL_STUDENTS
+--------------
+            12
+
+1 row selected.
+
+HIGHEST  LOWEST  AVERAGE
+-------  ------  -------
+    9.6     5.8      7.9
+
+1 row selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

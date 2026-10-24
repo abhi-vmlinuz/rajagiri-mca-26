@@ -1,0 +1,34 @@
+% ---------------------------------------------------------------------
+% Section A / question 18
+% ---------------------------------------------------------------------
+
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{18.}}\ Create a foreign-key constraint linking hod\_faculty\_id in DEPARTMENT with faculty\_id in FACULTY.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+ALTER TABLE department
+    ADD CONSTRAINT fk_dept_hod FOREIGN KEY (hod_faculty_id)
+    REFERENCES faculty(faculty_id);
+DESC department;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPT_ID                                   NOT NULL VARCHAR2(10)
+ DEPT_NAME                                 NOT NULL VARCHAR2(20)
+ HOD_NAME                                           VARCHAR2(50)
+ OFFICE_LOCATION                                    VARCHAR2(50)
+ CONTACT_NUMBER                                     VARCHAR2(15)
+ HOD_FACULTY_ID                                     CHAR(5)
+\end{sqlout}
+\end{minipage}\par\vspace{30pt}
+

@@ -1,0 +1,29 @@
+% ---- Section A / question 7
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{7.}}\ Insert a course without mentioning the column names. Ensure that the values are entered in the correct table-column order.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+INSERT INTO course
+VALUES ('C102', 'Operating Systems', 3, 8, 'D01', 'F102');
+
+SELECT * FROM course;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+COURSE_ID  COURSE_TITLE                 CREDITS  SEMESTER  DEPT_ID  FACULTY_ID
+---------  ---------------------------  -------  --------  -------  ----------
+C101       Database Management Systems        4         3  D01      F101
+C102       Operating Systems                  3         8  D01      F102
+
+2 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

@@ -1,0 +1,27 @@
+% ---- Section A / question 9
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{9.}}\ Display courses offered in Semester 3.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+SELECT * FROM course WHERE semester = 3;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+COURSE_ID  COURSE_TITLE                 CREDITS  SEMESTER  DEPT_ID  FACULTY_ID
+---------  ---------------------------  -------  --------  -------  ----------
+C101       Database Management Systems        5         3  D01      F101
+C103       Data Structures                    4         3  D01      F106
+C105       Thermodynamics                     4         3  D03      F105
+
+3 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

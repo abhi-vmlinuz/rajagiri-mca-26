@@ -1,0 +1,29 @@
+% ---- Section A / question 9
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{9.}}\ Insert a result record where the total marks are calculated by adding the internal and external marks.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+INSERT INTO result (result_id, enrollment_id, internal_marks, external_marks,
+                    total_marks, grade, result_status)
+VALUES ('R101', 'E101', 18, 22, 18 + 22, 'F', 'FAIL');
+
+SELECT * FROM result;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\footnotesize]
+RESULT_ID  ENROLLMENT_ID  INTERNAL_MARKS  EXTERNAL_MARKS  TOTAL_MARKS  GRADE  RESULT_STATUS
+---------  -------------  --------------  --------------  -----------  -----  -------------
+R101       E101                       18              22           40  F      FAIL
+
+1 row selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+
