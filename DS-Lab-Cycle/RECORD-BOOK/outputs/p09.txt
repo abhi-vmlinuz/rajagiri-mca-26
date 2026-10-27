@@ -1,0 +1,2 @@
+Enter a string: hello world
+String in reverse order: dlrow olleh

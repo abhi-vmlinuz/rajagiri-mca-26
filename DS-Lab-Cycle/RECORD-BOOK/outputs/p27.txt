@@ -1,0 +1,3 @@
+Enter a string: programming
+Reverse order: gnimmargorp
+Reversed string: gnimmargorp

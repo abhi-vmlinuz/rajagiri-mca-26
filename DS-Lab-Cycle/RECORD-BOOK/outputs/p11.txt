@@ -1,0 +1,10 @@
+Enter the value to push: 10
+Value pushed.
+Enter the value to push: 20
+Value pushed.
+Enter the value to push: 30
+Value pushed.
+Stack from top to bottom: 30 20 10
+Top value: 30
+Popped value: 30
+Stack from top to bottom: 20 10

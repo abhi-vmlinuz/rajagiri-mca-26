@@ -1,0 +1,32 @@
+Linked Stack
+Stack: 30 20 10
+Popped: 30
+Stack: 20 10
+
+Linked Queue
+Queue: 10 20 30
+Dequeued: 10
+Queue: 20 30
+Queue: 20 30 40
+
+Circular Linked List
+Circular list: 10 20 30
+Circular list: 10 30
+
+Circular Linked Queue
+Circular queue: 10 20 30
+Dequeued: 10
+Circular queue: 20 30
+Circular queue: 20 30 40
+
+Doubly Linked List
+Forward: 10 20 30
+Backward: 30 20 10
+Forward: 10 30
+Backward: 30 10
+
+Circular Doubly Linked List
+Forward: Alice Bob Carol
+Backward: Carol Bob Alice
+Forward: Alice Carol
+Backward: Carol Alice

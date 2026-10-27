@@ -1,0 +1,15 @@
+Enter the number of strings: 4
+Enter string 1: banana
+Enter string 2: apple
+Enter string 3: cherry
+Enter string 4: date
+Before sorting:
+banana
+apple
+cherry
+date
+After sorting:
+apple
+banana
+cherry
+date

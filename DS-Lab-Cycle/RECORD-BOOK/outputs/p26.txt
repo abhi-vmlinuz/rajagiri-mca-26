@@ -1,0 +1,15 @@
+First polynomial:
+Enter the number of terms: 2
+Term 1 coefficient: 2
+Term 1 exponent: 1
+Term 2 coefficient: 1
+Term 2 exponent: 0
+Second polynomial:
+Enter the number of terms: 2
+Term 1 coefficient: 3
+Term 1 exponent: 1
+Term 2 coefficient: 4
+Term 2 exponent: 0
+First polynomial: 2x + 1
+Second polynomial: 3x + 4
+Product: 6x^2 + 11x + 4

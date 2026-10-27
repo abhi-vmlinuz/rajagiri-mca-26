@@ -1,0 +1,9 @@
+Enter the size of the array: 6
+Enter element 1: 12
+Enter element 2: 11
+Enter element 3: 13
+Enter element 4: 5
+Enter element 5: 6
+Enter element 6: 7
+Before sorting: 12 11 13 5 6 7
+After sorting: 5 6 7 11 12 13

@@ -1,0 +1,9 @@
+Enter the size of the sorted array: 6
+Enter element 1: 10
+Enter element 2: 20
+Enter element 3: 30
+Enter element 4: 40
+Enter element 5: 50
+Enter element 6: 60
+Enter the element to search: 40
+Element 40 found at position 4.

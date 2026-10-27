@@ -1,0 +1,14 @@
+Enter the number of books: 3
+Book 1
+Enter author name: Dennis Ritchie
+Enter book name: The C Programming Language
+Book 2
+Enter author name: Brian Kernighan
+Enter book name: The Unix Programming Environment
+Book 3
+Enter author name: Donald Knuth
+Enter book name: The Art of Computer Programming
+Author                    Book
+Dennis Ritchie            The C Programming Language
+Brian Kernighan           The Unix Programming Environment
+Donald Knuth              The Art of Computer Programming

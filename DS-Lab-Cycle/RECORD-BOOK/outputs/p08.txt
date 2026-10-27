@@ -1,0 +1,57 @@
+Enter rows and columns (maximum 3): 2 2
+Enter the first matrix:
+Enter element at row 1, column 1: 1
+Enter element at row 1, column 2: 2
+Enter element at row 2, column 1: 3
+Enter element at row 2, column 2: 4
+Enter the second matrix:
+Enter element at row 1, column 1: 5
+Enter element at row 1, column 2: 6
+Enter element at row 2, column 1: 7
+Enter element at row 2, column 2: 8
+Sum of the matrices:
+6 8
+10 12
+Enter rows and columns (maximum 3): 2 2
+Enter the first matrix:
+Enter element at row 1, column 1: 5
+Enter element at row 1, column 2: 6
+Enter element at row 2, column 1: 7
+Enter element at row 2, column 2: 8
+Enter the second matrix:
+Enter element at row 1, column 1: 1
+Enter element at row 1, column 2: 2
+Enter element at row 2, column 1: 3
+Enter element at row 2, column 2: 4
+First matrix minus second matrix:
+4 4
+4 4
+Enter rows and columns of the first matrix: 2 2
+Enter rows and columns of the second matrix: 2 2
+Enter the first matrix:
+Enter element at row 1, column 1: 1
+Enter element at row 1, column 2: 2
+Enter element at row 2, column 1: 3
+Enter element at row 2, column 2: 4
+Enter the second matrix:
+Enter element at row 1, column 1: 5
+Enter element at row 1, column 2: 6
+Enter element at row 2, column 1: 7
+Enter element at row 2, column 2: 8
+Product of the matrices:
+19 22
+43 50
+Enter rows and columns (maximum 3): 2 2
+Enter element at row 1, column 1: 1
+Enter element at row 1, column 2: 2
+Enter element at row 2, column 1: 3
+Enter element at row 2, column 2: 4
+Transpose of the matrix:
+1 3
+2 4
+Enter the order of the matrix (2 or 3): 2
+Enter element at row 1, column 1: 1
+Enter element at row 1, column 2: 2
+Enter element at row 2, column 1: 3
+Enter element at row 2, column 2: 4
+Determinant = -2

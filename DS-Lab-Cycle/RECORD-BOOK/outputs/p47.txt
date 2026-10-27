@@ -1,0 +1,5 @@
+List: Alice Bob Carol Dave
+Count: 4
+List: Alice Carol Dave
+After sorting: List: Alice Carol Dave
+After reversing: List: Dave Carol Alice

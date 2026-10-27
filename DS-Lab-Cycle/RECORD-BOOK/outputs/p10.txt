@@ -1,0 +1,10 @@
+Enter the number of strings (maximum 20): 4
+Enter string 1: banana
+Enter string 2: apple
+Enter string 3: cherry
+Enter string 4: date
+Strings in ascending order:
+apple
+banana
+cherry
+date

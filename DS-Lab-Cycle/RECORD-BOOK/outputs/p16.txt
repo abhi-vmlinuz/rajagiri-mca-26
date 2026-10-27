@@ -1,0 +1,2 @@
+Enter an infix expression: 10+20*3
+Result = 70

@@ -1,0 +1,8 @@
+Enter the size of the array: 5
+Enter element 1: 10
+Enter element 2: 20
+Enter element 3: 30
+Enter element 4: 40
+Enter element 5: 50
+Enter the element to search: 30
+Element 30 found at position 3.

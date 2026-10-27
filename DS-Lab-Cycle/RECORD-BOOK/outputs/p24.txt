@@ -1,0 +1,15 @@
+First polynomial:
+Enter the number of terms: 2
+Term 1 coefficient: 2
+Term 1 exponent: 2
+Term 2 coefficient: 1
+Term 2 exponent: 0
+Second polynomial:
+Enter the number of terms: 2
+Term 1 coefficient: 3
+Term 1 exponent: 2
+Term 2 coefficient: 4
+Term 2 exponent: 0
+First polynomial: 2x^2 + 1
+Second polynomial: 3x^2 + 4
+Sum: 5x^2 + 5

@@ -1,0 +1,16 @@
+Enter the number of rows and columns: 3 3
+Enter the number of non-zero elements: 4
+Element 1 (row column value): 0 0 5
+Element 2 (row column value): 0 2 3
+Element 3 (row column value): 2 1 7
+Element 4 (row column value): 1 0 2
+Sparse matrix in triplet form:
+Row    Column   Value
+0      0        5
+0      2        3
+2      1        7
+1      0        2
+Sparse matrix in full form:
+5 0 3
+2 0 0
+0 7 0

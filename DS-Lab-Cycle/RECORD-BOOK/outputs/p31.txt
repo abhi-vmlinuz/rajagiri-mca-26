@@ -1,0 +1,6 @@
+Values allocated with malloc:
+10 20 30 40 50
+Memory allocated with malloc has been freed.
+Values allocated with calloc:
+0 0 0 0 0
+Memory allocated with calloc has been freed.

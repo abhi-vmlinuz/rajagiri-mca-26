@@ -1,0 +1,8 @@
+Enter the number of sorted strings: 5
+Enter string 1: apple
+Enter string 2: banana
+Enter string 3: cherry
+Enter string 4: date
+Enter string 5: elder
+Enter the string to search: cherry
+cherry found at position 3.

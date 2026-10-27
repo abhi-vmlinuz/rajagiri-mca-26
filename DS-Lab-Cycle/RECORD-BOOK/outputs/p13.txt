@@ -1,0 +1,2 @@
+Enter a string: data structures
+String in reverse order: serutcurts atad

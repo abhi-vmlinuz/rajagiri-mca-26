@@ -1,0 +1,192 @@
+
+1. Add student
+2. Display students
+3. Save to file
+4. Load from file
+5. Update student
+6. Delete student
+7. Sort by roll number
+8. Sort by name
+9. Exit
+Enter your choice: 1
+Enter roll number: 101
+Enter name: Alice
+Enter mark 1: 80
+Enter mark 2: 85
+Enter mark 3: 90
+Enter mark 4: 75
+Enter mark 5: 88
+Student added.
+
+1. Add student
+2. Display students
+3. Save to file
+4. Load from file
+5. Update student
+6. Delete student
+7. Sort by roll number
+8. Sort by name
+9. Exit
+Enter your choice: 1
+Enter roll number: 102
+Enter name: Bob
+Enter mark 1: 70
+Enter mark 2: 72
+Enter mark 3: 68
+Enter mark 4: 75
+Enter mark 5: 80
+Student added.
+
+1. Add student
+2. Display students
+3. Save to file
+4. Load from file
+5. Update student
+6. Delete student
+7. Sort by roll number
+8. Sort by name
+9. Exit
+Enter your choice: 1
+Enter roll number: 103
+Enter name: Carol
+Enter mark 1: 90
+Enter mark 2: 92
+Enter mark 3: 88
+Enter mark 4: 95
+Enter mark 5: 91
+Student added.
+
+1. Add student
+2. Display students
+3. Save to file
+4. Load from file
+5. Update student
+6. Delete student
+7. Sort by roll number
+8. Sort by name
+9. Exit
+Enter your choice: 2
+Roll     Name                 Marks                Total
+101      Alice                80 85 90 75 88 418
+102      Bob                  70 72 68 75 80 365
+103      Carol                90 92 88 95 91 456
+
+1. Add student
+2. Display students
+3. Save to file
+4. Load from file
+5. Update student
+6. Delete student
+7. Sort by roll number
+8. Sort by name
+9. Exit
+Enter your choice: 5
+Enter the roll number to update: 101
+Enter the new name: Alice Johnson
+Enter mark 1: 85
+Enter mark 2: 86
+Enter mark 3: 87
+Enter mark 4: 88
+Enter mark 5: 89
+Student updated.
+
+1. Add student
+2. Display students
+3. Save to file
+4. Load from file
+5. Update student
+6. Delete student
+7. Sort by roll number
+8. Sort by name
+9. Exit
+Enter your choice: 6
+Enter the roll number to delete: 102
+Student 102 deleted.
+
+1. Add student
+2. Display students
+3. Save to file
+4. Load from file
+5. Update student
+6. Delete student
+7. Sort by roll number
+8. Sort by name
+9. Exit
+Enter your choice: 7
+Sorted by roll number.
+
+1. Add student
+2. Display students
+3. Save to file
+4. Load from file
+5. Update student
+6. Delete student
+7. Sort by roll number
+8. Sort by name
+9. Exit
+Enter your choice: 8
+Sorted by name.
+
+1. Add student
+2. Display students
+3. Save to file
+4. Load from file
+5. Update student
+6. Delete student
+7. Sort by roll number
+8. Sort by name
+9. Exit
+Enter your choice: 2
+Roll     Name                 Marks                Total
+101      Alice Johnson        85 86 87 88 89 435
+103      Carol                90 92 88 95 91 456
+
+1. Add student
+2. Display students
+3. Save to file
+4. Load from file
+5. Update student
+6. Delete student
+7. Sort by roll number
+8. Sort by name
+9. Exit
+Enter your choice: 3
+Records saved to students.txt.
+
+1. Add student
+2. Display students
+3. Save to file
+4. Load from file
+5. Update student
+6. Delete student
+7. Sort by roll number
+8. Sort by name
+9. Exit
+Enter your choice: 4
+Records loaded from students.txt.
+
+1. Add student
+2. Display students
+3. Save to file
+4. Load from file
+5. Update student
+6. Delete student
+7. Sort by roll number
+8. Sort by name
+9. Exit
+Enter your choice: 2
+Roll     Name                 Marks                Total
+101      Alice Johnson        85 86 87 88 89 435
+103      Carol                90 92 88 95 91 456
+
+1. Add student
+2. Display students
+3. Save to file
+4. Load from file
+5. Update student
+6. Delete student
+7. Sort by roll number
+8. Sort by name
+9. Exit
+Enter your choice: 9
+Program ended.

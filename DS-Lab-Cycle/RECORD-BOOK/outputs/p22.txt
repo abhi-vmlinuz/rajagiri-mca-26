@@ -1,0 +1,43 @@
+Enter the number of employees: 3
+Employee 1
+Enter employee number: 101
+Enter employee name: Alice
+Enter employee salary: 50000
+Enter department number: 1
+Employee 2
+Enter employee number: 102
+Enter employee name: Bob
+Enter employee salary: 60000
+Enter department number: 2
+Employee 3
+Enter employee number: 103
+Enter employee name: Carol
+Enter employee salary: 55000
+Enter department number: 1
+
+Employee records:
+Eno      Name                      Salary     Dno
+101      Alice                     50000.00   1
+102      Bob                       60000.00   2
+103      Carol                     55000.00   1
+
+Search by employee number 102:
+Employee found: 102 Bob 60000.00 2
+
+Sorted by name:
+Eno      Name                      Salary     Dno
+101      Alice                     50000.00   1
+102      Bob                       60000.00   2
+103      Carol                     55000.00   1
+
+Sorted by salary:
+Eno      Name                      Salary     Dno
+102      Bob                       60000.00   2
+103      Carol                     55000.00   1
+101      Alice                     50000.00   1
+
+Delete employee number 102:
+Employee 102 deleted.
+Eno      Name                      Salary     Dno
+103      Carol                     55000.00   1
+101      Alice                     50000.00   1

@@ -1,0 +1,7 @@
+3
+Dennis Ritchie
+The C Programming Language
+Brian Kernighan
+The Unix Programming Environment
+Donald Knuth
+The Art of Computer Programming

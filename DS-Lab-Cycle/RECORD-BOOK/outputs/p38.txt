@@ -1,0 +1,22 @@
+First sparse matrix:
+Enter the number of rows and columns: 2 3
+Enter the number of non-zero elements: 4
+Element 1 (row column value): 0 0 1
+Element 2 (row column value): 0 1 2
+Element 3 (row column value): 1 1 3
+Element 4 (row column value): 1 2 4
+Second sparse matrix:
+Enter the number of rows and columns: 3 2
+Enter the number of non-zero elements: 3
+Element 1 (row column value): 0 0 5
+Element 2 (row column value): 1 1 6
+Element 3 (row column value): 2 0 7
+Product in full form:
+5 12
+28 18
+Product in triplet form:
+Row    Column   Value
+0      0        5
+0      1        12
+1      0        28
+1      1        18

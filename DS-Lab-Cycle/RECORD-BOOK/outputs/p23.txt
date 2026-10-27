@@ -1,0 +1,5 @@
+Enter the number of terms: 3
+Term 1 coefficient: 2 3
+Term 1 exponent: Term 2 coefficient: -3 1
+Term 2 exponent: Term 3 coefficient: 4 0
+Term 3 exponent: Polynomial: 2x^3 - 3x + 4

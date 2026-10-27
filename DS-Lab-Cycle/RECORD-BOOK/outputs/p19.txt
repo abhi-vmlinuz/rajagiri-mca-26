@@ -1,0 +1,12 @@
+First polynomial:
+Enter the degree of the polynomial: 2
+Enter the coefficient of x^2: 5
+Enter the coefficient of x^1: 3
+Enter the coefficient of x^0: 1
+Second polynomial:
+Enter the degree of the polynomial: 1
+Enter the coefficient of x^1: 2
+Enter the coefficient of x^0: 1
+First polynomial: 5x^2 + 3x + 1
+Second polynomial: 2x + 1
+Difference: 5x^2 + x

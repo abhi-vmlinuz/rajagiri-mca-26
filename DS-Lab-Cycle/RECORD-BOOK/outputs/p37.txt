@@ -1,0 +1,17 @@
+First sparse matrix:
+Enter the number of rows and columns: 3 3
+Enter the number of non-zero elements: 3
+Element 1 (row column value): 0 0 5
+Element 2 (row column value): 0 2 3
+Element 3 (row column value): 2 1 7
+Second sparse matrix:
+Enter the number of rows and columns: 3 3
+Enter the number of non-zero elements: 3
+Element 1 (row column value): 0 0 2
+Element 2 (row column value): 1 1 4
+Element 3 (row column value): 2 1 -7
+Sum in triplet form:
+Row    Column   Value
+0      0        7
+0      2        3
+1      1        4

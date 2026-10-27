@@ -1,0 +1,4 @@
+Queue: 10 20 30 40
+Dequeued: 10
+Dequeued: 20
+Queue: 30 40 50 60

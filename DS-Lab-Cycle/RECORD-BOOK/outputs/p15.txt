@@ -1,0 +1,2 @@
+Enter an infix expression without spaces: A+B*C
+Prefix expression: +A*BC

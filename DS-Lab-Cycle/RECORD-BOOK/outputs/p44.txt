@@ -1,0 +1,8 @@
+Enter the number of nodes: 5
+Enter value 1: 10
+Enter value 2: 20
+Enter value 3: 30
+Enter value 4: 40
+Enter value 5: 50
+List in original order: 10 20 30 40 50
+List in reverse order: 50 40 30 20 10

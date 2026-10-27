@@ -1,0 +1,11 @@
+Storage class demonstration
+
+Local variable: 5
+Global variable accessed through extern declaration: 10
+First call to the static variable function:
+Static variable: 1
+Second call to the static variable function:
+Static variable: 2
+Register variable: 1
+Register variable: 2
+Register variable: 3

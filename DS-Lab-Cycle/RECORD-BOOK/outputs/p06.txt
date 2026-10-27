@@ -1,0 +1,7 @@
+Enter the size of the array (maximum 100): 5
+Enter element 1: 23
+Enter element 2: 51
+Enter element 3: 2
+Enter element 4: 67
+Enter element 5: 45
+Array in the same order: 23 51 2 67 45

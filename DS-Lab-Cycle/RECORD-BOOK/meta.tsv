@@ -1,0 +1,57 @@
+1	10-07-2026	Demonstration of Storage Classes in C	Demonstrates automatic (local), external (global), static, and register storage classes in C.
+2	14-07-2026	Menu-Driven Array Operations Using Global Variables	Implements a menu-driven program to insert, search, delete, and sort elements in an array using global variables.
+3	20-07-2026	Menu-Driven Array Operations Using Local Variables	Implements a menu-driven program to insert, search, delete, and sort elements in an array using local variables passed to functions.
+4	22-07-2026	Search All Occurrences of an Element	Finds and displays all positions of a given element in an integer array.
+5	22-07-2026	Sort an Array in Ascending Order	Reads, displays, and sorts an integer array in ascending order using separate functions.
+6	02-08-2026	Display an Array Using Recursion	Prints the elements of an integer array in their original order using recursion.
+7	02-08-2026	Display an Array in Reverse Using Recursion	Prints the elements of an integer array in reverse order using recursion.
+8	28-07-2026	Matrix Operations	Performs addition, subtraction, multiplication, transpose, and determinant operations on matrices.
+9	24-07-2026	Reverse a String in the Same Array	Reads a string and reverses it in the same array.
+10	24-07-2026	Sort n Strings in Ascending Order	Reads n strings and displays them in ascending order.
+11	05-08-2026	Stack Operations Using an Array	Implements push, pop, peek, and display operations on a stack using an array.
+12	05-08-2026	Evaluate a Push and Pop Sequence	Evaluates the given push and pop sequence on a LIFO stack and prints the values returned by the pop operations.
+13	07-08-2026	Reverse a String Using a Stack	Reads a string and reverses it using a stack.
+14	12-08-2026	Infix to Postfix Conversion	Converts an infix expression to postfix using a stack.
+15	12-08-2026	Infix to Prefix Conversion	Converts an infix expression to prefix using a stack.
+16	14-08-2026	Evaluate an Infix Expression	Evaluates an infix expression using operand and operator stacks.
+17	19-08-2026	Read and Display a Polynomial Using an Array	Reads a polynomial using coefficient arrays and displays it.
+18	19-08-2026	Add Two Polynomials Using Arrays	Adds two polynomials represented using coefficient arrays.
+19	21-08-2026	Subtract Two Polynomials Using Arrays	Subtracts one polynomial from another using coefficient arrays.
+20	21-08-2026	Multiply Two Polynomials Using Arrays	Multiplies two polynomials represented using coefficient arrays.
+21	26-08-2026	Date Structure	Defines a date structure and provides functions to read, display, and compare two dates for equality.
+22	26-08-2026	Employee Structure	Defines an employee structure and provides functions to search, sort, and delete employee records.
+23	02-09-2026	Read and Display a Polynomial Using Structures	Reads and displays a polynomial using an array of term structures.
+24	02-09-2026	Add Two Polynomials Using Structures	Adds two polynomials represented using arrays of term structures.
+25	04-09-2026	Subtract Two Polynomials Using Structures	Subtracts one polynomial from another using arrays of term structures.
+26	04-09-2026	Multiply Two Polynomials Using Structures	Multiplies two polynomials represented using arrays of term structures.
+27	09-09-2026	Reverse a String	Reverses a string by printing it backwards and by reversing it in the same array.
+28	09-09-2026	Sort n Strings in Ascending Order	Reads n strings and displays them in ascending order.
+29	16-09-2026	Queue Using an Array	Demonstrates enqueue, dequeue, and display operations on a linear queue using an array.
+30	16-09-2026	Circular Queue Using an Array	Demonstrates enqueue, dequeue, and display operations on a circular queue using an array.
+31	04-09-2026	Dynamic Memory Allocation Functions	Demonstrates the use of malloc, calloc, and free for dynamic memory allocation.
+32	04-09-2026	Mean Using malloc	Uses malloc to read n integers and computes their mean.
+33	04-09-2026	Mode Using calloc	Uses calloc to count frequencies and find the mode of n numbers.
+34	04-09-2026	Array of Books Using Pointers	Creates an array of book structures using a pointer and reads and displays the books through pointers.
+35	04-09-2026	Variable-Length String Using realloc	Uses realloc to grow a character buffer and read a string of any length.
+36	11-09-2026	Read and Display a Sparse Matrix	Reads a sparse matrix in triplet form and displays it in triplet and full form.
+37	11-09-2026	Add Two Sparse Matrices	Adds two sparse matrices represented in triplet form.
+38	11-09-2026	Multiply Two Sparse Matrices	Multiplies two sparse matrices by converting them to dense form and back to triplets.
+39	18-09-2026	Heapsort	Sorts an array in ascending order using heapsort.
+40	18-09-2026	Priority Queue Using an Array	Demonstrates insertion, deletion of the highest-priority element, and display on a priority queue.
+41	25-09-2026	Linked List Creation and Display	Creates a singly linked list and displays its elements.
+42	25-09-2026	Insert a Node in a Linked List	Inserts nodes at the beginning, at the end, and after a specified element.
+43	25-09-2026	Delete a Node from a Linked List	Deletes nodes from the beginning, from the end, and by value.
+44	25-09-2026	Display a Linked List in Reverse Order	Creates a singly linked list of n nodes and displays it in reverse order using recursion.
+45	25-09-2026	Sort a Linked List	Sorts a linked list by swapping values and by swapping addresses.
+46	02-10-2026	Polynomial Using a Linked List	Adds and multiplies two polynomials represented using linked lists.
+47	02-10-2026	Linked List of Names	Performs insertion, deletion, display, sorting, reversal, and counting on a linked list of names.
+48	09-10-2026	Linked Stack, Queue, and Linked Lists	Demonstrates linked stack, linked queue, circular linked list, circular linked queue, doubly linked list, and circular doubly linked list.
+49	16-10-2026	Linear Search	Searches for an element in an array using linear search.
+50	16-10-2026	Binary Search for Integers	Searches for an element in a sorted integer array using binary search.
+51	16-10-2026	Binary Search for Strings	Searches for a string in a sorted array of strings using binary search.
+52	23-10-2026	Binary Search Tree Traversals	Inserts values into a binary search tree and displays inorder, preorder, and postorder traversals using recursion.
+53	23-10-2026	Inorder Traversal Without Recursion	Displays the inorder traversal of a binary search tree without recursion.
+54	23-10-2026	Preorder Traversal Without Recursion	Displays the preorder traversal of a binary search tree without recursion.
+55	23-10-2026	Postorder Traversal Without Recursion	Displays the postorder traversal of a binary search tree without recursion.
+56	23-10-2026	Binary Search Tree Using Names	Inserts names into a binary search tree and displays them in ascending order using inorder traversal.
+57	30-10-2026	Student Record Management System	Menu-driven student record management using a singly linked list with add, display, save, load, update, delete, and sort operations.

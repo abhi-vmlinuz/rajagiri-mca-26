@@ -1,0 +1,8 @@
+Enter element 1: 40
+Enter element 2: 10
+Enter element 3: 30
+Enter element 4: 20
+Before sorting:
+Array: 40 10 30 20
+After sorting:
+Array: 10 20 30 40

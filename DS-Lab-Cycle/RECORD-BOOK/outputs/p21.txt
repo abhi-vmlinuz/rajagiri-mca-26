@@ -1,0 +1,7 @@
+First date:
+Enter the date (dd mm yyyy): 15 8 2024
+Second date:
+Enter the date (dd mm yyyy): 15 8 2024
+First date: 15/08/2024
+Second date: 15/08/2024
+The dates are equal.

@@ -1,0 +1,3 @@
+Enter a string of any length: This string is deliberately long so that the buffer has to grow several times.
+You entered: This string is deliberately long so that the buffer has to grow several times.
+Length: 78
