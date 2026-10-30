@@ -4,7 +4,16 @@
 {\fontsize{14}{17}\selectfont\textbf{5.}}\ Insert the faculty member Meera Joseph (F101) into the FACULTY table.\par
 \endgroup\vspace{12pt}
 
-\codeheading{CODE:}
+\noindent\textbf{Sample Data:} Faculty\par
+\vspace{6pt}
+{\footnotesize\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{56.3pt}|>{\raggedright\arraybackslash}p{70.2pt}|>{\raggedright\arraybackslash}p{84.9pt}|>{\raggedright\arraybackslash}p{64.7pt}|>{\raggedleft\arraybackslash}p{35.8pt}|>{\raggedright\arraybackslash}p{87.4pt}|>{\raggedright\arraybackslash}p{44.7pt}|}
+\hline
+\textbf{Faculty\_ID} & \textbf{Faculty\_Name} & \textbf{Designation} & \textbf{Joining\_Date} & \textbf{Salary} & \textbf{Email\_ID} & \textbf{Dept\_ID} \\ \hline
+F101 & Meera Joseph & Assistant Professor & 01-JUN-22 & 55000 & meera@rajagiri.edu & D01 \\ \hline
+\end{tabular}\par}
+\vspace{14pt}\codeheading{CODE:}
 
 \begin{sqlcode}[fontsize=\footnotesize]
 INSERT INTO faculty (faculty_id, faculty_name, designation, joining_date, salary,

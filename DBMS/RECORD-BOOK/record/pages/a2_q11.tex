@@ -4,7 +4,16 @@
 {\fontsize{14}{17}\selectfont\textbf{11.}}\ Insert an event-registration record and allow the registration date to take the current date automatically.\par
 \endgroup\vspace{12pt}
 
-\codeheading{CODE:}
+\noindent\textbf{Sample Data:} Event Registration\par
+\vspace{6pt}
+{\small\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{124.8pt}|>{\raggedright\arraybackslash}p{94.2pt}|>{\raggedright\arraybackslash}p{103.4pt}|>{\raggedright\arraybackslash}p{145.6pt}|}
+\hline
+\textbf{Registration\_ID} & \textbf{Event\_ID} & \textbf{Student\_ID} & \textbf{Participation\_Status} \\ \hline
+REG01 & EV01 & S101 & ABSENT \\ \hline
+\end{tabular}\par}
+\vspace{14pt}\codeheading{CODE:}
 
 \begin{sqlcode}
 INSERT INTO event_registration (registration_id, event_id, student_id,
@@ -21,7 +30,7 @@ SELECT * FROM event_registration;
 \begin{sqlout}[fontsize=\small]
 REGISTRATION_ID  EVENT_ID  STUDENT_ID  REGISTRATION_DATE  PARTICIPATION_STATUS
 ---------------  --------  ----------  -----------------  --------------------
-REG01            EV01      S101        24-OCT-26          ABSENT
+REG01            EV01      S101        25-OCT-26          ABSENT
 
 1 row selected.
 \end{sqlout}

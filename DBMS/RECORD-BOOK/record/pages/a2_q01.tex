@@ -4,7 +4,16 @@
 {\fontsize{14}{17}\selectfont\textbf{1.}}\ Insert a new department with Department ID D01, Department Name Computer Science, Office Location Carmel Block and Contact Number 9876543210.\par
 \endgroup\vspace{12pt}
 
-\codeheading{CODE:}
+\noindent\textbf{Sample Data:} Department\par
+\vspace{6pt}
+{\small\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{87.6pt}|>{\raggedright\arraybackslash}p{128.2pt}|>{\raggedright\arraybackslash}p{123.0pt}|>{\raggedright\arraybackslash}p{129.1pt}|}
+\hline
+\textbf{Dept\_ID} & \textbf{Dept\_Name} & \textbf{Office\_Location} & \textbf{Contact\_Number} \\ \hline
+D01 & Computer Science & Carmel Block & 9876543210 \\ \hline
+\end{tabular}\par}
+\vspace{14pt}\codeheading{CODE:}
 
 \begin{sqlcode}
 INSERT INTO department (dept_id, dept_name, office_location, contact_number)

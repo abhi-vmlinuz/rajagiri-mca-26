@@ -6,8 +6,11 @@
 
 \codeheading{CODE:}
 
-\begin{sqlcode}
+\begin{sqlcode}[fontsize=\footnotesize]
 UPDATE department SET office_location = 'Golden Aureole Block'
+WHERE dept_name = 'Computer Science';
+
+SELECT dept_id, dept_name, office_location FROM department
 WHERE dept_name = 'Computer Science';
 \end{sqlcode}
 
@@ -17,7 +20,12 @@ WHERE dept_name = 'Computer Science';
 
 \begin{sqlout}[fontsize=\small]
 1 row updated.
-Commit complete.
+
+DEPT_ID  DEPT_NAME         OFFICE_LOCATION     
+-------  ----------------  --------------------
+D01      Computer Science  Golden Aureole Block
+
+1 row selected.
 \end{sqlout}
 \end{minipage}\par\vspace{24pt}
 

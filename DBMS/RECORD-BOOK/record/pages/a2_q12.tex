@@ -8,6 +8,8 @@
 
 \begin{sqlcode}
 UPDATE student SET cgpa = 8.7 WHERE student_id = 'S101';
+
+SELECT student_id, cgpa FROM student WHERE student_id = 'S101';
 \end{sqlcode}
 
 \vspace{18pt}
@@ -16,7 +18,12 @@ UPDATE student SET cgpa = 8.7 WHERE student_id = 'S101';
 
 \begin{sqlout}[fontsize=\small]
 1 row updated.
-Commit complete.
+
+STUDENT_ID  CGPA
+----------  ----
+S101         8.7
+
+1 row selected.
 \end{sqlout}
 \end{minipage}\par\vspace{24pt}
 

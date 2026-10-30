@@ -4,7 +4,16 @@
 {\fontsize{14}{17}\selectfont\textbf{2.}}\ Insert the student record of Akhil Raj (S101) into the STUDENT table.\par
 \endgroup\vspace{12pt}
 
-\codeheading{CODE:}
+\noindent\textbf{Sample Data:} Student\par
+\vspace{6pt}
+{\scriptsize\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{45.0pt}|>{\raggedright\arraybackslash}p{56.1pt}|>{\raggedright\arraybackslash}p{44.1pt}|>{\raggedright\arraybackslash}p{31.2pt}|>{\raggedright\arraybackslash}p{65.0pt}|>{\raggedright\arraybackslash}p{62.8pt}|>{\raggedright\arraybackslash}p{34.8pt}|>{\raggedright\arraybackslash}p{61.5pt}|>{\raggedleft\arraybackslash}p{27.5pt}|}
+\hline
+\textbf{Student\_ID} & \textbf{Student\_Name} & \textbf{DOB} & \textbf{Gender} & \textbf{Contact\_Number} & \textbf{Email\_ID} & \textbf{Dept\_ID} & \textbf{Admission\_Date} & \textbf{CGPA} \\ \hline
+S101 & Akhil Raj & 15-AUG-05 & M & 9876501234 & akhil@gmail.com & D01 & 25-OCT-26 & 8.2 \\ \hline
+\end{tabular}\par}
+\vspace{14pt}\codeheading{CODE:}
 
 \begin{sqlcode}
 INSERT INTO student (student_id, student_name, dob, gender, contact_number,
@@ -22,7 +31,7 @@ SELECT * FROM student;
 \begin{sqlout}[fontsize=\scriptsize]
 STUDENT_ID STUDENT_NAME DOB       GENDER CONTACT_NUMBER EMAIL_ID        DEPT_ID ADMISSION_DATE CGPA CITY STATE
 ---------- ------------ --------- ------ -------------- --------------- ------- -------------- ---- ---- -----
-S101       Akhil Raj    15-AUG-05 M      9876501234     akhil@gmail.com D01     24-OCT-26       8.2
+S101       Akhil Raj    15-AUG-05 M      9876501234     akhil@gmail.com D01     25-OCT-26       8.2
 
 1 row selected.
 \end{sqlout}

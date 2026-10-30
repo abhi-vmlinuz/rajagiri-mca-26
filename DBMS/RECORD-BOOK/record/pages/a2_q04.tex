@@ -4,7 +4,17 @@
 {\fontsize{14}{17}\selectfont\textbf{4.}}\ Insert two faculty records into the FACULTY table using a single INSERT ALL statement.\par
 \endgroup\vspace{12pt}
 
-\codeheading{CODE:}
+\noindent\textbf{Sample Data:} Faculty\par
+\vspace{6pt}
+{\small\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{56.4pt}|>{\raggedright\arraybackslash}p{71.7pt}|>{\raggedright\arraybackslash}p{87.9pt}|>{\raggedright\arraybackslash}p{65.6pt}|>{\raggedleft\arraybackslash}p{33.8pt}|>{\raggedright\arraybackslash}p{85.1pt}|>{\raggedright\arraybackslash}p{43.6pt}|}
+\hline
+\textbf{Faculty\_ID} & \textbf{Faculty\_Name} & \textbf{Designation} & \textbf{Joining\_Date} & \textbf{Salary} & \textbf{Email\_ID} & \textbf{Dept\_ID} \\ \hline
+F102 & Ravi Kumar & Assistant Professor & 10-JUL-24 & 25000 & ravi@rajagiri.edu & D01 \\ \hline
+F103 & Anita Thomas & Professor & 01-JUN-11 & 90000 & anita@rajagiri.edu & D01 \\ \hline
+\end{tabular}\par}
+\vspace{14pt}\codeheading{CODE:}
 
 \begin{sqlcode}[fontsize=\footnotesize]
 INSERT ALL

@@ -23,6 +23,7 @@ PAGES = os.path.join(ROOT, "record", "pages")
 OUT = os.path.join(ROOT, "record", "record.docx")
 
 TEXT_W = 17.19 * 28.3465          # 21cm - 1.5in, in points
+FONT_DIR = "/usr/share/fonts/liberation-serif-fonts"
 BODY_FONT = "Times New Roman"
 CODE_FONT = "Courier New"
 
@@ -80,6 +81,25 @@ def parse_blocks(path):
                 continue
             rows.append([unescape(c) for c in raw.split("&")])
         add("table", m, rows)
+
+    # "Sample Data: X" table emitted by gen_section_a_dml_sql.py
+    for m in re.finditer(r"\\noindent\\textbf\{Sample Data:\}\s*([^\n\\]*)\\par",
+                         s):
+        beg = s.find(r"\begin{tabular}", m.end())
+        fin = s.find(r"\end{tabular}", beg)
+        if beg < 0 or fin < 0:
+            continue
+        spec = s[s.find("{", beg) + 1:s.find("\n", beg)]
+        ncols = spec.count("p{")
+        body = s[s.find("\\hline", beg):fin]
+        rows = []
+        for raw in body.split(r"\\"):
+            raw = raw.replace(r"\hline", "").strip()
+            if not raw:
+                continue
+            cells = [unescape(c).replace(r"\newline ", " ") for c in raw.split("&")]
+            rows.append(cells[:ncols])
+        add("sample", m, (unescape(m.group(1)), rows))
 
     for m in re.finditer(r"\\begin\{sqlcode\}(?:\[fontsize=\S+\])?\n(.*?)\\end\{sqlcode\}",
                          s, re.S):
@@ -240,6 +260,15 @@ def add_footer_number(section):
     run._r.append(fld("end"))
 
 
+def _text_pt(text, size, bold=False):
+    """Width of a string in points, measured with the real Liberation Serif."""
+    from PIL import ImageFont
+
+    name = "LiberationSerif-%s.ttf" % ("Bold" if bold else "Regular")
+    font = ImageFont.truetype(os.path.join(FONT_DIR, name), int(size * 20))
+    return font.getlength(text) / 20.0
+
+
 def code_size(lines):
     longest = max((len(l) for l in lines), default=0) or 1
     return max(6.5, min(9.5, TEXT_W / (longest * 0.6)))
@@ -325,11 +354,51 @@ def main():
         p = content_paragraph(before=0, after=8, keep=True)
         set_font(p.add_run(text + ":"), size=12, bold=True, underline=True)
 
-    def block(lines):
+    def sample_table(label_text, rows):
+        p = content_paragraph(before=0, after=6, keep=True)
+        set_font(p.add_run("Sample Data: "), size=12, bold=True)
+        set_font(p.add_run(label_text), size=12)
+        ncols = max(len(r) for r in rows)
+
+        def measure(size):
+            need = []
+            for i in range(ncols):
+                cells = [r[i] if i < len(r) else "" for r in rows]
+                w = max([_text_pt(cells[0], size, True)] +
+                        [_text_pt(c, size) for c in cells[1:]])
+                need.append(w + 14)          # 2 x cell margin + border
+            return need
+
+        for size in (10, 9.5, 9, 8.5, 8, 7.5, 7):
+            need = measure(size)
+            if sum(need) <= 478:
+                break
+        slack = max(0.0, 478 - sum(need)) / ncols
+        widths = [w + slack for w in need]
+
+        t = doc.add_table(rows=len(rows), cols=ncols)
+        t.style = "Table Grid"
+        t.autofit = False
+        t._tbl.tblPr.append(OxmlElement("w:tblLayout"))
+        t._tbl.tblPr[-1].set(qn("w:type"), "fixed")
+        for i, w in enumerate(widths):
+            t.columns[i].width = Pt(w)
+        for r, row in enumerate(rows):
+            for c in range(ncols):
+                cell = t.cell(r, c)
+                cell.width = Pt(widths[c])
+                cp = cell.paragraphs[0]
+                cp.paragraph_format.space_before = Pt(1)
+                cp.paragraph_format.space_after = Pt(1)
+                value = row[c] if c < len(row) else ""
+                set_font(cp.add_run(value), size=size, bold=(r == 0))
+        paragraph(doc, before=0, after=14)
+
+    def block(lines, keep_last=False):
         size = code_size(lines)
         for i, line in enumerate(lines):
             p = content_paragraph() if i == 0 else paragraph(doc, before=0, after=0)
-            p.paragraph_format.keep_with_next = i < len(lines) - 1
+            p.paragraph_format.keep_with_next = keep_last or i < len(lines) - 1
             run = p.add_run(line if line else " ")
             set_font(run, name=CODE_FONT, size=size)
             run._r.find(qn("w:t")).set(qn("xml:space"), "preserve")
@@ -354,11 +423,14 @@ def main():
                 tablename(*data)
             elif block_kind == "table":
                 table(data)
+            elif block_kind == "sample":
+                sample_table(*data)
             elif block_kind == "label":
                 label(data)
             elif block_kind == "code":
-                block(data)
-                paragraph(doc, before=0, after=18)
+                block(data, keep_last=True)
+                paragraph(doc, before=0, after=18).paragraph_format.\
+                    keep_with_next = True
             elif block_kind == "out":
                 block(data)
                 paragraph(doc, before=0, after=24)

@@ -23,7 +23,102 @@ def prose(t):
     return "".join(SPECIAL.get(c, c) for c in t)
 
 
-def page(num, question, code, out_lines):
+FONT_DIR = "/usr/share/fonts/liberation-serif-fonts"
+SAMPLE_ACRONYMS = {"ID", "DOB", "CGPA", "HOD"}
+
+
+def pretty_col(col):
+    """STUDENT_ID -> Student_ID, CGPA -> CGPA."""
+    return "_".join(p if p in SAMPLE_ACRONYMS else p.capitalize()
+                    for p in col.split("_"))
+
+
+def pretty_table(table):
+    return table.replace("_", " ").title()
+
+
+def _text_pt(text, size, bold=False):
+    """Width of a string in points, measured with the real Liberation Serif."""
+    from PIL import ImageFont
+
+    name = "LiberationSerif-%s.ttf" % ("Bold" if bold else "Regular")
+    font = ImageFont.truetype(os.path.join(FONT_DIR, name), size * 20)
+    return font.getlength(text) / 20.0
+
+
+def _header_lines(name):
+    """Split a column name at its underscores: Contact_Number -> 2 lines."""
+    if "_" not in name:
+        return [name]
+    chunks = re.findall(r"[^_]+_?", name)
+    if len(chunks) == 2:
+        return chunks
+    best, cut = None, 1
+    for i in range(1, len(chunks)):
+        w = max(_text_pt("".join(chunks[:i]), 1, True),
+                _text_pt("".join(chunks[i:]), 1, True))
+        if best is None or w < best:
+            best, cut = w, i
+    return ["".join(chunks[:cut]), "".join(chunks[cut:])]
+
+
+def sample_table(label, headers, rows, types):
+    """Bordered 'Sample Data' table, in the lab-manual layout."""
+    PAD = 8.0           # 2 x \\tabcolsep (4pt each side)
+    LIMIT = 500.0       # usable width inside the border
+    n = len(headers)
+    numeric = [t == "NUMBER" for t in types]
+    datas = [[_text_pt(r[i], 1) for r in rows] for i in range(n)]
+
+    def need(size, wrap):
+        out = []
+        for i in range(n):
+            head = (_header_lines(headers[i]) if wrap
+                    else [headers[i]])
+            hw = max(_text_pt(part, size, True) for part in head)
+            dw = max([_text_pt(r[i], size) for r in rows] or [0])
+            out.append(max(hw, dw) + 2.5)
+        return out
+
+    SIZES = ((11, "\\small"), (10, "\\footnotesize"),
+             (8, "\\scriptsize"), (6, "\\tiny"))
+    chosen, need_w, wrap = None, None, False
+    for size, latex in SIZES:
+        cand = need(size, False)
+        if sum(cand) + PAD * n <= LIMIT:
+            chosen, need_w, wrap = (size, latex), cand, False
+            break
+    if chosen is None:
+        for size, latex in SIZES:
+            cand = need(size, True)
+            if sum(cand) + PAD * n <= LIMIT:
+                chosen, need_w, wrap = (size, latex), cand, True
+                break
+    size, latex = chosen or SIZES[-1]
+    need_w = need_w or need(SIZES[-1][0], True)
+
+    slack = max(0.0, LIMIT - PAD * n - sum(need_w)) / n
+    spec = "|" + "|".join(">{\\%s\\arraybackslash}p{%.1fpt}"
+                         % ("raggedleft" if num else "raggedright", w + slack)
+                         for w, num in zip(need_w, numeric)) + "|"
+    heads = []
+    for h in headers:
+        parts = _header_lines(h) if wrap else [h]
+        heads.append("\newline ".join(prose(x) for x in parts))
+    out = ["\\noindent\\textbf{Sample Data:} %s\\par" % label,
+           "\\vspace{6pt}",
+           "{%s\\setlength{\\tabcolsep}{4pt}\n"
+           "\\renewcommand{\\arraystretch}{1.25}" % latex,
+           "\\noindent\\begin{tabular}{%s}" % spec,
+           "\\hline",
+           " & ".join("\\textbf{%s}" % h for h in heads) + " \\\\ \\hline"]
+    for row in rows:
+        out.append(" & ".join(prose(c) for c in row) + " \\\\ \\hline")
+    out += ["\\end{tabular}\\par}", "\\vspace{14pt}"]
+    return "\n".join(out)
+
+
+def page(num, question, code, out_lines, sample=None):
     longest = max((len(l) for l in out_lines), default=0)
     if longest <= 85:
         size = r"\small"
@@ -39,7 +134,7 @@ def page(num, question, code, out_lines):
 {\fontsize{14}{17}\selectfont\textbf{%(num)d.}}\ %(q)s\par
 \endgroup\vspace{12pt}
 
-\codeheading{CODE:}
+%(sample)s\codeheading{CODE:}
 
 \begin{sqlcode}%(codesize)s
 %(code)s
@@ -55,7 +150,7 @@ def page(num, question, code, out_lines):
 \end{minipage}\par\vspace{24pt}
 
 """ % dict(num=num, q=prose(question), code="\n".join(code),
-           out="\n".join(out_lines), size=size,
+           out="\n".join(out_lines), size=size, sample=sample or "",
            codesize="[fontsize=\\footnotesize]"
                     if max((len(l) for l in code), default=0) > 89 else "")
 
@@ -285,6 +380,47 @@ DML = [
      ["DELETE FROM event WHERE registration_fee IS NULL OR registration_fee = 0;"],
      ["1 row deleted."]),
 ]
+
+
+# Statement run after an UPDATE so the record shows the new values, not just
+# "N rows updated."
+POST_SQL = {
+    12: "SELECT student_id, cgpa FROM student WHERE student_id = 'S101';",
+    13: "SELECT faculty_id, faculty_name, salary FROM faculty;",
+    14: "SELECT dept_id, dept_name, office_location FROM department\n"
+        "WHERE dept_name = 'Computer Science';",
+    15: "SELECT course_id, course_title, credits FROM course\n"
+        "WHERE course_title = 'Database Management Systems';",
+    16: "SELECT result_id, total_marks, result_status FROM result;",
+}
+
+
+def post_select(num, code):
+    """The statement whose output the page should show, or None."""
+    if code[0].upper().startswith("INSERT"):
+        table = re.search(r"INTO\s+(\w+)", "\n".join(code), re.I).group(1)
+        return "SELECT * FROM %s;" % table
+    return POST_SQL.get(num)
+
+
+def inserted_columns(code, headers):
+    """Columns named in the INSERT, in the order Oracle will list them."""
+    lists = re.findall(r"INTO\s+\w+\s*\(([^)]*)\)", " ".join(code), re.I)
+    if not lists:
+        return list(headers)
+    cols = []
+    for lst in lists:
+        for col in lst.split(","):
+            col = col.strip().upper()
+            if col and col not in cols:
+                cols.append(col)
+    return [c for c in cols if c in headers]
+
+
+def new_rows(rows, seen):
+    """Rows this question added (the capture replays into a shared table)."""
+    known = {tuple(r) for r in seen}
+    return [r for r in rows if tuple(r) not in known]
 
 
 # ---------------------------------------------------------------- seed data
@@ -593,18 +729,34 @@ SET PAGESIZE 100
 SET FEEDBACK ON
 """]
     cap = json.load(open(CAPTURE))["dml"]
+    seen = {}
     for num, question, code, out in DML:
         entry = cap["%02d" % num]
         code = list(code)
+        sample = None
+        post = post_select(num, code)
         if code[0].upper().startswith("INSERT"):
             table = re.search(r"INTO\s+(\w+)", "\n".join(code), re.I).group(1)
+            cols = inserted_columns(code, entry["headers"])
+            idx = [entry["headers"].index(c) for c in cols]
+            rows = new_rows(entry["rows"], seen.setdefault(table, []))
+            seen[table].extend(rows)
+            sample = sample_table(pretty_table(table),
+                                  [pretty_col(c) for c in cols],
+                                  [[r[i] for i in idx] for r in rows],
+                                  [entry["types"][i] for i in idx])
             code.append("")
-            code.append("SELECT * FROM %s;" % table)
+            code.append(post)
             out = render_select(entry["headers"], entry["rows"], entry["types"])
+        elif post:
+            code.append("")
+            code.append(post)
+            out = entry["status"] + [""] + render_select(
+                entry["headers"], entry["rows"], entry["types"])
         else:
             out = entry["status"]
         with open(os.path.join(PAGE_DIR, "a2_q%02d.tex" % num), "w") as f:
-            f.write(page(num, question, code, out))
+            f.write(page(num, question, code, out, sample))
         parts.append("\nPROMPT\nPROMPT ===== Q%d =====\n\n%s\n" % (num, "\n".join(code)))
     parts.append("\nCOMMIT;\n")
     with open(os.path.join(SQL_DIR, "A2_01_to_20_dml.sql"), "w") as f:

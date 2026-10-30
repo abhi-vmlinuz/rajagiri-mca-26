@@ -4,7 +4,16 @@
 {\fontsize{14}{17}\selectfont\textbf{8.}}\ Insert an enrollment record and allow the enrollment\_date column to take its default value.\par
 \endgroup\vspace{12pt}
 
-\codeheading{CODE:}
+\noindent\textbf{Sample Data:} Enrollment\par
+\vspace{6pt}
+{\small\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{125.6pt}|>{\raggedright\arraybackslash}p{108.7pt}|>{\raggedright\arraybackslash}p{105.6pt}|>{\raggedright\arraybackslash}p{128.2pt}|}
+\hline
+\textbf{Enrollment\_ID} & \textbf{Student\_ID} & \textbf{Course\_ID} & \textbf{Academic\_Year} \\ \hline
+E101 & S101 & C101 & 2025-2026 \\ \hline
+\end{tabular}\par}
+\vspace{14pt}\codeheading{CODE:}
 
 \begin{sqlcode}
 INSERT INTO enrollment (enrollment_id, student_id, course_id, academic_year)
@@ -20,7 +29,7 @@ SELECT * FROM enrollment;
 \begin{sqlout}[fontsize=\small]
 ENROLLMENT_ID  STUDENT_ID  COURSE_ID  ENROLLMENT_DATE  ACADEMIC_YEAR
 -------------  ----------  ---------  ---------------  -------------
-E101           S101        C101       24-OCT-26        2025-2026
+E101           S101        C101       25-OCT-26        2025-2026
 
 1 row selected.
 \end{sqlout}

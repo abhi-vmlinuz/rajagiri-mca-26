@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.10.20)  24 OCT 2026 18:22
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.10.20)  25 OCT 2026 12:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -653,71 +653,129 @@ LaTeX Font Info:    Font shape `TU/NimbusMonoPS(0)/m/n' will be
 (./pages/a1_q11.tex) (./pages/a1_q12.tex [13]) (./pages/a1_q13.tex)
 (./pages/a1_q14.tex [14]) (./pages/a1_q15.tex) (./pages/a1_q16.tex [15])
 (./pages/a1_q17.tex) (./pages/a1_q18.tex [16]) (./pages/a1_q19.tex)
-(./pages/a1_q20.tex [17]) (./pages/a1_q21.tex) [18] (./pages/a2_q01.tex)
-(./pages/a2_q02.tex
+(./pages/a1_q20.tex [17]) (./pages/a1_q21.tex) [18] (./pages/a2_q01.tex
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 11.
+
+Overfull \hbox (12.7971pt too wide) in paragraph at lines 11--15
+[] 
+ []
+
+) (./pages/a2_q02.tex
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 11.
+
+Overfull \hbox (14.89708pt too wide) in paragraph at lines 11--15
+[] 
+ []
+
 LaTeX Font Info:    Font shape `TU/NimbusMonoPS(0)/m/n' will be
-(Font)              scaled to size 6.95996pt on input line 22.
-) (./pages/a2_q03.tex [19
+(Font)              scaled to size 6.95996pt on input line 31.
+) (./pages/a2_q03.tex
+Overfull \hbox (14.49706pt too wide) in paragraph at lines 11--15
+[] 
+ []
+
+[19
 
 ]) (./pages/a2_q04.tex
+Overfull \hbox (14.19708pt too wide) in paragraph at lines 11--16
+[] 
+ []
+
 LaTeX Font Info:    Font shape `TU/NimbusMonoPS(0)/m/n' will be
-(Font)              scaled to size 8.69995pt on input line 9.
-)
-(./pages/a2_q05.tex [20]) (./pages/a2_q06.tex) (./pages/a2_q07.tex [21])
-(./pages/a2_q08.tex) (./pages/a2_q09.tex [22]) (./pages/a2_q10.tex)
-(./pages/a2_q11.tex [23]) (./pages/a2_q12.tex) (./pages/a2_q13.tex)
-(./pages/a2_q14.tex [24]) (./pages/a2_q15.tex) (./pages/a2_q16.tex)
-(./pages/a2_q17.tex [25]) (./pages/a2_q18.tex) (./pages/a2_q19.tex)
-(./pages/a2_q20.tex) [26] (./pages/a3_q01.tex) (./pages/a3_q02.tex)
-(./pages/a3_q03.tex [27
+(Font)              scaled to size 8.69995pt on input line 19.
+[20]) (./pages/a2_q05.tex
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 11.
 
-]) (./pages/a3_q04.tex) (./pages/a3_q05.tex [28])
-(./pages/a3_q06.tex [29]) (./pages/a3_q07.tex [30]) (./pages/a3_q08.tex)
-(./pages/a3_q09.tex [31]) (./pages/a3_q10.tex) (./pages/a3_q11.tex [32])
-(./pages/a3_q12.tex) (./pages/a3_q13.tex [33]) (./pages/a3_q14.tex)
-(./pages/a3_q15.tex [34]) (./pages/a3_q16.tex) (./pages/a3_q17.tex [35])
-(./pages/a3_q18.tex) (./pages/a3_q19.tex [36]) (./pages/a3_q20.tex [37])
-[38] (./pages/b1_q01.tex) (./pages/b1_q02.tex [39
+Overfull \hbox (14.09706pt too wide) in paragraph at lines 11--15
+[] 
+ []
 
-]) (./pages/b1_q03.tex)
-(./pages/b1_q04.tex [40]) (./pages/b1_q05.tex [41]) (./pages/b1_q06.tex)
-(./pages/b1_q07.tex [42]) (./pages/b1_q08.tex) (./pages/b1_q09.tex [43])
-(./pages/b1_q10.tex) (./pages/b1_q11.tex [44]) (./pages/b1_q12.tex)
-(./pages/b1_q13.tex [45]) (./pages/b1_q14.tex) (./pages/b1_q15.tex [46])
-(./pages/b1_q16.tex) (./pages/b1_q17.tex [47]) (./pages/b1_q18.tex)
-(./pages/b1_q19.tex [48]) (./pages/b1_q20.tex [49]) [50] (./pages/b2_q01.tex)
-(./pages/b2_q02.tex [51
+[21]) (./pages/a2_q06.tex
+Overfull \hbox (13.59709pt too wide) in paragraph at lines 11--15
+[] 
+ []
 
-]) (./pages/b2_q03.tex [52]) (./pages/b2_q04.tex
-[53]) (./pages/b2_q05.tex [54]) (./pages/b2_q06.tex) (./pages/b2_q07.tex
-[55]) (./pages/b2_q08.tex [56]) (./pages/b2_q09.tex [57]) (./pages/b2_q10.tex
-[58]) (./pages/b2_q11.tex [59]) (./pages/b2_q12.tex [60]) (./pages/b2_q13.tex
-[61]) (./pages/b2_q14.tex [62]) (./pages/b2_q15.tex [63]) (./pages/b2_q16.tex
-[64]) (./pages/b2_q17.tex [65]) (./pages/b2_q18.tex [66]) (./pages/b2_q19.tex
-[67]) (./pages/b2_q20.tex [68]) [69] (./pages/b3_q01.tex) (./pages/b3_q02.tex)
-(./pages/b3_q03.tex) (./pages/b3_q04.tex [70
+) (./pages/a2_q07.tex
+Overfull \hbox (13.69708pt too wide) in paragraph at lines 11--15
+[] 
+ []
 
-]) (./pages/b3_q05.tex)
-(./pages/b3_q06.tex [71]) (./pages/b3_q07.tex [72]) [73] (./pages/b4_q01.tex)
-(./pages/b4_q02.tex) (./pages/b4_q03.tex) (./pages/b4_q04.tex [74
+[22]) (./pages/a2_q08.tex
+Overfull \hbox (12.9971pt too wide) in paragraph at lines 11--15
+[] 
+ []
+
+) (./pages/a2_q09.tex
+Overfull \hbox (14.09709pt too wide) in paragraph at lines 11--15
+[] 
+ []
+
+[23]) (./pages/a2_q10.tex
+Overfull \hbox (13.99709pt too wide) in paragraph at lines 11--17
+[] 
+ []
+
+[24]) (./pages/a2_q11.tex
+Overfull \hbox (12.8971pt too wide) in paragraph at lines 11--15
+[] 
+ []
+
+[25]) (./pages/a2_q12.tex) (./pages/a2_q13.tex [26]) (./pages/a2_q14.tex)
+(./pages/a2_q15.tex [27]) (./pages/a2_q16.tex) (./pages/a2_q17.tex [28])
+(./pages/a2_q18.tex) (./pages/a2_q19.tex) (./pages/a2_q20.tex) [29]
+(./pages/a3_q01.tex) (./pages/a3_q02.tex) (./pages/a3_q03.tex [30
 
 ])
-(./pages/b4_q05.tex) (./pages/b4_q06.tex [75]) (./pages/b4_q07.tex)
-(./pages/b4_q08.tex) (./pages/b4_q09.tex [76]) (./pages/b4_q10.tex)
-(./pages/b4_q11.tex) (./pages/b4_q12.tex) (./pages/b4_q13.tex [77])
-(./pages/b4_q14.tex) (./pages/b4_q15.tex) [78] (./record.aux)
+(./pages/a3_q04.tex) (./pages/a3_q05.tex [31]) (./pages/a3_q06.tex [32])
+(./pages/a3_q07.tex [33]) (./pages/a3_q08.tex) (./pages/a3_q09.tex [34])
+(./pages/a3_q10.tex) (./pages/a3_q11.tex [35]) (./pages/a3_q12.tex)
+(./pages/a3_q13.tex [36]) (./pages/a3_q14.tex) (./pages/a3_q15.tex [37])
+(./pages/a3_q16.tex) (./pages/a3_q17.tex [38]) (./pages/a3_q18.tex)
+(./pages/a3_q19.tex [39]) (./pages/a3_q20.tex [40]) [41] (./pages/b1_q01.tex)
+(./pages/b1_q02.tex [42
+
+]) (./pages/b1_q03.tex) (./pages/b1_q04.tex [43])
+(./pages/b1_q05.tex [44]) (./pages/b1_q06.tex) (./pages/b1_q07.tex [45])
+(./pages/b1_q08.tex) (./pages/b1_q09.tex [46]) (./pages/b1_q10.tex)
+(./pages/b1_q11.tex [47]) (./pages/b1_q12.tex) (./pages/b1_q13.tex [48])
+(./pages/b1_q14.tex) (./pages/b1_q15.tex [49]) (./pages/b1_q16.tex)
+(./pages/b1_q17.tex [50]) (./pages/b1_q18.tex) (./pages/b1_q19.tex [51])
+(./pages/b1_q20.tex [52]) [53] (./pages/b2_q01.tex) (./pages/b2_q02.tex
+[54
+
+]) (./pages/b2_q03.tex [55]) (./pages/b2_q04.tex [56]) (./pages/b2_q05.tex
+[57]) (./pages/b2_q06.tex) (./pages/b2_q07.tex [58]) (./pages/b2_q08.tex
+[59]) (./pages/b2_q09.tex [60]) (./pages/b2_q10.tex [61]) (./pages/b2_q11.tex
+[62]) (./pages/b2_q12.tex [63]) (./pages/b2_q13.tex [64]) (./pages/b2_q14.tex
+[65]) (./pages/b2_q15.tex [66]) (./pages/b2_q16.tex [67]) (./pages/b2_q17.tex
+[68]) (./pages/b2_q18.tex [69]) (./pages/b2_q19.tex [70]) (./pages/b2_q20.tex
+[71]) [72] (./pages/b3_q01.tex) (./pages/b3_q02.tex) (./pages/b3_q03.tex)
+(./pages/b3_q04.tex [73
+
+]) (./pages/b3_q05.tex) (./pages/b3_q06.tex [74])
+(./pages/b3_q07.tex [75]) [76] (./pages/b4_q01.tex) (./pages/b4_q02.tex)
+(./pages/b4_q03.tex) (./pages/b4_q04.tex [77
+
+]) (./pages/b4_q05.tex)
+(./pages/b4_q06.tex [78]) (./pages/b4_q07.tex) (./pages/b4_q08.tex)
+(./pages/b4_q09.tex [79]) (./pages/b4_q10.tex) (./pages/b4_q11.tex)
+(./pages/b4_q12.tex) (./pages/b4_q13.tex [80]) (./pages/b4_q14.tex)
+(./pages/b4_q15.tex) [81] (./record.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 16608 strings out of 469533
- 381511 string characters out of 5464494
- 787761 words of memory out of 6000000
- 44767 multiletter control sequences out of 15000+600000
- 630827 words of font info for 83 fonts, out of 8000000 for 9000
+ 16638 strings out of 469533
+ 382408 string characters out of 5464494
+ 791428 words of memory out of 6000000
+ 44792 multiletter control sequences out of 15000+600000
+ 631783 words of font info for 91 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 102i,10n,107p,416b,601s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,10n,107p,478b,601s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on record.xdv (78 pages, 885320 bytes).
+Output written on record.xdv (81 pages, 922472 bytes).

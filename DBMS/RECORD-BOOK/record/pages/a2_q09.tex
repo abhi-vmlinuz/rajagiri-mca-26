@@ -4,7 +4,16 @@
 {\fontsize{14}{17}\selectfont\textbf{9.}}\ Insert a result record where the total marks are calculated by adding the internal and external marks.\par
 \endgroup\vspace{12pt}
 
-\codeheading{CODE:}
+\noindent\textbf{Sample Data:} Result\par
+\vspace{6pt}
+{\footnotesize\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{51.3pt}|>{\raggedright\arraybackslash}p{72.8pt}|>{\raggedleft\arraybackslash}p{76.3pt}|>{\raggedleft\arraybackslash}p{78.5pt}|>{\raggedleft\arraybackslash}p{63.1pt}|>{\raggedright\arraybackslash}p{35.2pt}|>{\raggedright\arraybackslash}p{66.8pt}|}
+\hline
+\textbf{Result\_ID} & \textbf{Enrollment\_ID} & \textbf{Internal\_Marks} & \textbf{External\_Marks} & \textbf{Total\_Marks} & \textbf{Grade} & \textbf{Result\_Status} \\ \hline
+R101 & E101 & 18 & 22 & 40 & F & FAIL \\ \hline
+\end{tabular}\par}
+\vspace{14pt}\codeheading{CODE:}
 
 \begin{sqlcode}
 INSERT INTO result (result_id, enrollment_id, internal_marks, external_marks,

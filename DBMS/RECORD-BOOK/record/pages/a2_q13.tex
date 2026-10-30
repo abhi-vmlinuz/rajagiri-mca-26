@@ -8,6 +8,8 @@
 
 \begin{sqlcode}
 UPDATE faculty SET salary = salary * 1.10;
+
+SELECT faculty_id, faculty_name, salary FROM faculty;
 \end{sqlcode}
 
 \vspace{18pt}
@@ -16,7 +18,14 @@ UPDATE faculty SET salary = salary * 1.10;
 
 \begin{sqlout}[fontsize=\small]
 3 rows updated.
-Commit complete.
+
+FACULTY_ID  FACULTY_NAME  SALARY
+----------  ------------  ------
+F102        Ravi Kumar     27500
+F103        Anita Thomas   99000
+F101        Meera Joseph   60500
+
+3 rows selected.
 \end{sqlout}
 \end{minipage}\par\vspace{24pt}
 

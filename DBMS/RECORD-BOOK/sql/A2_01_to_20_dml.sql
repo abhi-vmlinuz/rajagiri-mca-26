@@ -124,15 +124,22 @@ PROMPT ===== Q12 =====
 
 UPDATE student SET cgpa = 8.7 WHERE student_id = 'S101';
 
+SELECT student_id, cgpa FROM student WHERE student_id = 'S101';
+
 PROMPT
 PROMPT ===== Q13 =====
 
 UPDATE faculty SET salary = salary * 1.10;
 
+SELECT faculty_id, faculty_name, salary FROM faculty;
+
 PROMPT
 PROMPT ===== Q14 =====
 
 UPDATE department SET office_location = 'Golden Aureole Block'
+WHERE dept_name = 'Computer Science';
+
+SELECT dept_id, dept_name, office_location FROM department
 WHERE dept_name = 'Computer Science';
 
 PROMPT
@@ -141,11 +148,16 @@ PROMPT ===== Q15 =====
 UPDATE course SET credits = 5
 WHERE course_title = 'Database Management Systems';
 
+SELECT course_id, course_title, credits FROM course
+WHERE course_title = 'Database Management Systems';
+
 PROMPT
 PROMPT ===== Q16 =====
 
 UPDATE result
 SET result_status = CASE WHEN total_marks >= 50 THEN 'PASS' ELSE 'FAIL' END;
+
+SELECT result_id, total_marks, result_status FROM result;
 
 PROMPT
 PROMPT ===== Q17 =====

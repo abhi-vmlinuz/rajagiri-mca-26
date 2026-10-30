@@ -4,7 +4,16 @@
 {\fontsize{14}{17}\selectfont\textbf{7.}}\ Insert a course without mentioning the column names. Ensure that the values are entered in the correct table-column order.\par
 \endgroup\vspace{12pt}
 
-\codeheading{CODE:}
+\noindent\textbf{Sample Data:} Course\par
+\vspace{6pt}
+{\small\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{75.7pt}|>{\raggedright\arraybackslash}p{107.8pt}|>{\raggedleft\arraybackslash}p{59.0pt}|>{\raggedleft\arraybackslash}p{67.2pt}|>{\raggedright\arraybackslash}p{64.7pt}|>{\raggedright\arraybackslash}p{77.6pt}|}
+\hline
+\textbf{Course\_ID} & \textbf{Course\_Title} & \textbf{Credits} & \textbf{Semester} & \textbf{Dept\_ID} & \textbf{Faculty\_ID} \\ \hline
+C102 & Operating Systems & 3 & 8 & D01 & F102 \\ \hline
+\end{tabular}\par}
+\vspace{14pt}\codeheading{CODE:}
 
 \begin{sqlcode}
 INSERT INTO course

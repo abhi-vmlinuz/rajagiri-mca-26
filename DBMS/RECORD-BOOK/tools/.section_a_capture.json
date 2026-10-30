@@ -204,7 +204,7 @@
     "UPDATE faculty SET salary = -5000 WHERE faculty_id = 'F101'",
     "*",
     "ERROR at line 1:",
-    "ORA-02290: check constraint (MCA.SYS_C009682) violated",
+    "ORA-02290: check constraint (MCA.CHK_FACULTY_SALARY) violated",
     "Help: https://docs.oracle.com/error-help/db/ora-02290/"
    ]
   },
@@ -233,7 +233,7 @@
     "UPDATE student SET cgpa = 12 WHERE student_id = 'S101'",
     "*",
     "ERROR at line 1:",
-    "ORA-02290: check constraint (MCA.SYS_C009677) violated",
+    "ORA-02290: check constraint (MCA.CHK_STUDENT_CGPA) violated",
     "Help: https://docs.oracle.com/error-help/db/ora-02290/"
    ]
   },
@@ -457,7 +457,7 @@
      "9876501234",
      "akhil@gmail.com",
      "D01",
-     "24-OCT-26",
+     "25-OCT-26",
      "8.2",
      "",
      ""
@@ -503,7 +503,7 @@
      "9876501234",
      "akhil@gmail.com",
      "D01",
-     "24-OCT-26",
+     "25-OCT-26",
      "8.2",
      "",
      ""
@@ -516,7 +516,7 @@
      "9876501235",
      "neha@gmail.com",
      "D01",
-     "24-OCT-26",
+     "25-OCT-26",
      "",
      "",
      ""
@@ -720,7 +720,7 @@
      "E101",
      "S101",
      "C101",
-     "24-OCT-26",
+     "25-OCT-26",
      "2025-2026"
     ]
    ]
@@ -834,39 +834,126 @@
      "REG01",
      "EV01",
      "S101",
-     "24-OCT-26",
+     "25-OCT-26",
      "ABSENT"
     ]
    ]
   },
   "12": {
    "status": [
-    "1 row updated.",
-    "Commit complete."
+    "1 row updated."
+   ],
+   "headers": [
+    "STUDENT_ID",
+    "CGPA"
+   ],
+   "types": [
+    "CHAR",
+    "NUMBER"
+   ],
+   "rows": [
+    [
+     "S101",
+     "8.7"
+    ]
    ]
   },
   "13": {
    "status": [
-    "3 rows updated.",
-    "Commit complete."
+    "3 rows updated."
+   ],
+   "headers": [
+    "FACULTY_ID",
+    "FACULTY_NAME",
+    "SALARY"
+   ],
+   "types": [
+    "CHAR",
+    "VARCHAR2",
+    "NUMBER"
+   ],
+   "rows": [
+    [
+     "F102",
+     "Ravi Kumar",
+     "27500"
+    ],
+    [
+     "F103",
+     "Anita Thomas",
+     "99000"
+    ],
+    [
+     "F101",
+     "Meera Joseph",
+     "60500"
+    ]
    ]
   },
   "14": {
    "status": [
-    "1 row updated.",
-    "Commit complete."
+    "1 row updated."
+   ],
+   "headers": [
+    "DEPT_ID",
+    "DEPT_NAME",
+    "OFFICE_LOCATION"
+   ],
+   "types": [
+    "VARCHAR2",
+    "VARCHAR2",
+    "VARCHAR2"
+   ],
+   "rows": [
+    [
+     "D01",
+     "Computer Science",
+     "Golden Aureole Block"
+    ]
    ]
   },
   "15": {
    "status": [
-    "1 row updated.",
-    "Commit complete."
+    "1 row updated."
+   ],
+   "headers": [
+    "COURSE_ID",
+    "COURSE_TITLE",
+    "CREDITS"
+   ],
+   "types": [
+    "CHAR",
+    "VARCHAR2",
+    "NUMBER"
+   ],
+   "rows": [
+    [
+     "C101",
+     "Database Management Systems",
+     "5"
+    ]
    ]
   },
   "16": {
    "status": [
-    "1 row updated.",
-    "Commit complete."
+    "1 row updated."
+   ],
+   "headers": [
+    "RESULT_ID",
+    "TOTAL_MARKS",
+    "RESULT_STATUS"
+   ],
+   "types": [
+    "CHAR",
+    "NUMBER",
+    "VARCHAR2"
+   ],
+   "rows": [
+    [
+     "R101",
+     "40",
+     "FAIL"
+    ]
    ]
   },
   "17": {
@@ -890,71 +977,6 @@
   "20": {
    "status": [
     "1 row deleted.",
-    "Commit complete.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
-    "1 row created.",
     "Commit complete."
    ]
   }

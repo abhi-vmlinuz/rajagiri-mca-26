@@ -4,7 +4,16 @@
 {\fontsize{14}{17}\selectfont\textbf{3.}}\ Insert a student record without providing the CGPA value.\par
 \endgroup\vspace{12pt}
 
-\codeheading{CODE:}
+\noindent\textbf{Sample Data:} Student\par
+\vspace{6pt}
+{\scriptsize\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{49.5pt}|>{\raggedright\arraybackslash}p{60.6pt}|>{\raggedright\arraybackslash}p{49.4pt}|>{\raggedright\arraybackslash}p{35.7pt}|>{\raggedright\arraybackslash}p{69.4pt}|>{\raggedright\arraybackslash}p{66.3pt}|>{\raggedright\arraybackslash}p{39.2pt}|>{\raggedright\arraybackslash}p{65.9pt}|}
+\hline
+\textbf{Student\_ID} & \textbf{Student\_Name} & \textbf{DOB} & \textbf{Gender} & \textbf{Contact\_Number} & \textbf{Email\_ID} & \textbf{Dept\_ID} & \textbf{Admission\_Date} \\ \hline
+S102 & Neha Thomas & 22-MAR-06 & F & 9876501235 & neha@gmail.com & D01 & 25-OCT-26 \\ \hline
+\end{tabular}\par}
+\vspace{14pt}\codeheading{CODE:}
 
 \begin{sqlcode}
 INSERT INTO student (student_id, student_name, dob, gender, contact_number,
@@ -22,8 +31,8 @@ SELECT * FROM student;
 \begin{sqlout}[fontsize=\scriptsize]
 STUDENT_ID STUDENT_NAME DOB       GENDER CONTACT_NUMBER EMAIL_ID        DEPT_ID ADMISSION_DATE CGPA CITY STATE
 ---------- ------------ --------- ------ -------------- --------------- ------- -------------- ---- ---- -----
-S101       Akhil Raj    15-AUG-05 M      9876501234     akhil@gmail.com D01     24-OCT-26       8.2
-S102       Neha Thomas  22-MAR-06 F      9876501235     neha@gmail.com  D01     24-OCT-26
+S101       Akhil Raj    15-AUG-05 M      9876501234     akhil@gmail.com D01     25-OCT-26       8.2
+S102       Neha Thomas  22-MAR-06 F      9876501235     neha@gmail.com  D01     25-OCT-26
 
 2 rows selected.
 \end{sqlout}

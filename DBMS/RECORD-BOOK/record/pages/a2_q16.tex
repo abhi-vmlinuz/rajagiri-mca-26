@@ -9,6 +9,8 @@
 \begin{sqlcode}
 UPDATE result
 SET result_status = CASE WHEN total_marks >= 50 THEN 'PASS' ELSE 'FAIL' END;
+
+SELECT result_id, total_marks, result_status FROM result;
 \end{sqlcode}
 
 \vspace{18pt}
@@ -17,7 +19,12 @@ SET result_status = CASE WHEN total_marks >= 50 THEN 'PASS' ELSE 'FAIL' END;
 
 \begin{sqlout}[fontsize=\small]
 1 row updated.
-Commit complete.
+
+RESULT_ID  TOTAL_MARKS  RESULT_STATUS
+---------  -----------  -------------
+R101                40  FAIL
+
+1 row selected.
 \end{sqlout}
 \end{minipage}\par\vspace{24pt}
 

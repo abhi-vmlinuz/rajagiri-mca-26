@@ -4,7 +4,16 @@
 {\fontsize{14}{17}\selectfont\textbf{6.}}\ Insert a course titled Database Management Systems with four credits for Semester 3.\par
 \endgroup\vspace{12pt}
 
-\codeheading{CODE:}
+\noindent\textbf{Sample Data:} Course\par
+\vspace{6pt}
+{\small\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{66.3pt}|>{\raggedright\arraybackslash}p{154.9pt}|>{\raggedleft\arraybackslash}p{49.6pt}|>{\raggedleft\arraybackslash}p{57.7pt}|>{\raggedright\arraybackslash}p{55.3pt}|>{\raggedright\arraybackslash}p{68.1pt}|}
+\hline
+\textbf{Course\_ID} & \textbf{Course\_Title} & \textbf{Credits} & \textbf{Semester} & \textbf{Dept\_ID} & \textbf{Faculty\_ID} \\ \hline
+C101 & Database Management Systems & 4 & 3 & D01 & F101 \\ \hline
+\end{tabular}\par}
+\vspace{14pt}\codeheading{CODE:}
 
 \begin{sqlcode}
 INSERT INTO course (course_id, course_title, credits, semester, dept_id, faculty_id)

@@ -89,9 +89,12 @@ def split_status(block):
     status = []
     while lines and STATUS_RE.match(lines[0].strip()):
         status.append(lines[0].strip())
+        done = status[-1].startswith("Commit complete.")
         lines.pop(0)
         while lines and not lines[0].strip():
             lines.pop(0)
+        if done:          # anything after a COMMIT belongs to the next script
+            break
     return status, lines
 
 
@@ -105,6 +108,15 @@ def parse_rows(lines):
         fields = [c.strip() for c in line.split("~")]
         rows.append(fields)
     return rows
+
+
+def select_of(stmt):
+    """'SELECT a, b FROM t' -> (one-line statement, table, [A, B] or '*')."""
+    flat = " ".join(stmt.split())
+    m = re.match(r"SELECT\s+(.*?)\s+FROM\s+(\w+)", flat, re.I)
+    sel = m.group(1).strip()
+    cols = "*" if sel == "*" else [c.strip().upper() for c in sel.split(",")]
+    return flat, m.group(2), cols
 
 
 def column_info(lines):
@@ -155,9 +167,9 @@ def main():
         script.append("PROMPT @@D%02d@@" % num)
         for stmt in code:
             script.append(stmt)
-        if code[0].upper().startswith("INSERT"):
-            table = re.search(r"INTO\s+(\w+)", "\n".join(code), re.I).group(1)
-            script.append("SELECT * FROM %s;" % table)
+        post = DML.post_select(num, code)
+        if post:
+            script.append(post)
         script.append("COMMIT;")
 
     script.append(read_sql("A3_00_seed.sql"))
@@ -196,11 +208,14 @@ def main():
             print("DML %d failed: %s" % (num, bad))
             sys.exit(1)
         entry = {"status": status}
-        if code[0].upper().startswith("INSERT"):
-            table = re.search(r"INTO\s+(\w+)", "\n".join(code), re.I).group(1)
-            info = cols.get(table.lower(), [])
-            entry["headers"] = [c for c, _t in info]
-            entry["types"] = [t for _c, t in info]
+        post = DML.post_select(num, code)
+        if post:
+            sel, table, sel_cols = select_of(post)
+            info = dict(cols.get(table.lower(), []))
+            names = ([c for c, _t in cols.get(table.lower(), [])]
+                     if sel_cols == "*" else sel_cols)
+            entry["headers"] = names
+            entry["types"] = [info[n] for n in names]
             entry["rows"] = parse_rows(rest)
         cache["dml"]["%02d" % num] = entry
 

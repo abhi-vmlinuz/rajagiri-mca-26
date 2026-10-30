@@ -4,7 +4,18 @@
 {\fontsize{14}{17}\selectfont\textbf{10.}}\ Insert three events into the EVENT table using an Oracle INSERT ALL statement.\par
 \endgroup\vspace{12pt}
 
-\codeheading{CODE:}
+\noindent\textbf{Sample Data:} Event\par
+\vspace{6pt}
+{\scriptsize\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{47.3pt}|>{\raggedright\arraybackslash}p{70.6pt}|>{\raggedright\arraybackslash}p{54.4pt}|>{\raggedright\arraybackslash}p{70.2pt}|>{\raggedright\arraybackslash}p{53.1pt}|>{\raggedleft\arraybackslash}p{75.7pt}|>{\raggedleft\arraybackslash}p{72.6pt}|}
+\hline
+\textbf{Event\_ID} & \textbf{Event\_Name} & \textbf{Event\_Date} & \textbf{Venue} & \textbf{Faculty\_ID} & \textbf{Max\_Participants} & \textbf{Registration\_Fee} \\ \hline
+EV01 & Tech Fest & 15-MAR-26 & Main Auditorium & F101 & 150 & 200 \\ \hline
+EV02 & Workshop on AI & 10-APR-24 & Seminar Hall & F102 & 50 &  \\ \hline
+EV03 & National Seminar & 20-NOV-25 & Seminar Hall & F103 & 300 & 100 \\ \hline
+\end{tabular}\par}
+\vspace{14pt}\codeheading{CODE:}
 
 \begin{sqlcode}
 INSERT ALL

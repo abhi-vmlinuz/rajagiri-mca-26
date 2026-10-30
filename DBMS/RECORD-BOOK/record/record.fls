@@ -319,6 +319,9 @@ INPUT ./pages/a2_q01.tex
 INPUT ./pages/a2_q01.tex
 INPUT ./pages/a2_q01.tex
 INPUT pages/a2_q01.tex
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT ./pages/a2_q02.tex
 INPUT ./pages/a2_q02.tex
 INPUT ./pages/a2_q02.tex

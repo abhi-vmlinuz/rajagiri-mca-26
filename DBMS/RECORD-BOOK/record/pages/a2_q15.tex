@@ -6,8 +6,11 @@
 
 \codeheading{CODE:}
 
-\begin{sqlcode}
+\begin{sqlcode}[fontsize=\footnotesize]
 UPDATE course SET credits = 5
+WHERE course_title = 'Database Management Systems';
+
+SELECT course_id, course_title, credits FROM course
 WHERE course_title = 'Database Management Systems';
 \end{sqlcode}
 
@@ -17,7 +20,12 @@ WHERE course_title = 'Database Management Systems';
 
 \begin{sqlout}[fontsize=\small]
 1 row updated.
-Commit complete.
+
+COURSE_ID  COURSE_TITLE                 CREDITS
+---------  ---------------------------  -------
+C101       Database Management Systems        5
+
+1 row selected.
 \end{sqlout}
 \end{minipage}\par\vspace{24pt}
 
