@@ -1,0 +1,39 @@
+% ---- Section 5 / question 1
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{1.}}\ Create a trigger to change a member's name to uppercase before inserting the member.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE OR REPLACE TRIGGER trg_member_name_upper
+BEFORE INSERT ON member
+FOR EACH ROW
+BEGIN
+   :NEW.full_name := UPPER(:NEW.full_name);
+END;
+/
+
+INSERT INTO member (member_id, full_name, member_type, branch_id)
+VALUES (1016, 'arjun das', 'STUDENT', 101);
+
+SELECT member_id, full_name FROM member WHERE member_id = 1016;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+Trigger created.
+1 row created.
+
+MEMBER_ID  FULL_NAME
+---------  ---------
+     1016  ARJUN DAS
+
+1 row selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

@@ -1,0 +1,808 @@
+{
+ "f01": {
+  "status": [
+   "Function created."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "MEMBER_NAME"
+    ],
+    "types": [
+     "VARCHAR2"
+    ],
+    "rows": [
+     [
+      "Meera Thomas"
+     ]
+    ]
+   }
+  ]
+ },
+ "f02": {
+  "status": [
+   "Function created."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "TOTAL_BOOKS"
+    ],
+    "types": [
+     "NUMBER"
+    ],
+    "rows": [
+     [
+      "20"
+     ]
+    ]
+   }
+  ]
+ },
+ "f03": {
+  "status": [
+   "Function created."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "STUDENT_MEMBERS"
+    ],
+    "types": [
+     "NUMBER"
+    ],
+    "rows": [
+     [
+      "6"
+     ]
+    ]
+   }
+  ]
+ },
+ "f04": {
+  "status": [
+   "Function created."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "AVAILABLE_COPIES"
+    ],
+    "types": [
+     "NUMBER"
+    ],
+    "rows": [
+     [
+      "1"
+     ]
+    ]
+   }
+  ]
+ },
+ "f05": {
+  "status": [
+   "Function created."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "TOTAL_FINE"
+    ],
+    "types": [
+     "NUMBER"
+    ],
+    "rows": [
+     [
+      "480"
+     ]
+    ]
+   }
+  ]
+ },
+ "f06": {
+  "status": [
+   "Function created."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "SALARY"
+    ],
+    "types": [
+     "NUMBER"
+    ],
+    "rows": [
+     [
+      "55000"
+     ]
+    ]
+   }
+  ]
+ },
+ "t01": {
+  "status": [
+   "Trigger created.",
+   "1 row created."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "MEMBER_ID",
+     "FULL_NAME"
+    ],
+    "types": [
+     "NUMBER",
+     "VARCHAR2"
+    ],
+    "rows": [
+     [
+      "1016",
+      "ARJUN DAS"
+     ]
+    ]
+   }
+  ]
+ },
+ "t02": {
+  "status": [
+   "Trigger created.",
+   "UPDATE book SET price = -250 WHERE book_id = 4002",
+   "       *",
+   "ERROR at line 1:",
+   "ORA-20001: Book price cannot be negative"
+  ],
+  "tables": []
+ },
+ "t03": {
+  "status": [
+   "Trigger created.",
+   "1 row created."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "MEMBER_ID",
+     "FULL_NAME",
+     "JOIN_DATE"
+    ],
+    "types": [
+     "NUMBER",
+     "VARCHAR2",
+     "DATE"
+    ],
+    "rows": [
+     [
+      "1017",
+      "KAVYA MENON",
+      "31-OCT-26"
+     ]
+    ]
+   }
+  ]
+ },
+ "t04": {
+  "status": [
+   "Trigger created.",
+   "1 row updated."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "LOAN_ID",
+     "LOAN_STATUS"
+    ],
+    "types": [
+     "NUMBER",
+     "VARCHAR2"
+    ],
+    "rows": [
+     [
+      "7001",
+      "RETURNED"
+     ]
+    ]
+   },
+   {
+    "headers": [
+     "COPY_ID",
+     "AVAILABILITY_STATUS"
+    ],
+    "types": [
+     "NUMBER",
+     "VARCHAR2"
+    ],
+    "rows": [
+     [
+      "6002",
+      "AVAILABLE"
+     ]
+    ]
+   }
+  ]
+ },
+ "t05": {
+  "status": [
+   "Trigger created.",
+   "UPDATE fine SET amount_paid = amount + 100 WHERE fine_id = 9001",
+   "       *",
+   "ERROR at line 1:",
+   "ORA-20002: Amount paid cannot exceed the fine amount"
+  ],
+  "tables": []
+ },
+ "t06": {
+  "status": [
+   "Trigger created.",
+   "New book added: Database Systems",
+   "1 row created."
+  ],
+  "tables": []
+ },
+ "v01": {
+  "status": [
+   "View created."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "BOOK_ID",
+     "TITLE",
+     "CATEGORY",
+     "PUBLICATION_YEAR",
+     "PRICE"
+    ],
+    "types": [
+     "NUMBER",
+     "VARCHAR2",
+     "VARCHAR2",
+     "NUMBER",
+     "NUMBER"
+    ],
+    "rows": [
+     [
+      "4001",
+      "1984",
+      "Fiction",
+      "1949",
+      "399"
+     ],
+     [
+      "4002",
+      "Pride and Prejudice",
+      "Fiction",
+      "1813",
+      "450"
+     ],
+     [
+      "4003",
+      "Clean Code",
+      "Computer Science",
+      "2008",
+      "988.9"
+     ],
+     [
+      "4004",
+      "Sapiens",
+      "History",
+      "2014",
+      "699"
+     ],
+     [
+      "4005",
+      "Wings of Fire",
+      "Biography",
+      "1999",
+      "350"
+     ],
+     [
+      "4006",
+      "The God of Small Things",
+      "Fiction",
+      "1997",
+      "499"
+     ],
+     [
+      "4007",
+      "Introduction to Algorithms",
+      "Computer Science",
+      "2022",
+      "1099"
+     ],
+     [
+      "4008",
+      "Modern Operating Systems",
+      "Computer Science",
+      "2014",
+      "1045"
+     ],
+     [
+      "4009",
+      "Aarachar",
+      "Fiction",
+      "2012",
+      "525"
+     ],
+     [
+      "4010",
+      "The Picture of Dorian Gray",
+      "Fiction",
+      "1890",
+      "375"
+     ],
+     [
+      "4011",
+      "Designing Data-Intensive Applications",
+      "Computer Science",
+      "2017",
+      "999"
+     ],
+     [
+      "4012",
+      "Learning SQL",
+      "Computer Science",
+      "2020",
+      "799"
+     ],
+     [
+      "4013",
+      "Artificial Intelligence: A Modern Approach",
+      "Computer Science",
+      "2021",
+      "1318.9"
+     ],
+     [
+      "4014",
+      "To Kill a Mockingbird",
+      "Fiction",
+      "1960",
+      "499"
+     ],
+     [
+      "4015",
+      "India 2020",
+      "Technology",
+      "1998",
+      "325"
+     ],
+     [
+      "4016",
+      "Deep Learning",
+      "Computer Science",
+      "2016",
+      "1050"
+     ],
+     [
+      "4017",
+      "A Brief History of Time",
+      "Science",
+      "1988",
+      "425"
+     ],
+     [
+      "4018",
+      "The Alchemist",
+      "Fiction",
+      "1988",
+      "299"
+     ],
+     [
+      "4019",
+      "Machine Learning with Python",
+      "Computer Science",
+      "2022",
+      "875"
+     ],
+     [
+      "4020",
+      "Qabar",
+      "Fiction",
+      "2020",
+      "280"
+     ]
+    ]
+   }
+  ]
+ },
+ "v02": {
+  "status": [
+   "View created."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "MEMBER_ID",
+     "FULL_NAME",
+     "MEMBER_TYPE",
+     "CITY",
+     "JOIN_DATE"
+    ],
+    "types": [
+     "NUMBER",
+     "VARCHAR2",
+     "VARCHAR2",
+     "VARCHAR2",
+     "DATE"
+    ],
+    "rows": [
+     [
+      "1001",
+      "Aarav Menon",
+      "STUDENT",
+      "Kochi",
+      "10-JUN-24"
+     ],
+     [
+      "1002",
+      "Diya Nair",
+      "STUDENT",
+      "Aluva",
+      "01-JUL-24"
+     ],
+     [
+      "1003",
+      "Meera Thomas",
+      "FACULTY",
+      "Kakkanad",
+      "15-JAN-22"
+     ],
+     [
+      "1004",
+      "Rohan Joseph",
+      "PUBLIC",
+      "Kochi",
+      "11-SEP-23"
+     ],
+     [
+      "1005",
+      "Ananya Pillai",
+      "RESEARCHER",
+      "Thrippunithura",
+      "20-AUG-21"
+     ],
+     [
+      "1006",
+      "Nikhil Raj",
+      "STUDENT",
+      "Aluva",
+      "05-JUN-23"
+     ],
+     [
+      "1009",
+      "Ishita Rao",
+      "STUDENT",
+      "Kochi",
+      "10-JUN-24"
+     ],
+     [
+      "1010",
+      "Adil Khan",
+      "RESEARCHER",
+      "Kakkanad",
+      "01-OCT-19"
+     ],
+     [
+      "1011",
+      "Liya George",
+      "STUDENT",
+      "Thrippunithura",
+      "12-JUN-25"
+     ],
+     [
+      "1013",
+      "Neha Varma",
+      "FACULTY",
+      "Kakkanad",
+      "03-MAR-23"
+     ],
+     [
+      "1015",
+      "Fathima Noor",
+      "RESEARCHER",
+      "Aluva",
+      "18-APR-24"
+     ]
+    ]
+   }
+  ]
+ },
+ "v03": {
+  "status": [
+   "View created."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "COPY_ID",
+     "BOOK_ID",
+     "BRANCH_ID",
+     "ACCESSION_NO"
+    ],
+    "types": [
+     "NUMBER",
+     "NUMBER",
+     "NUMBER",
+     "VARCHAR2"
+    ],
+    "rows": [
+     [
+      "6003",
+      "4002",
+      "101",
+      "ACC-C-0002"
+     ],
+     [
+      "6005",
+      "4003",
+      "103",
+      "ACC-K-0001"
+     ],
+     [
+      "6007",
+      "4005",
+      "102",
+      "ACC-R-0002"
+     ],
+     [
+      "6008",
+      "4006",
+      "101",
+      "ACC-C-0004"
+     ],
+     [
+      "6010",
+      "4007",
+      "101",
+      "ACC-C-0005"
+     ],
+     [
+      "6011",
+      "4008",
+      "104",
+      "ACC-T-0002"
+     ],
+     [
+      "6012",
+      "4009",
+      "104",
+      "ACC-T-0003"
+     ],
+     [
+      "6015",
+      "4012",
+      "101",
+      "ACC-C-0006"
+     ],
+     [
+      "6016",
+      "4013",
+      "103",
+      "ACC-K-0004"
+     ],
+     [
+      "6018",
+      "4015",
+      "101",
+      "ACC-C-0007"
+     ],
+     [
+      "6019",
+      "4016",
+      "103",
+      "ACC-K-0005"
+     ],
+     [
+      "6020",
+      "4017",
+      "104",
+      "ACC-T-0004"
+     ],
+     [
+      "6022",
+      "4019",
+      "102",
+      "ACC-R-0005"
+     ],
+     [
+      "6023",
+      "4020",
+      "104",
+      "ACC-T-0005"
+     ]
+    ]
+   }
+  ]
+ },
+ "v04": {
+  "status": [
+   "View created."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "TITLE",
+     "PUBLISHER_NAME"
+    ],
+    "types": [
+     "VARCHAR2",
+     "VARCHAR2"
+    ],
+    "rows": [
+     [
+      "1984",
+      "Penguin Random House"
+     ],
+     [
+      "Pride and Prejudice",
+      "Penguin Random House"
+     ],
+     [
+      "Clean Code",
+      "Pearson Education"
+     ],
+     [
+      "Sapiens",
+      "HarperCollins"
+     ],
+     [
+      "Wings of Fire",
+      "DC Books"
+     ],
+     [
+      "The God of Small Things",
+      "Penguin Random House"
+     ],
+     [
+      "Introduction to Algorithms",
+      "MIT Press"
+     ],
+     [
+      "Modern Operating Systems",
+      "Pearson Education"
+     ],
+     [
+      "Aarachar",
+      "DC Books"
+     ],
+     [
+      "The Picture of Dorian Gray",
+      "Oxford University Press"
+     ],
+     [
+      "Designing Data-Intensive Applications",
+      "O'Reilly Media"
+     ],
+     [
+      "Learning SQL",
+      "O'Reilly Media"
+     ],
+     [
+      "Artificial Intelligence: A Modern Approach",
+      "Pearson Education"
+     ],
+     [
+      "To Kill a Mockingbird",
+      "HarperCollins"
+     ],
+     [
+      "India 2020",
+      "HarperCollins"
+     ],
+     [
+      "Deep Learning",
+      "MIT Press"
+     ],
+     [
+      "A Brief History of Time",
+      "Oxford University Press"
+     ],
+     [
+      "The Alchemist",
+      "HarperCollins"
+     ],
+     [
+      "Machine Learning with Python",
+      "Springer"
+     ],
+     [
+      "Qabar",
+      "DC Books"
+     ]
+    ]
+   }
+  ]
+ },
+ "v05": {
+  "status": [
+   "View created."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "CATEGORY",
+     "BOOK_COUNT"
+    ],
+    "types": [
+     "VARCHAR2",
+     "NUMBER"
+    ],
+    "rows": [
+     [
+      "Biography",
+      "1"
+     ],
+     [
+      "Computer Science",
+      "8"
+     ],
+     [
+      "Fiction",
+      "8"
+     ],
+     [
+      "History",
+      "1"
+     ],
+     [
+      "Science",
+      "1"
+     ],
+     [
+      "Technology",
+      "1"
+     ]
+    ]
+   }
+  ]
+ },
+ "v06": {
+  "status": [
+   "View created."
+  ],
+  "tables": [
+   {
+    "headers": [
+     "FULL_NAME",
+     "SALARY"
+    ],
+    "types": [
+     "VARCHAR2",
+     "NUMBER"
+    ],
+    "rows": [
+     [
+      "Lakshmi Menon",
+      "72000"
+     ],
+     [
+      "Arun Das",
+      "48000"
+     ],
+     [
+      "Jency Paul",
+      "55000"
+     ],
+     [
+      "Rahul Dev",
+      "32000"
+     ],
+     [
+      "Priya Raman",
+      "56000"
+     ],
+     [
+      "Manu Suresh",
+      "34000"
+     ],
+     [
+      "Elsa John",
+      "52000"
+     ],
+     [
+      "Akhil Babu",
+      "30000"
+     ]
+    ]
+   }
+  ]
+ }
+}

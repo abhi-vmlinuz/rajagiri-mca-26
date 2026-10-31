@@ -1,0 +1,40 @@
+% ---- Section 5 / question 3
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{3.}}\ Create a trigger to fill in the join date with today's date when it is not provided.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE OR REPLACE TRIGGER trg_member_join_date
+BEFORE INSERT ON member
+FOR EACH ROW
+WHEN (NEW.join_date IS NULL)
+BEGIN
+   :NEW.join_date := SYSDATE;
+END;
+/
+
+INSERT INTO member (member_id, full_name, member_type, branch_id)
+VALUES (1017, 'KAVYA MENON', 'PUBLIC', 102);
+
+SELECT member_id, full_name, join_date FROM member WHERE member_id = 1017;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+Trigger created.
+1 row created.
+
+MEMBER_ID  FULL_NAME    JOIN_DATE
+---------  -----------  ---------
+     1017  KAVYA MENON  31-OCT-26
+
+1 row selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

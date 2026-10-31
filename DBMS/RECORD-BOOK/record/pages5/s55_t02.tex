@@ -1,0 +1,34 @@
+% ---- Section 5 / question 2
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{2.}}\ Create a trigger to stop a book's price from being set below zero.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE OR REPLACE TRIGGER trg_book_price_positive
+BEFORE INSERT OR UPDATE OF price ON book
+FOR EACH ROW
+WHEN (NEW.price < 0)
+BEGIN
+   RAISE_APPLICATION_ERROR(-20001, 'Book price cannot be negative');
+END;
+/
+
+UPDATE book SET price = -250 WHERE book_id = 4002;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+Trigger created.
+UPDATE book SET price = -250 WHERE book_id = 4002
+       *
+ERROR at line 1:
+ORA-20001: Book price cannot be negative
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

@@ -1,0 +1,40 @@
+% ---- Section 5 / question 3
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{3.}}\ Create a function that returns the number of members of a given member type.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE OR REPLACE FUNCTION member_count (p_type VARCHAR2)
+RETURN NUMBER
+IS
+   v_count NUMBER;
+BEGIN
+   SELECT COUNT(*) INTO v_count
+   FROM member
+   WHERE member_type = UPPER(p_type);
+
+   RETURN v_count;
+END;
+/
+
+SELECT member_count('STUDENT') AS student_members FROM dual;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+Function created.
+
+STUDENT_MEMBERS
+---------------
+              6
+
+1 row selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

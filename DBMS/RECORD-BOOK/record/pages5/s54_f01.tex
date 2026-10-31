@@ -1,0 +1,40 @@
+% ---- Section 5 / question 1
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{1.}}\ Create a function that returns a member's name using the member ID.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE OR REPLACE FUNCTION get_member_name (p_member_id NUMBER)
+RETURN member.full_name%TYPE
+IS
+   v_name member.full_name%TYPE;
+BEGIN
+   SELECT full_name INTO v_name
+   FROM member
+   WHERE member_id = p_member_id;
+
+   RETURN v_name;
+END;
+/
+
+SELECT get_member_name(1003) AS member_name FROM dual;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+Function created.
+
+MEMBER_NAME 
+------------
+Meera Thomas
+
+1 row selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

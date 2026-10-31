@@ -1,0 +1,38 @@
+% ---- Section 5 / question 6
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{6.}}\ Create a view showing staff names and their salaries.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE OR REPLACE VIEW staff_salaries AS
+SELECT full_name, salary
+FROM staff;
+
+SELECT * FROM staff_salaries;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+View created.
+
+FULL_NAME      SALARY
+-------------  ------
+Lakshmi Menon   72000
+Arun Das        48000
+Jency Paul      55000
+Rahul Dev       32000
+Priya Raman     56000
+Manu Suresh     34000
+Elsa John       52000
+Akhil Babu      30000
+
+8 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

@@ -1,0 +1,34 @@
+% ---- Section 5 / question 5
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{5.}}\ Create a trigger to stop the amount paid for a fine from being greater than the fine amount.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE OR REPLACE TRIGGER trg_fine_paid_limit
+BEFORE INSERT OR UPDATE OF amount_paid ON fine
+FOR EACH ROW
+WHEN (NEW.amount_paid > NEW.amount)
+BEGIN
+   RAISE_APPLICATION_ERROR(-20002, 'Amount paid cannot exceed the fine amount');
+END;
+/
+
+UPDATE fine SET amount_paid = amount + 100 WHERE fine_id = 9001;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+Trigger created.
+UPDATE fine SET amount_paid = amount + 100 WHERE fine_id = 9001
+       *
+ERROR at line 1:
+ORA-20002: Amount paid cannot exceed the fine amount
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

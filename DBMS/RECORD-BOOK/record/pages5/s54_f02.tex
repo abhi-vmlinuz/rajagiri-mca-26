@@ -1,0 +1,37 @@
+% ---- Section 5 / question 2
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{2.}}\ Create a function that returns the total number of books.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE OR REPLACE FUNCTION total_books
+RETURN NUMBER
+IS
+   v_count NUMBER;
+BEGIN
+   SELECT COUNT(*) INTO v_count FROM book;
+   RETURN v_count;
+END;
+/
+
+SELECT total_books() AS total_books FROM dual;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+Function created.
+
+TOTAL_BOOKS
+-----------
+         20
+
+1 row selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

@@ -1,0 +1,41 @@
+% ---- Section 5 / question 4
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{4.}}\ Create a function that returns the number of AVAILABLE copies of a book.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE OR REPLACE FUNCTION available_copies (p_book_id NUMBER)
+RETURN NUMBER
+IS
+   v_count NUMBER;
+BEGIN
+   SELECT COUNT(*) INTO v_count
+   FROM book_copy
+   WHERE book_id = p_book_id
+     AND availability_status = 'AVAILABLE';
+
+   RETURN v_count;
+END;
+/
+
+SELECT available_copies(4003) AS available_copies FROM dual;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+Function created.
+
+AVAILABLE_COPIES
+----------------
+               1
+
+1 row selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

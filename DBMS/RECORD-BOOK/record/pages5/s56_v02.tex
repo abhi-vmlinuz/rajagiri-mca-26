@@ -1,0 +1,42 @@
+% ---- Section 5 / question 2
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{2.}}\ Create a view named ACTIVE\_MEMBERS showing members whose status is ACTIVE.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE OR REPLACE VIEW active_members AS
+SELECT member_id, full_name, member_type, city, join_date
+FROM member
+WHERE status = 'ACTIVE';
+
+SELECT * FROM active_members;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+View created.
+
+MEMBER_ID  FULL_NAME      MEMBER_TYPE  CITY            JOIN_DATE
+---------  -------------  -----------  --------------  ---------
+     1001  Aarav Menon    STUDENT      Kochi           10-JUN-24
+     1002  Diya Nair      STUDENT      Aluva           01-JUL-24
+     1003  Meera Thomas   FACULTY      Kakkanad        15-JAN-22
+     1004  Rohan Joseph   PUBLIC       Kochi           11-SEP-23
+     1005  Ananya Pillai  RESEARCHER   Thrippunithura  20-AUG-21
+     1006  Nikhil Raj     STUDENT      Aluva           05-JUN-23
+     1009  Ishita Rao     STUDENT      Kochi           10-JUN-24
+     1010  Adil Khan      RESEARCHER   Kakkanad        01-OCT-19
+     1011  Liya George    STUDENT      Thrippunithura  12-JUN-25
+     1013  Neha Varma     FACULTY      Kakkanad        03-MAR-23
+     1015  Fathima Noor   RESEARCHER   Aluva           18-APR-24
+
+11 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

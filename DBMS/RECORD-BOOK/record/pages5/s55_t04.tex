@@ -1,0 +1,50 @@
+% ---- Section 5 / question 4
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{4.}}\ Create a trigger to set a book copy's status to AVAILABLE when a loan is marked RETURNED.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE OR REPLACE TRIGGER trg_loan_returned
+AFTER UPDATE OF loan_status ON loan
+FOR EACH ROW
+WHEN (NEW.loan_status = 'RETURNED')
+BEGIN
+   UPDATE book_copy
+   SET availability_status = 'AVAILABLE'
+   WHERE copy_id = :OLD.copy_id;
+END;
+/
+
+UPDATE loan SET loan_status = 'RETURNED', return_date = SYSDATE
+WHERE loan_id = 7001;
+
+SELECT loan_id, loan_status FROM loan WHERE loan_id = 7001;
+
+SELECT copy_id, availability_status FROM book_copy WHERE copy_id = 6002;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+Trigger created.
+1 row updated.
+
+LOAN_ID  LOAN_STATUS
+-------  -----------
+   7001  RETURNED
+
+1 row selected.
+
+COPY_ID  AVAILABILITY_STATUS
+-------  -------------------
+   6002  AVAILABLE
+
+1 row selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

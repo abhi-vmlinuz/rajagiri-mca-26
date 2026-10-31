@@ -1,0 +1,50 @@
+% ---- Section 5 / question 1
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{1.}}\ Create a view named BOOK\_DETAILS showing each book's ID, title, category, publication year, and price.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE OR REPLACE VIEW book_details AS
+SELECT book_id, title, category, publication_year, price
+FROM book;
+
+SELECT * FROM book_details;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\scriptsize]
+View created.
+
+BOOK_ID  TITLE                                       CATEGORY          PUBLICATION_YEAR   PRICE
+-------  ------------------------------------------  ----------------  ----------------  ------
+   4001  1984                                        Fiction                       1949     399
+   4002  Pride and Prejudice                         Fiction                       1813     450
+   4003  Clean Code                                  Computer Science              2008   988.9
+   4004  Sapiens                                     History                       2014     699
+   4005  Wings of Fire                               Biography                     1999     350
+   4006  The God of Small Things                     Fiction                       1997     499
+   4007  Introduction to Algorithms                  Computer Science              2022    1099
+   4008  Modern Operating Systems                    Computer Science              2014    1045
+   4009  Aarachar                                    Fiction                       2012     525
+   4010  The Picture of Dorian Gray                  Fiction                       1890     375
+   4011  Designing Data-Intensive Applications       Computer Science              2017     999
+   4012  Learning SQL                                Computer Science              2020     799
+   4013  Artificial Intelligence: A Modern Approach  Computer Science              2021  1318.9
+   4014  To Kill a Mockingbird                       Fiction                       1960     499
+   4015  India 2020                                  Technology                    1998     325
+   4016  Deep Learning                               Computer Science              2016    1050
+   4017  A Brief History of Time                     Science                       1988     425
+   4018  The Alchemist                               Fiction                       1988     299
+   4019  Machine Learning with Python                Computer Science              2022     875
+   4020  Qabar                                       Fiction                       2020     280
+
+20 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

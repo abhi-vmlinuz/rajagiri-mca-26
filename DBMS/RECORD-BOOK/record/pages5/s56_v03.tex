@@ -1,0 +1,45 @@
+% ---- Section 5 / question 3
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{3.}}\ Create a view named AVAILABLE\_BOOKS showing copies whose status is AVAILABLE.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE OR REPLACE VIEW available_books AS
+SELECT copy_id, book_id, branch_id, accession_no
+FROM book_copy
+WHERE availability_status = 'AVAILABLE';
+
+SELECT * FROM available_books;
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+View created.
+
+COPY_ID  BOOK_ID  BRANCH_ID  ACCESSION_NO
+-------  -------  ---------  ------------
+   6003     4002        101  ACC-C-0002
+   6005     4003        103  ACC-K-0001
+   6007     4005        102  ACC-R-0002
+   6008     4006        101  ACC-C-0004
+   6010     4007        101  ACC-C-0005
+   6011     4008        104  ACC-T-0002
+   6012     4009        104  ACC-T-0003
+   6015     4012        101  ACC-C-0006
+   6016     4013        103  ACC-K-0004
+   6018     4015        101  ACC-C-0007
+   6019     4016        103  ACC-K-0005
+   6020     4017        104  ACC-T-0004
+   6022     4019        102  ACC-R-0005
+   6023     4020        104  ACC-T-0005
+
+14 rows selected.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

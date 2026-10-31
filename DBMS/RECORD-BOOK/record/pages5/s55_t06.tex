@@ -1,0 +1,33 @@
+% ---- Section 5 / question 6
+\noindent\begin{minipage}{\linewidth}
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000
+{\fontsize{14}{17}\selectfont\textbf{6.}}\ Create a simple trigger that displays a message when a new book is added.\par
+\endgroup\vspace{12pt}
+
+\codeheading{CODE:}
+
+\begin{sqlcode}
+CREATE OR REPLACE TRIGGER trg_book_added
+AFTER INSERT ON book
+FOR EACH ROW
+BEGIN
+   DBMS_OUTPUT.PUT_LINE('New book added: ' || :NEW.title);
+END;
+/
+
+INSERT INTO book (book_id, isbn, title, category, publisher_id)
+VALUES (4021, '978-81-0000-021', 'Database Systems',
+        'Computer Science', 201);
+\end{sqlcode}
+
+\vspace{18pt}
+
+\codeheading{OUTPUT:}
+
+\begin{sqlout}[fontsize=\small]
+Trigger created.
+New book added: Database Systems
+1 row created.
+\end{sqlout}
+\end{minipage}\par\vspace{24pt}
+

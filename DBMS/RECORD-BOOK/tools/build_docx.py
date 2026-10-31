@@ -21,6 +21,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEX = os.path.join(ROOT, "record", "record.tex")
 PAGES = os.path.join(ROOT, "record", "pages")
 OUT = os.path.join(ROOT, "record", "record.docx")
+START_PAGE = 1                   # w:pgNumType start for the footer
 
 TEXT_W = 17.19 * 28.3465          # 21cm - 1.5in, in points
 FONT_DIR = "/usr/share/fonts/liberation-serif-fonts"
@@ -123,14 +124,15 @@ def document_sequence():
     seq = []
     for line in body.splitlines():
         line = line.strip()
-        m = re.match(r"\\input\{pages/([^}]+)\}", line)
+        m = re.match(r"\\input\{pages5?/([^}]+)\}", line)
         if m:
             seq.append(("page", m.group(1)))
             continue
         m = re.match(r"\\(mainheading|subheading|subsubheading)\{(.*)\}", line)
         if m:
             seq.append(({"mainheading": "main", "subheading": "sub",
-                         "subsubheading": "subsub"}[m.group(1)], m.group(2)))
+                         "subsubheading": "subsub"}[m.group(1)],
+                        " ".join(m.group(2).split())))
             continue
         if line == r"\clearpage":
             seq.append(("break", None))
@@ -295,6 +297,14 @@ def main():
     section.right_margin = Inches(0.75)
     add_page_border(section)
     add_footer_number(section)
+
+    if START_PAGE != 1:
+        pg = OxmlElement("w:pgNumType")
+        pg.set(qn("w:start"), str(START_PAGE))
+        section._sectPr.insert_element_before(
+            pg, "w:cols", "w:formProt", "w:vAlign", "w:noEndnote",
+            "w:titlePg", "w:textDirection", "w:bidi", "w:rtlGutter",
+            "w:docGrid", "w:printerSettings", "w:sectPrChange")
 
     pending_break = False
 
