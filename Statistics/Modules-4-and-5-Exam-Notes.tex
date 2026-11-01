@@ -1,0 +1,333 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=0.72in]{geometry}
+% Libertinus from the source template is not installed in this TeX Live setup.
+% Latin Modern is available and keeps the document compilable here.
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{parskip}
+
+\definecolor{navy}{HTML}{183153}
+\definecolor{blue}{HTML}{2563EB}
+\definecolor{green}{HTML}{166534}
+\definecolor{red}{HTML}{B91C1C}
+\definecolor{gold}{HTML}{92400E}
+\definecolor{lightblue}{HTML}{EFF6FF}
+\definecolor{lightgreen}{HTML}{F0FDF4}
+\definecolor{lightred}{HTML}{FEF2F2}
+\definecolor{lightgold}{HTML}{FFFBEB}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Probability, Statistics and Computational Mathematics}
+\rhead{Modules 4--5 Exam Notes}
+\cfoot{\thepage}
+
+\titleformat{\section}{\Large\bfseries\color{navy}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\color{navy}}{}{0pt}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{blue}}{}{0pt}{}
+\setlist[itemize]{leftmargin=*,nosep}
+\setlist[enumerate]{leftmargin=*,nosep}
+
+\newenvironment{exambox}{\par\medskip\noindent\color{blue}\textbf{Exam Focus}\par\smallskip\color{black}\begin{quote}}{\end{quote}\medskip}
+\newenvironment{rememberbox}{\par\medskip\noindent\color{gold}\textbf{Remember}\par\smallskip\color{black}\begin{quote}}{\end{quote}\medskip}
+\newenvironment{dangerbox}{\par\medskip\noindent\color{red}\textbf{Do Not Confuse}\par\smallskip\color{black}\begin{quote}}{\end{quote}\medskip}
+\newenvironment{answerbox}{\par\medskip\noindent\color{green}\textbf{Answer Skeleton}\par\smallskip\color{black}\begin{quote}}{\end{quote}\medskip}
+\newcommand{\mkmarks}[1]{\hfill\textbf{[#1 marks]}}
+
+\begin{document}
+
+\begin{center}
+{\Huge\bfseries\color{navy} PROBABILITY, STATISTICS AND COMPUTATIONAL MATHEMATICS}\\[4pt]
+{\LARGE\bfseries MODULES 4 AND 5}\\[8pt]
+{\large High-yield notes, formulas, worked examples, and question bank}\\[10pt]
+\rule{0.85\textwidth}{0.6pt}
+\end{center}
+
+\begin{exambox}
+\textbf{Scope.} These notes cover only Module 4 (Mathematical Logic) and Module 5 (Counting and Mathematical Induction), matching the supplied module PDFs. The exam timetable lists the MCA101 paper for Friday, 30 October 2026, 9:30--10:30 a.m.; the marks pattern was not supplied, so the question lengths below are revision guidance rather than a confirmed blueprint. For proof and calculation questions, show the rule or formula, substitute values, and state the conclusion clearly.
+\end{exambox}
+
+\tableofcontents
+\newpage
+
+\section{Module 4: Mathematical Logic}
+
+\subsection{4.1 Propositions and connectives}
+A \textbf{proposition} is a declarative statement with exactly one truth value: true (T) or false (F). Questions, commands, and open sentences containing an unspecified variable are not propositions.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.16\textwidth} p{0.18\textwidth} X X}
+\toprule
+Connective & Notation & Meaning & Truth condition\\
+\midrule
+Negation & $\neg p$ & not $p$ & True exactly when $p$ is false\\
+Conjunction & $p\land q$ & $p$ and $q$ & True when both are true\\
+Inclusive OR & $p\lor q$ & $p$ or $q$ or both & False only when both are false\\
+Exclusive OR & $p\oplus q$ & exactly one of $p,q$ & True when their values differ\\
+Implication & $p\to q$ & if $p$, then $q$ & False only for $p=T,q=F$\\
+Biconditional & $p\leftrightarrow q$ & $p$ iff $q$ & True when their values agree\\
+\bottomrule
+\end{tabularx}\end{center}
+
+For $n$ variables, a complete truth table has $2^n$ rows. The implication $p\to q$ is logically equivalent to $\neg p\lor q$, and $p\leftrightarrow q$ is equivalent to $(p\to q)\land(q\to p)$.
+
+\begin{center}\small
+\begin{tabular}{cc|cccccc}
+\toprule $p$&$q$&$\neg p$&$p\land q$&$p\lor q$&$p\oplus q$&$p\to q$&$p\leftrightarrow q$\\\midrule
+T&T&F&T&T&F&T&T\\
+T&F&F&F&T&T&F&F\\
+F&T&T&F&T&T&T&F\\
+F&F&T&F&F&F&T&T\\\bottomrule
+\end{tabular}\end{center}
+
+\subsection{4.2 Tautology, contradiction, contingency}
+\begin{itemize}
+\item A \textbf{tautology} is true on every row (example: $p\lor\neg p$).
+\item A \textbf{contradiction} is false on every row (example: $p\land\neg p$).
+\item A \textbf{contingency} is true on some rows and false on others (example: $p\land q$).
+\end{itemize}
+To classify a formula, construct its full truth table and inspect the final column.
+
+\subsection{4.3 Logical equivalences}
+Two formulas are logically equivalent, written $P\equiv Q$, when their truth values agree for every assignment. Use a truth table or the following laws.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.22\textwidth} X X}
+\toprule Law & Form 1 & Form 2\\\midrule
+Identity & $p\land T$ & $p$; \quad $p\lor F=p$\\
+Domination & $p\lor T$ & $T$; \quad $p\land F=F$\\
+Idempotent & $p\lor p$ & $p$; \quad $p\land p=p$\\
+Double negation & $\neg\neg p$ & $p$\\
+Commutative & $p\lor q$ & $q\lor p$; similarly for $\land$\\
+Associative & $(p\lor q)\lor r$ & $p\lor(q\lor r)$; similarly for $\land$\\
+Distributive & $p\land(q\lor r)$ & $(p\land q)\lor(p\land r)$\\
+De Morgan & $\neg(p\land q)$ & $\neg p\lor\neg q$\\
+De Morgan & $\neg(p\lor q)$ & $\neg p\land\neg q$\\
+Absorption & $p\lor(p\land q)$ & $p$; dual: $p\land(p\lor q)=p$\\
+Implication & $p\to q$ & $\neg p\lor q$\\
+Biconditional & $p\leftrightarrow q$ & $(p\to q)\land(q\to p)$\\
+\bottomrule
+\end{tabularx}\end{center}
+
+\subsubsection{Converse, inverse, contrapositive}
+For $p\to q$: the \textbf{converse} is $q\to p$; the \textbf{inverse} is $\neg p\to\neg q$; the \textbf{contrapositive} is $\neg q\to\neg p$. The original and contrapositive are equivalent. The converse and inverse are equivalent to each other, but are not generally equivalent to the original.
+
+\begin{dangerbox}For “if $p$, then $q$,” do not swap the hypothesis and conclusion and assume the result is equivalent. Only the contrapositive is guaranteed equivalent.\end{dangerbox}
+
+\subsection{4.4 Predicates and quantifiers}
+A \textbf{predicate} $P(x)$ is a statement whose truth depends on the value assigned to $x$. A domain specifies the allowed values. Quantifiers turn predicates into propositions:
+\begin{itemize}
+\item $\forall x\,P(x)$: for every $x$ in the domain, $P(x)$ is true.
+\item $\exists x\,P(x)$: there is at least one $x$ in the domain for which $P(x)$ is true.
+\end{itemize}
+Negation rules: $\neg\forall x\,P(x)\equiv\exists x\,\neg P(x)$ and $\neg\exists x\,P(x)\equiv\forall x\,\neg P(x)$. For example, “not everyone passed” means “someone did not pass,” not “nobody passed.”
+
+\subsubsection{Nested quantifiers}
+Quantifier order can change meaning. Over a suitable domain, $\forall x\exists y\,R(x,y)$ says each $x$ may have its own $y$; $\exists y\forall x\,R(x,y)$ says one fixed $y$ works for every $x$. In general, these are not equivalent. To disprove a universal statement, give a counterexample; to prove an existential statement, give a witness.
+
+\subsection{4.5 Rules of inference}
+An argument is valid when its conclusion follows from its premises. Common valid forms:
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.24\textwidth} X X}
+\toprule Rule & Premises & Conclusion\\\midrule
+Modus ponens & $p\to q$, $p$ & $q$\\
+Modus tollens & $p\to q$, $\neg q$ & $\neg p$\\
+Hypothetical syllogism & $p\to q$, $q\to r$ & $p\to r$\\
+Disjunctive syllogism & $p\lor q$, $\neg p$ & $q$\\
+Addition & $p$ & $p\lor q$\\
+Simplification & $p\land q$ & $p$ (or $q$)\\
+Conjunction & $p$, $q$ & $p\land q$\\
+Resolution & $p\lor q$, $\neg p\lor r$ & $q\lor r$\\
+\bottomrule
+\end{tabularx}\end{center}
+
+\subsection{4.6 Normal forms}
+An \textbf{elementary product} (minterm) is an AND of literals; an \textbf{elementary sum} (maxterm) is an OR of literals. A literal is a variable or its negation.
+\begin{itemize}
+\item \textbf{DNF}: OR of AND terms, e.g. $(p\land q)\lor(\neg p\land r)$.
+\item \textbf{CNF}: AND of OR clauses, e.g. $(p\lor q)\land(\neg p\lor r)$.
+\end{itemize}
+To convert algebraically, first remove $\to$ and $\leftrightarrow$, push negations inward using De Morgan's laws, then distribute. For canonical forms, use truth-table rows: DNF takes the rows where the formula is true (minterms); CNF takes rows where it is false (maxterms).
+
+\begin{exambox}\textbf{Worked conversion.} $p\to q\equiv\neg p\lor q$, which is already CNF. To write it as DNF, expand with $x\equiv(x\land T)$ and distribute, or use the true rows: $(\neg p\land\neg q)\lor(\neg p\land q)\lor(p\land q)$.\end{exambox}
+
+\subsection{4.7 Exam answer patterns}
+\begin{answerbox}
+\textbf{Truth table / tautology:} list variables; make all $2^n$ assignments; add intermediate connective columns; evaluate the target column; classify and state the result.\\
+\textbf{Equivalence proof:} start with one side; name each identity used; transform step by step to the other side.\\
+\textbf{Inference:} number premises; identify the rule applied at each line; show the conclusion as the last line.\\
+\textbf{Quantifier negation:} negate the quantifier, switch $\forall\leftrightarrow\exists$, then negate the predicate.
+\end{answerbox}
+
+\section{Module 5: Counting and Mathematical Induction}
+
+\subsection{5.1 Addition and multiplication principles}
+\textbf{Addition rule:} if a choice can be made in one of mutually exclusive cases with $a_1,a_2,\ldots,a_k$ outcomes, total outcomes are $a_1+a_2+\cdots+a_k$. If cases overlap, remove duplicate counts with inclusion--exclusion.
+
+\textbf{Multiplication rule:} if a process has successive choices with $a_1,a_2,\ldots,a_k$ possibilities at each stage, total outcomes are $a_1a_2\cdots a_k$. The number may vary by stage; multiply the actual choices available at each step.
+
+\begin{exambox}\textbf{Examples.} Three-letter strings followed by three digits, repetition allowed: $26^3\cdot10^3$. Select one boy from 28 and one girl from 18: $28\cdot18=504$. A die rolled five times: $6^5=7776$.\end{exambox}
+
+\subsection{5.2 Factorials and permutations}
+$n!=n(n-1)\cdots2\cdot1$, and $0!=1$. A permutation is an ordered arrangement; changing order creates a different result.
+\[
+{}^nP_r=P(n,r)=\frac{n!}{(n-r)!}\quad\text{(choose and arrange $r$ distinct objects from $n$).}
+\]
+If repetition is allowed and each of $r$ positions has $n$ choices, there are $n^r$ strings. If all $n$ objects are arranged with repeated indistinguishable types of multiplicities $n_1,\ldots,n_k$, the number is $\frac{n!}{n_1!\cdots n_k!}$.
+
+\begin{exambox}\textbf{Worked examples.} Four distinct letters selected and ordered from six: $6P4=6!/2!=360$. Arrangements of ROOTS: $5!/2!=60$ (two O's). Six-digit PIN with digits 0--9 and repetition: $10^6$; leading zero is allowed for a PIN.\end{exambox}
+
+\subsection{5.3 Combinations}
+A combination is a selection where order does not matter:
+\[
+{n\choose r}=C(n,r)=\frac{n!}{r!(n-r)!},\qquad nP r={n\choose r}r!.
+\]
+Useful identities: $\binom n0=\binom nn=1$; $\binom n1=n$; $\binom nr=\binom n{n-r}$; $\binom nr+\binom n{r-1}=\binom{n+1}r$; $\sum_{r=0}^n\binom nr=2^n$.
+
+\begin{exambox}\textbf{Worked examples.} Teams of 3 from 8: $\binom83=56$. A committee of 3 from 6 faculty including both named professors: choose the third member from the other four, so 4. From 5 boys and 4 girls, 3-person committees with at least one girl: $\binom93-\binom53=84-10=74$.\end{exambox}
+
+\begin{dangerbox}Use permutations when order or role assignment matters; use combinations when only membership matters. A PIN permits leading zero; a number usually does not. “At least one” is often quickest by counting the total and subtracting the zero-case.\end{dangerbox}
+
+\subsection{5.4 Pigeonhole principle}
+\textbf{Basic principle:} placing $N$ objects into $k$ boxes with $N>k$ guarantees a box with at least two objects. \textbf{Generalized principle:} some box contains at least $\left\lceil N/k\right\rceil$ objects. To guarantee at least $r$ objects in one of $k$ boxes, the minimum required is
+\[
+k(r-1)+1.
+\]
+\textbf{Example:} 47 students in 8 groups gives a group of at least $\lceil47/8\rceil=6$. To guarantee 5 birthdays in the same month, $12(5-1)+1=49$ people suffice.
+
+\subsection{5.5 Inclusion--exclusion principle}
+For two finite sets:
+\[
+|A\cup B|=|A|+|B|-|A\cap B|.
+\]
+For three sets:
+\[
+|A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|.
+\]
+For exactly two sets among three, add the three pairwise intersections and subtract three times the triple intersection. For exactly one, add the single-set totals, subtract twice the pairwise intersections, then add three times the triple intersection.
+
+\begin{exambox}\textbf{Worked examples.} Of 80 students, 50 use Android and 45 iPhone, and everyone uses at least one: both $=50+45-80=15$. For the supplied language survey, at least one $=50+45+40-20-18-15+8=90$.\end{exambox}
+
+\subsection{5.6 Mathematical induction}
+To prove $P(n)$ for all integers $n\ge n_0$:
+\begin{enumerate}
+\item State $P(n)$ and the starting value $n_0$.
+\item \textbf{Base case:} verify $P(n_0)$ directly.
+\item \textbf{Inductive hypothesis:} assume $P(k)$ is true for an arbitrary $k\ge n_0$.
+\item \textbf{Inductive step:} use that assumption to prove $P(k+1)$.
+\item Conclude by induction that $P(n)$ holds for every integer $n\ge n_0$.
+\end{enumerate}
+
+\begin{exambox}\textbf{Worked proof.} Prove $1+2+\cdots+n=\frac{n(n+1)}2$ for $n\ge1$. Base: $n=1$ gives $1=1$. Assume $1+\cdots+k=\frac{k(k+1)}2$. Then $1+\cdots+k+(k+1)=\frac{k(k+1)}2+(k+1)=\frac{(k+1)(k+2)}2$. This is the formula for $k+1$; hence it holds for all $n\ge1$.\end{exambox}
+
+\begin{dangerbox}In the inductive step, assume the claim only for $k$, then derive the $k+1$ case. Do not assume the statement you are trying to prove for $k+1$. Include both the base case and the final conclusion.\end{dangerbox}
+
+\subsection{5.7 Quick method selector}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.32\textwidth} X}
+\toprule Clue in question & Method\\\midrule
+“either ... or” in disjoint cases & Addition rule\\
+several stages / “and then” & Multiplication rule\\
+arrange, order, rank, positions & Permutation\\
+choose, select, committee, team & Combination\\
+guarantee a repeated category & Pigeonhole principle\\
+overlapping groups / at least one set & Inclusion--exclusion\\
+prove for every natural number & Mathematical induction\\
+\bottomrule
+\end{tabularx}\end{center}
+
+\section{Important Exam Topics}
+\begin{itemize}
+\item Truth tables; tautology, contradiction, contingency; propositional equivalence laws.
+\item Converse, inverse, contrapositive; translating statements; predicates, quantifiers, and quantifier negation.
+\item Rules of inference and DNF/CNF conversion.
+\item Addition and multiplication rules; factorials; permutations with/without repetition; combinations and committee constraints.
+\item Generalized pigeonhole principle; two- and three-set inclusion--exclusion.
+\item Mathematical induction proofs, especially sums and divisibility.
+\end{itemize}
+
+\section{Answer Templates}
+\subsection{Prove a logical equivalence \mkmarks{5--10}}
+\begin{answerbox}Write the expression; remove implications; apply the named equivalence law one step at a time; reach the target expression. Alternatively, show identical truth-table columns. Name each law to make the reasoning clear.\end{answerbox}
+
+\subsection{Solve a counting problem \mkmarks{5--10}}
+\begin{answerbox}Identify whether order matters and whether repetition is allowed; define the cases or stages; state the counting rule/formula; substitute values; simplify; answer in context. For restrictions, count valid cases only or use complement counting.\end{answerbox}
+
+\subsection{Prove by induction \mkmarks{5--10}}
+\begin{answerbox}Let $P(n)$ be the claim. Verify the base case. Assume $P(k)$. Starting from the left side for $k+1$, use the inductive hypothesis and simplify to the required right side. State that the claim follows for all specified $n$.\end{answerbox}
+
+\section{Question Bank}
+\subsection*{Definitions / short answers}
+\begin{enumerate}
+\item Define proposition, predicate, tautology, contradiction, and contingency.
+\item State the truth condition for implication and biconditional.
+\item State De Morgan's laws and the negation rules for quantifiers.
+\item Define DNF and CNF, with one example of each.
+\item Define permutation and combination; state the relation between them.
+\item State the generalized pigeonhole principle and two-set inclusion--exclusion formula.
+\end{enumerate}
+\subsection*{Practice problems}
+\begin{enumerate}
+\item Construct truth tables for $p\lor\neg q$ and $(p\lor q)\lor\neg p$; classify each.
+\item Use equivalence laws to show $p\to(q\to p)$ is a tautology.
+\item Find the converse, inverse, and contrapositive of “If a number is divisible by 4, then it is even.”
+\item Negate: “Every student solved some problem.” Express the result with quantifiers.
+\item Identify the inference rule: $p\to q$, $q\to r$, therefore $p\to r$.
+\item Convert $p\to(q\land r)$ to CNF and DNF.
+\item How many 4-digit numbers can be made from digits 1--9 without repetition?
+\item How many arrangements of INDEPENDENCE are there? How many start with P? (Use letter multiplicities carefully.)
+\item From 6 men and 5 women, how many 4-person committees include at least one woman?
+\item How many integers from 1 to 100 are divisible by 2 or 5?
+\item What minimum number of people guarantees that at least 4 were born on the same day of the week?
+\item In a class, 35 study Statistics, 28 study Discrete Mathematics, and 12 study both. Find at least one, only Statistics, only Discrete Mathematics, and exactly one.
+\item Prove by induction that $1+3+5+\cdots+(2n-1)=n^2$ for $n\ge1$.
+\item Prove by induction that $3\mid(n^3+2n)$ for every positive integer $n$.
+\end{enumerate}
+
+\section{Last-Minute Revision Page}
+\begin{multicols}{2}
+\textbf{LOGIC}\\
+$p\to q\equiv\neg p\lor q$\\
+$p\leftrightarrow q\equiv(p\to q)\land(q\to p)$\\
+$\neg\forall xP\equiv\exists x\neg P$\\
+$\neg\exists xP\equiv\forall x\neg P$\\[4pt]
+\textbf{COUNTING}\\
+Addition: sum disjoint cases\\
+Multiplication: product successive choices\\
+$nP r=n!/(n-r)!$\\
+$nC r=n!/[r!(n-r)!]$\\
+Repetition: $n^r$\\
+Identical objects: $n!/\prod n_i!$\\[4pt]
+\textbf{GUARANTEES / OVERLAP}\\
+Pigeonhole: at least $\lceil N/k\rceil$\\
+Guarantee $r$: $k(r-1)+1$\\
+$|A\cup B|=|A|+|B|-|A\cap B|$\\
+Three-set pattern: singles $-$ pairs $+$ triple\\[4pt]
+\textbf{INDUCTION}\\
+Base case $\to$ assume $P(k)$ $\to$ prove $P(k+1)$ $\to$ conclude\\[4pt]
+\textbf{DO NOT CONFUSE}\\
+Order: permutation; no order: combination.\\
+Contrapositive equivalent to original; converse generally not.\\
+At least one: consider complement.\\
+\end{multicols}
+
+\section*{Source Scope}
+Prepared from the supplied \texttt{Module 4 Part 1.pdf} and \texttt{Module 5.pdf} in the Statistics folder, following the structure and visual style of \texttt{notes-template.tex}. Module 4's listed syllabus also includes predicates/quantifiers, nested quantifiers, and rules of inference; concise standard definitions and rules are included to cover those listed topics where the slides provide limited detail. Verify any instructor-specific conventions against class notes.
+
+\vfill
+\begin{center}\textit{Study principle: identify the rule, show the working, and state the conclusion.}\end{center}
+\end{document}
