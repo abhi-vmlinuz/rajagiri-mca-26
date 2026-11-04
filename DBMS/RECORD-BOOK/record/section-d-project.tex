@@ -1,0 +1,144 @@
+% =====================================================================
+%  DBMS Lab Record - Section D / 6. Project (Workout Tracker)
+%  Continuation of the record: page numbering starts after 120.
+%  Build: latexmk -xelatex section-d-project.tex
+% =====================================================================
+\input{record-preamble}
+\usepackage{graphicx}
+\graphicspath{{img/}}
+
+\setcounter{page}{121}
+
+% ---------- report headings (layout taken from the sample report) ----------
+\newcommand{\projtitle}[1]{%
+  \textbf{\fontsize{20}{24}\selectfont #1}\par\vspace{14pt}}
+\newcommand{\projhead}[1]{%
+  \textbf{\fontsize{15}{18}\selectfont #1}\par\vspace{8pt}}
+\newcommand{\projsub}[1]{%
+  \textbf{\fontsize{13}{16}\selectfont #1}\par\vspace{6pt}}
+\newcommand{\projitem}[2]{%
+  \noindent\textbf{\fontsize{12.5}{15}\selectfont #1}\ \ {\fontsize{12.5}{15}\selectfont #2}\par\vspace{6pt}}
+\newcommand{\projtext}[1]{%
+  {\fontsize{12}{15.6}\selectfont #1\par}\vspace{4pt}}
+\newcommand{\shot}[2][430pt]{%
+  \noindent\includegraphics[width=#1]{#2}\par\vspace{16pt}}
+
+\begin{document}
+
+\mainheading{Section D}
+\subheading{6.\ \ Project}
+
+\projtitle{Workout Tracker}
+
+\projhead{Abstract}
+
+{\fontsize{12}{15.6}\selectfont
+\setlength{\parskip}{8pt}
+
+The Workout Tracker is a simple Microsoft Access based database application
+designed to record a person's gym workouts and the changes in their body over
+time. Every training session is stored with its date, start time, duration, the
+workout performed, the details of the session and the distance covered, so that
+the user can look back at what was done on any day instead of relying on a
+notebook.
+
+The database consists of four related tables --- Users, BodyHistory,
+WorkoutLog and WorkoutNameMaint. The Users table holds the personal details of
+each person, the WorkoutNameMaint table holds the list of workouts such as Abs
+Day 1, Chest/Tris TT or DDP Energy, and the WorkoutLog and BodyHistory tables
+record one row for each workout session and each body measurement for a user.
+The tables are related so that a workout or a measurement always belongs to a
+valid user and a log entry always refers to a workout that exists in the list.
+
+Records are entered through a set of user friendly forms rather than by typing
+directly into the tables. The main menu opens the workout log form, the body
+history form, the user and workout maintenance forms and the reports form, and
+each form saves its own record. A set of queries --- including body history
+selection, the export queries and the update queries that calculate the energy
+burnt by a workout --- supplies the figures that the reports form needs. The
+reports form takes a start date, an end date and a workout name and exports the
+selected workout records for further analysis.
+
+Overall, the project demonstrates the practical use of Microsoft Access for
+building a small scale information system that is easy to use, keeps the data
+consistent, and answers common fitness questions without any manual
+calculation.
+
+\par}
+
+\clearpage
+\projhead{Screenshots}
+
+\projsub{Tables}
+
+\projitem{1.}{Body History Table}
+{\small The BodyHistory table stores one row for every measurement taken, with
+the user, the entry date, the height, the weight and the body fat percentage.}
+\vspace{4pt}
+
+\shot[430pt]{w_bodyhistory_table.png}
+
+\projitem{2.}{Users Table}
+{\small The Users table stores the personal details of each person using the
+application --- name, address, city, zip code, date of birth and phone number.}
+\vspace{4pt}
+
+\shot[430pt]{w_users_table.png}
+
+\clearpage
+\projitem{3.}{Workout Name Table}
+{\small The WorkoutNameMaint table holds the master list of workout names that
+the log and the reports pick from.}
+\vspace{4pt}
+
+\shot[430pt]{w_workoutname_table.png}
+
+\vspace{6pt}
+\projhead{Forms}
+
+\projitem{1.}{Main Menu}
+{\small The main menu is the starting point of the application. It opens the
+workout log, the body history, the user and workout maintenance screens and the
+reports form from a single window.}
+\vspace{4pt}
+
+\shot[430pt]{w_main_menu.png}
+
+\clearpage
+\projitem{2.}{Workout Log Form}
+{\small The workout log form records a training session. The user is picked
+from a list, and the date, start time, duration, workout name, workout details
+and distance are stored; the Update Durations button recalculates the duration
+of the session.}
+\vspace{4pt}
+
+\shot[430pt]{w_workout_log.png}
+
+\projitem{3.}{Body History Form}
+{\small The body history form records the height, weight and body fat percentage
+measured on a given date, so that the progress of the user can be followed over
+time.}
+\vspace{4pt}
+
+\shot[430pt]{w_body_history.png}
+
+\clearpage
+\projitem{4.}{Workout Maintenance Form}
+{\small The workout maintenance form is used to add, edit and delete the workout
+names used by the log.}
+\vspace{4pt}
+
+\shot[415pt]{w_workout_maint.png}
+
+\vspace{2pt}
+\projhead{Reports}
+
+\projitem{1.}{Reports Form}
+{\small The reports form asks for a start date, an end date and a workout name,
+and exports the matching workout records so that they can be analysed outside
+the database.}
+\vspace{4pt}
+
+\shot[415pt]{w_reports.png}
+
+\end{document}

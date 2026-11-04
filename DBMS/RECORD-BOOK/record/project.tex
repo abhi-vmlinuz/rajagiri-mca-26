@@ -1,0 +1,120 @@
+% =====================================================================
+%  DBMS Lab Record - Project Report (Library Management System)
+%  Continuation of the record: page numbering starts at 104.
+%  Build: latexmk -xelatex project.tex
+% =====================================================================
+\input{record-preamble}
+\usepackage{graphicx}
+\graphicspath{{img/}}
+
+\setcounter{page}{121}
+
+% ---------- report headings (layout taken from the sample report) ----------
+\newcommand{\projtitle}[1]{%
+  \textbf{\fontsize{22}{26}\selectfont #1}\par\vspace{16pt}}
+\newcommand{\projhead}[1]{%
+  \textbf{\fontsize{15}{18}\selectfont #1}\par\vspace{8pt}}
+\newcommand{\projsub}[1]{%
+  \textbf{\fontsize{13}{16}\selectfont #1}\par\vspace{6pt}}
+\newcommand{\projitem}[2]{%
+  \noindent\textbf{\fontsize{12.5}{15}\selectfont #1}\ \ {\fontsize{12.5}{15}\selectfont #2}\par\vspace{6pt}}
+\newcommand{\projtext}[1]{%
+  {\fontsize{12}{15.6}\selectfont #1\par}\vspace{4pt}}
+\newcommand{\shot}[2][430pt]{%
+  \noindent\includegraphics[width=#1]{#2}\par\vspace{16pt}}
+
+\begin{document}
+
+\projtitle{Library Management System}
+
+\projhead{Abstract}
+
+{\fontsize{12}{15.6}\selectfont
+\setlength{\parskip}{8pt}
+
+The Library Management System is a simple Microsoft Access based database
+application designed to record and manage the day to day activities of a
+college library. It keeps track of the books held by the library, the members
+who borrow them, and every issue and return transaction, so that the librarian
+can work from a single screen instead of a set of registers.
+
+The database consists of five related tables --- Authors, Books, BookIssues,
+Members and Publishers --- linked through one-to-many relationships so that the
+same author, publisher or member is never repeated inconsistently. A book is
+catalogued once and then issued many times, which keeps the issue history
+complete without duplicating the book details. Records are entered through a
+set of user friendly forms rather than by typing directly into the tables: the
+main menu opens the member form, the book form and the issue/return form, and
+each form validates and saves its own record.
+
+A query module is used to generate the information the librarian needs --- the
+complete book catalogue, the list of books currently available, the active
+loans, the overdue books, and the borrowing history of each member. These
+queries feed a report that groups the overdue books by the month in which they
+fell due and lists the member's name and phone number beside each one, so that
+reminders can be sent quickly.
+
+Overall, the project demonstrates the practical use of Microsoft Access for
+building a small scale information system that is efficient, easy to use, and
+effective for library management.
+
+\par}
+
+\vspace{14pt}
+\projhead{Screenshots}
+
+\projsub{Tables}
+
+\projitem{1.}{Books Table}
+\shot[470pt]{books_datasheet.jpeg}
+
+\clearpage
+\projhead{Forms}
+
+\projitem{1.}{Main Menu Form}
+\projtext{The main menu is the starting point of the application. It opens the
+book catalogue, the member form, the issue/return form and the overdue books
+report from a single window.}
+\shot{mainmenu.jpeg}
+
+\projitem{2.}{Members Form}
+\projtext{The members form is used to add and edit library members, recording
+the name, email, phone number, join date and member type, and whether the
+membership is currently active.}
+\shot{members_form.jpeg}
+
+\clearpage
+\projitem{3.}{Book Issues Form}
+\projtext{The book issues form records a loan against a book and a member. It
+stores the issue date and the due date, and the return date is filled in when
+the book comes back.}
+\shot{bookissues_form.jpeg}
+
+\vspace{10pt}
+\projhead{Queries}
+
+\projitem{1.}{Book Catalogue Query}
+\projtext{The book catalogue query lists every book with its author, publisher,
+category and shelf location, so that the shelf can be found without opening the
+individual tables.}
+\shot{qry_bookctlg.jpeg}
+
+\clearpage
+\projhead{Reports}
+
+\projitem{1.}{Overdue Books Report}
+\projtext{The overdue books report lists the books that were not returned by
+their due date, grouped by the month in which they fell due, with the member's
+name and phone number so that a reminder can be sent.}
+\shot[480pt]{rpt_overdue.jpeg}
+
+\clearpage
+\projhead{Relationships}
+
+\projtext{The relationships window shows how the five tables are joined. Each
+author and each publisher is related to many books, each book and each member
+is related to many issues, and every relationship enforces referential
+integrity.}
+\shot[470pt]{relationships.jpeg}
+
+\end{document}
