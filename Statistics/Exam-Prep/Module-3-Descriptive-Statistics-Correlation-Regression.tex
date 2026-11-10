@@ -1,0 +1,466 @@
+\documentclass[11pt,a4paper]{article}
+\input{preamble.tex}
+\subject{MCA101 -- Module 3: Descriptive Statistics}
+
+\title{\textbf{Module 3: Descriptive Statistics}\\}
+\author{\large Central tendency, dispersion, moments, skewness,\\correlation and regression}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{exambox}
+\textbf{Scope.} Syllabus 3.1 to 3.4: basic statistics (measures of central tendency, measures of dispersion, moments, skewness and kurtosis, linear correlation), Karl Pearson's coefficient of correlation, rank correlation, and linear regression.
+
+This module has no dedicated CAE paper in the set, but it carries full 9-mark and 15-mark questions in both recent full papers (Nov 2024 Q15, Oct 2025 Q3). Expect one long question here, usually as an OR pair.
+\end{exambox}
+
+\tableofcontents
+\newpage
+
+\section{Measures of central tendency}
+
+\subsection{Arithmetic mean}
+\[
+\boxed{\bar X=\frac{\sum fX}{\sum f}=\frac{\sum X}{N}}
+\]
+The most stable and most widely used measure, because it uses every observation.
+
+\subsection{Median}
+The middle value after ordering. For $N$ observations the position is $\frac{N+1}{2}$; if $N$ is even, the median is the mean of the two middle values. For a continuous distribution the median splits the area under the curve into two equal halves.
+
+\subsection{Mode}
+The most frequently occurring value. It is the only measure usable for qualitative data, but it can be ill-defined when there is no clear repetition.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.20\textwidth} X X}
+\toprule Measure & Use it when & Weakness\\\midrule
+Mean & Data are quantitative and roughly symmetric & Sensitive to extreme values\\
+Median & Data are skewed or contain outliers & Does not use all the data\\
+Mode & You need the most common value & May not exist or may not be unique\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{exambox}
+\textbf{Worked, correction for a wrong value.} The mean of 10 items was recorded as 70. Later it was found that one item of 92 had been misread as 29. The correct mean is
+\[
+\frac{10(70)-29+92}{10}=\frac{763}{10}=\boxed{76.3}.
+\]
+This exact question appeared in Oct 2025. The method is: subtract the wrong value, add the right value, divide by the same count.
+\end{exambox}
+
+\section{Measures of dispersion}
+
+\subsection{Range}
+\[
+R=x_{\max}-x_{\min}.
+\]
+The simplest measure, but it uses only the two extreme values.
+
+\subsection{Coefficient of range}
+\[
+\text{Coefficient of range}=\frac{R}{\bar X}.
+\]
+Being a ratio with the mean, it allows comparison between datasets of different size and scale.
+
+\begin{exambox}
+\textbf{Worked.} Data: $65,70,82,59,81,76,57,60,55,50$ (Oct 2025).
+\[
+\bar X=\frac{655}{10}=65.5,\qquad R=82-50=32,
+\]
+\[
+\text{Coefficient of range}=\frac{32}{65.5}=\boxed{0.4885}.
+\]
+\end{exambox}
+
+\subsection{Quartiles, interquartile range and quartile deviation}
+$Q_1$, $Q_2$, $Q_3$ are the values below which $25\%$, $50\%$ and $75\%$ of the data fall.
+\[
+\text{IQR}=Q_3-Q_1,\qquad \boxed{QD=\frac{Q_3-Q_1}{2}}
+\]
+and the coefficient of quartile deviation is $\frac{QD}{\bar X}$.
+
+\begin{exambox}
+\textbf{Worked.} For the same ten values, sorted: $50,55,57,59,60,65,70,76,81,82$.
+$Q_1$ is at position $\frac{N}{4}=2.5$, so $Q_1=\frac{55+57}{2}=56$.
+$Q_3$ is at position $\frac{3N}{4}=7.5$, so $Q_3=\frac{70+76}{2}=73$.
+\[
+\text{IQR}=73-56=17,\qquad QD=\frac{17}{2}=\boxed{8.5}.
+\]
+\end{exambox}
+
+\subsection{Mean deviation}
+\[
+MD=\frac{\sum f|X-A|}{N},
+\]
+where $A$ is the chosen centre (mean, median or mode). The absolute value means only the distance from the centre is used; the negative sign is ignored.
+
+\begin{dangerbox}
+MD uses $|X-A|$; SD uses $(X-\bar X)^2$. They are not interchangeable, and the answer to "mean deviation about the mode" is not the same as "about the mean".
+\end{dangerbox}
+
+\subsection{Standard deviation}
+\[
+\boxed{\sigma=\sqrt{\frac{\sum f(X-\bar X)^2}{N}}}
+\]
+and the computational shortcut
+\[
+\boxed{\sigma^2=\frac{\sum fX^2}{N}-\bar X^2}.
+\]
+
+\begin{rememberbox}
+The working order is: MEAN, then DEVIATION, then SQUARE, then weight by $f$, then ADD, then divide by $N$, then square-root. For grouped continuous data, first replace each class by its midpoint $X=\frac{\text{lower}+\text{upper}}{2}$.
+\end{rememberbox}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q3(a)(ii).} For two observations $a$ and $b$, show that the standard deviation is half the distance between them.
+\end{pyqbox}
+
+\begin{solbox}
+Mean: $\bar X=\frac{a+b}{2}$.
+Deviations: $a-\bar X=\frac{a-b}{2}$ and $b-\bar X=\frac{b-a}{2}$.
+\[
+\sigma^2=\frac{1}{2}\left[\left(\frac{a-b}{2}\right)^2+\left(\frac{b-a}{2}\right)^2\right]
+=\frac{1}{2}\cdot 2\cdot\frac{(a-b)^2}{4}=\frac{(a-b)^2}{4}.
+\]
+Hence
+\[
+\boxed{\sigma=\frac{|a-b|}{2}},
+\]
+which is exactly half the distance between the two observations.
+\end{solbox}
+
+\begin{exambox}
+\textbf{Worked, standard deviation of a short series.} $x=2,4,6,8,10$.
+
+$\bar X=6$; deviations $-4,-2,0,2,4$; squared $16,4,0,4,16$; sum $40$.
+\[
+\sigma=\sqrt{\frac{40}{5}}=\sqrt8=2.83.
+\]
+\end{exambox}
+
+\section{Moments, skewness and kurtosis}
+
+\subsection{Raw and central moments}
+The $r$-th raw moment about the origin is $\mu'_r=E(X^r)=\frac{\sum fX^r}{N}$. The $r$-th central moment about the mean is
+\[
+\mu_r=E[(X-\bar X)^r]=\frac{\sum f(X-\bar X)^r}{N}.
+\]
+So $\mu_2=\sigma^2$ and $\mu_4$ measures kurtosis.
+
+\subsection{Skewness}
+Skewness measures asymmetry. Positive skew means the tail extends to the right.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.26\textwidth} X}
+\toprule Coefficient & Formula\\\midrule
+Pearson's coefficient of skewness & $\gamma_1=\dfrac{3(\bar X-\text{median})}{S}$\\
+Pearson's second coefficient & $\gamma_1=\dfrac{\bar X-\text{mode}}{S}$\\
+Bowley's coefficient & $\dfrac{Q_3+Q_1-2\,\text{median}}{Q_3-Q_1}$\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Kurtosis}
+\[
+\beta_2=\frac{\mu_4}{\mu_2^2}=\frac{\mu_4}{\sigma^4}.
+\]
+$\beta_2=3$ for the normal distribution. $\beta_2<3$ means platykurtic (flat, light-tailed); $\beta_2>3$ means leptokurtic (peaked, heavy-tailed).
+
+\section{Correlation}
+
+\subsection{Types of correlation}
+\begin{itemize}
+\item \textbf{Positive}: both variables change in the same direction (sales and profit).
+\item \textbf{Negative}: they change in opposite directions (price and quantity demanded).
+\item \textbf{Linear}: one straight line describes the relationship.
+\item \textbf{Nonlinear}: the relationship curves.
+\item \textbf{None}: no association.
+\end{itemize}
+
+\subsection{Scatter diagram}
+Plot the ordered pairs $(x,y)$. This is the first step: it tells you the \emph{type} and whether a linear relationship exists at all, before any arithmetic.
+
+\subsection{Karl Pearson's coefficient of correlation}
+$r$ measures the strength and direction of a \emph{linear} relationship:
+\[
+-1\le r\le 1.
+\]
+$|r|$ close to 1 means a strong linear relationship; $r$ close to 0 means weak or no linear relationship.
+
+In the deviation method, with $d_x=x-\bar X$ and $d_y=y-\bar Y$:
+\[
+\boxed{r=\frac{\sum d_xd_y}{\sqrt{\sum d_x^2\,\sum d_y^2}}}
+\]
+In the direct method:
+\[
+\boxed{r=\frac{n\sum xy-\sum x\sum y}{\sqrt{\bigl(n\sum x^2-(\sum x)^2\bigr)\bigl(n\sum y^2-(\sum y)^2\bigr)}}}
+\]
+
+\begin{exambox}
+\textbf{Worked.} $x=1,2,3,4,5$ and $y=2,4,5,4,5$. $\bar x=3$, $\bar y=4$.
+$d_x=-2,-1,0,1,2$; $d_y=-2,0,1,0,1$.
+$\sum d_xd_y=4+0+0+0+2=6$; $\sum d_x^2=10$; $\sum d_y^2=6$.
+\[
+r=\frac{6}{\sqrt{10\cdot 6}}=\frac6{7.746}\approx\boxed{0.7746}.
+\]
+\end{exambox}
+
+\begin{exambox}
+\textbf{Worked, direct method on the same data.} $\sum x=15$, $\sum y=20$, $\sum xy=66$, $\sum x^2=55$, $\sum y^2=86$, $n=5$.
+\[
+r=\frac{5(66)-15(20)}{\sqrt{(5\cdot55-225)(5\cdot86-400)}}=\frac{330-300}{\sqrt{50\cdot30}}=\frac{30}{\sqrt{1500}}=\boxed{0.7746}.
+\]
+This agrees with the deviation method, as it must.
+\end{exambox}
+
+\begin{dangerbox}
+Keep the two methods consistent: if you compute $\bar x$ and $\bar y$ from the data and then use deviations, use the deviation formula; if you use the raw sums, use the direct formula. Mixing them, or mis-summing the $\sum xy$ column, is the most common arithmetic slip in this topic.
+\end{dangerbox}
+
+\subsection{Rank correlation (Spearman's coefficient)}
+When the data cannot be ranked numerically with meaningful precision, or a relationship is monotonic but not linear, use ranks. Assign rank 1 to the smallest and $n$ to the largest; for tied values assign the \emph{average} of the ranks they occupy.
+\[
+\boxed{\rho=1-\frac{6\sum d^2}{n(n^2-1)}}
+\]
+where $d$ is the difference between the two ranks for the same item and $n$ is the number of pairs.
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q3(b)(i).} Find the rank correlation coefficient between the marks in English and Mathematics.
+
+\begin{center}\small
+\begin{tabular}{l|rrrrrrrrrr}
+\toprule English & 17&13&15&16&6&11&14&9&7&12\\
+Mathematics & 36&46&35&24&12&18&27&22&2&8\\\midrule
+English rank & 10&6&8&9&1&4&7&3&2&5\\
+Mathematics rank & 9&10&8&6&3&4&7&5&1&2\\
+$d$ & 1&-4&0&3&-2&0&0&-2&1&3\\
+$d^2$ & 1&16&0&9&4&0&0&4&1&9\\\bottomrule
+\end{tabular}
+\end{center}
+\end{pyqbox}
+
+\begin{solbox}
+$n=10$, $\sum d^2=1+16+0+9+4+0+0+4+1+9=44$.
+\[
+\rho=1-\frac{6(44)}{10(10^2-1)}=1-\frac{264}{990}=1-\frac{4}{15}=\boxed{0.7333}.
+\]
+\end{solbox}
+
+\begin{pyqbox}
+\textbf{Nov 2024 Q15(a).} Ten competitors in a beauty contest are ranked by three judges. Use the rank correlation coefficient to determine which pair of judges has the nearest approach to common tastes.
+
+\begin{center}\small
+\begin{tabular}{l|rrrrrrrrrr}
+\toprule First judge & 1&6&5&10&3&2&4&9&7&8\\
+Second judge & 3&5&8&4&7&10&2&1&6&9\\
+Third judge & 6&4&9&8&1&2&3&10&5&7\\\bottomrule
+\end{tabular}
+\end{center}
+\end{pyqbox}
+
+\begin{solbox}
+These are already ranks, so no ranking is needed. Compute $\sum d^2$ for each pair.
+
+\begin{center}\small
+\begin{tabular}{l|r|r|r}
+\toprule Pair & $\sum d^2$ & $\rho=1-\frac{6\sum d^2}{10(99)}$ & Conclusion\\\midrule
+Judges 1 and 2 & 200 & $-0.2121$ & weak negative\\
+Judges 1 and 3 & 60 & $0.6364$ & fairly strong positive\\
+Judges 2 and 3 & 214 & $-0.2970$ & weak negative\\\bottomrule
+\end{tabular}
+\end{center}
+
+The largest coefficient in magnitude with the clearest positive agreement is $\rho=0.6364$ for judges 1 and 3, so \textbf{judges 1 and 3 have the nearest approach to common tastes}.
+\end{solbox}
+
+\begin{dangerbox}
+With three judges there are three pairs, and the question asks which \emph{pair}. Compute all three $\rho$ values and compare. Also note that the ranks here run 1 to 10 for each judge, so a low $\rho$ between judges 1 and 2 means they ranked in near-opposite order.
+\end{dangerbox}
+
+\section{Regression analysis}
+
+\subsection{What regression is for}
+Regression predicts the value of one variable from another when the two are related. It provides estimates of the dependent variable $y$ from the independent variable $x$, measures the error involved in using the fitted line, and relates to correlation through the regression coefficients.
+
+\subsection{Method of least squares}
+Choose the line so that the sum of the squares of the deviations of the actual $Y$ values from the computed $Y$ values is as small as possible. This is the \emph{line of best fit}.
+
+\subsection{Regression of $y$ on $x$}
+\[
+\boxed{y=a+bx}
+\]
+with
+\[
+b=\frac{\sum d_xd_y}{\sum d_x^2}=\frac{n\sum xy-\sum x\sum y}{n\sum x^2-(\sum x)^2},\qquad a=\bar y-b\bar x.
+\]
+
+\subsection{Regression of $x$ on $y$}
+\[
+\boxed{x=a'+b'y}
+\]
+with
+\[
+b'=\frac{\sum d_xd_y}{\sum d_y^2}=\frac{n\sum xy-\sum x\sum y}{n\sum y^2-(\sum y)^2},\qquad a'=\bar x-b'\bar y.
+\]
+
+\subsection{Properties linking regression and correlation}
+\begin{enumerate}
+\item $r$ is the geometric mean of the two regression coefficients: $r=\sqrt{bb'}$, so $bb'=r^2$.
+\item Both regression lines pass through the point $(\bar x,\bar y)$.
+\item If $r$ is positive, both $b$ and $b'$ are positive; if $r$ is negative, both are negative.
+\item $b$ and $b'$ have the same sign and $b\ge b'$ if $r>0$ and $\sigma_y>\sigma_x$.
+\end{enumerate}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q3(a)(i).} From the ages of husband and wife below, form two regression lines and calculate the husband's age when the wife's age is 23.
+
+\begin{center}\small
+\begin{tabular}{l|rrrrrrrrrr}
+\toprule Husband's age & 36&23&27&28&28&29&30&31&33&35\\
+Wife's age & 29&18&20&22&27&21&29&27&29&28\\\bottomrule
+\end{tabular}
+\end{center}
+\end{pyqbox}
+
+\begin{solbox}
+$n=10$. $\bar x=30$ (husband), $\bar y=25$ (wife).
+
+\begin{center}\small
+\begin{tabular}{l|rrrrrrrrrr}
+\toprule $x$ & 36&23&27&28&28&29&30&31&33&35\\
+$y$ & 29&18&20&22&27&21&29&27&29&28\\
+$d_x$ & 6&-7&-3&-2&-2&-1&0&1&3&5\\
+$d_y$ & 4&-7&-5&-3&2&-4&4&2&4&3\\\bottomrule
+\end{tabular}
+\end{center}
+
+$\sum d_xd_y=24+49+15+6-4+4+0+2+12+15=123$.
+$\sum d_x^2=36+49+9+4+4+1+0+1+9+25=138$.
+$\sum d_y^2=16+49+25+9+4+16+16+4+16+9=164$.
+
+\textbf{Regression of $y$ on $x$:}
+\[
+b=\frac{123}{138}=0.8913,\qquad a=25-0.8913(30)=-1.7391,
+\]
+\[
+\boxed{y=-1.7391+0.8913x}.
+\]
+
+\textbf{Regression of $x$ on $y$:}
+\[
+b'=\frac{123}{164}=0.75,\qquad a'=30-0.75(25)=11.25,
+\]
+\[
+\boxed{x=11.25+0.75y}.
+\]
+
+\textbf{Husband's age when the wife's age is 23.} We want $x$ given $y$, so use the regression of $x$ on $y$:
+\[
+x=11.25+0.75(23)=11.25+17.25=\boxed{28.5\text{ years}}.
+\]
+\end{solbox}
+
+\begin{dangerbox}
+Choosing the wrong regression line is the standard error here. The question asks for the husband's age given the wife's age, so predict $x$ from $y$: use the $x$-on-$y$ line. If you substitute $y=23$ into the $y$-on-$x$ line you get a wife's age, not a husband's.
+\end{dangerbox}
+
+\begin{exambox}
+\textbf{Worked, a clean full example.} $x=1,2,3,4,5$, $y=2,4,5,4,5$. From above: $\sum d_xd_y=6$, $\sum d_x^2=10$, $\sum d_y^2=6$, $\bar x=3$, $\bar y=4$.
+\[
+b=\frac6{10}=0.6,\quad a=4-0.6(3)=2.2 \quad\Rightarrow\quad y=2.2+0.6x
+\]
+\[
+b'=\frac6{6}=1,\quad a'=3-1(4)=-1 \quad\Rightarrow\quad x=-1+1.0y
+\]
+Check: $r=\sqrt{bb'}=\sqrt{0.6}=0.7746$, which matches the correlation computed earlier. The two lines meet at $(3,4)=(\bar x,\bar y)$.
+\end{exambox}
+
+\section{Which measure of dispersion is best}
+
+\begin{exambox}
+\textbf{Nov 2024 Q15(b)(ii) asks which measure of dispersion is best, and how.} The standard deviation is the most accepted and most reliable measure, because it uses every observation, is based on the mean, is free from the effect of the size of the data, and is the measure for which the normal and related distributions are developed. The range is too unstable since it depends only on two extreme values; mean deviation is less sensitive to the size of the data than SD; and the coefficient of range and quartile deviation are used for comparing two datasets with different means or scales.
+\end{exambox}
+
+\section{Answer skeletons}
+
+\begin{answerbox}
+\textbf{Correlation from a table (9 marks).} Write the columns $x$, $y$, $x^2$, $y^2$, $xy$ and add them. Then substitute into the direct formula, simplify, and state $r$ with its interpretation.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Rank correlation (9 marks).} Rank both sets. For ties use the average rank. Make a table of ranks, $d$ and $d^2$. Sum $d^2$. Substitute into $\rho=1-\frac{6\sum d^2}{n(n^2-1)}$. Interpret.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Regression (9 marks).} Find $\bar x$, $\bar y$. Make a deviation table with $d_x$, $d_y$, $d_xd_y$, $d_x^2$, $d_y^2$. Compute $b$, then $a$. Write the line. Repeat for $x$ on $y$. Answer the specific prediction asked, using the correct line.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Standard deviation (3 to 9 marks).} Find the mean. Make a table of $x$, $f$, $fx$, $d=X-\bar X$, $fd^2$. Sum. Divide by $N$. Square-root. Or use the shortcut $\sigma^2=\frac{\sum fX^2}{N}-\bar X^2$.
+\end{answerbox}
+
+\section{Self-test}
+
+\begin{enumerate}
+\item Define mean, median and mode, and state one use and one weakness of each.
+\item Define the coefficient of range and the quartile deviation.
+\item Find the range and coefficient of range for $65,70,82,59,81,76,57,60,55,50$.
+\item Find the standard deviation of $2,4,6,8,10$.
+\item The mean of 10 items was 70; one item of 92 was misread as 29. Find the correct mean.
+\item State the formulae for Karl Pearson's coefficient of correlation in both the deviation and direct methods.
+\item Find the rank correlation coefficient for the marks: English $17,13,15,16,6,11,14,9,7,12$ and Mathematics $36,46,35,24,12,18,27,22,2,8$.
+\item Find Karl Pearson's $r$ for $x=1,2,3,4,5$ and $y=2,4,5,4,5$.
+\item For the same data, find both regression lines and check that $r=\sqrt{bb'}$.
+\item Find the standard deviation of two observations $a$ and $b$ and interpret it.
+\item Define skewness and kurtosis, and state the value of $\beta_2$ for the normal distribution.
+\item State the properties that link the two regression lines to the correlation coefficient.
+\end{enumerate}
+
+\subsection*{Answers}
+\begin{enumerate}
+\item Mean: the arithmetic average, most stable, sensitive to outliers. Median: middle value, best for skewed data, ignores most values. Mode: most frequent value, the only one for qualitative data, may not be unique.
+\item Coefficient of range $=\frac{R}{\bar X}$ where $R=x_{\max}-x_{\min}$. Quartile deviation $QD=\frac{Q_3-Q_1}{2}$.
+\item $\bar X=65.5$, $R=32$, coefficient $=\frac{32}{65.5}=\boxed{0.4885}$.
+\item $\bar X=6$, $\sum d^2=40$, $\sigma=\sqrt{40/5}=\sqrt8=\boxed{2.83}$.
+\item $\frac{700-29+92}{10}=\boxed{76.3}$.
+\item Deviation: $r=\frac{\sum d_xd_y}{\sqrt{\sum d_x^2\sum d_y^2}}$. Direct: $r=\frac{n\sum xy-\sum x\sum y}{\sqrt{(n\sum x^2-(\sum x)^2)(n\sum y^2-(\sum y)^2)}}$.
+\item Ranks and $\sum d^2=44$ as above; $\rho=1-\frac{264}{990}=\boxed{0.7333}$.
+\item $r=\frac{6}{\sqrt{10\cdot6}}=\boxed{0.7746}$.
+\item $y=2.2+0.6x$, $x=-1+1.0y$; $bb'=0.6\times1=0.6$, $\sqrt{0.6}=0.7746=r$. The lines meet at $(3,4)$.
+\item $\sigma=\frac{|a-b|}{2}$, half the distance between the observations.
+\item Skewness measures asymmetry of the distribution; kurtosis measures peakedness. For the normal distribution $\beta_2=3$.
+\item $r=\sqrt{bb'}$; both lines pass through $(\bar x,\bar y)$; $b$ and $b'$ always have the sign of $r$.
+\end{enumerate}
+
+\section{Last-minute page}
+
+\begin{multicols}{2}
+\textbf{CENTRE}\\
+$\bar X=\frac{\sum fX}{\sum f}$\\
+Median at position $\frac{N+1}{2}$\\
+Mode = most frequent\\[4pt]
+\textbf{SPREAD}\\
+$R=x_{\max}-x_{\min}$\\
+CoR $=\frac{R}{\bar X}$\\
+$QD=\frac{Q_3-Q_1}{2}$\\
+$MD=\frac{\sum f|X-A|}{N}$\\
+$\sigma^2=\frac{\sum fX^2}{N}-\bar X^2$\\[4pt]
+\textbf{CORRELATION}\\
+$r=\frac{\sum d_xd_y}{\sqrt{\sum d_x^2\sum d_y^2}}$\\
+$\rho=1-\frac{6\sum d^2}{n(n^2-1)}$\\[4pt]
+\textbf{REGRESSION}\\
+$y=a+bx$, $b=\frac{\sum d_xd_y}{\sum d_x^2}$\\
+$a=\bar y-b\bar x$\\
+$x=a'+b'y$, $b'=\frac{\sum d_xd_y}{\sum d_y^2}$\\
+$r=\sqrt{bb'}$\\[4pt]
+\textbf{DO NOT CONFUSE}\\
+SD uses $(X-\bar X)^2$; MD uses $|X-A|$.\\
+Predict $x$ from $y$ with the $x$-on-$y$ line.\\
+Ties get the average rank.\\
+$r$ near 1 is linear, not necessarily causal.
+\end{multicols}
+
+\vfill
+\begin{center}\textit{A correlation or regression question is worth 9 or 15 marks. The table is the work; do not skip it and write only the final formula.}\end{center}
+
+\end{document}

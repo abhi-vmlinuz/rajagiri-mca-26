@@ -1,0 +1,77 @@
+% ============================================================
+% Shared preamble for MCA101 exam-preparation notes.
+%
+% libertinus and tcolorbox are installed in the user TeX tree
+% (/home/elish4h/texmf) via:
+%   tlmgr --usermode install --ignore-warning \
+%     tcolorbox libertinus libertinus-type1 libertinus-otf \
+%     libertinus-fonts libertinust1math
+%
+% The box styling matches the repository's notes-template.tex.
+% ============================================================
+
+\usepackage[margin=0.72in]{geometry}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[skins,breakable]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{parskip}
+
+\definecolor{navy}{HTML}{183153}
+\definecolor{blue}{HTML}{2563EB}
+\definecolor{green}{HTML}{166534}
+\definecolor{red}{HTML}{B91C1C}
+\definecolor{gold}{HTML}{92400E}
+\definecolor{lightblue}{HTML}{EFF6FF}
+\definecolor{lightgreen}{HTML}{F0FDF4}
+\definecolor{lightred}{HTML}{FEF2F2}
+\definecolor{lightgold}{HTML}{FFFBEB}
+\definecolor{grey}{HTML}{475569}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+
+\titleformat{\section}{\Large\bfseries\color{navy}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\color{navy}}{}{0pt}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{blue}}{}{0pt}{}
+
+\setlist[itemize]{leftmargin=*,nosep}
+\setlist[enumerate]{leftmargin=*,nosep}
+
+% Allow tiny line-length overruns to be absorbed rather than overfull.
+\setlength{\emergencystretch}{2em}
+
+\tcbset{
+  enhanced,
+  breakable,
+  colbacktitle=blue,
+  coltitle=white,
+  fonttitle=\bfseries,
+  boxrule=0.5pt,
+  arc=1.5pt,
+  left=6pt,right=6pt,top=4pt,bottom=4pt,
+  before skip=6pt,after skip=6pt,
+}
+
+\newtcolorbox{exambox}{colback=lightblue,colframe=blue,title=Exam Focus}
+\newtcolorbox{rememberbox}{colback=lightgold,colframe=gold,title=Remember}
+\newtcolorbox{dangerbox}{colback=lightred,colframe=red,title=Do Not Confuse}
+\newtcolorbox{answerbox}{colback=lightgreen,colframe=green,title=Answer Skeleton}
+\newtcolorbox{pyqbox}{colback=white,colframe=grey,title=Past-paper question}
+\newtcolorbox{solbox}{colback=lightgreen,colframe=green,title=Solution}
+
+\newcommand{\mkmarks}[1]{\hfill\textbf{[#1 marks]}}
+\newcommand{\cmd}[1]{\texttt{#1}}
+\newcommand{\F}[1]{\ensuremath{#1}}
+\newcommand{\subject}[1]{\lhead{#1}\rhead{MCA101 Exam Notes}\cfoot{\thepage}}

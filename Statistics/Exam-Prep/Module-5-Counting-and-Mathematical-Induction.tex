@@ -1,0 +1,487 @@
+\documentclass[11pt,a4paper]{article}
+\input{preamble.tex}
+\subject{MCA101 -- Module 5: Counting and Mathematical Induction}
+
+\title{\textbf{Module 5: Counting and Mathematical Induction}\\}
+\author{\large Counting principles, permutations, combinations,\\pigeonhole principle, inclusion-exclusion and induction}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{exambox}
+\textbf{Scope.} Syllabus 5.1 to 5.3: counting (basics of counting, pigeonhole principle), permutations and combinations, inclusion-exclusion principle, and mathematical induction.
+
+Module 5 supplies the computational half of the paper. Almost every long question in the set ends with a Module 5 sub-part, so this module is where the marks are won or lost on arithmetic.
+\end{exambox}
+
+\tableofcontents
+\newpage
+
+\section{Addition and multiplication principles}
+
+\subsection{Addition principle}
+If a choice can be made in one of several mutually exclusive cases with $a_1,a_2,\dots,a_k$ outcomes, the total number of outcomes is
+\[
+a_1+a_2+\cdots+a_k.
+\]
+If the cases overlap, remove the duplicate counts with inclusion-exclusion.
+
+\subsection{Multiplication principle}
+If a process has successive choices with $a_1,a_2,\dots,a_k$ possibilities at each stage, the total number of outcomes is
+\[
+a_1a_2\cdots a_k.
+\]
+The number may vary by stage; multiply the actual choices available at each step.
+
+\begin{exambox}
+\textbf{Worked examples.} Three-letter strings followed by three digits, repetition allowed: $26^3\cdot10^3$. Select one boy from 28 and one girl from 18: $28\cdot18=504$. A die rolled five times: $6^5=7776$.
+\end{exambox}
+
+\begin{pyqbox}
+\textbf{Nov 2024 Section A Q6 and Oct 2025 Q5(a)(ii).} Explain the multiplication rule of counting.
+\end{pyqbox}
+
+\begin{solbox}
+If an event can occur in $m_1$ ways at the first stage, $m_2$ ways at the second stage, and so on through $m_r$ stages, and the choice at each stage is independent of the earlier choices, then the total number of ways of performing the whole sequence of operations is
+\[
+m_1\times m_2\times\cdots\times m_r.
+\]
+For example, if a boy or a girl is chosen and then a prize is selected, the total number of ways is $2\times n$, not $2+n$, because every person can receive every prize.
+\end{solbox}
+
+\section{Permutations}
+
+An arrangement of $n$ distinct objects taken $r$ at a time is a permutation:
+\[
+{}^nP_r=P(n,r)=\frac{n!}{(n-r)!}.
+\]
+If repetition is allowed and each of $r$ positions has $n$ choices, there are $n^r$ strings.
+
+If all $n$ objects are arranged with repeated indistinguishable types of multiplicities $n_1,\dots,n_k$, the number of distinct arrangements is
+\[
+\frac{n!}{n_1!n_2!\cdots n_k!}.
+\]
+
+\begin{exambox}
+\textbf{Worked examples.} Four distinct letters selected and ordered from six: $6P4=6!/2!=360$. Arrangements of ROOTS: $5!/2!=60$ (two O's). A six-digit PIN from digits 0--9 with repetition: $10^6$; a leading zero is allowed for a PIN.
+\end{exambox}
+
+\begin{pyqbox}
+\textbf{Oct 2024 CAE-2 Q1B(b).} In how many ways can the letters of the word ATTITUDE be rearranged such that no two T's are adjacent to each other?
+\end{pyqbox}
+
+\begin{solbox}
+ATTITUDE has 8 letters: A, T, T, I, T, U, D, E. Three T's and five other distinct letters.
+
+\textbf{Method (gap method).} First arrange the five non-T letters A, I, U, D, E in a row: $5!$ ways. This creates 6 gaps:
+\[
+\_\,L_1\,\_\,L_2\,\_\,L_3\,\_\,L_4\,\_\,L_5\,\_
+\]
+To keep the T's apart, put at most one T in each gap. Choose 3 of the 6 gaps: $\binom63=20$.
+\[
+\text{Answer}=5!\binom63=120\times20=\boxed{2400}.
+\]
+
+\textbf{Check.} Total distinct arrangements without restriction: $\frac{8!}{3!}=6720$. So $2400$ of $6720$ have no two T's adjacent, which is a sensible fraction.
+\end{solbox}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q5(a)(iii).} Find the number of permutations of the letters of the word ALLAHABAD.
+\end{pyqbox}
+
+\begin{solbox}
+ALLAHABAD has 9 letters: A appears 4 times, L appears 2 times, and H, B, D each appear once.
+\[
+\text{Answer}=\frac{9!}{4!\,2!}=\frac{362880}{48}=\boxed{7560}.
+\]
+\end{solbox}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q5(b)(iii).} In how many different ways can the letters of the word LEADING be arranged in such a way that the vowels always come together?
+\end{pyqbox}
+
+\begin{solbox}
+LEADING has 7 distinct letters, of which E, A and I are vowels.
+
+Treat the three vowels as a single block. Then we have 5 objects to arrange: the block $[EAI]$, and L, D, N, G. These can be arranged in $5!$ ways. Within the block the three vowels can be ordered in $3!$ ways.
+\[
+\text{Answer}=5!\times3!=120\times6=\boxed{720}.
+\]
+\end{solbox}
+
+\begin{dangerbox}
+In the block method you must multiply by the internal arrangements of the block. $5!$ alone would count only one particular vowel order inside the block.
+\end{dangerbox}
+
+\section{Combinations}
+
+A selection where order does not matter is a combination:
+\[
+{}^nC_r=C(n,r)=\frac{n!}{r!(n-r)!},\qquad {}^nP_r={}^nC_r\,r!.
+\]
+
+Useful identities:
+\[
+\binom n0=\binom nn=1,\qquad \binom n1=n,\qquad \binom nr=\binom n{n-r},
+\]
+\[
+\binom nr+\binom n{r-1}=\binom{n+1}r,\qquad \sum_{r=0}^n\binom nr=2^n.
+\]
+
+\begin{exambox}
+\textbf{Worked examples.} Teams of 3 from 8: $\binom83=56$. A committee of 3 from 6 faculty including both named professors: choose the third member from the other four, so 4. From 5 boys and 4 girls, 3-person committees with at least one girl: $\binom93-\binom53=84-10=74$.
+\end{exambox}
+
+\begin{dangerbox}
+Use permutations when order or role assignment matters; use combinations when only membership matters. A PIN permits a leading zero; a number usually does not.
+\end{dangerbox}
+
+\begin{pyqbox}
+\textbf{Nov 2024 Q17(a)(i) and Oct 2025 Q5(a)(i).} From a group of 7 men and 6 women, five persons are to be selected to form a committee so that at least 3 men are there on the committee. In how many ways can it be done?
+\end{pyqbox}
+
+\begin{solbox}
+Split into cases by the number of men:
+\[
+\begin{aligned}
+\text{3 men, 2 women} &: \binom73\binom62=35\times15=525,\\
+\text{4 men, 1 woman} &: \binom74\binom61=35\times6=210,\\
+\text{5 men, 0 women} &: \binom75\binom60=21\times1=21.
+\end{aligned}
+\]
+\[
+\text{Total}=525+210+21=\boxed{756}.
+\]
+
+\textbf{Check by complement.} Total committees of 5 from 13 people: $\binom{13}{5}=1287$. Committees with fewer than 3 men: 0 men $\binom60\binom65=6$, 1 man $\binom71\binom64=105$, 2 men $\binom72\binom63=420$. So $1287-(6+105+420)=1287-531=756$. Same answer.
+\end{solbox}
+
+\begin{pyqbox}
+\textbf{Nov 2024 Q17(a)(ii) and Oct 2025 Q5(a)(ii).} How many 3-digit numbers can be formed from the digits 2, 3, 5, 6, 7 and 9, which are divisible by 5 and none of the digits is repeated?
+\end{pyqbox}
+
+\begin{solbox}
+A number is divisible by 5 when its last digit is 0 or 5. The only choice of 5 from the given digits is 5, so the last digit must be 5.
+
+The first two digits come from $\{2,3,6,7,9\}$, chosen without repetition and in order:
+\[
+5\times4=20.
+\]
+\[
+\text{Answer}=\boxed{20}.
+\]
+\end{solbox}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q5(b)(ii).} How many 6-digit numbers can be formed by using the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 if every number is to start with '30' with no digit repeated?
+\end{pyqbox}
+
+\begin{solbox}
+The first two digits are fixed as 3 and 0. The remaining four places are filled from $\{1,2,4,5,6,7,8\}$, seven digits, without repetition, in order:
+\[
+7\times6\times5\times4=\boxed{840}.
+\]
+\end{solbox}
+
+\begin{exambox}
+\textbf{Worked, addition rule for sweets.} A bakery has 15 different cupcakes, 20 different doughnuts and 13 different muffins. How many different choices of sweets can you choose from? The choices are mutually exclusive, so add:
+\[
+15+20+13=\boxed{48}.
+\]
+\end{exambox}
+
+\section{Pigeonhole principle}
+
+\textbf{Basic principle:} placing $N$ objects into $k$ boxes with $N>k$ guarantees a box with at least two objects.
+
+\textbf{Generalized principle:} some box contains at least $\left\lceil \frac{N}{k}\right\rceil$ objects.
+
+To guarantee at least $r$ objects in one of $k$ boxes, the minimum required is
+\[
+k(r-1)+1.
+\]
+
+\begin{pyqbox}
+\textbf{Oct 2024 CAE-2 Q1A(b).} Explain the pigeonhole principle with a suitable example.
+\end{pyqbox}
+
+\begin{solbox}
+\textbf{Statement.} If $N$ objects are placed into $k$ boxes and $N>k$, then at least one box contains at least two objects. More generally, if $N>k(r-1)$, then at least one box contains at least $r$ objects; equivalently some box contains at least $\lceil N/k\rceil$ objects.
+
+\textbf{Example.} Among 47 students, 8 groups must be formed. Since $\lceil47/8\rceil=7$, some group contains at least 7 students.
+
+\textbf{Another example.} To guarantee that at least 4 people in a group share the same day of the week, we need $7(4-1)+1=22$ people.
+\end{solbox}
+
+\section{Inclusion-exclusion principle}
+
+For two finite sets:
+\[
+|A\cup B|=|A|+|B|-|A\cap B|.
+\]
+
+For three sets:
+\[
+|A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|.
+\]
+
+For \emph{exactly two} of the three sets, add the three pairwise intersections and subtract three times the triple intersection. For \emph{exactly one}, add the single-set totals, subtract twice the pairwise intersections, then add three times the triple intersection.
+
+\begin{exambox}
+\textbf{Worked examples.} Of 80 students, 50 use Android and 45 iPhone, and everyone uses at least one: both $=50+45-80=15$. For the language survey in the Oct 2024 paper, at least one $=50+45+40-20-18-15+8=90$.
+\end{exambox}
+
+\begin{pyqbox}
+\textbf{Oct 2024 CAE-2 Q1A(a).} In a class of students undergoing a computer course: of a total of 50 students, 30 know Pascal, 18 know Fortran, 26 know COBOL, 9 know both Pascal and Fortran, 16 know both Pascal and COBOL, 8 know both Fortran and COBOL, and 47 know at least one of the three. Determine (i) how many students know none of these languages, and (ii) how many know all three.
+\end{pyqbox}
+
+\begin{solbox}
+Let $P$, $F$, $C$ be the three sets.
+
+(i) None $=50-47=\boxed{3}$.
+
+(ii) Let $t=|P\cap F\cap C|$. By inclusion-exclusion,
+\[
+47=30+18+26-9-16-8+t=41+t,
+\]
+so $t=\boxed{6}$.
+
+Useful derived counts: exactly one language $=74-2(33)+3(6)=26$; exactly two $=(9-6)+(16-6)+(8-6)=15$.
+\end{solbox}
+
+\begin{pyqbox}
+\textbf{Oct 2024 CAE-2 Q1B(a).} Among 150 college students, 83 own cars, 97 own bike, 28 own motorcycles, 53 own a car and a bike, 14 own a car and a motorcycle, 7 own a bike and a motorcycle, and 2 own all three. (a) How many students do not own any of the three? (b) How many students own a bike and nothing else?
+\end{pyqbox}
+
+\begin{solbox}
+(a) By inclusion-exclusion the union is
+\[
+83+97+28-53-14-7+2=136.
+\]
+So none $=150-136=\boxed{14}$.
+
+(b) Bike only $=97-53-7+2=\boxed{39}$.
+
+Exactly one of the three: use the "exactly one" variant of the formula,
+\[
+\text{exactly one}=(83+97+28)-2(53+14+7)+3(2)=208-148+6=66.
+\]
+Exactly two: $(53+14+7)-3(2)=74-6=68$.
+Check: $66+68+2+14=150$, which is the total number of students.
+\end{solbox}
+
+\begin{pyqbox}
+\textbf{Nov 2024 Q17(b).} A software company employs 100 programmers. 45 are proficient in Java, 30 in C\#, 20 in Python, 6 in C\# and Java, 1 in Java and Python, 5 in C\# and Python, and just 1 is proficient in all three. Determine the number of programmers not proficient in any of these three languages.
+\end{pyqbox}
+
+\begin{solbox}
+Union by inclusion-exclusion:
+\[
+45+30+20-6-1-5+1=84.
+\]
+Not proficient in any:
+\[
+100-84=\boxed{16}.
+\]
+\end{solbox}
+
+\section{Mathematical induction}
+
+To prove $P(n)$ for all integers $n\ge n_0$:
+\begin{enumerate}
+\item State $P(n)$ and the starting value $n_0$.
+\item \textbf{Base case:} verify $P(n_0)$ directly.
+\item \textbf{Inductive hypothesis:} assume $P(k)$ is true for an arbitrary $k\ge n_0$.
+\item \textbf{Inductive step:} use that assumption to prove $P(k+1)$.
+\item Conclude by induction that $P(n)$ holds for every integer $n\ge n_0$.
+\end{enumerate}
+
+\begin{dangerbox}
+In the inductive step, assume the claim only for $k$, then derive the $k+1$ case. Do not assume the statement you are trying to prove for $k+1$. Include both the base case and the final conclusion.
+\end{dangerbox}
+
+\begin{exambox}
+\textbf{Worked proof.} Prove $1+2+\cdots+n=\frac{n(n+1)}2$ for $n\ge1$.
+
+\textbf{Base case:} $n=1$ gives $1=\frac{1\cdot2}{2}$. True.
+
+\textbf{Inductive hypothesis:} assume $1+2+\cdots+k=\frac{k(k+1)}2$ for some $k\ge1$.
+
+\textbf{Inductive step:}
+\[
+1+2+\cdots+k+(k+1)=\frac{k(k+1)}2+(k+1)
+=(k+1)\left(\frac{k}{2}+1\right)=\frac{(k+1)(k+2)}2.
+\]
+This is exactly the formula for $n=k+1$.
+
+\textbf{Conclusion:} by mathematical induction, $1+2+\cdots+n=\frac{n(n+1)}2$ for all $n\ge1$.
+\end{exambox}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q5(b)(i).} Using mathematical induction, prove that $3^{n}-1$ is a multiple of 2 for $n=1,2,\dots$
+\end{pyqbox}
+
+\begin{solbox}
+\textbf{Base case:} $n=1$. $3^1-1=3-1=2$, which is a multiple of 2. True.
+
+\textbf{Inductive hypothesis:} assume $3^{k}-1$ is a multiple of 2, that is $3^{k}-1=2m$ for some integer $m$.
+
+\textbf{Inductive step:} consider $3^{k+1}-1$:
+\[
+3^{k+1}-1=3\cdot3^{k}-1=3(3^{k}-1)+2=3(2m)+2=2(3m+1).
+\]
+Since $3m+1$ is an integer, $3^{k+1}-1$ is a multiple of 2.
+
+\textbf{Conclusion:} by mathematical induction, $3^n-1$ is a multiple of 2 for all $n\ge1$.
+\end{solbox}
+
+\begin{dangerbox}
+The printed question in the Oct 2025 paper reads "$3n-1$ is a multiple of 2". As printed that is false (for $n=2$ it gives 5). The intended statement is $3^{n}-1$, which is what the proof above establishes and what the standard textbook version of this question asks. Write the exponent clearly and mention the reading in your answer if you are unsure.
+\end{dangerbox}
+
+\begin{pyqbox}
+\textbf{Oct 2024 CAE-2 Q2B(a).} Using mathematical induction, prove the given statement: for any natural number $n$, $2^{2n}-1$ is divisible by 3.
+\end{pyqbox}
+
+\begin{solbox}
+\textbf{Base case:} $n=1$. $2^{2}-1=4-1=3$, which is divisible by 3. True.
+
+\textbf{Inductive hypothesis:} assume $2^{2k}-1$ is divisible by 3, so $2^{2k}-1=3m$ for some integer $m$.
+
+\textbf{Inductive step:}
+\[
+2^{2(k+1)}-1=2^{2k+2}-1=4\cdot2^{2k}-1=4(2^{2k}-1)+3=4(3m)+3=3(4m+1).
+\]
+Since $4m+1$ is an integer, $2^{2(k+1)}-1$ is divisible by 3.
+
+\textbf{Conclusion:} by mathematical induction, $2^{2n}-1$ is divisible by 3 for all $n\ge1$.
+\end{solbox}
+
+\begin{exambox}
+\textbf{Worked proof, sum of odd numbers.} Prove $1+3+5+\cdots+(2n-1)=n^2$ for $n\ge1$.
+
+\textbf{Base case:} $n=1$ gives $1=1^2$. True.
+
+\textbf{Inductive hypothesis:} assume $1+3+\cdots+(2k-1)=k^2$.
+
+\textbf{Inductive step:}
+\[
+1+3+\cdots+(2k-1)+(2k+1)=k^2+2k+1=(k+1)^2,
+\]
+which is the formula for $n=k+1$.
+
+\textbf{Conclusion:} by mathematical induction, $1+3+\cdots+(2n-1)=n^2$ for all $n\ge1$.
+\end{exambox}
+
+\section{Quick method selector}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.32\textwidth} X}
+\toprule Clue in question & Method\\\midrule
+"either ... or" in disjoint cases & Addition rule\\
+several stages / "and then" & Multiplication rule\\
+arrange, order, rank, positions & Permutation\\
+choose, select, committee, team & Combination\\
+guarantee a repeated category & Pigeonhole principle\\
+overlapping groups / at least one set & Inclusion-exclusion\\
+prove for every natural number & Mathematical induction\\
+arrange letters of a word & Permutation with repeated letters\\
+no two of a letter together & Gap method\\
+\end{tabularx}
+\end{center}
+
+\section{Answer skeletons}
+
+\begin{answerbox}
+\textbf{Arrangement of letters (3 to 9 marks).} Count the letters and the multiplicities. Decide whether order within a group matters (it does). Write $n!$ divided by the factorials of the repeated counts. State the answer.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Selection with a restriction (9 marks).} Split into mutually exclusive cases by the number from each group. In each case write the combination product. Add the cases. Verify with a complement count if time allows.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Digit formation (3 to 9 marks).} Identify the fixed positions first, then the last-digit divisibility rule, then count the free positions as an ordered selection without repetition.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Inclusion-exclusion (9 marks).} Label the sets, write the formula with all seven terms, substitute, and simplify. Then answer the specific sub-question (none, exactly one, exactly two) with the corresponding variant of the formula.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Prove by induction (5 to 9 marks).} Let $P(n)$ be the claim. Verify the base case. Assume $P(k)$. Starting from the left side for $k+1$, use the inductive hypothesis and simplify to the required right side. State that the claim follows for all specified $n$.
+\end{answerbox}
+
+\section{Self-test}
+
+\begin{enumerate}
+\item State the addition and multiplication principles of counting.
+\item How many 4-digit numbers can be made from the digits 1--9 without repetition?
+\item How many arrangements are there of the letters of ROOTS? Of INDEPENDENCE? How many of INDEPENDENCE start with P?
+\item In how many ways can the letters of ATTITUDE be rearranged so that no two T's are adjacent?
+\item How many arrangements are there of the letters of ALLAHABAD?
+\item In how many ways can the letters of LEADING be arranged so that the vowels are together?
+\item From 6 men and 5 women, how many 4-person committees include at least one woman?
+\item From a group of 7 men and 6 women, how many 5-person committees have at least 3 men?
+\item How many 3-digit numbers from 2, 3, 5, 6, 7, 9 are divisible by 5 with no digit repeated?
+\item How many integers from 1 to 100 are divisible by 2 or 5?
+\item What is the minimum number of people that guarantees at least 4 were born on the same day of the week?
+\item State the generalized pigeonhole principle and the two-set inclusion-exclusion formula.
+\item Prove by induction that $1+3+5+\cdots+(2n-1)=n^2$ for $n\ge1$.
+\item Prove by induction that $3\mid(n^3+2n)$ for every positive integer $n$.
+\end{enumerate}
+
+\subsection*{Answers}
+\begin{enumerate}
+\item Addition: for mutually exclusive cases, add the counts. Multiplication: for successive independent stages, multiply the counts.
+\item $9\times8\times7\times6=\boxed{3024}$.
+\item ROOTS: $\frac{5!}{2!}=\boxed{60}$. INDEPENDENCE (12 letters, E four times, N three times, D twice): $\frac{12!}{4!\,3!\,2!}=\boxed{1663200}$. Starting with P: $\frac{11!}{4!\,3!\,2!}=\boxed{138600}$.
+\item $5!\binom63=\boxed{2400}$.
+\item $\frac{9!}{4!\,2!}=\boxed{7560}$.
+\item $5!\times3!=\boxed{720}$.
+\item $\binom{11}{4}-\binom64=330-15=\boxed{315}$.
+\item $\binom73\binom62+\binom74\binom61+\binom75\binom60=525+210+21=\boxed{756}$.
+\item $5\times4=\boxed{20}$.
+\item $50+20-10=\boxed{60}$.
+\item $7(4-1)+1=\boxed{22}$.
+\item Some box contains at least $\lceil N/k\rceil$ objects. For two sets, $|A\cup B|=|A|+|B|-|A\cap B|$.
+\item Base case $n=1$: $1=1^2$. Assume $1+3+\cdots+(2k-1)=k^2$. Then $1+3+\cdots+(2k-1)+(2k+1)=k^2+2k+1=(k+1)^2$. Hence the result holds for all $n\ge1$.
+\item Base case $n=1$: $1+2=3$, divisible by 3. Assume $k^3+2k=3m$. Then $(k+1)^3+2(k+1)=k^3+3k^2+3k+1+2k+2=(k^3+2k)+3k^2+5k+3=3m+3(k^2+k+1)=3(m+k^2+k+1)$. Hence $3\mid(n^3+2n)$ for all positive integers $n$.
+\end{enumerate}
+
+\section{Last-minute page}
+
+\begin{multicols}{2}
+\textbf{PRINCIPLES}\\
+Addition: sum disjoint cases\\
+Multiplication: product of stages\\[4pt]
+\textbf{PERMUTATIONS}\\
+${}^nP_r=\dfrac{n!}{(n-r)!}$\\
+Repetition allowed: $n^r$\\
+Repeated letters: $\dfrac{n!}{\prod n_i!}$\\[4pt]
+\textbf{COMBINATIONS}\\
+${}^nC_r=\dfrac{n!}{r!(n-r)!}$\\
+${}^nP_r={}^nC_r\,r!$\\
+$\sum_{r=0}^n\binom nr=2^n$\\[4pt]
+\textbf{GUARANTEES / OVERLAP}\\
+Pigeonhole: at least $\lceil N/k\rceil$\\
+Guarantee $r$: $k(r-1)+1$\\
+$|A\cup B|=|A|+|B|-|A\cap B|$\\
+Three sets: singles $-$ pairs $+$ triple\\[4pt]
+\textbf{SPECIAL CASES}\\
+No two T's adjacent: $5!\binom63$\\
+Vowels together: $5!\times3!$\\
+Gap method for repeated letters\\[4pt]
+\textbf{INDUCTION}\\
+Base case $\to$ assume $P(k)$ $\to$ prove $P(k+1)$ $\to$ conclude\\[4pt]
+\textbf{DO NOT CONFUSE}\\
+Order matters: permutation; no order: combination.\\
+A PIN allows a leading zero; a number does not.\\
+In a block method, multiply by the block's internal arrangements.
+\end{multicols}
+
+\vfill
+\begin{center}\textit{Identify the rule, show the working, and state the conclusion. Split restricted selections into explicit cases.}\end{center}
+
+\end{document}

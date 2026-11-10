@@ -1,0 +1,273 @@
+\documentclass[11pt,a4paper]{article}
+\input{preamble.tex}
+\subject{MCA101 -- Overview and PYQ Analysis}
+
+\title{\textbf{Probability, Statistics and Computational Mathematics}\\}
+\author{\large MCA101 Exam Preparation -- Overview, Past-Paper Analysis\\and Study Plan}
+\date{Exam: Monday 16 November 2026, 9:30 a.m. to 12:30 p.m.}
+
+\begin{document}
+\maketitle
+
+\begin{exambox}
+\textbf{How to use this set.} Five module PDFs plus this overview sit in \texttt{Statistics/Exam-Prep/}. Print the module you are revising, work the self-test at the end of each one, then use Section~5 here for the six-day plan and Section~6 as your single-page formula sheet on exam day. Every worked answer in these notes was computed and checked numerically.
+\end{exambox}
+
+\tableofcontents
+\newpage
+
+\section{What the exam looks like}
+
+The timetable dated 26-10-2026 places \textbf{MCA101 Probability, Statistics and Computational Mathematics} on \textbf{Monday 16-11-2026, 9:30 a.m.\ to 12:30 p.m.} (3 hours). The syllabus has five modules of 12 hours each.
+
+\subsection{Two paper patterns appear in the past papers}
+
+The two most recent full papers do not use the same layout, so do not assume one.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.18\textwidth} X X}
+\toprule Pattern & Nov 2024 paper & Oct 2025 paper\\\midrule
+Total marks & 75 & 75\\
+Duration & 3 hours & 3 hours\\
+Section A & 12 short questions, 3 marks each, answer any TEN (30 marks) & 5 long questions, 15 marks each, answer ALL (75 marks)\\
+Section B & 5 long questions, 9 marks each, answer ALL (45 marks) & merged into Section A\\
+Practical split & long questions carry an OR pair & long questions carry an OR pair\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{dangerbox}
+Do not over-plan for a single layout. If the paper uses the Nov 2024 shape you must be able to write \textbf{12 quick answers} under time pressure; if it uses the Oct 2025 shape you must be able to write \textbf{5 full derivations}. Practise both: the self-test sections in each module PDF cover both the 3-mark definition style and the 9-to-15-mark problem style.
+\end{dangerbox}
+
+\subsection{The two continuous assessment papers (less weight, still indicative)}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.16\textwidth} p{0.12\textwidth} X}
+\toprule Paper & Marks & Focus\\\midrule
+CAE-1, Sept 2024 & 40 & Module 1 only, with Bayes' theorem and conditional probability proofs\\
+CAE-2, Oct 2024 & 20 & Mixed: set counting, arrangement of letters, Poisson, logic, induction\\
+CAE-1, Aug 2025 & 40 & Mixed: Bayes, binomial, logic proofs, rules of inference\\
+CAE-2, Oct 2025 & -- & Mixed: same distribution as CAE-1, different numbers\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{The five modules and where the marks come from}
+
+Each module is a separate PDF named \texttt{Module-N-<Topic>.pdf}. All six are in the same folder as this document.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.10\textwidth} X}
+\toprule Module & Content\\\midrule
+1 & Probability theory: sample space, events, approaches, addition and multiplication theorems, conditional probability, Bayes' theorem\\
+2 & Random variables and distributions: PMF/PDF, marginal and conditional functions, moments and MGF, binomial, Poisson, uniform, normal\\
+3 & Basic statistics: central tendency, dispersion, moments, skewness, kurtosis, Karl Pearson and rank correlation, regression\\
+4 & Mathematical logic: propositional and predicate logic, equivalences, normal forms, quantifiers, rules of inference\\
+5 & Counting and mathematical induction: addition and multiplication principles, permutations, combinations, pigeonhole, inclusion-exclusion, induction\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Past-paper frequency analysis}
+
+Six MCA101 papers were extracted from \texttt{Statistics/STATI PYQ.pdf} (Sept 2024 CAE-1, Oct 2024 CAE-2, Aug 2025 CAE-1, Nov 2024 full, Oct 2025 full) and analysed topic by topic. Frequency of appearance:
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.30\textwidth} c X}
+\toprule Topic & Papers hit & What to expect\\\midrule
+Bayes' theorem (state, prove, apply) & 4 of 5 & A near-certain question. It appears as a 9-mark proof and as a 3-mark \emph{state and prove} in both CAE-1 papers.\\
+Conditional probability and independence & 4 of 5 & Always a dice, card or urn problem. \emph{Given that} questions dominate.\\
+Binomial distribution & 4 of 5 & Both directions: compute a probability, and work backwards to find $p$ from two given probabilities.\\
+Logical equivalence, truth tables, tautology proofs & 4 of 5 & Two styles: truth-table proof and algebraic proof without a truth table.\\
+Rules of inference and validity of arguments & 3 of 5 & Show that a conclusion follows, or that premises are inconsistent.\\
+Counting: committees, arrangements of letters, digit numbers & 3 of 5 & These specific word-problems recur almost verbatim across years.\\
+Inclusion-exclusion on three sets & 2 of 5 & Both the counting form and the probability form.\\
+Mathematical induction & 2 of 5 & Usually a divisibility statement.\\
+Rank correlation and regression & 2 of 5 & Module 3 long question, usually as an OR pair.\\
+Central tendency and dispersion & 2 of 5 & Definitions plus one computation.\\
+Poisson distribution & 1 of 5 & Appeared in Oct 2024 CAE-2 only, but it is in the syllabus.\\
+Normal distribution & 1 of 5 & Appeared as a 3-mark standardisation question.\\
+Pigeonhole principle & 1 of 5 & Oct 2024 CAE-2 asked for an explanation with an example.\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{exambox}
+\textbf{The single highest-value thing you can do.} Memorise Bayes' theorem so that you can write both the formula and a full proof without thinking, and drill the \emph{probability table} method for applying it. It is the most repeated topic across every paper in the set, and it is the one where a 9-mark answer is fully deterministic once the table is written.
+\end{exambox}
+
+\section{Recurring problems, by topic}
+
+These are the exact questions that repeat, with the year they appeared. Knowing them lets you rehearse.
+
+\subsection{Module 1}
+\begin{itemize}
+\item \textbf{Bayes with two urns.} A bag has 2 white and 3 black; another has 3 white and 2 black. A ball is drawn from one of the bags and found white. Probability it came from the first bag? (Nov 2024 Q13, Oct 2025 Q1) Answer $\tfrac{2}{5}$.
+\item \textbf{HIV test.} 90\% detection rate among HIV-positive, 1\% false positive among HIV-negative, 0.1\% prevalence. Probability a person testing positive actually has HIV? (Nov 2024 Q13, Oct 2025 Q1) Answer $\approx 0.0826$.
+\item \textbf{Three machines producing bolts.} Output shares 25/35/40\%, defect rates 5/4/2\%. Given a defective bolt, probability it came from machine B? (Aug 2025 Q2) Answer $\approx 0.4058$.
+\item \textbf{Lost card from a deck.} A card is lost; two cards drawn from the remaining 51 are both spades. Probability the lost card was a spade? (Aug 2025 Q2) Answer $\tfrac{11}{50}$.
+\item \textbf{Three-set inclusion-exclusion in probability.} Programming languages, vehicles, and so on. (Oct 2024 CAE-2, Nov 2024 Q17, Oct 2025 Q5)
+\item \textbf{Dice conditional probabilities.} Sum greater than 9 given a specific die showed 5; sum equal to 8 given the other die was below 4. (Sept 2024 Q2, Oct 2025 Q1)
+\end{itemize}
+
+\subsection{Module 2}
+\begin{itemize}
+\item \textbf{Guess at least 6 of 10 true/false answers.} Binomial with $p=\tfrac12$. (Nov 2024 Section A) Answer $\tfrac{386}{1024}\approx 0.377$.
+\item \textbf{Find $p$ and $q$ from two binomial probabilities.} Six trials, $P(3)=0.2457$, $P(4)=0.0819$. (Oct 2025 Q2) Solve by dividing the two equations.
+\item \textbf{Defective bulbs, sampling with replacement.} 30 bulbs with 6 defective, sample 4 with replacement, find the distribution. (Oct 2025 Q2)
+\item \textbf{Expected number of white balls and expected reward.} Bag of 4 white and 6 red, draw 3; then rewards of Rs.4 and Rs.6. (Nov 2024 Q14, Oct 2025 Q2) Answers $1.2$ and Rs.\ $15.60$.
+\item \textbf{Normal distribution standardisation.} $\mu=50$, $\sigma=8$, find $P(34<X<62)$. (Nov 2024 Section A) Answer $\approx 0.9104$.
+\end{itemize}
+
+\subsection{Module 3}
+\begin{itemize}
+\item \textbf{Three judges rank ten contestants.} Find which pair of judges agrees most, using rank correlation. (Nov 2024 Q15) Judges 1 and 3, with $\rho\approx 0.636$.
+\item \textbf{Husband's and wife's age, two regression lines.} (Oct 2025 Q3) $y=-1.739+0.891x$ and $x=11.25+0.75y$; husband's age for wife's age 23 is $28.5$.
+\item \textbf{Rank correlation between two subjects.} English and Mathematics marks, ten students. (Oct 2025 Q3) $\rho\approx 0.733$.
+\item \textbf{Standard deviation of two observations.} Show that the SD of two observations $a$ and $b$ is half the distance between them. (Oct 2025 Q3)
+\item \textbf{Mean correction.} Mean of 10 items was 70, one item of 92 was misread as 29. Correct mean? (Oct 2025 Q3) Answer $76.3$.
+\end{itemize}
+
+\subsection{Module 4}
+\begin{itemize}
+\item \textbf{Truth-table proofs.} $\neg(p\leftrightarrow q)\equiv(p\land\neg q)\lor(q\land\neg p)$; $p\land(q\lor r)\equiv(p\land q)\lor(p\land r)$. (Nov 2024 Q16)
+\item \textbf{Algebraic proof without a truth table.} $p\leftrightarrow q\equiv(p\land q)\lor(\neg p\land\neg q)$; also $[(p\lor q)\land\neg p]\to\neg q \equiv q\to p$. (Nov 2024 Q16, Aug 2025 Q3)
+\item \textbf{Principal disjunctive normal form of $\neg P\lor Q$.} (Oct 2025 Q4)
+\item \textbf{Validity of an argument.} Four premises with names, conclude a statement about D. (Oct 2025 Q4, Aug 2025 Q4)
+\item \textbf{Show premises are inconsistent.} $P\to Q$, $P\to R$, $Q\to\neg R$, and $P$. (Aug 2025 Q4)
+\item \textbf{Predicate calculus with dragons.} Some, no, every, not every dragon sleeping. (Oct 2025 Q4)
+\end{itemize}
+
+\subsection{Module 5}
+\begin{itemize}
+\item \textbf{Committee with at least 3 men.} 7 men and 6 women, choose 5 with at least 3 men. (Nov 2024 Q17, Oct 2025 Q5) Answer $756$.
+\item \textbf{Three-digit numbers from 2,3,5,6,7,9 divisible by 5, no repetition.} (Nov 2024 Q17, Oct 2025 Q5) Answer $20$.
+\item \textbf{Arrangements of the letters of a word.} ATTITUDE with no two T adjacent (Oct 2024 CAE-2, answer $2400$), ALLAHABAD (Oct 2025, answer $7560$), LEADING with vowels together (Oct 2025).
+\item \textbf{Number induction.} Prove $3n-1$ is a multiple of 2 (Oct 2025); prove $2^{2n}-1$ is divisible by 3 (Oct 2024 CAE-2).
+\item \textbf{Pigeonhole principle with an example.} (Oct 2024 CAE-2)
+\item \textbf{Multiplication rule of counting.} Stated in both Nov 2024 and Oct 2025.
+\end{itemize}
+
+\section{Six-day study plan, 10 to 16 November}
+
+The plan assumes roughly 6 hours of study a day. If you have less, protect Sections 1 to 3 of the schedule first.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.13\textwidth} p{0.22\textwidth} X p{0.20\textwidth}}
+\toprule Day & Module & Work & Check\\\midrule
+Tue 10 Nov & 1 & Read \texttt{Module-1} in full. Drill Bayes' theorem proof and the probability-table method. Do the Module 1 self-test. & You can write $P(A\mid B)=\frac{P(B\mid A)P(A)}{P(B)}$ and the proof from memory.\\
+Wed 11 Nov & 2 & Read \texttt{Module-2}. Master binomial, Poisson, uniform and normal. Work the Oct 2025 bulb and dart problems twice. & You can state mean, variance and MGF for all four distributions without looking.\\
+Thu 12 Nov & 3 & Read \texttt{Module-3}. Practise one full regression problem and one rank correlation problem per hour. & You can compute $r$, both regression lines, and $\rho$ from a raw table.\\
+Fri 13 Nov & 4 & Read \texttt{Module-4}. Write out all equivalences and all inference rules on one sheet. Practise truth-table and algebraic proofs. & You can produce either style of proof for any equivalence given.\\
+Sat 14 Nov & 5 & Read \texttt{Module-5}. Then sit a full mock: attempt all questions from Section A of the Nov 2024 paper under 40 minutes, then the Section B questions under 100 minutes. & Mark yourself honestly and list every topic you missed.\\
+Sun 15 Nov & All & Re-read only the boxes you marked as weak. Write the formula sheet from Section 6 from memory on blank paper, then compare. Sleep early. & A clean sheet with no gaps.\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{exambox}
+\textbf{Exam-morning rules.} Bring two pens, a ruler, and the standard normal table if your department issues one. Write the question number in the margin before you start a long answer. For every numerical answer, show the formula, substitute, then state the result with units. A correct answer with no working often loses half the marks; a formula with no substitution usually gets partial credit.
+\end{exambox}
+
+\section{Formula sheet}
+
+\subsection{Probability (Module 1)}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.30\textwidth} X}
+\toprule Item & Formula\\\midrule
+Complement & $P(A^c)=1-P(A)$\\
+Addition theorem & $P(A\cup B)=P(A)+P(B)-P(A\cap B)$; if $A\cap B=\emptyset$ then $P(A\cup B)=P(A)+P(B)$\\
+Conditional probability & $P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}$, $P(B)>0$\\
+Multiplication theorem & $P(A\cap B)=P(A)P(B\mid A)=P(B)P(A\mid B)$\\
+Independent events & $P(A\cap B)=P(A)P(B)$; equivalently $P(A\mid B)=P(A)$\\
+Bayes' theorem & $P(A_i\mid B)=\dfrac{P(B\mid A_i)P(A_i)}{\sum_j P(B\mid A_j)P(A_j)}$\\
+Odds in favour $a:b$ & $P(A)=\dfrac{a}{a+b}$\\
+Classical approach & $P(A)=\dfrac{\#\text{ favourable outcomes}}{\#\text{ equally likely outcomes}}$\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Random variables and distributions (Module 2)}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.24\textwidth} X}
+\toprule Item & Formula\\\midrule
+PMF & $p(x)=P(X=x)$, $\sum_x p(x)=1$\\
+PDF & $f(x)\ge 0$, $\int_{-\infty}^{\infty} f(x)\,dx=1$\\
+CDF & $F(x)=P(X\le x)$, $f(x)=\dfrac{d}{dx}F(x)$\\
+Expectation & $E(X)=\sum x\,p(x)$ (discrete), $\int x f(x)\,dx$ (continuous)\\
+Variance & $\operatorname{Var}(X)=E(X^2)-[E(X)]^2=E[(X-\mu)^2]$\\
+Binomial $B(n,p)$ & $P(X=k)=\binom nk p^k q^{n-k}$; $E=np$; $\operatorname{Var}=npq$; $M_G(t)=(q+pe^t)^n$\\
+Poisson $\operatorname{Po}(\lambda)$ & $P(X=k)=\dfrac{e^{-\lambda}\lambda^k}{k!}$; $E=\lambda$; $\operatorname{Var}=\lambda$; $M_G(t)=e^{\lambda(t-1)}$\\
+Uniform $U(a,b)$ & $f(x)=\dfrac{1}{b-a}$; $E=\dfrac{a+b}{2}$; $\operatorname{Var}=\dfrac{(b-a)^2}{12}$\\
+Normal $N(\mu,\sigma^2)$ & $f(x)=\dfrac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)}$; $E=\mu$; $\operatorname{Var}=\sigma^2$\\
+Standardisation & $Z=\dfrac{X-\mu}{\sigma}$, then read areas from the $Z$ table\\
+Binomial to Poisson & if $n$ large and $p$ small, use $\lambda=np$\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Descriptive statistics (Module 3)}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.24\textwidth} X}
+\toprule Item & Formula\\\midrule
+Arithmetic mean & $\bar X=\dfrac{\sum fX}{\sum f}=\dfrac{\sum X}{N}$\\
+Median & middle value, or $\dfrac{Q_3+Q_1}{2}$; position $\dfrac{N+1}{2}$\\
+Mode & most frequent value\\
+Range & $R=x_{\max}-x_{\min}$\\
+Coefficient of range & $\dfrac{R}{\bar X}$\\
+Quartile deviation & $QD=\dfrac{Q_3-Q_1}{2}$; coefficient of QD $=\dfrac{QD}{\bar X}$\\
+Mean deviation & $MD=\dfrac{\sum f|X-A|}{N}$, $A$ the chosen centre\\
+Variance & $\sigma^2=\dfrac{\sum f(X-\bar X)^2}{N}$; shortcut $\sigma^2=\dfrac{\sum fX^2}{N}-\bar X^2$\\
+Standard deviation & $\sigma=\sqrt{\dfrac{\sum f(X-\bar X)^2}{N}}$\\
+Karl Pearson $r$ & $r=\dfrac{n\sum xy-\sum x\sum y}{\sqrt{(n\sum x^2-(\sum x)^2)(n\sum y^2-(\sum y)^2)}}=\dfrac{\sum dx\,dy}{\sqrt{\sum dx^2\,\sum dy^2}}$\\
+Rank correlation & $\rho=1-\dfrac{6\sum d^2}{n(n^2-1)}$, $d$ difference of ranks\\
+Regression $y$ on $x$ & $y=a+bx$, $b=\dfrac{\sum dx\,dy}{\sum dx^2}=\dfrac{n\sum xy-\sum x\sum y}{n\sum x^2-(\sum x)^2}$, $a=\bar y-b\bar x$\\
+Regression $x$ on $y$ & $x=a'+b'y$, $b'=\dfrac{\sum dx\,dy}{\sum dy^2}$, $a'=\bar x-b'\bar y$\\
+Link & $r=\sqrt{bb'}$; the two regression lines meet at $(\bar x,\bar y)$\\
+Skewness (Pearson) & $\dfrac{3(\bar X-\text{median})}{S}$ or $\dfrac{\bar X-\text{mode}}{S}$\\
+Bowley coefficient & $\dfrac{Q_3+Q_1-2\,\text{median}}{Q_3-Q_1}$\\
+Kurtosis & $\beta_2=\dfrac{\mu_4}{\mu_2^2}$; $\beta_2=3$ normal, $<3$ platykurtic, $>3$ leptokurtic\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Mathematical logic (Module 4)}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.30\textwidth} X}
+\toprule Item & Formula\\\midrule
+Negation & $\neg p$; $p\to q\equiv\neg p\lor q$; $p\leftrightarrow q\equiv(p\to q)\land(q\to p)$\\
+Converse / inverse / contrapositive & of $p\to q$: converse $q\to p$; inverse $\neg p\to\neg q$; contrapositive $\neg q\to\neg p$\\
+Quantifier negation & $\neg\forall x\,P(x)\equiv\exists x\,\neg P(x)$; $\neg\exists x\,P(x)\equiv\forall x\,\neg P(x)$\\
+Rules of inference & modus ponens ($p\to q,\,p\Rightarrow q$); modus tollens ($p\to q,\,\neg q\Rightarrow\neg p$); hypothetical syllogism; disjunctive syllogism; addition; simplification; conjunction; resolution\\
+Normal forms & DNF is OR of AND terms; CNF is AND of OR terms; PDNF is the full set of minterms where the formula is true\\
+Truth table size & $2^n$ rows for $n$ variables\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Counting and induction (Module 5)}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.30\textwidth} X}
+\toprule Item & Formula\\\midrule
+Addition principle & $a_1+a_2+\cdots+a_k$ for mutually exclusive cases\\
+Multiplication principle & $a_1a_2\cdots a_k$ for successive stages\\
+Permutation & ${}^nP_r=\dfrac{n!}{(n-r)!}$\\
+Combination & ${}^nC_r=\dfrac{n!}{r!(n-r)!}$, ${}^nP_r={}^nC_r\,r!$\\
+Identical objects & $\dfrac{n!}{n_1!n_2!\cdots n_k!}$\\
+Pigeonhole & $N$ objects in $k$ boxes, $N>k$ forces one box with two; general form $\lceil N/k\rceil$; guarantee $r$ in one box needs $k(r-1)+1$\\
+Inclusion-exclusion (3 sets) & $|A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|$\\
+Mathematical induction & base case $n_0$; assume $P(k)$; prove $P(k+1)$; conclude for all $n\ge n_0$\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Common mistakes that cost marks}
+
+\begin{enumerate}
+\item Using $P(A\cup B)=P(A)+P(B)$ when the events can overlap. Subtract $P(A\cap B)$ unless mutual exclusivity is given.
+\item Reversing $P(A\mid B)$ and $P(B\mid A)$. They are not interchangeable.
+\item Forgetting the prior probability in a Bayes table, or dividing by one row instead of the column total.
+\item Treating "at least one" as a sum of positive terms when the complement is easier.
+\item Assuming independent means mutually exclusive. They are different properties.
+\item Dividing by $n$ instead of $n-1$ in a sample standard deviation, or mixing the two conventions.
+\item Confusing the order of $x$ and $y$ in a regression line, then quoting the wrong line for the prediction asked.
+\item In rank correlation, failing to replace tied ranks with their average rank.
+\item In counting words with repeated letters, dividing by the wrong factorial.
+\item Writing "we know" instead of showing the formula and the substitution in a numerical answer.
+\end{enumerate}
+
+\vfill
+\begin{center}\textit{Every numerical answer in this set was computed and checked. Where a past paper's own data is internally inconsistent, the question is flagged rather than silently answered wrongly.}\end{center}
+
+\end{document}

@@ -1,0 +1,447 @@
+\documentclass[11pt,a4paper]{article}
+\input{preamble.tex}
+\subject{MCA101 -- Module 1: Probability Theory}
+
+\title{\textbf{Module 1: Probability Theory}\\}
+\author{\large Sample spaces, events, addition and multiplication theorems,\\conditional probability and Bayes' theorem}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{exambox}
+\textbf{Scope.} Syllabus 1.1 to 1.3: probability theory, sample space, events, approaches to probability, addition and multiplication theorems on probability, independent events, conditional probability, Bayes' theorem. Module 1 was the whole of CAE-1 in Sept 2024 and appears in every other paper, so treat it as the highest-confidence scoring block in the syllabus.
+\end{exambox}
+
+\tableofcontents
+\newpage
+
+\section{Foundations}
+
+\subsection{Probability, experiment, sample space, event}
+
+\textbf{Probability} is a numerical measure of how likely an event is to occur, with $0\le P(A)\le 1$. $P(A)=0$ means the event is impossible, $P(A)=1$ means it is certain.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.22\textwidth} X X}
+\toprule Term & Meaning & Example\\\midrule
+Random experiment & A repeatable process whose exact outcome cannot be predicted with certainty & Tossing a coin; drawing a card\\
+Outcome & One possible result of the experiment & H in one coin toss\\
+Sample space $S$ & The set of all possible outcomes & $S=\{H,T\}$ for one toss\\
+Event & One or more outcomes selected from $S$ & $A=\{H\}$; "a king"\\
+Favourable outcomes & Outcomes that make the event occur & For "an even die result": $\{2,4,6\}$\\
+\end{tabularx}
+\end{center}
+
+\textbf{Types of sample space.} A sample space is \emph{finite} (e.g.\ $\{1,\dots,6\}$), \emph{countably infinite} (e.g.\ the non-negative integers, listed one by one), or \emph{continuous} (e.g.\ a waiting time in an interval). Discrete sample spaces are finite or countably infinite; continuous ones are uncountably infinite.
+
+\subsection{Event notation}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.22\textwidth} X X}
+\toprule Notation & Meaning & Key fact\\\midrule
+$A^c$ & Complement of $A$; $A$ does not occur & $P(A^c)=1-P(A)$\\
+$A\cup B$ & $A$ or $B$; at least one occurs & Union\\
+$A\cap B$ & $A$ and $B$; both occur & Intersection\\
+$\emptyset$ & Null / impossible event & $P(\emptyset)=0$\\
+$S$ & Certain event / whole sample space & $P(S)=1$\\
+\end{tabularx}
+\end{center}
+
+\begin{rememberbox}
+For "at least one", use $P(\text{at least one})=1-P(\text{none})$ whenever the complement is easier to calculate. This single trick removes most of the arithmetic from Module 1 questions.
+\end{rememberbox}
+
+\subsection{Types of events}
+
+\begin{itemize}
+\item \textbf{Simple}: contains one outcome, e.g.\ $\{5\}$ on a die.
+\item \textbf{Compound}: contains more than one outcome, e.g.\ $\{2,3,5\}$.
+\item \textbf{Mutually exclusive}: cannot occur together, $A\cap B=\emptyset$. Example: even and odd on one die.
+\item \textbf{Exhaustive}: together they cover the whole of $S$. Example: $\{H\}$ and $\{T\}$.
+\item \textbf{Equally likely}: outcomes have equal probability, e.g.\ the faces of a fair die.
+\item \textbf{Independent}: occurrence of one does not affect the probability of the other. Example: separate tosses of a fair coin.
+\end{itemize}
+
+\section{Approaches to probability}
+
+\subsection{Classical approach}
+When all outcomes are equally likely,
+\[
+P(A)=\frac{\text{number of favourable outcomes}}{\text{number of equally likely outcomes}}.
+\]
+For a king from a standard deck, $P(\text{king})=\frac{4}{52}=\frac{1}{13}$.
+For two simultaneous coin tosses the sample space is $\{HH,HT,TH,TT\}$, so the
+probability of one head and one tail is
+\[
+P(\text{one head and one tail})=\frac{2}{4}=\frac{1}{2}.
+\]
+
+\begin{exambox}
+\textbf{Order matters in ordered outcomes.} For two dice there are $6\times6=36$ equally likely \emph{ordered} pairs. $(2,5)$ and $(5,2)$ are different outcomes. A table of two-die sums is worth memorising:
+\begin{center}\small
+\begin{tabular}{c|rrrrrrrrrrr}
+\toprule Sum & 2&3&4&5&6&7&8&9&10&11&12\\\midrule
+Count & 1&2&3&4&5&6&5&4&3&2&1\\
+$P$ & $\frac1{36}$&$\frac2{36}$&$\frac3{36}$&$\frac4{36}$&$\frac5{36}$&$\frac6{36}$&$\frac5{36}$&$\frac4{36}$&$\frac3{36}$&$\frac2{36}$&$\frac1{36}$\\\bottomrule
+\end{tabular}
+\end{center}
+\end{exambox}
+
+\subsection{Relative-frequency approach}
+If an event occurs $r$ times in $n$ suitable trials, the observed relative frequency is $r/n$. This is an estimate based on data, not automatically an exact probability.
+
+\subsection{Subjective probability}
+Based on judgement, information, or past experience, e.g.\ a weather forecast or a medical assessment.
+
+\subsection{Axiomatic approach (Kolmogorov)}
+\begin{itemize}
+\item $P(A)\ge 0$ for every event $A$.
+\item $P(S)=1$.
+\item If $A$ and $B$ are mutually exclusive, $P(A\cup B)=P(A)+P(B)$.
+\end{itemize}
+
+\begin{dangerbox}
+The conditional probability formula $P(A\mid B)=P(A\cap B)/P(B)$ is \emph{general}. It is not restricted to independent events. Independence is an extra condition, not a requirement for defining conditional probability.
+\end{dangerbox}
+
+\section{Addition theorem}
+
+\subsection{Non-mutually-exclusive events}
+\[
+\boxed{P(A\cup B)=P(A)+P(B)-P(A\cap B)}
+\]
+The intersection is subtracted because it is counted twice in $P(A)+P(B)$.
+
+\begin{exambox}
+\textbf{Worked.} A student passes Physics with probability $\frac{2}{3}$, passes both Physics and English with probability $\frac{14}{45}$, and passes at least one with probability $\frac{4}{5}$. If $E$ is passing English,
+\[
+\frac45=\frac23+P(E)-\frac{14}{45}\quad\Longrightarrow\quad P(E)=\frac49.
+\]
+\end{exambox}
+
+\subsection{Mutually exclusive events}
+If $A\cap B=\emptyset$, then
+\[
+P(A\cup B)=P(A)+P(B).
+\]
+For 4 white, 3 black and 5 red balls, $P(\text{white or red})=\frac{4+5}{12}=\frac34$.
+
+\begin{dangerbox}
+Do not use $P(A\cup B)=P(A)+P(B)$ when the events overlap. Subtract $P(A\cap B)$ unless mutual exclusivity is given or proved.
+\end{dangerbox}
+
+\section{Multiplication theorem, conditional and independent events}
+
+\subsection{Conditional probability}
+\[
+\boxed{P(A\mid B)=\frac{P(A\cap B)}{P(B)},\qquad P(B)>0}
+\]
+The event after the vertical bar is a guaranteed past fact. $P(A\mid B)$ asks for $A$ given that $B$ has already occurred.
+
+\subsection{Multiplication theorem}
+\[
+P(A\cap B)=P(A)P(B\mid A)=P(B)P(A\mid B).
+\]
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.16\textwidth} X X}
+\toprule Point & Independent & Dependent\\\midrule
+Does the first event change the next probability? & No & Yes\\
+Typical setup & Separate tosses; with replacement & Without replacement\\
+Formula & $P(A\cap B)=P(A)P(B)$ & $P(A\cap B)=P(A)P(B\mid A)$\\
+\end{tabularx}
+\end{center}
+
+\begin{exambox}
+\textbf{Worked.} Two black cards drawn without replacement:
+\[
+P(\text{both black})=\frac{26}{52}\times\frac{25}{51}=\frac{25}{102}\approx0.2451.
+\]
+The second denominator is 51, not 52, because the first card was not replaced.
+
+\textbf{Worked, complement.} Three students solve a problem independently with probabilities $\frac12,\frac13,\frac14$. Then
+\[
+P(\text{none})=\frac12\cdot\frac23\cdot\frac34=\frac14,\qquad
+P(\text{at least one})=1-\frac14=\frac34.
+\]
+
+\textbf{Worked, survival.} If $P(X\text{ alive})=0.8$ and $P(Y\text{ alive})=0.6$ independently: both alive $=0.48$; neither $=0.08$; either $=1-0.08=0.92$.
+\end{exambox}
+
+\section{Bayes' theorem}
+
+\subsection{Statement}
+Bayes' theorem finds the probability of a \emph{cause} after observing \emph{evidence}:
+\[
+\boxed{P(A\mid B)=\frac{P(B\mid A)P(A)}{P(B)}}
+\]
+For mutually exclusive and exhaustive causes $A_1,\dots,A_n$,
+\[
+\boxed{P(A_i\mid B)=\frac{P(B\mid A_i)P(A_i)}{\displaystyle\sum_{j=1}^{n}P(B\mid A_j)P(A_j)}}
+\]
+
+\begin{exambox}
+\textbf{This is the single most repeated topic in the paper set.} It appeared in Sept 2024 CAE-1, Aug 2025 CAE-1, Nov 2024 and Oct 2025. Learn it in both directions: the 3-mark version is "state and prove", the 9-mark version is "state, prove, and apply".
+\end{exambox}
+
+\subsection{Proof of Bayes' theorem}
+Let $B_1,\dots,B_n$ be mutually exclusive and exhaustive events, and let $A\subseteq S$. Write $P(A)=P(A\cap S)=P\bigl(A\cap(B_1\cup\cdots\cup B_n)\bigr)$.
+
+Since the $B_i$ are mutually exclusive, the addition theorem gives
+\[
+P(A)=\sum_{i=1}^{n}P(A\cap B_i).
+\]
+By the multiplication theorem, $P(A\cap B_i)=P(A\mid B_i)P(B_i)$, so
+\[
+P(A)=\sum_{i=1}^{n}P(A\mid B_i)P(B_i).
+\]
+Therefore, for any $j$,
+\[
+P(A\mid B_j)P(B_j)=P(A\cap B_j)=P(A\cap B_1)+\cdots+P(A\cap B_n),
+\]
+and dividing by $P(B_j)>0$,
+\[
+P(A\mid B_j)=\frac{\sum_{i=1}^{n}P(A\mid B_i)P(B_i)}{P(B_j)}.
+\]
+Since $\sum_{i=1}^{n}P(B_j\mid B_i)P(B_i)=P(B_j)\sum_{i=1}^{n}P(B_i)=P(B_j)$ (the $B_i$ are exhaustive and mutually exclusive), we obtain
+\[
+P(A\mid B_j)=\frac{P(B_j\mid A)P(A)}{\sum_{i=1}^{n}P(B_j\mid B_i)P(B_i)}.
+\]
+$\blacksquare$
+
+\begin{rememberbox}
+In the exam, write the proof in this order: (1) $A = A\cap S = A\cap\bigcup B_i$, (2) expand with the addition theorem, (3) replace each $P(A\cap B_i)$ using the multiplication theorem, (4) divide by $P(B_j)$ and substitute $P(B_j)=\sum_i P(B_j\mid B_i)P(B_i)$. Naming the theorem at each step is what earns the marks.
+\end{rememberbox}
+
+\subsection{The Bayes table method}
+Instead of the big fraction, lay the data out in columns.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.17\textwidth} p{0.16\textwidth} p{0.19\textwidth} X X}
+\toprule Cause & Prior $P(A_i)$ & Evidence $P(B\mid A_i)$ & Joint $P(A_i)P(B\mid A_i)$ & Posterior\\\midrule
+$A_1$ & given & given & col2 $\times$ col3 & joint $\div$ total\\
+$A_2$ & given & given & col2 $\times$ col3 & joint $\div$ total\\
+$A_3$ & given & given & col2 $\times$ col3 & joint $\div$ total\\\midrule
+Total & $=1$ & do not add & $P(B)$ & $=1$\\
+\end{tabularx}
+\end{center}
+
+\begin{exambox}
+\textbf{Worked, late computer.} Three companies supply 40\%, 30\% and 30\% of computers and are late 5\%, 3\% and 2.5\% of the time. Given a late computer, find the probability it came from Company A.
+
+\begin{center}\small
+\begin{tabular}{lcccc}
+\toprule & Prior & $P(L\mid A_i)$ & Joint & Posterior\\\midrule
+A & 0.40 & 0.05 & 0.0200 & 0.5479\\
+B & 0.30 & 0.03 & 0.0090 & 0.2466\\
+C & 0.30 & 0.025 & 0.0075 & 0.2055\\\midrule
+Total & & & 0.0365 & 1.0000\\\bottomrule
+\end{tabular}
+\end{center}
+$P(A\mid L)=\dfrac{0.40(0.05)}{0.0365}=\dfrac{0.0200}{0.0365}\approx0.5479$.
+\end{exambox}
+
+\subsection{Worked past-paper problems}
+
+\begin{pyqbox}
+\textbf{Nov 2024 Q13(a)(ii) and Oct 2025 Q1(b)(ii).} A bag contains 2 white and 3 black balls and another bag contains 3 white and 2 black balls. A ball is drawn from one of the bags and is found to be white. What is the probability that it is from the first bag?
+\end{pyqbox}
+
+\begin{solbox}
+Let $B_1,B_2$ be "from bag 1" and "from bag 2", and $W$ be "white".
+
+\begin{center}\small
+\begin{tabular}{lccc}
+\toprule & $P(B_i)$ & $P(W\mid B_i)$ & Joint\\\midrule
+Bag 1 & $\frac12$ & $\frac25$ & $\frac15$\\
+Bag 2 & $\frac12$ & $\frac35$ & $\frac3{10}$\\\midrule
+Total & & & $\frac12$\\\bottomrule
+\end{tabular}
+\end{center}
+
+$P(B_1\mid W)=\dfrac{P(W\mid B_1)P(B_1)}{P(W)}=\dfrac{\frac25\cdot\frac12}{\frac25\cdot\frac12+\frac35\cdot\frac12}=\dfrac{\frac15}{\frac12}=\boxed{\frac25}$.
+
+Note the answer is $\frac25$, the same as $P(W\mid B_1)$ only by coincidence here. Never assume $P(A\mid B)=P(B\mid A)$.
+\end{solbox}
+
+\begin{pyqbox}
+\textbf{Nov 2024 Q13(b) and Oct 2025 Q1(a)(i).} Of people having HIV, 90\% of tests detect the disease but 10\% go undetected. Of people free of HIV, 99\% of tests are judged negative but 1\% are diagnosed as showing HIV positive. From a large population of which only 0.1\% have HIV, one person is selected at random, given the HIV test, and the pathologist reports them as HIV positive. What is the probability that the person actually has HIV?
+\end{pyqbox}
+
+\begin{solbox}
+Let $H$ = has HIV, $+T$ = positive test. $P(H)=0.001$, $P(H^c)=0.999$, $P(+T\mid H)=0.90$, $P(+T\mid H^c)=0.01$.
+
+\begin{center}\small
+\begin{tabular}{lccc}
+\toprule & $P(H_i)$ & $P(+T\mid H_i)$ & Joint\\\midrule
+$H$ & 0.001 & 0.90 & 0.00090\\
+$H^c$ & 0.999 & 0.01 & 0.00999\\\midrule
+Total & & & 0.01089\\\bottomrule
+\end{tabular}
+\end{center}
+
+\[
+P(H\mid +T)=\frac{P(+T\mid H)P(H)}{P(+T)}=\frac{0.90(0.001)}{0.01089}=\frac{0.0009}{0.01089}\approx\boxed{0.0826}.
+\]
+
+So about 8.3\%. The base rate dominates: with a disease this rare, most positive results are false positives. \emph{Never} answer $0.90$.
+\end{solbox}
+
+\begin{pyqbox}
+\textbf{Aug 2025 Q2A.} A factory makes bolts with three machines A, B and C producing 25\%, 35\% and 40\% of the total. Machine A produces 5\% defective bolts, B 4\%, C 2\%. A bolt is randomly selected and found defective. What is the probability it was produced by machine B?
+\end{pyqbox}
+
+\begin{solbox}
+\begin{center}\small
+\begin{tabular}{lccc}
+\toprule & $P(M_i)$ & $P(D\mid M_i)$ & Joint\\\midrule
+A & 0.25 & 0.05 & 0.0125\\
+B & 0.35 & 0.04 & 0.0140\\
+C & 0.40 & 0.02 & 0.0080\\\midrule
+Total & & & 0.0345\\\bottomrule
+\end{tabular}
+\end{center}
+
+$P(M_B\mid D)=\dfrac{0.0140}{0.0345}\approx\boxed{0.4058}$.
+\end{solbox}
+
+\begin{pyqbox}
+\textbf{Aug 2025 Q2B.} A card is lost from a standard deck of 52. From the remaining 51, two cards are drawn and both are found to be spades. What is the probability that the lost card was a spade?
+\end{pyqbox}
+
+\begin{solbox}
+Let $L$ = lost card is a spade, and $S$ = both drawn cards are spades.
+
+$P(L\cap S)$: the lost card is a spade ($\frac{13}{52}$), then two spades are drawn from the remaining 12 spades and 39 non-spades:
+\[
+P(L\cap S)=\frac{13}{52}\cdot\frac{12}{51}\cdot\frac{11}{50}.
+\]
+$P(S)$: the two spades can come from the 13 spades minus the lost one, or from the 39 non-spades:
+\[
+P(S)=\frac{13}{52}\cdot\frac{12}{51}\cdot\frac{11}{50}+\frac{39}{52}\cdot\frac{13}{51}\cdot\frac{12}{50}.
+\]
+Hence
+\[
+P(L\mid S)=\frac{\frac{13}{52}\cdot\frac{12}{51}\cdot\frac{11}{50}}{\frac{13}{52}\cdot\frac{12}{51}\cdot\frac{11}{50}+\frac{39}{52}\cdot\frac{13}{51}\cdot\frac{12}{50}}=\boxed{\frac{11}{50}}=0.22.
+\]
+\end{solbox}
+
+\begin{pyqbox}
+\textbf{Oct 2024 CAE-2 Q1A(a).} In a class of 50 students: 30 know Pascal, 18 know Fortran, 26 know COBOL, 9 know both Pascal and Fortran, 16 know both Pascal and COBOL, 8 know both Fortran and COBOL, and 47 know at least one of the three. Determine (i) how many know none of the languages, (ii) how many know all three.
+\end{pyqbox}
+
+\begin{solbox}
+Let $P,F,C$ be the three sets. (i) None $=50-47=\boxed{3}$.
+
+(ii) By inclusion-exclusion,
+\[
+47=30+18+26-9-16-8+|P\cap F\cap C|
+\]
+\[
+47=74-33+|P\cap F\cap C|=41+|P\cap F\cap C|,
+\]
+so $|P\cap F\cap C|=\boxed{6}$.
+
+Useful extras: exactly one language $=74-2(33)+3(6)=74-66+18=26$; exactly two $=(9-6)+(16-6)+(8-6)=15$; Pascal only $=30-9-16+6=11$.
+\end{solbox}
+
+\section{Odds}
+
+If odds in favour of $A$ are $a:b$, then $P(A)=\frac{a}{a+b}$. If odds against $A$ are $a:b$, then $P(A)=\frac{b}{a+b}$. Odds in favour of winning $9:2$ give $P(\text{win})=\frac{9}{11}$.
+
+\begin{exambox}
+\textbf{Contradiction.} If $P(A\text{ truthful})=\frac45$ and $P(B\text{ truthful})=\frac34$, and the truthfulness events are independent, contradiction means exactly one tells the truth:
+\[
+\frac45\cdot\frac14+\frac34\cdot\frac15=\frac{4+3}{20}=\frac7{20}.
+\]
+\end{exambox}
+
+\section{Answer skeletons}
+
+\begin{answerbox}
+\textbf{Probability from a table or counts (3 marks).} Name the events; identify the sample space and its size; count favourable outcomes; give the ratio; state the answer.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Conditional probability (5 marks).} Write $P(A\mid B)=P(A\cap B)/P(B)$; identify the given event as $B$; find $P(A\cap B)$ and $P(B)$; substitute; state the answer. Use a two-column table if the data is a contingency table.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Bayes (9 marks).} Draw the table: cause, prior, conditional, joint, posterior. Divide each joint by the column total. Give the posterior as a decimal and a fraction. State the conclusion in words.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{State and prove Bayes (3 or 9 marks).} State the theorem with the general form and the two-event case; then the proof: write $A=A\cap\bigcup B_i$, expand by the addition theorem, substitute the multiplication theorem, divide through, and conclude.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Addition theorem proof.} Let $n(A)$ denote the number of outcomes in $A$. Every outcome in $A\cup B$ is either only in $A$, only in $B$, or in both. So $n(A\cup B)=n(A)+n(B)-n(A\cap B)$, and dividing by $n(S)$ gives $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.
+\end{answerbox}
+
+\section{Self-test}
+
+\begin{enumerate}
+\item Define a random experiment, sample space, outcome and event, with one example of each.
+\item Distinguish mutually exclusive events from independent events.
+\item State the complement rule and the addition theorem.
+\item Two dice are thrown. Find the probability that the sum is 7, that the first die shows 4, that the sum exceeds 6, and that the dice show different numbers.
+\item A committee of three is chosen from 5 men and 5 women. Find the probability of all men, and of exactly two men.
+\item $P(A)=0.25$, $P(B)=0.40$, $P(A\cap B)=0.15$. Find the probability that neither occurs.
+\item A and B speak truth with probabilities $\frac45$ and $\frac34$. Find the probability that they contradict each other.
+\item A key is among 10 keys in a bunch; wrong keys are discarded. Find the probability that the door opens on the fifth trial.
+\item Three companies supply 40\%, 30\% and 30\% of computers and are late 5\%, 3\% and 2.5\% of the time. Given a late computer, find the probability it came from Company A.
+\item A person drives 30\%, walks 30\% and takes the bus 40\% of the time. Late rates are 3\%, 10\% and 7\%. Find $P(\text{bus}\mid\text{late})$.
+\item State and prove Bayes' theorem.
+\item Prove the addition theorem for probability.
+\end{enumerate}
+
+\subsection*{Answers}
+\begin{enumerate}
+\item See Section 1.1. Random experiment: a repeatable process whose exact outcome cannot be predicted with certainty. Sample space: the set of all possible outcomes. Outcome: one possible result. Event: one or more outcomes selected from the sample space.
+\item Mutually exclusive means the two cannot happen together ($A\cap B=\emptyset$). Independent means the occurrence of one does not change the probability of the other. Two events can be independent and not mutually exclusive, or mutually exclusive and (for non-certain events) not independent.
+\item $P(A^c)=1-P(A)$; $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.
+\item $P(\text{sum}=7)=\frac6{36}=\frac16$; $P(\text{first}=4)=\frac6{36}=\frac16$; $P(\text{sum}>6)=\frac{21}{36}=\frac7{12}$ (counts for sums 7 to 12 are $6+5+4+3+2+1=21$); $P(\text{different})=1-\frac6{36}=\frac56$.
+\item Total $\binom{10}{3}=120$. All men: $\binom53=10$, so $\frac{10}{120}=\frac1{12}$. Exactly two men: $\binom52\binom53=100$, so $\frac{100}{120}=\frac56$.
+\item $P(A\cup B)=0.25+0.40-0.15=0.50$; neither $=1-0.50=0.50$.
+\item Exactly one truthful: $\frac45\cdot\frac14+\frac34\cdot\frac15=\frac7{20}=0.35$.
+\item Each wrong key is discarded, so five correct key attempts are needed out of at most 10: $\frac{1}{10}$.
+\item $P(A\mid L)=\frac{0.40(0.05)}{0.40(0.05)+0.30(0.03)+0.30(0.025)}=\frac{0.0200}{0.0365}\approx0.5479$.
+\item $P(\text{bus}\mid\text{late})=\frac{0.40(0.07)}{0.30(0.03)+0.30(0.10)+0.40(0.07)}=\frac{0.028}{0.067}\approx0.4179$.
+\item See Section 6.
+\item See the answer skeleton in Section 8.
+\end{enumerate}
+
+\section{Last-minute page}
+
+\begin{multicols}{2}
+\textbf{DEFINITIONS}\\
+$0\le P(A)\le 1$; $P(\emptyset)=0$; $P(S)=1$\\
+$P(A^c)=1-P(A)$\\[4pt]
+\textbf{ADDITION}\\
+$P(A\cup B)=P(A)+P(B)-P(A\cap B)$\\
+Mutually exclusive: drop the last term\\[4pt]
+\textbf{CONDITIONAL}\\
+$P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}$\\[4pt]
+\textbf{MULTIPLICATION}\\
+$P(A\cap B)=P(A)P(B\mid A)$\\[4pt]
+\textbf{INDEPENDENCE}\\
+$P(A\cap B)=P(A)P(B)$\\[4pt]
+\textbf{BAYES}\\
+Posterior $=\dfrac{\text{likelihood}\times\text{prior}}{\text{evidence}}$\\[4pt]
+\textbf{ODDS}\\
+$a:b$ in favour $\Rightarrow P=\dfrac{a}{a+b}$\\[4pt]
+\textbf{DECK / DICE}\\
+52 cards, 26 red, 13 per suit, 12 face, 4 aces\\
+Two dice: 36 outcomes; sum 7 has 6\\[4pt]
+\textbf{DO NOT CONFUSE}\\
+"And $=$ intersection, "or $=$ union.\\
+Mutually exclusive $\ne$ independent.\\
+$P(A\mid B)\ne P(B\mid A)$ in general.\\
+At least one: try the complement.
+\end{multicols}
+
+\vfill
+\begin{center}\textit{Bayes' theorem is the highest-value 5 minutes in this module. Learn the table method, not just the formula.}\end{center}
+
+\end{document}

@@ -1,0 +1,473 @@
+\documentclass[11pt,a4paper]{article}
+\input{preamble.tex}
+\subject{MCA101 -- Module 2: Random Variables and Distributions}
+
+\title{\textbf{Module 2: Random Variables and Distributions}\\}
+\author{\large Probability density functions, moments and MGF,\\binomial, Poisson, uniform and normal distributions}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{exambox}
+\textbf{Scope.} Syllabus 2.1 to 2.4: random variables and distributions, probability density functions and distribution functions, marginal and joint density functions, mathematical expectations, moments and moment generating functions, discrete probability distributions (binomial, Poisson), continuous probability distributions (uniform and normal).
+\end{exambox}
+
+\tableofcontents
+\newpage
+
+\section{Random variables}
+
+A \textbf{random variable} is a variable whose value is unknown, or a function that assigns values to each outcome of an experiment.
+
+\textbf{Discrete}: countable number of outcomes. Examples: the number of heads in two tosses, whether a team wins a match, the number of defective bulbs in a sample.
+
+\textbf{Continuous}: an infinite continuum of possible values. Examples: crop yield, body temperature, the speed of a car, a waiting time.
+
+\begin{exambox}
+\textbf{Worked.} Tossing a coin twice, $S=\{HH,HT,TH,TT\}$. If $X$ is the number of heads, then
+\[
+X(TT)=0,\quad X(HT)=1,\quad X(TH)=1,\quad X(HH)=2.
+\]
+The mapping from sample space to real numbers is what makes $X$ a random variable.
+\end{exambox}
+
+\section{Probability density function and distribution function}
+
+\subsection{Discrete: probability mass function}
+A \textbf{probability mass function} $p(x)=P(X=x)$ gives the likelihood of each outcome of a discrete random variable. It must satisfy $p(x)\ge 0$ and $\sum_x p(x)=1$.
+
+The \textbf{cumulative distribution function} is
+\[
+F(x)=P(X\le x),\qquad \text{for all }x\in\mathbb{R}.
+\]
+
+\begin{exambox}
+\textbf{Worked.} An urn contains 6 red and 4 white balls. Three are drawn at random. The distribution of the number of white balls drawn is hypergeometric:
+
+\begin{center}\small
+\begin{tabular}{c|cccc}
+\toprule $X$ & 0 & 1 & 2 & 3\\\midrule
+$P(X=x)$ & $\frac16$ & $\frac12$ & $\frac3{10}$ & $\frac1{30}$\\\bottomrule
+\end{tabular}
+\end{center}
+
+Check: $\frac16+\frac12+\frac3{10}+\frac1{30}=\frac{5+15+9+1}{30}=1$. Each entry is $\frac{\binom4k\binom6{3-k}}{\binom{10}3}$.
+\end{exambox}
+
+\begin{exambox}
+\textbf{Worked.} A random variable has the pmf
+\[
+\begin{array}{c|rrrrrrrr}
+x & 0&1&2&3&4&5&6&7\\\hline
+p(x) & 0&k&2k&2k&3k&k^2&2k^2&7k^2+k
+\end{array}
+\]
+(i) Find $k$. Sum of probabilities is 1:
+\[
+0+k+2k+2k+3k+k^2+2k^2+7k^2+k=9k+10k^2=1.
+\]
+$10k^2+9k-1=0\Rightarrow k=\frac{-9\pm\sqrt{81+40}}{20}=\frac{-9+11}{20}=\boxed{0.1}$.
+(ii) $P(x>6)=p(7)=7(0.01)+0.1=\boxed{0.17}$.
+(iii) $P(x<6)=1-p(6)-p(7)=1-0.02-0.17=\boxed{0.81}$.
+(iv) $P(0<x<5)=p(1)+p(2)+p(3)+p(4)=0.1+0.2+0.2+0.3=\boxed{0.80}$.
+\end{exambox}
+
+\subsection{Continuous: probability density function}
+A continuous random variable can take any value in a range, so probability cannot be assigned to individual points. Instead we use a \textbf{probability density function} $f(x)$ with $f(x)\ge 0$ and
+\[
+\int_{-\infty}^{\infty} f(x)\,dx=1.
+\]
+The probability is the \textbf{area under the curve} between the values of interest:
+\[
+P(a\le X\le b)=\int_a^b f(x)\,dx.
+\]
+The CDF satisfies
+\[
+F(x)=P(X\le x)=\int_{-\infty}^{x} f(t)\,dt,\qquad f(x)=\frac{d}{dx}F(x).
+\]
+
+\begin{exambox}
+\textbf{Worked shape.} If $f(x)=x$ for $0\le x\le 1$ and $0$ elsewhere, then $\int_0^1 x\,dx=\frac12\ne 1$, so this is \emph{not} a valid density on its own. Normalising gives $f(x)=2x$ on $[0,1]$, and then $P(0\le X\le 0.4)=\int_0^{0.4}2x\,dx=0.16$.
+\end{exambox}
+
+\section{Joint, marginal and conditional distributions}
+
+\subsection{Joint pmf}
+For two discrete random variables $X$ and $Y$, the \textbf{joint pmf} is
+\[
+p(x,y)=P(X=x,\ Y=y),
+\]
+with $0\le p(x,y)\le 1$ and $\sum_x\sum_y p(x,y)=1$.
+
+\subsection{Marginal pmf}
+\[
+p_X(x)=\sum_y p(x,y),\qquad p_Y(y)=\sum_x p(x,y).
+\]
+
+\subsection{Conditional pmf}
+\[
+p_{X\mid Y}(x\mid y)=P(X=x\mid Y=y)=\frac{p(x,y)}{p_Y(y)}.
+\]
+
+\begin{exambox}
+\textbf{Worked.} Joint pmf: $0.1$ at each of $(1,1),(2,1),(1,2),(2,2)$; $0.2$ at $(0,0)$; $0.4$ at $(3,3)$.
+
+Total $=4(0.1)+0.2+0.4=1.0$. Marginal of $X$: $p_X(0)=0.2$, $p_X(1)=0.2$, $p_X(2)=0.2$, $p_X(3)=0.4$. By symmetry the marginal of $Y$ is the same.
+
+$P(X=0,Y\le 1)=p(0,0)=0.2$.
+
+$P(Y=1\mid X=0)=\frac{p(0,1)}{p_X(0)}=0$.
+
+Are $X$ and $Y$ independent? $P(X=0,Y=0)=0.2$ but $P(X=0)P(Y=0)=0.2\times0.2=0.04$. Since these differ, \textbf{they are not independent}.
+\end{exambox}
+
+\begin{dangerbox}
+Independence for a joint pmf means $p(x,y)=p_X(x)p_Y(y)$ for \emph{every} pair. Checking one cell is enough to disprove it, but you must check every cell to prove it.
+\end{dangerbox}
+
+\section{Moments, expectation and variance}
+
+\subsection{Expected value}
+The \textbf{expected value} (or mean) of $X$ is a weighted average of the possible values, each weighted by its probability:
+\[
+E(X)=\sum_x x\,p(x) \quad\text{(discrete)},\qquad E(X)=\int x f(x)\,dx \quad\text{(continuous)}.
+\]
+It represents the long-run average outcome of the random experiment.
+
+\begin{exambox}
+\textbf{Worked.} A fair coin is tossed three times; $X$ is the number of heads.
+
+\begin{center}\small
+\begin{tabular}{c|cccc}
+\toprule $x$ & 0&1&2&3\\\midrule
+$p(x)$ & $\frac18$&$\frac38$&$\frac38$&$\frac18$\\\bottomrule
+\end{tabular}
+\end{center}
+
+$E(X)=0\cdot\frac18+1\cdot\frac38+2\cdot\frac38+3\cdot\frac18=\frac38+\frac68+\frac38=\frac74=1.5$.
+\end{exambox}
+
+\subsection{Variance}
+\[
+\operatorname{Var}(X)=E(X^2)-[E(X)]^2=E\bigl[(X-\mu)^2\bigr],\qquad \mu=E(X).
+\]
+\[
+\sigma_X=\sqrt{\operatorname{Var}(X)}.
+\]
+
+\begin{exambox}
+\textbf{Worked.} $X$ takes values 0 and 1 with $P(0)=0.3$, $P(1)=0.7$ (Nov 2024 Section A).
+\[
+E(X)=0(0.3)+1(0.7)=0.7,\qquad
+E(X^2)=0^2(0.3)+1^2(0.7)=0.7,
+\]
+\[
+\operatorname{Var}(X)=0.7-0.49=0.21.
+\]
+Equivalently $\operatorname{Var}(X)=0.3(0-0.7)^2+0.7(1-0.7)^2=0.147+0.063=0.21$.
+\end{exambox}
+
+\subsection{Moments and moment generating function}
+The \textbf{$r$-th moment} about the origin is
+\[
+\mu'_r=E(X^r)=\sum x^r p(x).
+\]
+The \textbf{$r$-th central moment} is
+\[
+\mu_r=E\bigl[(X-\mu)^2\bigr]\text{ for }r=2,\quad E[(X-\mu)^r]\text{ in general}.
+\]
+The \textbf{moment generating function} is
+\[
+M_X(t)=E(e^{tX})=\sum e^{tx}p(x)\quad\text{(discrete)},\qquad \int e^{tx}f(x)\,dx\quad\text{(continuous)}.
+\]
+Useful facts: $M_X(0)=1$; $M'_X(0)=E(X)=\mu'_1$; $M''_X(0)=E(X^2)$; $\operatorname{Var}(X)=M''_X(0)-[M'_X(0)]^2$.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.16\textwidth} X X X}
+\toprule Distribution & $M_X(t)$ & $E(X)$ & $\operatorname{Var}(X)$\\\midrule
+Binomial $B(n,p)$ & $(q+pe^t)^n$ & $np$ & $npq$\\
+Poisson $\operatorname{Po}(\lambda)$ & $e^{\lambda(t-1)}$ & $\lambda$ & $\lambda$\\
+Uniform $U(a,b)$ & $\dfrac{e^{tb}-e^{ta}}{(b-a)t}$ & $\dfrac{a+b}{2}$ & $\dfrac{(b-a)^2}{12}$\\
+Normal $N(\mu,\sigma^2)$ & $e^{\mu t+\frac12\sigma^2t^2}$ & $\mu$ & $\sigma^2$\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Discrete distributions}
+
+\subsection{Binomial distribution}
+A binomial experiment has a fixed number $n$ of independent trials, two outcomes per trial, and a constant success probability $p$. Then $X\sim B(n,p)$ with
+\[
+\boxed{P(X=k)=\binom nk p^k q^{n-k},\quad k=0,1,\dots,n}
+\]
+\[
+E(X)=np,\qquad \operatorname{Var}(X)=npq,\qquad M_X(t)=(q+pe^t)^n.
+\]
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.28\textwidth} X}
+\toprule Phrase & Meaning\\\midrule
+"at least $k$" ($X\ge k$) & $\sum_{j=k}^{n}$; or use $1-P(X<k)$\\
+"at most $k$" ($X\le k$) & $\sum_{j=0}^{k}$\\
+"fewer than $k$" ($X<k$) & $X\le k-1$\\
+"exactly $k$" ($X=k$) & The single term $\binom nk p^kq^{n-k}$\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{exambox}
+\textbf{Worked, guessing a true/false test.} A student guesses a 10-question true/false test. Find the probability of getting at least 6 correct. Here $n=10$, $p=\frac12$, $q=\frac12$.
+\[
+P(X\ge 6)=\frac{\binom{10}6+\binom{10}7+\binom{10}8+\binom{10}9+\binom{10}{10}}{2^{10}}
+=\frac{210+120+45+10+1}{1024}=\frac{386}{1024}\approx\boxed{0.3770}.
+\]
+(Alternative with the complement: $1-\frac{1+10+45+120+210+252}{1024}$ gives the same.)
+\end{exambox}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q2(b)(ii).} In a binomial distribution with 6 independent trials, the probability of 3 and 4 successes is found to be 0.2457 and 0.0819 respectively. Find the parameters $p$ and $q$.
+\end{pyqbox}
+
+\begin{solbox}
+Divide the two equations to eliminate $p$ and $q$ from the powers:
+\[
+\frac{P(4)}{P(3)}=\frac{\binom64 p^4q^2}{\binom63 p^3q^3}
+=\frac{\binom64}{\binom63}\cdot\frac pq
+=\frac{15}{20}\cdot\frac pq.
+\]
+From the data $\frac{0.0819}{0.2457}=\frac13$ exactly, so
+\[
+\frac34\cdot\frac pq=\frac13\quad\Longrightarrow\quad \frac pq=\frac49.
+\]
+With $p+q=1$:
+\[
+p=\frac4{13}\approx0.3077,\qquad q=\frac9{13}\approx0.6923.
+\]
+
+The mean is $np=6\cdot\frac4{13}=\frac{24}{13}\approx1.85$ and the variance is $npq=6\cdot\frac4{13}\cdot\frac9{13}=\frac{216}{169}\approx1.28$, so $\sigma\approx1.13$.
+\end{solbox}
+
+\begin{dangerbox}
+Notice that substituting $p=\frac4{13}$ back gives $P(3)=0.1933$ and $P(4)=0.0644$, not the printed $0.2457$ and $0.0819$. The two printed figures are exactly $1.271$ times these values, so their \emph{ratio} (which is all the question needs) is correct while their magnitudes are not. The ratio method gives the standard textbook answer $p=\frac4{13}$, $q=\frac9{13}$. Do not "correct" your answer to match the printed magnitudes; present the ratio method and the resulting $p$ and $q$.
+\end{dangerbox}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q2(a)(i).} A lot of 30 bulbs includes 6 defective ones. A sample of 4 bulbs is drawn at random \emph{with replacement}. Find the probability distribution of the number of defective bulbs.
+\end{pyqbox}
+
+\begin{solbox}
+With replacement, the trials are independent and the defective probability is constant at $p=\frac6{30}=0.2$, so $X\sim B(4,0.2)$, $q=0.8$.
+
+\begin{center}\small
+\begin{tabular}{c|ccccc}
+\toprule $x$ & 0 & 1 & 2 & 3 & 4\\\midrule
+$P(X=x)$ & 0.4096 & 0.4096 & 0.1536 & 0.0256 & 0.0016\\\bottomrule
+\end{tabular}
+\end{center}
+
+For instance $P(X=2)=\binom42(0.2)^2(0.8)^2=6(0.04)(0.64)=0.1536$. The total is 1.
+\end{solbox}
+
+\begin{pyqbox}
+\textbf{Oct 2024 CAE-2 Q2A(b).} There are four fused bulbs in a lot of 10 good bulbs. If three bulbs are drawn at random with replacement, find the probability distribution of the number of fused bulbs drawn.
+\end{pyqbox}
+
+\begin{solbox}
+There are 14 bulbs in total, 4 fused, so $p=\frac4{14}=\frac27$, $q=\frac57$, and $X\sim B(3,\frac27)$.
+
+\begin{center}\small
+\begin{tabular}{c|cccc}
+\toprule $x$ & 0 & 1 & 2 & 3\\\midrule
+$P(X=x)$ & 0.3644 & 0.4373 & 0.1749 & 0.0233\\\bottomrule
+\end{tabular}
+\end{center}
+
+$P(X=0)=\left(\frac57\right)^3=0.3644$; $P(X=1)=\binom31\frac27\left(\frac57\right)^2=0.4373$.
+\end{solbox}
+
+\begin{exambox}
+\textbf{Worked, expectation from a distribution.} A bag contains 4 white and 6 red balls; three are drawn. Let $X$ be the number of white balls drawn. The expected number of white balls is
+\[
+E(X)=np=3\cdot\frac4{10}=1.2.
+\]
+This is quicker than building the whole distribution, and it is the method the examiner expects for "find the expected number".
+
+If each white ball carries a reward of Rs.\ 4 and each red ball Rs.\ 6, then the expected reward is
+\[
+E(\text{reward})=4E(X)+6\bigl(3-E(X)\bigr)=4(1.2)+6(1.8)=4.8+10.8=\boxed{\text{Rs.\ }15.60}.
+\]
+\end{exambox}
+
+\begin{dangerbox}
+The expected value does not have to be a possible outcome. An expected number of white balls of 1.2 is perfectly normal, and you should not try to round it to 1.
+\end{dangerbox}
+
+\subsection{Poisson distribution}
+The Poisson distribution counts rare independent events over a fixed interval or space, at an average rate $\lambda$:
+\[
+\boxed{P(X=k)=\frac{e^{-\lambda}\lambda^k}{k!},\quad k=0,1,2,\dots}
+\]
+\[
+E(X)=\lambda,\qquad \operatorname{Var}(X)=\lambda,\qquad M_X(t)=e^{\lambda(t-1)}.
+\]
+
+\begin{exambox}
+\textbf{Worked.} Accidents occur on a stretch of motorway at the rate of 3 per month, so $\lambda=3$.
+\begin{align*}
+P(0)&=e^{-3}\approx0.0498, & P(1)&=3e^{-3}\approx0.1494,\\
+P(2)&=\frac{9e^{-3}}{2}\approx0.2240, & P(3)&=\frac{27e^{-3}}{6}\approx0.2240,\\
+P(4)&=\frac{81e^{-3}}{24}\approx0.1680.
+\end{align*}
+\end{exambox}
+
+\begin{exambox}
+\textbf{Worked, time scaling.} Cretan Airlines' late arrivals are modelled by a Poisson distribution with mean 4.5 per week. Over a two-week period the mean becomes $\lambda=4.5\times2=9$.
+
+\textbf{Worked, binomial to Poisson.} If $1.2\%$ of rods are bent and 400 rods are sampled, then $n=400$, $p=0.012$. Since $n$ is large and $p$ is small, approximate by Poisson with $\lambda=np=4.8$.
+\end{exambox}
+
+\begin{rememberbox}
+Poisson rules: (1) scale $\lambda$ directly when the time interval changes; (2) use $\lambda=np$ to approximate a binomial when $n>50$ and $p<0.1$; (3) for "more than $k$" use $1-P(X\le k)$.
+\end{rememberbox}
+
+\section{Continuous distributions}
+
+\subsection{Uniform distribution}
+If $X$ takes every value in $[a,b]$ with equal density,
+\[
+f(x)=\frac1{b-a}\ (a\le x\le b),\qquad E(X)=\frac{a+b}{2},\qquad \operatorname{Var}(X)=\frac{(b-a)^2}{12}.
+\]
+
+\begin{exambox}
+\textbf{Worked.} $X\sim U(2,8)$: $E(X)=5$, $\operatorname{Var}(X)=\frac{36}{12}=3$. $P(3\le X\le 5)=\frac{5-3}{8-2}=\frac13$.
+\end{exambox}
+
+\subsection{Normal distribution}
+If $X\sim N(\mu,\sigma^2)$ then
+\[
+f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\qquad E(X)=\mu,\qquad \operatorname{Var}(X)=\sigma^2.
+\]
+The curve is symmetric about $\mu$, bell-shaped, and the total area is 1.
+
+\begin{exambox}
+\textbf{Standardisation.} To find $P(a<X<b)$ for a normal variable, convert to $Z=\frac{X-\mu}{\sigma}$ and read areas from the standard normal table:
+\[
+P(a<X<b)=P\left(\frac{a-\mu}{\sigma}<Z<\frac{b-\mu}{\sigma}\right).
+\]
+\end{exambox}
+
+\begin{pyqbox}
+\textbf{Nov 2024 Section A Q9.} Given a normal distribution with $\mu=50$ and $\sigma=8$, find the probability that $X$ assumes a value between 34 and 62.
+\end{pyqbox}
+
+\begin{solbox}
+\[
+z_1=\frac{34-50}{8}=-2,\qquad z_2=\frac{62-50}{8}=1.5.
+\]
+\[
+P(34<X<62)=P(-2<Z<1.5)=\Phi(1.5)-\Phi(-2)=0.9332-0.0228=\boxed{0.9104}.
+\]
+\end{solbox}
+
+\begin{center}\small
+\begin{tabular}{l|rrrrrrrrrr}
+\toprule $z$ & 0.00 & 0.50 & 1.00 & 1.28 & 1.50 & 1.64 & 1.96 & 2.00 & 2.33 & 2.58\\\midrule
+$\Phi(z)$ & 0.5000 & 0.6915 & 0.8413 & 0.8997 & 0.9332 & 0.9495 & 0.9750 & 0.9772 & 0.9901 & 0.9951\\\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{dangerbox}
+$\Phi(-z)=1-\Phi(z)$. A common slip is writing $P(Z<-2)=0.4772$; it is $0.0228$. Also read the table as "area from the mean to $z$", so $P(0<Z<1.5)=0.4332$ and $P(-2<Z<1.5)=0.4332+0.4772=0.9104$.
+\end{dangerbox}
+
+\section{Answer skeletons}
+
+\begin{answerbox}
+\textbf{Construct a distribution (3 to 9 marks).} Name the random variable and its possible values. Write $P(X=x)$ for each value using the combinatorial formula. Present in a table. Verify the total is 1.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Binomial problem (5 to 9 marks).} State why the binomial applies: fixed $n$, independent trials, two outcomes, constant $p$. Identify $n$, $p$, $q$ and the target $k$. Write the formula. Substitute. Simplify. State the answer.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Find $p$ and $q$ (3 to 9 marks).} Write the two given equations. Divide one by the other so that $p$ and $q$ appear only as a ratio. Solve for $p/q$. Use $p+q=1$ to get $p$ and $q$. Optionally state the mean and variance.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Normal probability (3 marks).} Write $z_1$ and $z_2$. Read $\Phi$ values from the table. Subtract. State the answer to four decimal places.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Expected value (3 to 9 marks).} Either use $E(X)=np$ for a binomial or Poisson, or write $\sum x\,p(x)$ from the distribution table. For an expected reward, express the reward as a function of $X$ and take its expectation.
+\end{answerbox}
+
+\section{Self-test}
+
+\begin{enumerate}
+\item Define a random variable, and distinguish a discrete from a continuous random variable with one example of each.
+\item Define a probability density function and state its two conditions.
+\item What is the marginal pmf of $Y$ given a joint pmf $p(x,y)$?
+\item State the CDF of a discrete random variable and the relationship between the CDF and the PDF.
+\item A fair coin is tossed three times. Find the distribution of the number of heads, and hence $E(X)$ and $\operatorname{Var}(X)$.
+\item 30\% of students at a university are short-sighted. If 20 students are picked at random, find the probability that at most 2 are short-sighted.
+\item A committee of 10 members attends a meeting; each member attends with probability 0.9. The committee cannot do business if more than 3 are absent. Find the probability that 7 or more members are present.
+\item A box of 8 widgets has 2\% faulty. Find the probability that a given box has at least one faulty widget.
+\item State the mean, variance and MGF of (i) binomial, (ii) Poisson, (iii) uniform, (iv) normal.
+\item Find the standard deviation of a random variable that takes values 0 and 1 with probabilities 0.3 and 0.7.
+\item A normal variable has $\mu=50$, $\sigma=8$. Find $P(X>58)$ and $P(46<X<58)$.
+\item When is a binomial replaced by a Poisson approximation, and what is the rule for the parameter?
+\item Write a short note on the probability density function.
+\end{enumerate}
+
+\subsection*{Answers}
+\begin{enumerate}
+\item A random variable is a function assigning real numbers to the outcomes of a random experiment. Discrete: countable outcomes (number of heads). Continuous: continuum of values (body temperature).
+\item $f(x)$ gives the density of a continuous random variable; conditions are $f(x)\ge 0$ and $\int_{-\infty}^{\infty}f(x)\,dx=1$. Probability over an interval is the area under the curve.
+\item $p_Y(y)=\sum_x p(x,y)$.
+\item $F(x)=P(X\le x)$; for a continuous variable $f(x)=\frac{d}{dx}F(x)$.
+\item $P(0)=\frac18$, $P(1)=\frac38$, $P(2)=\frac38$, $P(3)=\frac18$; $E(X)=\frac32=1.5$; $\operatorname{Var}(X)=\frac34=0.75$.
+\item $n=20$, $p=0.3$, $q=0.7$; $P(X\le 2)=\binom{20}0(0.3)^0(0.7)^{20}+\binom{20}1(0.3)(0.7)^{19}+\binom{20}2(0.3)^2(0.7)^{18}\approx 0.0008+0.0068+0.0279=\boxed{0.0355}$.
+\item $X\sim B(10,0.9)$; $P(X\ge 7)=P(7)+\cdots+P(10)\approx 0.0574+0.1937+0.3874+0.3487=\boxed{0.9872}$.
+\item $X\sim B(8,0.02)$; $P(X\ge 1)=1-P(0)=1-(0.98)^8\approx\boxed{0.1492}$.
+\item (i) $np$, $npq$, $(q+pe^t)^n$; (ii) $\lambda$, $\lambda$, $e^{\lambda(t-1)}$; (iii) $\frac{a+b}{2}$, $\frac{(b-a)^2}{12}$, $\frac{e^{tb}-e^{ta}}{(b-a)t}$; (iv) $\mu$, $\sigma^2$, $e^{\mu t+\frac12\sigma^2t^2}$.
+\item $\operatorname{Var}(X)=0.3(0-0.7)^2+0.7(1-0.7)^2=\boxed{0.21}$; $\sigma\approx 0.458$.
+\item $z=\frac{58-50}{8}=1$, so $P(X>58)=1-0.8413=\boxed{0.1587}$. $P(46<X<58)$: $z=-0.5$ to $z=1$, so $\Phi(1)-\Phi(-0.5)=0.8413-0.3085=\boxed{0.5328}$.
+\item When $n$ is large and $p$ is small, typically $n>50$ and $p<0.1$. Use $\lambda=np$.
+\item A PDF gives the density of a continuous random variable at each point. Conditions: $f(x)\ge 0$ and the total area under the curve is 1. The probability of an interval is the area under the curve between the endpoints. Individual point probabilities are 0. It is related to the CDF by $f(x)=\frac{d}{dx}F(x)$.
+\end{enumerate}
+
+\section{Last-minute page}
+
+\begin{multicols}{2}
+\textbf{PMF / PDF}\\
+$p(x)=P(X=x)$, $\sum p(x)=1$\\
+$f(x)\ge 0$, $\int f(x)\,dx=1$\\
+$F(x)=P(X\le x)$\\[4pt]
+\textbf{MOMENTS}\\
+$E(X)=\sum xp(x)$\\
+$\operatorname{Var}(X)=E(X^2)-[E(X)]^2$\\
+$M_X(t)=E(e^{tX})$\\[4pt]
+\textbf{BINOMIAL}\\
+$P(X=k)=\binom nk p^kq^{n-k}$\\
+$E=np$, $\operatorname{Var}=npq$\\
+$(q+pe^t)^n$\\[4pt]
+\textbf{POISSON}\\
+$P(X=k)=\frac{e^{-\lambda}\lambda^k}{k!}$\\
+$E=\lambda$, $\operatorname{Var}=\lambda$\\
+Scale $\lambda$ with time\\[4pt]
+\textbf{UNIFORM $U(a,b)$}\\
+$E=\frac{a+b}{2}$, $\operatorname{Var}=\frac{(b-a)^2}{12}$\\[4pt]
+\textbf{NORMAL}\\
+$Z=\frac{X-\mu}{\sigma}$\\
+$\Phi(-z)=1-\Phi(z)$\\[4pt]
+\textbf{DO NOT CONFUSE}\\
+"fewer than $k$" means $X\le k-1$.\\
+$npq$ is the variance, $npq$ is not the SD.\\
+$E(X)$ need not be a possible value.\\
+$P(Z<-2)=0.0228$, not 0.4772.
+\end{multicols}
+
+\vfill
+\begin{center}\textit{Show the formula, substitute, then state the answer. Partial credit for correct working is the norm in this paper.}\end{center}
+
+\end{document}
