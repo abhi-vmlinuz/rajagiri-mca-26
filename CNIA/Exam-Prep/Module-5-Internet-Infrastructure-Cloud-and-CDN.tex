@@ -1,0 +1,411 @@
+\documentclass[11pt,a4paper]{article}
+\input{preamble.tex}
+\subject{MCA104 -- Module 5: Internet Structure, Infrastructure, Cloud and CDNs}
+
+\title{\textbf{Module 5: Internet Structure and Infrastructure}\\}
+\author{\large The structure of the Internet, ISPs, IXPs and Autonomous Systems,\\
+cloud computing service models, and content delivery networks}
+\date{Exam: Wednesday 18 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{exambox}
+\textbf{Scope.} Syllabus 5.1 to 5.3: the structure and functioning of the Internet; Internet infrastructure --- ISPs, IXPs and Autonomous Systems; and cloud computing and content delivery networks.
+
+This module carries CO5 and is the whole second half of the October CAE-II. It is the most \emph{descriptive} module: there is nothing to calculate, so the marks come from precise vocabulary, a correct diagram, and the ability to apply both to a scenario.
+\end{exambox}
+
+\tableofcontents
+\newpage
+
+\section{The structure of the Internet}
+
+\subsection{What the Internet is}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q5(a)(ii).} What is the Internet, and how is it different from an intranet?
+\end{pyqbox}
+
+\begin{solbox}
+The \textbf{Internet} is a global network of networks that communicate using the \textbf{TCP/IP} protocol suite. It has no single owner and no central controller; it is a federation of independently administered networks that agree to exchange traffic using common protocols and common addressing.
+
+Three properties define it:
+\begin{itemize}
+\item \textbf{A common protocol}, IP, so that any network can join.
+\item \textbf{Globally unique addressing}, so that any host can be named.
+\item \textbf{Decentralised administration}, coordinated by ICANN, IANA and the regional registries (APNIC, ARIN, RIPE, LACNIC, AFRINIC).
+\end{itemize}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.14\textwidth} X X}
+\toprule Basis & Internet & Intranet\\
+\midrule
+Scope & Global, public & One organisation, private\\
+Access & Anyone & Employees only, behind a firewall\\
+Protocol & TCP/IP & TCP/IP\\
+Addressing & Public addresses & Private RFC 1918 addresses, NAT at the edge\\
+Purpose & Open information exchange & Internal sharing, security, control\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+An \textbf{extranet} sits between the two: an organisation's network extended to named partners such as suppliers, usually over a VPN with restricted access.
+
+\subsection{The hierarchy}
+
+The Internet is built as a hierarchy of networks of increasing reach:
+
+\begin{enumerate}
+\item \textbf{Access networks}: the customer's own LAN, and the last-mile link from the ISP (fibre, DSL, cable, mobile).
+\item \textbf{Tier-3 ISPs}: local providers that buy transit from larger ISPs and serve end customers.
+\item \textbf{Tier-2 ISPs}: regional or national providers that buy transit from Tier-1 but also peer with each other to reduce cost.
+\item \textbf{Tier-1 ISPs}: a dozen or so global backbones (for example Lumen, Cogent, Telia, NTT) that reach the whole Internet without buying transit from anyone.
+\item \textbf{Internet exchange points}: neutral meeting points where networks interconnect.
+\item \textbf{Content and cloud providers}: Google, Meta, Netflix, Cloudflare and the hyperscalers, who now carry a very large share of all traffic and often connect directly to access ISPs.
+\item \textbf{Submarine cables and terrestrial fibre}: the physical layer that everything above runs on.
+\end{enumerate}
+\end{solbox}
+
+\section{ISPs}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q5(b)(i).} Define an ISP and explain its role in providing Internet connectivity. Discuss different types of ISPs.
+\end{pyqbox}
+
+\begin{solbox}
+An \textbf{ISP (Internet Service Provider)} is an organisation that provides access to the Internet to end users and to other networks, and that connects them to the wider Internet through its own infrastructure and through settlement or peering agreements with other providers.
+
+\textbf{Roles:}
+\begin{itemize}
+\item \textbf{Last-mile access}: physically connects the customer (fibre, copper, coaxial, radio, satellite).
+\item \textbf{Address allocation}: assigns IP addresses and routes its registered blocks.
+\item \textbf{Routing}: exchanges routes with peers and providers using BGP, and forwards the customer's traffic.
+\item \textbf{Naming and configuration}: runs DNS resolvers and DHCP.
+\item \textbf{Peering and transit}: negotiates interconnection, and pays for transit where it has no peering.
+\item \textbf{Security and support}: filters abuse, rate-limits, provides CPE and support.
+\end{itemize}
+
+\textbf{Types:}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.18\textwidth} X}
+\toprule Type & Description\\
+\midrule
+Tier 1 & Global backbone, reaches the whole Internet without buying transit. Sells transit downwards.\\
+Tier 2 & Regional or national. Buys transit from Tier-1, peers with peers of similar size.\\
+Tier 3 & Local. Buys transit only, serves end customers directly.\\
+Access ISP & Consumer broadband, cable, DSL, FTTH.\\
+Mobile ISP & Cellular data: 4G and 5G.\\
+Enterprise / business ISP & SLAs, dedicated leased lines, MPLS, VPN.\\
+Hosting / colocation & Provides data-centre space and connectivity rather than last-mile access.\\
+Satellite / wireless & Reaches areas without terrestrial infrastructure.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{Transit versus peering.} \emph{Transit} is paid: a smaller ISP pays a larger one to carry its traffic to the whole Internet. \emph{Peering} is usually settlement-free: two networks agree to exchange only their own customers' traffic. Peering reduces cost and latency; that economic incentive is why IXPs exist.
+\end{solbox}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q5(a)(iii).} Differentiate between Tier-1, Tier-2, and Tier-3 ISPs.
+\end{pyqbox}
+
+\begin{solbox}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.14\textwidth} X X X}
+\toprule Basis & Tier 1 & Tier 2 & Tier 3\\
+\midrule
+Reach & Global & Regional or national & Local\\
+Transit & Buys none; sells transit & Buys from Tier 1 & Buys from Tier 2 or 1\\
+Peering & Peers with all other Tier-1s & Peers selectively & Usually does not peer\\
+Customers & Other ISPs and large enterprises & ISPs and enterprises & End users\\
+Cost & Highest infrastructure & Medium & Lowest\\
+Count & About a dozen & Hundreds & Thousands\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\end{solbox}
+
+\section{Internet exchange points}
+
+An \textbf{IXP} is a physical facility where many networks meet to exchange traffic directly, usually through a shared layer-2 fabric (a large Ethernet switch).
+
+\textbf{Why they exist:} without an IXP, two nearby ISPs in the same city must send traffic through a distant Tier-1 provider, paying for transit in both directions. An IXP lets them peer directly, which:
+
+\begin{itemize}
+\item \textbf{cuts latency}, because the path is metres rather than thousands of kilometres;
+\item \textbf{cuts cost}, because peering replaces paid transit;
+\item \textbf{improves resilience}, by multiplying the available paths;
+\item \textbf{keeps local traffic local}, which matters for a country's sovereignty and for its international link capacity.
+\end{itemize}
+
+Examples: DE-CIX Frankfurt, AMS-IX Amsterdam, LINX London, and in India NIXI and Extreme IX.
+
+\begin{dangerbox}
+\textbf{IXP is not a NAP, and neither routes.} An IXP is a switching fabric that lets networks connect. Routing is still done by the networks themselves with BGP. A common exam error is to describe an IXP as something that ``routes traffic between ISPs''.
+\end{dangerbox}
+
+\section{Autonomous Systems and BGP}
+
+\begin{pyqbox}
+\textbf{Oct 2026 CAE-II Q2A.} Analyse how Autonomous Systems exchange routing information and how BGP supports communication between different networks on the Internet.
+\end{pyqbox}
+
+\begin{solbox}
+An \textbf{Autonomous System (AS)} is a set of IP prefixes and routers under a single administrative authority that presents a single, consistent routing policy to the Internet. Every AS has a unique \textbf{AS number} (ASN), assigned by a regional registry. Examples: AS15169 Google, AS16509 Amazon, AS13335 Cloudflare.
+
+\textbf{Interior versus exterior.} Inside an AS, routers run an \emph{interior} gateway protocol (OSPF or IS-IS) and do not care about the outside world. Between ASes, they run an \emph{exterior} gateway protocol, and there is exactly one: BGP.
+
+\textbf{How ASes exchange routes:}
+\begin{enumerate}
+\item An AS learns the prefixes it owns from its own configuration and its interior routing.
+\item It \textbf{announces} those prefixes to its neighbours with eBGP, attaching the \textbf{AS path}: the list of AS numbers the announcement has traversed.
+\item Each neighbour prepends its own ASN and propagates the announcement further, if its policy allows.
+\item A router that sees its own ASN in the received path discards the route: that is loop detection without any extra mechanism.
+\item Among the candidate routes for a prefix, the router selects one by the BGP decision process: highest local preference, shortest AS path, lowest origin, lowest MED, eBGP preferred over iBGP, lowest IGP cost to the next hop, lowest router ID.
+\item The chosen route goes into the forwarding table.
+\end{enumerate}
+
+\textbf{Why path vector rather than distance vector:} between ISPs the \emph{policy} is the metric, not the distance. An ISP must be able to say ``never carry traffic for that competitor'' or ``prefer this neighbour because we do not pay for it''. Carrying the full AS path supplies both the loop detection and the hook for policy.
+
+\textbf{The fragile consequence:} because correctness depends on every operator's configuration, a single misconfiguration --- announcing a prefix you do not own, or accepting one you should filter --- can redirect or black-hole a large fraction of the Internet. Route hijacks and leaks recur for exactly this reason.
+\end{solbox}
+
+\subsection{Redundancy}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q5(b)(ii).} Describe how redundancy is achieved in Internet infrastructure.
+\end{pyqbox}
+
+\begin{solbox}
+Redundancy means no single failure can disconnect anyone. It is achieved at every layer:
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.20\textwidth} X}
+\toprule Level & Mechanism\\
+\midrule
+Physical & Multiple submarine cables on different routes; diverse terrestrial fibre; separate power feeds.\\
+Link & Two uplinks per site, preferably to different providers.\\
+Routing & Multiple BGP paths, fast convergence, graceful restart; IGP redundancy with OSPF costs.\\
+Anycast & The same IP address announced from many locations, so BGP routes each user to the nearest instance and withdraws a failed one. DNS root servers and CDNs use this.\\
+Server & Load balancers over a pool; health checks removing failed nodes.\\
+Data & Replication across sites and regions, with backups.\\
+DNS & Multiple authoritative servers per zone, plus several resolvers configured on each host.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{Anycast} is the single most important idea here: one address, many physical locations. It gives both redundancy and lower latency, and it is a pure routing trick --- no application change is needed.
+\end{solbox}
+
+\section{Content Delivery Networks}
+
+\begin{pyqbox}
+\textbf{Oct 2026 CAE-II Q2B.} A popular e-commerce website experiences slow loading times for users located far from its main server. Explain how a Content Delivery Network (CDN) can address this problem, illustrating the process of content delivery and its benefits.
+\end{pyqbox}
+
+\begin{solbox}
+A \textbf{CDN} is a geographically distributed network of surrogate servers that cache and serve content from a location near the user, instead of from one origin server.
+
+\textbf{The problem it solves.} The speed of light is the limit. A user in Kochi fetching from a server in Virginia pays at least one round trip of about 200 ms before the first byte, and every additional round trip multiplies it. TCP slow start and TLS handshakes each add round trips, so distance is directly converted into latency. A CDN removes the distance rather than the round trips.
+
+\textbf{The delivery process, step by step:}
+\begin{enumerate}
+\item The site's DNS is delegated to the CDN. The CDN's authoritative DNS answers with the address of the \textbf{edge server nearest the user}, chosen by anycast or by a geo/network map.
+\item The request reaches the edge server, which holds a cached copy if the object is popular there.
+\item \textbf{Cache hit}: the edge returns the object immediately, with a fraction of the latency.
+\item \textbf{Cache miss}: the edge fetches from the origin (or from a mid-tier ``shield'' cache), stores the object according to its \texttt{Cache-Control} and TTL headers, and returns it.
+\item The origin is contacted only for misses and for dynamic, uncacheable content, so its load falls sharply.
+\end{enumerate}
+
+\textbf{Benefits:}
+\begin{itemize}
+\item \textbf{Lower latency} and faster page loads, because the content is physically nearer.
+\item \textbf{Reduced origin load}, so the origin can be smaller and cheaper.
+\item \textbf{Resilience}: if one edge or one region fails, others serve; a CDN also absorbs traffic spikes and DDoS floods by distributing them.
+\item \textbf{Bandwidth savings} for the origin's own uplink.
+\item \textbf{TLS termination at the edge}, shortening the handshake for the user.
+\end{itemize}
+
+\textbf{Limitations:} dynamic and personalised content cannot be cached; cache invalidation is hard; and the operator gains visibility of your traffic, which is a real trust consideration.
+\end{solbox}
+
+\begin{rememberbox}
+\textbf{CDN in one sentence for a 3-mark question.} ``A CDN is a set of geographically distributed caching servers that serve content from the location nearest each user, reducing latency and origin load.'' Memorise it; the definition alone is often worth the marks.
+\end{rememberbox}
+
+\section{Cloud computing}
+
+\begin{pyqbox}
+\textbf{Oct 2026 CAE-II Q3B.} Define cloud computing and explain its major service models (IaaS, PaaS, and SaaS) with suitable examples.
+\end{pyqbox}
+
+\begin{solbox}
+\textbf{Cloud computing} is the on-demand delivery of computing resources --- servers, storage, networks, platforms and software --- over a network, with self-service provisioning, elastic scaling and pay-per-use billing, without the user managing the underlying infrastructure.
+
+\textbf{The five essential characteristics} (NIST):
+\begin{enumerate}
+\item \textbf{On-demand self-service}: provision without human interaction.
+\item \textbf{Broad network access}: reachable over standard networks.
+\item \textbf{Resource pooling}: multi-tenant, location-independent.
+\item \textbf{Rapid elasticity}: scale out and in automatically.
+\item \textbf{Measured service}: metered and billed.
+\end{enumerate}
+
+\textbf{Service models:}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.09\textwidth} X X p{0.16\textwidth}}
+\toprule Model & The provider manages & You manage & Examples\\
+\midrule
+IaaS & Virtualisation, servers, storage, network & OS, runtime, applications, data & AWS EC2, Azure VMs, GCP Compute Engine\\
+PaaS & Also the OS and runtime & Applications and data only & Heroku, Google App Engine, Azure App Service, AWS Elastic Beanstalk\\
+SaaS & Everything & Nothing but your data and users & Gmail, Microsoft 365, Salesforce, Dropbox\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{The trade-off, in one line:} IaaS gives the most control and the most work; SaaS gives the least work and the least control; PaaS is the middle. Moving down the list means giving up control in exchange for not managing it.
+
+\textbf{Deployment models:}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.18\textwidth} X}
+\toprule Model & Description\\
+\midrule
+Public & Shared, provider-owned, open to anyone.\\
+Private & Dedicated to one organisation, on or off premises.\\
+Hybrid & Mix of both, with orchestration between them; keeps sensitive data private and bursts to public.\\
+Community & Shared by organisations with common requirements.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\end{solbox}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q5(a)(i).} Evaluate the role of cloud computing in modern Internet service delivery. Discuss its impact on scalability and cost efficiency for enterprises.
+\end{pyqbox}
+
+\begin{solbox}
+\textbf{The role.} Cloud computing moved the unit of infrastructure from ``a server you buy'' to ``capacity you rent by the second''. That change is what makes modern Internet services possible: a startup can launch globally on day one, a retailer can survive a tenfold traffic spike at a sale, and a service can serve users on another continent without owning anything there.
+
+\textbf{Impact on scalability.} The critical property is \textbf{elasticity}: capacity follows demand within minutes, both up and down. Autoscaling groups add instances when CPU or queue depth crosses a threshold, and remove them when it falls. Before cloud, scaling meant a procurement cycle of weeks and a capital purchase that then sat idle.
+
+\textbf{Impact on cost.} The shift is from \textbf{capital expenditure} (buy hardware, depreciate over years, pay for peak capacity all year) to \textbf{operating expenditure} (pay for what you use). For a service with a sharp peak, this is a large saving: you pay for the peak only during the peak.
+
+\textbf{The honest counterpoints.} Cost efficiency is not automatic. Cloud is expensive when a workload runs steadily at high utilisation, because a rented VM costs far more per core-hour than a purchased one. Egress bandwidth is expensive. Idle resources and unmanaged storage accumulate silently. The cost advantage therefore comes from elasticity and from avoided operations labour, not from cheap compute per se.
+
+\textbf{Conclusion worth writing:} cloud wins when demand is variable and time-to-market matters; on-premises wins when load is predictable and high, or when data residency forbids the alternative. Most enterprises end up hybrid.
+\end{solbox}
+
+\section{Answer skeletons}
+
+\begin{answerbox}
+\textbf{Define-and-classify (10 marks).} Definition, then the classification as a table, then one sentence on why the classification matters. For ISPs the table is the answer; for cloud the table plus the five NIST characteristics.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{How-does-X-work (10 marks).} A numbered process, a diagram, and one sentence on what happens when a part fails. For a CDN: DNS selection, edge cache, hit or miss, origin.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Scenario-and-justify (10 marks).} Name the problem in measurable terms (latency, cost, load), name the mechanism, then justify the mechanism against that specific measurement. Never just list products.
+\end{answerbox}
+
+\section{Self-test}
+
+\begin{enumerate}
+\item Define the Internet. What three properties define it?
+\item Differentiate Internet, intranet and extranet.
+\item Name the layers of the Internet hierarchy from access network to backbone.
+\item Define an ISP and list four of its roles.
+\item Differentiate transit and peering.
+\item Compare Tier-1, Tier-2 and Tier-3 ISPs.
+\item What is an IXP and why does it exist?
+\item Why is an IXP not a router?
+\item Define an Autonomous System and give its identifier.
+\item Explain how BGP detects loops.
+\item Why is BGP a path-vector protocol?
+\item Describe how redundancy is achieved at four different levels.
+\item What is anycast and what does it buy you?
+\item Explain how a CDN reduces latency, in five steps.
+\item Give three benefits and two limitations of a CDN.
+\item Define cloud computing and list the five NIST characteristics.
+\item Differentiate IaaS, PaaS and SaaS with examples.
+\item Differentiate public, private, hybrid and community cloud.
+\item When is cloud computing \emph{not} cost efficient?
+\end{enumerate}
+
+\subsection*{Answers}
+\begin{enumerate}
+\item A global network of networks using TCP/IP. Common protocol, global addressing, decentralised administration.
+\item Internet is public and global; intranet is private to one organisation; extranet extends an intranet to named partners.
+\item Access network, Tier-3, Tier-2, Tier-1, IXPs, content and cloud providers, submarine cable.
+\item An organisation providing Internet access and connectivity. Roles: last-mile access, address allocation, routing, DNS and DHCP, peering and transit, security and support.
+\item Transit is paid carriage to the whole Internet; peering is usually free exchange of only your own customers' traffic.
+\item Tier 1 buys no transit and peers with all peers; Tier 2 buys from Tier 1 and peers selectively; Tier 3 buys only and serves end users.
+\item A neutral facility where networks interconnect directly, to cut latency and cost and add resilience.
+\item Because it only switches frames; routing is still done by the connected networks with BGP.
+\item A set of prefixes and routers under one administrative policy, identified by an AS number.
+\item A router prepends its own ASN to the AS path; a router that sees its own ASN in a received path discards the route.
+\item Because ISPs need policy control, not hop count, and the AS path supplies both loop detection and a policy hook.
+\item Physical (diverse cables), link (two providers), routing (multiple BGP paths, anycast), server and data (load balancing, replication).
+\item One IP address announced from many locations, so routing sends each user to the nearest instance and withdraws failed ones.
+\item DNS returns the nearest edge; the edge serves from cache; on a miss it fetches from the origin, caches, and returns.
+\item Benefits: lower latency, lower origin load, resilience and DDoS absorption. Limitations: dynamic content is uncacheable; cache invalidation is hard.
+\item On-demand, pooled, elastic, measured delivery of computing resources over a network, with self-service. Characteristics: on-demand self-service, broad access, resource pooling, rapid elasticity, measured service.
+\item IaaS gives VMs and storage; PaaS gives a managed runtime; SaaS gives a finished application. EC2, Heroku, Gmail.
+\item Public is shared; private is dedicated; hybrid mixes them with orchestration; community is shared by organisations with common needs.
+\item When load is steady and high, because rented capacity costs more per core-hour than purchased; also when egress or idle resources go unmanaged.
+\end{enumerate}
+
+\section{Last-minute page}
+
+\begin{multicols}{2}
+\textbf{INTERNET}\\
+network of networks, TCP/IP\\
+no owner, ICANN/IANA/RIRs\\
+public vs intranet vs extranet\\[5pt]
+\textbf{HIERARCHY}\\
+access $\to$ Tier 3 $\to$ Tier 2 $\to$ Tier 1\\
+$\to$ IXP $\to$ content/cloud\\
+$\to$ submarine fibre\\[5pt]
+\textbf{ISP}\\
+access, addressing, routing,\\
+DNS/DHCP, peering, support\\[5pt]
+\textbf{TIERS}\\
+T1: no transit, peers with all\\
+T2: buys from T1, some peering\\
+T3: buys only, end users\\[5pt]
+\textbf{IXP}\\
+neutral switching fabric\\
+cuts latency and cost\\
+does NOT route\\[5pt]
+\textbf{AS and BGP}\\
+AS = one policy + ASN\\
+eBGP between, iBGP inside\\
+AS path = loop detection\\
+policy beats distance\\[5pt]
+\textbf{REDUNDANCY}\\
+multi-cable, multi-provider,\\
+multi-path, anycast\\
+anycast = one IP, many sites\\[5pt]
+\textbf{CDN}\\
+distributed cache near user\\
+DNS picks nearest edge\\
+hit = instant, miss = fetch origin\\
+benefits: latency, load, DDoS\\[5pt]
+\textbf{CLOUD}\\
+on-demand, pooled, elastic,\\
+measured, self-service\\
+IaaS / PaaS / SaaS\\
+public / private / hybrid\\[5pt]
+\textbf{TRAPS}\\
+IXP is not a router\\
+Tier 1 never buys transit\\
+CDN caches, it does not compute\\
+Cloud is not always cheaper
+\end{multicols}
+
+\vfill
+\begin{center}\textit{Module 5 is vocabulary plus one diagram. Learn the hierarchy, the three tiers, and the five cloud characteristics; then apply them to the scenario in the question.}\end{center}
+
+\end{document}

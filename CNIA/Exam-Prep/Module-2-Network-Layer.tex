@@ -1,0 +1,655 @@
+\documentclass[11pt,a4paper]{article}
+\input{preamble.tex}
+\subject{MCA104 -- Module 2: The Network Layer}
+
+\title{\textbf{Module 2: The Network Layer}\\}
+\author{\large Network layer functions and services, IPv4 addressing, subnetting and CIDR,\\
+routing algorithms, IPv4 and IPv6 datagrams, ICMP, ARP and NAT}
+\date{Exam: Wednesday 18 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{exambox}
+\textbf{Scope.} Syllabus 2.1 to 2.4: introduction to the network layer; IP addressing, subnetting and CIDR (implemented in Cisco Packet Tracer); routing algorithms --- link state, distance vector and path vector; and network layer protocols --- IPv4, IPv6 and ICMP.
+
+This module carries CO2. It is the \emph{highest-scoring} module in the paper because it contains real calculations: subnetting, Dijkstra, Bellman-Ford and fragmentation. In the six papers, Module 2 appears in every full paper and in four of the internals.
+\end{exambox}
+
+\tableofcontents
+\newpage
+
+\section{Network layer: functions and services}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q2(b)(i).} Explain the functions of the network layer in detail. Describe the services it provides to the transport layer.
+\end{pyqbox}
+
+\begin{solbox}
+The network layer moves a packet from the source host to the destination host, \emph{across multiple networks}. It is the lowest layer that deals with end-to-end addressing.
+
+\textbf{Functions:}
+
+\begin{enumerate}
+\item \textbf{Logical addressing.} Assigns and uses IP addresses so that hosts on different networks can be identified uniquely. MAC addresses are only local; IP addresses are global.
+\item \textbf{Routing.} Runs routing protocols to build routing tables and choose the best path from source to destination.
+\item \textbf{Forwarding.} For each arriving packet, looks up the destination in the routing table and sends the packet out of the correct interface. Forwarding is per-packet and fast; routing is periodic and slow.
+\item \textbf{Packetising and encapsulation.} Takes transport-layer segments and wraps them in IP packets with a header.
+\item \textbf{Fragmentation and reassembly.} Splits a packet when it exceeds the MTU of a link, and reassembles at the destination (IPv4) or leaves it to the source (IPv6).
+\item \textbf{Error reporting and diagnostics.} ICMP reports unreachable destinations, time exceeded, and so on.
+\item \textbf{Congestion control and QoS marking.} Marks packets (DSCP) and can drop or queue them.
+\item \textbf{Address translation.} NAT rewrites addresses at the boundary between private and public networks.
+\end{enumerate}
+
+\textbf{Services to the transport layer:} the network layer offers a \textbf{connectionless, best-effort, unreliable} datagram service. It does not guarantee delivery, ordering, or duplicate suppression; it may drop, duplicate or reorder packets. Everything the transport layer needs on top of that --- reliability, ordering, flow control --- must be provided by TCP itself. This deliberate minimalism is what allows IP to run over any link technology.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.24\textwidth} X}
+\toprule Service & Meaning\\
+\midrule
+Connectionless & Each packet is independent; no set-up, no state kept per flow.\\
+Best effort & The network tries but promises nothing.\\
+Unreliable & Lost packets are not retransmitted by IP.\\
+Unordered & Packets may arrive out of order.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{dangerbox}
+\textbf{Routing versus forwarding.} \emph{Routing} is the process of building the table (a control-plane activity, done by OSPF, BGP, RIP, periodically). \emph{Forwarding} is moving one packet using the table (a data-plane activity, done per packet in nanoseconds). Exams often ask for the distinction and expect exactly this split.
+\end{dangerbox}
+\end{solbox}
+
+\section{IPv4 addressing}
+
+\subsection{Structure}
+
+An IPv4 address is 32 bits, written as four decimal octets separated by dots: \texttt{192.168.10.25}. It has two parts:
+
+\[
+\text{address} = \underbrace{\text{network prefix}}_{\text{identifies the network}} \;+\; \underbrace{\text{host part}}_{\text{identifies the host}}
+\]
+
+The boundary between the two is given by the \textbf{prefix length} in CIDR notation, \texttt{/n}, or historically by the address class.
+
+\subsection{Classful addressing}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.09\textwidth} p{0.14\textwidth} p{0.16\textwidth} p{0.16\textwidth} X}
+\toprule Class & First octet & Default mask & Networks & Use\\
+\midrule
+A & 1--126 & /8 & 126 & Very large organisations\\
+B & 128--191 & /16 & 16\,384 & Medium organisations\\
+C & 192--223 & /24 & 2\,097\,152 & Small networks\\
+D & 224--239 & --- & --- & Multicast\\
+E & 240--255 & --- & --- & Experimental / reserved\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Special addresses}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.30\textwidth} X}
+\toprule Address & Meaning\\
+\midrule
+\texttt{0.0.0.0} & This host, on this network; used as a source before an address is known\\
+\texttt{127.0.0.0/8} & Loopback: \texttt{127.0.0.1} is the local host\\
+\texttt{10.0.0.0/8}, \texttt{172.16.0.0/12}, \texttt{192.168.0.0/16} & Private addresses (RFC 1918), not routed on the Internet\\
+\texttt{169.254.0.0/16} & Link-local, self-assigned when DHCP fails\\
+\texttt{255.255.255.255} & Limited broadcast\\
+Network address & Host bits all 0; identifies the network itself\\
+Broadcast address & Host bits all 1; reaches every host on the network\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Subnetting}
+
+\subsection{Why subnet}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q2(b)(iii).} What is meant by subnetting?
+\end{pyqbox}
+
+\begin{solbox}
+\textbf{Subnetting} is the division of one large network into smaller logical sub-networks by borrowing bits from the host part and adding them to the network part.
+
+Reasons:
+\begin{itemize}
+\item \textbf{Reduce broadcast domains}: a broadcast reaches only its own subnet.
+\item \textbf{Improve security and control}: traffic between subnets can be filtered by a router or ACL.
+\item \textbf{Simplify administration}: each department, floor or building gets its own block.
+\item \textbf{Reduce wasted addresses}: a /24 gives 254 hosts; if you need 30, a /27 is enough and you can give the rest to other subnets.
+\item \textbf{Better performance}: less broadcast traffic and smaller routing tables through aggregation.
+\end{itemize}
+
+\textbf{The cost:} two addresses per subnet are always lost, the network address (all host bits 0) and the broadcast address (all host bits 1). So usable hosts $= 2^h - 2$, where $h$ is the number of host bits.
+\end{solbox}
+
+\subsection{The subnet arithmetic}
+
+\begin{rememberbox}
+\textbf{Four formulas.} For a prefix \texttt{/n}:
+\begin{itemize}
+\item host bits $h = 32 - n$
+\item addresses per subnet $= 2^{h}$
+\item usable hosts $= 2^{h} - 2$
+\item block (increment) size $= 2^{h}$
+\end{itemize}
+\textbf{The shortcut that solves most questions:} the interesting octet is the one the prefix ends in, and the subnets step by the \emph{block size}. For \texttt{/26}, $h = 6$, block $= 64$, so the subnets in that octet start at 0, 64, 128, 192.
+\end{rememberbox}
+
+\begin{pyqbox}
+\textbf{Worked, standard exam form.} Subnet \texttt{192.168.10.0/24} into 4 equal subnets. Give the network address, first host, last host and broadcast of each.
+\end{pyqbox}
+
+\begin{solbox}
+Four subnets need 2 borrowed bits, so the new prefix is \texttt{/26}. Then $h = 6$, block $= 2^6 = 64$, usable hosts per subnet $= 62$.
+
+\begin{center}\small
+\begin{tabular}{l l l l l}
+\toprule Subnet & Network & First host & Last host & Broadcast\\
+\midrule
+1 & 192.168.10.0 & .1 & .62 & .63\\
+2 & 192.168.10.64 & .65 & .126 & .127\\
+3 & 192.168.10.128 & .129 & .190 & .191\\
+4 & 192.168.10.192 & .193 & .254 & .255\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The mask is \texttt{255.255.255.192}. Each subnet's broadcast is one less than the next subnet's network address --- that is the check that tells you the arithmetic is right.
+\end{solbox}
+
+\begin{exambox}
+\textbf{Worked, single-subnet lookup.} Given \texttt{200.1.2.0/26}, find the network, broadcast and host range.
+\end{exambox}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.28\textwidth} X}
+\toprule Item & Value\\
+\midrule
+Prefix & /26, so $h = 6$, block $= 64$\\
+Network address & \texttt{200.1.2.0}\\
+Broadcast address & \texttt{200.1.2.63}\\
+Usable host range & \texttt{200.1.2.1} to \texttt{200.1.2.62}\\
+Usable hosts & 62\\
+Mask & \texttt{255.255.255.192}\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{exambox}
+\textbf{Worked, the reverse direction.} A network must support 50 hosts. What prefix do you need?
+\end{exambox}
+
+\begin{solbox}
+You need $2^h - 2 \ge 50$, so $2^h \ge 52$. Since $2^5 = 32$ is too small and $2^6 = 64$ is enough, $h = 6$ and the prefix is \texttt{/26}, giving 62 usable hosts.
+
+\textbf{Always round \emph{up} to the next power of two.} The commonest error is choosing $h = 5$ because 50 is between 32 and 64, and forgetting the two reserved addresses.
+\end{solbox}
+
+\subsection{CIDR}
+
+\textbf{Classless Inter-Domain Routing} removes the class boundaries. Any prefix length is allowed, and addresses are written \texttt{a.b.c.d/n}. It provides:
+
+\begin{itemize}
+\item \textbf{Efficient allocation}: a customer needing 500 addresses gets a /23 rather than a whole class B /16.
+\item \textbf{Route aggregation (supernetting)}: many contiguous prefixes are advertised as one.
+\end{itemize}
+
+\begin{exambox}
+\textbf{Worked, aggregation.} Summarise \texttt{192.168.0.0/24} and \texttt{192.168.1.0/24} into one prefix, and \texttt{200.1.0.0/24} through \texttt{200.1.3.0/24}.
+\end{exambox}
+
+\begin{solbox}
+\textbf{First pair:} 0 and 1 differ only in the last bit of the third octet, which becomes a host bit. The third octet had 8 network bits under /24; giving one back makes it a /23.
+\[
+192.168.0.0/24 + 192.168.1.0/24 \;\Rightarrow\; \textbf{192.168.0.0/23}
+\]
+
+\textbf{Second group:} four /24s, so two bits are given back: $24 - 2 = 22$.
+\[
+200.1.0.0/24 \ldots 200.1.3.0/24 \;\Rightarrow\; \textbf{200.1.0.0/22}
+\]
+
+\textbf{The rule:} to aggregate $2^k$ contiguous equal prefixes, subtract $k$ from the prefix length. The prefixes must be contiguous and correctly aligned; if they are not, you cannot summarise them.
+\end{solbox}
+
+\section{The IPv4 datagram}
+
+\begin{pyqbox}
+\textbf{Sept 2026 CAE-1 Q5B.} Explain the structure of an IPv4 Datagram. Describe the function of each field in the IPv4 datagram header and explain how the datagram is used for delivering packets across an internetwork. Illustrate with a neat diagram.
+\end{pyqbox}
+
+\begin{solbox}
+The IPv4 header is 20 bytes minimum, 60 bytes maximum, and is a multiple of 4 bytes.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.20\textwidth} p{0.12\textwidth} X}
+\toprule Field & Size & Function\\
+\midrule
+Version & 4 bits & IP version; 4 for IPv4, 6 for IPv6\\
+Header length (IHL) & 4 bits & Header size in 32-bit words; 5 means 20 bytes\\
+Type of service / DSCP & 8 bits & Precedence and QoS marking; used by DiffServ\\
+Total length & 16 bits & Header plus data, in bytes; maximum 65\,535\\
+Identification & 16 bits & Identifies the fragments of one original datagram\\
+Flags & 3 bits & DF (do not fragment) and MF (more fragments)\\
+Fragment offset & 13 bits & Position of this fragment in the original, in 8-byte units\\
+Time to live (TTL) & 8 bits & Decremented at each router; at 0 the packet is dropped and ICMP Time Exceeded is sent. Prevents loops\\
+Protocol & 8 bits & Upper-layer protocol: 6 = TCP, 17 = UDP, 1 = ICMP, 89 = OSPF\\
+Header checksum & 16 bits & Detects errors in the header only, recomputed at every hop\\
+Source address & 32 bits & Sender's IP\\
+Destination address & 32 bits & Receiver's IP\\
+Options & variable & Rarely used: record route, timestamp, source routing\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{How it delivers a packet.} The host builds the datagram with its own address as source and the destination's as destination. Each router on the path decrements TTL, recomputes the header checksum, looks up the destination network in its routing table, and forwards the packet out of the chosen interface with a new link-layer frame (new MAC addresses, same IP addresses). IP addresses stay the same end to end; MAC addresses change at every hop. That is the single most important sentence in this topic.
+\end{solbox}
+
+\subsection{Fragmentation}
+
+If a datagram is larger than the MTU of the next link, the router splits it. Each fragment is a complete IP datagram with:
+
+\begin{itemize}
+\item the same \textbf{identification} number,
+\item the \textbf{MF} flag set on all but the last,
+\item a \textbf{fragment offset} in units of 8 bytes,
+\item a recalculated header checksum, and
+\item the data payload length adjusted, in multiples of 8.
+\end{itemize}
+
+\begin{exambox}
+\textbf{Worked.} A 4000-byte datagram (20-byte header, 3980 bytes of data) must cross a link with MTU 1500. How many fragments?
+\end{exambox}
+
+\begin{solbox}
+Each fragment carries at most $1500 - 20 = 1480$ bytes of data, and that must be a multiple of 8. $1480/8 = 185$, so 1480 is legal.
+
+\[
+\lceil 3980 / 1480 \rceil = 3 \text{ fragments}
+\]
+
+\begin{center}\small
+\begin{tabular}{c c c c}
+\toprule Fragment & Data bytes & Offset (8-byte units) & MF\\
+\midrule
+1 & 1480 & 0 & 1\\
+2 & 1480 & 185 & 1\\
+3 & 1020 & 370 & 0\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Total data $= 1480 + 1480 + 1020 = 3980$, which reconstructs exactly. Offsets accumulate in units of 8 bytes, so 185 and 370, not 1480 and 2960.
+\end{solbox}
+
+\section{ICMP}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q2(a)(i).} Explain how ICMP works in network troubleshooting. Illustrate with examples of echo request and destination unreachable messages.
+\end{pyqbox}
+
+\begin{solbox}
+\textbf{ICMP (Internet Control Message Protocol)} is IP's error-reporting and diagnostic companion. It is carried \emph{inside} IP datagrams (protocol number 1) and is used by routers and hosts to report problems; it does not make IP reliable, because an ICMP message is never sent in response to another ICMP message.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.28\textwidth} X}
+\toprule Message & Meaning and use\\
+\midrule
+Echo request / reply (type 8 / 0) & \texttt{ping}. Confirms reachability and measures round-trip time.\\
+Destination unreachable (type 3) & The network, host, protocol or port cannot be reached, or fragmentation was needed but DF was set. Code 3 (port unreachable) is how \texttt{traceroute} discovers a hop.\\
+Time exceeded (type 11) & TTL reached zero. This is what \texttt{traceroute} exploits.\\
+Redirect (type 5) & A better first-hop router exists.\\
+Source quench & Obsolete congestion signal; deprecated.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{Worked diagnostic sequence.} A user cannot reach a server.
+\begin{enumerate}
+\item \texttt{ping 127.0.0.1} --- is the local stack working?
+\item \texttt{ping <own IP>} --- is the interface configured?
+\item \texttt{ping <default gateway>} --- is the local link and gateway reachable? An echo reply proves layer 3 to the gateway.
+\item \texttt{ping <server IP>} --- is the remote host reachable? If this works but the name does not, the problem is DNS.
+\item \texttt{traceroute <server>} --- where do the Time Exceeded replies stop? That hop is the fault.
+\end{enumerate}
+
+\textbf{Example.} \texttt{ping} to a host returns \emph{Destination Host Unreachable} from the local router. That means the router has no route to the destination network, or ARP for the destination failed on the final link. Either way the fault is at or beyond the router, not on the local host.
+\end{solbox}
+
+\section{ARP}
+
+\begin{pyqbox}
+\textbf{Oct 2024 CAE-II Q2A.} Explain how ARP can be used to resolve communication failure between two devices due to incorrect MAC address mapping in a network.
+\end{pyqbox}
+
+\begin{solbox}
+\textbf{ARP (Address Resolution Protocol)} maps a known IPv4 address to the unknown MAC address on the same LAN. IP routing needs a MAC address to build the frame, but the application only knows the IP.
+
+\textbf{The exchange:}
+\begin{enumerate}
+\item A wants to send to B on the same subnet, but has only B's IP.
+\item A broadcasts an \textbf{ARP request}: ``Who has 192.168.1.20? Tell 192.168.1.10.''
+\item Every host on the LAN receives it; only B replies, \textbf{unicast}, with its MAC.
+\item A caches the mapping in its ARP table for a few minutes.
+\end{enumerate}
+
+\textbf{If A and B are on different subnets}, A ARPs for the \emph{default gateway}, not for B.
+
+\textbf{Troubleshooting an incorrect MAC mapping.} Symptoms: \texttt{ping} fails with \emph{Destination Host Unreachable} even though the IP configuration looks right; the ARP table shows an entry that does not match the device's real NIC.
+\begin{itemize}
+\item Inspect the table with \texttt{arp -a} or \texttt{ip neigh}.
+\item A stale entry after a NIC replacement or an IP move is the common cause: clear it with \texttt{arp -d} and let ARP re-resolve.
+\item If the entry keeps returning to the wrong MAC, suspect \textbf{ARP spoofing} (a host answering for an address it does not own). Defences: static ARP entries for critical hosts, Dynamic ARP Inspection on the switch, port security.
+\item If the table stays empty, the failure is at layer 2: VLAN mismatch, a blocked port, or the two hosts are not actually in the same broadcast domain.
+\end{itemize}
+
+\textbf{Gratuitous ARP} is an unsolicited ARP that announces ``this IP is now at this MAC''; it is how a host updates everyone after an address change or a failover.
+\end{solbox}
+
+\section{IPv6}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q2(a)(iii).} Explain how IPv6 simplifies packet processing compared to IPv4.
+\end{pyqbox}
+
+\begin{solbox}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.20\textwidth} X X}
+\toprule Feature & IPv4 & IPv6\\
+\midrule
+Address size & 32 bits & 128 bits\\
+Header & 20--60 bytes, 13 fields & Fixed 40 bytes, 8 fields\\
+Checksum & Header checksum, recomputed at each hop & \textbf{None}; left to link and transport layers\\
+Fragmentation & Routers may fragment & \textbf{Sources only}; routers never fragment\\
+Options & In the base header, variable length & Moved to \textbf{extension headers}\\
+Broadcast & Yes & \textbf{No}; replaced by multicast and anycast\\
+Address configuration & Manual or DHCP & \textbf{SLAAC}: stateless autoconfiguration\\
+Security & IPSec optional, bolt-on & IPSec mandatory in the standard\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{Why IPv6 is simpler to process:}
+\begin{enumerate}
+\item \textbf{Fixed 40-byte header} --- no IHL field to decode, and hardware can parse at a fixed offset.
+\item \textbf{No header checksum} --- routers no longer recompute a checksum at every hop, which was a significant per-packet cost.
+\item \textbf{No router fragmentation} --- routers just drop and send ICMP Packet Too Big; the source adapts. Less state and work per packet.
+\item \textbf{Extension headers} --- optional features are chained after the fixed header, so a router that does not need them skips them entirely.
+\item \textbf{Hierarchical addressing with aggregation} --- smaller routing tables in the default-free zone.
+\end{enumerate}
+
+\textbf{Notation.} Eight groups of four hex digits, \texttt{2001:0db8:0000:0000:0000:ff00:0042:8329}, compressible to \texttt{2001:db8::ff00:42:8329}: drop leading zeros in each group, and replace one run of all-zero groups with \texttt{::} (only once).
+\end{solbox}
+
+\section{Routing algorithms}
+
+\subsection{The three families}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.16\textwidth} p{0.20\textwidth} X}
+\toprule Family & Knowledge required & Example and note\\
+\midrule
+Distance vector & Only its own neighbours & RIP. Each router tells its neighbours its whole distance table. ``Routing by rumour.''\\
+Link state & The whole topology & OSPF, IS-IS. Each router floods link-state advertisements and runs Dijkstra locally.\\
+Path vector & The whole path, per destination & BGP. Carries the AS path, which is used for loop detection and policy.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Link state: Dijkstra}
+
+\begin{pyqbox}
+\textbf{Worked, standard form.} Find the shortest path tree from A.
+\end{pyqbox}
+
+\begin{center}\small
+\begin{tabular}{l l}
+\toprule Link & Cost\\
+\midrule
+A--B & 2\\
+A--C & 5\\
+B--C & 1\\
+B--D & 4\\
+C--D & 2\\
+C--E & 6\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{solbox}
+Dijkstra settles one node per step, always the unsettled node with the smallest tentative distance.
+
+\begin{center}\small
+\begin{tabular}{c l l l}
+\toprule Step & Settled & Tentative distances & Chosen\\
+\midrule
+0 & --- & A=0, others $\infty$ & A\\
+1 & A & B=2, C=5 & B (2)\\
+2 & B & C=$\min(5,\,2+1)=3$, D=$2+4=6$ & C (3)\\
+3 & C & D=$\min(6,\,3+2)=5$, E=$3+6=9$ & D (5)\\
+4 & D & E=$\min(9,\,5+1)=6$ & E (6)\\
+5 & E & --- & done\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Result:}
+\[
+A=0,\quad B=2,\quad C=3,\quad D=5,\quad E=6
+\]
+
+\textbf{Shortest paths:} B via A--B; C via A--B--C; D via A--B--C--D; E via A--B--C--D--E.
+
+\begin{dangerbox}
+\textbf{The mistake everyone makes:} updating the distance but not the path. D's distance of 5 arrives via \textbf{C}, not directly from B, even though B is D's neighbour with cost 4. The route is A--B--C--D. Write the predecessor down as you go.
+\end{dangerbox}
+
+\textbf{Complexity:} $O(n^2)$ with a simple array, $O((n+e)\log n)$ with a heap. Because every router computes the whole tree, link state costs more CPU but converges faster than distance vector.
+\end{solbox}
+
+\subsection{Distance vector: Bellman-Ford}
+
+Each router keeps a vector of distances to every destination and periodically sends it to its neighbours. On receipt, for each destination $X$:
+\[
+D(v, X) = \min_{w \in \text{neighbours}(v)} \big[ c(v,w) + D(w, X) \big].
+\]
+This is the Bellman-Ford equation. Running it to convergence on the network above gives the same distances as Dijkstra: A=0, B=2, C=3, D=5, E=6, after two rounds.
+
+\begin{dangerbox}
+\textbf{Count-to-infinity.} Distance vector's weakness. If a link fails, two routers can each believe the other has a route, and the reported distance climbs slowly to infinity instead of failing fast. Fixes: a \textbf{definition of infinity} (RIP uses 16), \textbf{split horizon} (do not advertise a route back the way it came), \textbf{poison reverse}, and \textbf{triggered updates}. If a question asks ``why does RIP converge slowly'', this is the answer.
+\end{dangerbox}
+
+\subsection{RIP versus OSPF}
+
+\begin{pyqbox}
+\textbf{Sept 2026 CAE-1 Q5A.} Explain the working of RIP and OSPF. Compare RIP and OSPF based on routing algorithm, metric, convergence, scalability, and suitability for different network sizes.
+\end{pyqbox}
+
+\begin{solbox}
+\textbf{RIP} (Routing Information Protocol) is a distance-vector protocol. Each router advertises its full table to its neighbours every 30 seconds; the metric is \textbf{hop count}, with a maximum of 15 and 16 meaning unreachable. It is simple to configure and needs no topology knowledge, but it converges slowly, scales poorly, and ignores link speed entirely --- a route over three slow serial links looks identical to three fast ones.
+
+\textbf{OSPF} (Open Shortest Path First) is a link-state protocol. Each router floods link-state advertisements describing its own links and costs; every router builds an identical topology database and runs Dijkstra. The metric is \textbf{cost}, derived from bandwidth ($10^8/\text{bandwidth}$ by default). It converges quickly using triggered updates and flooding, supports areas to bound the flood, and authenticates its updates.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.20\textwidth} X X}
+\toprule Basis & RIP & OSPF\\
+\midrule
+Algorithm & Distance vector (Bellman-Ford) & Link state (Dijkstra)\\
+Metric & Hop count, max 15 & Cost based on bandwidth\\
+Convergence & Slow, minutes; count-to-infinity & Fast, seconds; triggered updates\\
+Scalability & Poor: small networks only & Good: hierarchical areas\\
+Updates & Full table every 30 s to neighbours & Triggered LSAs flooded to the area\\
+Bandwidth awareness & None & Yes\\
+CPU and memory & Very low & Higher: full topology database\\
+Suitability & Small, simple networks & Large enterprise and ISP networks\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{One-line answer if asked to choose:} RIP for a handful of routers where simplicity matters; OSPF as soon as the network has more than about fifteen hops, redundant paths, or a need to converge quickly.
+\end{solbox}
+
+\subsection{Path vector and BGP}
+
+\begin{pyqbox}
+\textbf{Oct 2026 CAE-II Q2A.} Analyse how Autonomous Systems exchange routing information and how BGP supports communication between different networks on the Internet.
+\end{pyqbox}
+
+\begin{solbox}
+\textbf{BGP (Border Gateway Protocol)} is the path-vector protocol that glues the Internet together. It runs between routers in \emph{different} Autonomous Systems (eBGP) and within one AS (iBGP).
+
+\textbf{Why distance vector is not enough between ISPs:} an ISP must be able to enforce \emph{policy} (``do not carry traffic for that competitor''), and it must detect loops over a graph of thousands of networks. Counting hops does not express policy.
+
+\textbf{How BGP works:}
+\begin{enumerate}
+\item An AS advertises the \textbf{prefixes} it owns along with the \textbf{AS path} --- the sequence of AS numbers the advertisement traversed.
+\item A router receiving an advertisement prepends its own AS number before passing it on.
+\item A router that finds its own AS number in the path \textbf{rejects} the route: that is loop detection, for free.
+\item Among the feasible routes, the router selects one using a decision process: highest local preference, shortest AS path, lowest origin type, lowest MED, then eBGP over iBGP, then lowest IGP cost to the next hop, then lowest router ID.
+\item Only the chosen route is installed in the forwarding table, but all are kept in the BGP table.
+\end{enumerate}
+
+\textbf{Consequences.} BGP converges slowly (minutes) and its correctness depends on policy rather than on a metric, which is why a misconfiguration at one large ISP can take down a large part of the Internet. That fragility is the price of policy control.
+\end{solbox}
+
+\subsection{README: routing tables}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q2(b)(ii).} Analyse the need for routing tables and how they are updated in dynamic routing.
+\end{pyqbox}
+
+\begin{solbox}
+A router must decide, for every packet, which interface to use. The \textbf{routing table} holds the mapping from destination prefix to next hop and interface --- it \emph{is} the router's decision data.
+
+\textbf{Static routing} fills the table by hand. It is predictable and has no protocol overhead, but it cannot react to a link failure and does not scale.
+
+\textbf{Dynamic routing} builds and maintains the table automatically:
+\begin{itemize}
+\item protocols exchange topology or distance information,
+\item the best path per prefix is computed (Dijkstra for link state, Bellman-Ford for distance vector),
+\item the result is installed in the routing table,
+\item on a topology change, an update is flooded and the table reconverges.
+\end{itemize}
+
+\textbf{Longest-prefix match.} If several entries match, the most specific wins: a packet to \texttt{10.1.2.3} uses \texttt{10.1.2.0/24} rather than \texttt{10.0.0.0/8}, whatever the metric. Then administrative distance decides between sources (connected beats static beats OSPF beats RIP), then the metric.
+\end{solbox}
+
+\section{Answer skeletons}
+
+\begin{answerbox}
+\textbf{Subnetting (10 marks).} Write the prefix, the borrowed bits, $h = 32 - n$, block size $= 2^h$, usable $= 2^h - 2$. Draw the table: subnet number, network, first host, last host, broadcast. Check that each broadcast is one below the next network.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Shortest path (10 marks).} Draw the graph with costs on the edges. Draw the step table with settled nodes and tentative distances. State the final distances and the paths, not just the distances.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Protocol comparison (10 marks).} A table with at least five rows: algorithm, metric, convergence, scalability, suitability. Then one sentence saying which you would choose and why.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Datagram structure (10 marks).} Draw the header as a row of boxes to scale, label each field with its bit width, then list the function of each field below. Twelve fields named correctly is most of the marks.
+\end{answerbox}
+
+\section{Self-test}
+
+\begin{enumerate}
+\item List six functions of the network layer.
+\item Why is the network layer described as connectionless and best-effort?
+\item Differentiate routing from forwarding.
+\item State the class, default mask and first-octet range for classes A, B and C.
+\item Subnet 192.168.10.0/24 into 8 subnets. Give the prefix, block size and usable hosts.
+\item A network needs 50 hosts. What prefix and how many usable addresses?
+\item Summarise 200.1.0.0/24 through 200.1.3.0/24 into one prefix.
+\item Name ten fields of the IPv4 header with their sizes.
+\item Why is there no header checksum in IPv6?
+\item A 4000-byte datagram crosses an MTU of 1500. How many fragments and what are the offsets?
+\item Why does IPv6 forbid router fragmentation?
+\item Explain ARP in four steps.
+\item How does ARP help diagnose a duplicate-IP or spoofing problem?
+\item What does ICMP Time Exceeded do for traceroute?
+\item Compare RIP and OSPF in five rows.
+\item State the Bellman-Ford equation.
+\item What is count-to-infinity and how is it mitigated?
+\item Why is BGP a path-vector protocol rather than a distance-vector one?
+\item What is longest-prefix match?
+\end{enumerate}
+
+\subsection*{Answers}
+\begin{enumerate}
+\item Logical addressing, routing, forwarding, packetising, fragmentation and reassembly, error reporting, QoS marking, NAT.
+\item It offers no guarantees of delivery, ordering or duplicate suppression, so IP can run over any link and TCP can add reliability where needed.
+\item Routing builds the table periodically from protocol information. Forwarding moves one packet using the table, per packet.
+\item A: 1--126, /8. B: 128--191, /16. C: 192--223, /24.
+\item /27, block 32, usable 30.
+\item $2^h - 2 \ge 50$, so $h = 6$, prefix /26, 62 usable.
+\item /22, that is 200.1.0.0/22.
+\item Version, IHL, DSCP, total length, identification, flags, fragment offset, TTL, protocol, header checksum, source, destination.
+\item Because a transport or link checksum already covers the data, the per-hop recomputation was redundant and expensive.
+\item Three fragments: data 1480, 1480 and 1020; offsets 0, 185 and 370.
+\item To keep routers stateless and fast; the source learns the path MTU from ICMP and fragments itself.
+\item Broadcast request, unicast reply, cache the mapping, refresh on timeout.
+\item A persistent wrong MAC for a known IP indicates spoofing; static entries, DAI and port security defend against it.
+\item Each router sets TTL to 1, 2, 3, so each hop in turn returns Time Exceeded, revealing the path.
+\item See the table: distance vector versus link state, hops versus cost, slow versus fast, small versus large.
+\item $D(v,X) = \min_w [c(v,w) + D(w,X)]$.
+\item A failed link is masked because neighbours keep advertising a route learnt through each other; fixed by infinity limits, split horizon, poison reverse and triggered updates.
+\item ISPs need policy control and loop detection over a graph of thousands of ASes; the AS path supplies both.
+\item When several prefixes match, the most specific (longest) prefix is used.
+\end{enumerate}
+
+\section{Last-minute page}
+
+\begin{multicols}{2}
+\textbf{NETWORK LAYER}\\
+Logical addressing, routing,\\
+forwarding, fragmentation,\\
+ICMP, NAT\\
+Connectionless, best effort\\[5pt]
+\textbf{SUBNET MATHS}\\
+$h = 32 - n$\\
+block $= 2^h$\\
+usable $= 2^h - 2$\\
+/24: 256, 254 hosts\\
+/25: 128, 126\\
+/26: 64, 62\\
+/27: 32, 30\\
+/28: 16, 14\\[5pt]
+\textbf{AGGREGATION}\\
+$2^k$ prefixes $\to$ subtract $k$\\[5pt]
+\textbf{IPv4 HEADER}\\
+version, IHL, DSCP,\\
+total length, ID, flags,\\
+offset, TTL, protocol,\\
+checksum, src, dst\\[5pt]
+\textbf{FRAGMENT OFFSET}\\
+in 8-byte units\\[5pt]
+\textbf{ICMP}\\
+echo 8/0, unreachable 3,\\
+time exceeded 11\\[5pt]
+\textbf{ARP}\\
+broadcast request,\\
+unicast reply, cache\\[5pt]
+\textbf{ROUTING}\\
+DV: neighbours, RIP,\\
+hops, max 15\\
+LS: flood, OSPF,\\
+Dijkstra, cost\\
+PV: BGP, AS path\\[5pt]
+\textbf{TRAPS}\\
+RIP max hop = 15, 16 = unreachable\\
+Dijkstra: track the predecessor\\
+Fragments in 8-byte units\\
+IPv6 has no checksum
+\end{multicols}
+
+\vfill
+\begin{center}\textit{For any subnetting question, write the block size first. Everything else follows from it.}\end{center}
+
+\end{document}

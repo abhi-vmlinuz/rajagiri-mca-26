@@ -1,0 +1,300 @@
+\documentclass[11pt,a4paper]{article}
+\input{preamble.tex}
+\subject{MCA104 -- Exam Overview and Past-Paper Analysis}
+
+\title{\textbf{Computer Networks and Internet Architecture}\\}
+\author{\large MCA104 Exam Preparation -- Overview, Past-Paper Analysis and Study Plan}
+\date{Exam: Wednesday 18 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{exambox}
+\textbf{How to use this set.} Five module PDFs plus this overview. Every past-paper question we have is placed in the module it belongs to, so as you revise a module you can see exactly how it has been asked before. Section 6 is a five-day plan; Section 7 is the formula sheet.
+\end{exambox}
+
+\tableofcontents
+\newpage
+
+\section{The six papers we have}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.26\textwidth} p{0.10\textwidth} X}
+\toprule Paper & Marks & Format\\
+\midrule
+Sept 2026 CAE-I & 60 & 2 hours. Sections A, B, C, 10 marks each.\\
+Oct 2026 CAE-II & 30 & 1 hour. Section A, B, C, 10 marks each.\\
+Oct 2025 CAE-II & 20 & 60 minutes. Section A and B, 10 marks each.\\
+Oct 2024 CAE-II & 20 & 60 minutes. Section A and B, 10 marks each.\\
+Oct 2025 full & 75 & 3 hours. Section A: 5 questions $\times$ 15 marks, all compulsory.\\
+Sept 2024 CAE-I & 40 & 90 minutes. Section A and B, 10 marks each.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{exambox}
+\textbf{The two most predictive papers} are the Sept 2026 CAE-I and the Oct 2026 CAE-II, because they are from your own batch and their coverage matches the current syllabus. Read Section 3 for those first.
+\end{exambox}
+
+\section{Marks by module}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.14\textwidth} X p{0.16\textwidth}}
+\toprule Module & Content & Papers hit\\
+\midrule
+1 & Data communication, OSI and TCP/IP, media, switching, multiplexing, error control, MAC & 6 of 6\\
+2 & Network layer, addressing, subnetting, routing, IPv4, IPv6, ICMP & 6 of 6\\
+3 & Transport layer, TCP, UDP, flow and congestion control, QoS & 6 of 6\\
+4 & Application layer, DNS, DHCP, security, TLS, IPSec & 5 of 6\\
+5 & Internet structure, ISP, IXP, AS, CDN, cloud & 5 of 6\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{Module 1 carries the most marks overall} because both CAE-I papers are almost entirely Module 1. \textbf{Module 3 and Module 4 carry the most marks in the semester paper.}
+
+\section{The recurring questions, module by module}
+
+\subsection{Module 1}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.16\textwidth} X}
+\toprule Paper & Question\\
+\midrule
+Sept 2026 & Explain the importance of the layered approach.\\
+Sept 2026 & Define data communication; five components; performance characteristics.\\
+Sept 2026 & Random access protocols: ALOHA, slotted ALOHA, CSMA, CSMA/CD.\\
+Sept 2026 & Transmission media: guided and unguided.\\
+Sept 2026 & Switching techniques; compare circuit and packet.\\
+Sept 2026 & TCP/IP suite versus OSI.\\
+Sept 2026 & Multiplexing: FDM, TDM, WDM.\\
+Sept 2026 & CRC for data 1101011011, generator 10011.\\
+Oct 2025 & Define multiplexing; FDM and TDM with diagrams.\\
+Oct 2025 & Data communication components; framing.\\
+Oct 2025 & Go-Back-N versus Selective Repeat.\\
+Oct 2025 & Flow control in the data link layer.\\
+Oct 2025 & TDM versus FDM.\\
+Oct 2025 CAE-II & CRC for 10011101 with $x^3+1$; CSMA/CD scenario with 5 computers.\\
+Oct 2024 CAE-II & CRC for 10011101; sliding window protocols; LLC versus MAC.\\
+Sept 2024 & Polar coding schemes; PCM; wireless versus wired; PSTN.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Module 2}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.16\textwidth} X}
+\toprule Paper & Question\\
+\midrule
+Sept 2026 & RIP versus OSPF: algorithm, metric, convergence, scalability.\\
+Sept 2026 & Structure of an IPv4 datagram with a diagram.\\
+Oct 2025 & ICMP in troubleshooting: echo and destination unreachable.\\
+Oct 2025 & Responsibilities of the network layer; IPv6 versus IPv4.\\
+Oct 2025 & Functions of the network layer and its services to transport.\\
+Oct 2025 & Routing tables and dynamic routing; subnetting.\\
+Oct 2024 CAE-II & ARP for MAC mapping failure.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Module 3}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.16\textwidth} X}
+\toprule Paper & Question\\
+\midrule
+Sept 2026 & Connection-oriented versus connectionless; TCP and UDP as examples.\\
+Sept 2026 & Short notes: transport services, SSL/TLS, TCP, UDP.\\
+Oct 2025 & Flow control mechanisms in TCP; ACKs and timers.\\
+Oct 2025 & Connection-oriented versus connectionless; QoS parameters.\\
+Oct 2025 & TCP versus UDP in real-time applications; why UDP wins.\\
+Oct 2025 & How congestion occurs; how UDP keeps latency low.\\
+Oct 2025 CAE-II & Go Back N, Selective Repeat, piggybacking.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Module 4}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.16\textwidth} X}
+\toprule Paper & Question\\
+\midrule
+Oct 2026 CAE-II & HTTP, FTP and SMTP in supporting web, file transfer and email.\\
+Oct 2026 CAE-II & Propose a security solution: cryptography, firewalls, VPNs.\\
+Oct 2026 CAE-II & DNS and DHCP: name resolution and dynamic addressing.\\
+Oct 2025 & Define cryptography; plaintext, ciphertext and key.\\
+Oct 2025 & Application layer function; objective of SSL/TLS.\\
+Oct 2025 & HTTP and FTP vulnerabilities and secure alternatives.\\
+Oct 2025 & How firewalls filter packets; DNS resolution step by step.\\
+Oct 2025 CAE-II & Protocol choice for web, email and file transfer; FTP active vs passive.\\
+Sept 2024 & Short notes: HTTP, SMTP, UDP, ICMP.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Module 5}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.16\textwidth} X}
+\toprule Paper & Question\\
+\midrule
+Oct 2026 CAE-II & Autonomous Systems and BGP.\\
+Oct 2026 CAE-II & CDN for a far-away e-commerce site.\\
+Oct 2026 CAE-II & Cloud computing: IaaS, PaaS, SaaS.\\
+Oct 2025 & Cloud computing: role, scalability, cost.\\
+Oct 2025 & Internet versus intranet; Tier-1, 2 and 3 ISPs.\\
+Oct 2025 & Define an ISP and its types; redundancy; CDN definition.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{The one thing that is almost certain}
+
+\textbf{CRC.} It appears in three of the six papers, and two of them use the identical numbers (data 10011101, generator $x^3+1$). Learn the division procedure cold; it is 10 easy marks.
+
+\textbf{The TCP/UDP comparison.} Appears four times in different forms: as a table, as ``connection-oriented versus connectionless'', as ``why UDP for real time'', and as a short note. One table answers all four.
+
+\textbf{FDM versus TDM.} Appears three times, always worth 3 marks.
+
+\textbf{The TCP/IP versus OSI comparison.} Appears twice, always worth 10.
+
+\section{Where the marks are}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.26\textwidth} c X}
+\toprule Type & Weight & Preparation\\
+\midrule
+Definition / list & 3 marks & The five components, the seven layers, the five QoS parameters, the five NIST characteristics.\\
+Comparison table & 3--10 marks & OSI/TCP-IP, circuit/packet, FDM/TDM, TCP/UDP, RIP/OSPF, TLS/IPSec, IaaS/PaaS/SaaS.\\
+Calculation & 10 marks & CRC is the only routine calculation. Subnetting and Dijkstra may appear.\\
+Diagram & 10 marks & Layered models, encapsulation, TCP and IPv4 headers, three-way handshake, congestion sawtooth.\\
+Scenario & 10 marks & The October 2026 style. Propose and justify; never just list products.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Five-day plan, 13 to 17 November}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.14\textwidth} p{0.10\textwidth} X}
+\toprule Day & Module & Work\\
+\midrule
+Thu 13 Nov & 1 & Read Module 1 in full. Do both CRC questions by hand, twice, without looking. Draw the OSI and TCP/IP stacks from memory.\\
+Fri 14 Nov & 2 & Read Module 2. Do the subnetting examples, then the Dijkstra example, then the fragmentation example.\\
+Sat 15 Nov & 3 and 4 & Read Module 3, then Module 4. Write the TCP/UDP table from memory; then the TLS handshake in six steps.\\
+Sun 16 Nov & 5 & Read Module 5. Write the CDN delivery process in five steps and the cloud service model table.\\
+Mon 17 Nov & All & Only the last-minute page of each module, plus the formula sheet in Section 7. Do not read anything new.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{exambox}
+\textbf{Exam rules.} For a comparison question, draw the table first; prose loses marks. For the CRC, show every XOR step; the answer alone scores almost nothing. For a scenario question, name the threat, name the control, and say what the control prevents.
+\end{exambox}
+
+\section{Formula and fact sheet}
+
+\subsection{Module 1}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.26\textwidth} X}
+\toprule Item & Formula or fact\\
+\midrule
+Nyquist capacity & $C = 2B\log_2 L$ bps\\
+Shannon capacity & $C = B\log_2(1 + S/N)$\\
+PCM bit rate & $R = f_s \cdot n$; voice $8000 \times 8 = 64$ kbps\\
+Quantisation SNR & $\approx 6.02n + 1.76$ dB\\
+GBN window & $N = 2^m - 1$\\
+Selective Repeat window & $N = 2^{m-1}$\\
+Sliding window utilisation & $U = N/(1+2a)$, $a = T_p/T_t$\\
+Full utilisation & $N \ge 1 + 2a$\\
+ALOHA throughput & $S = Ge^{-2G}$, max 18.4\%\\
+Slotted ALOHA & $S = Ge^{-G}$, max 36.8\%\\
+CSMA/CD condition & $T_t \ge 2T_p$\\
+CSMA/CD efficiency & $U = T_t/(T_t + 2T_p)$\\
+Full mesh links & $n(n-1)/2$\\
+Hamming check bits & $2^r \ge m + r + 1$\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Module 2}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.26\textwidth} X}
+\toprule Item & Formula or fact\\
+\midrule
+Host bits & $h = 32 - n$\\
+Addresses per subnet & $2^h$\\
+Usable hosts & $2^h - 2$\\
+Block size & $2^h$\\
+Aggregation & $2^k$ contiguous prefixes $\Rightarrow$ subtract $k$\\
+Fragment offset unit & 8 bytes\\
+RIP metric & Hop count, max 15, 16 = unreachable\\
+OSPF metric & Cost $= 10^8 / \text{bandwidth}$\\
+Dijkstra & $O(n^2)$ or $O((n+e)\log n)$\\
+Bellman-Ford & $D(v,X) = \min_w [c(v,w) + D(w,X)]$\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Modules 3 to 5}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.26\textwidth} X}
+\toprule Item & Formula or fact\\
+\midrule
+Well-known ports & 20/21 FTP, 22 SSH, 23 Telnet, 25 SMTP, 53 DNS, 67/68 DHCP, 80 HTTP, 110 POP3, 143 IMAP, 161 SNMP, 443 HTTPS\\
+TCP header minimum & 20 bytes; options to 60\\
+UDP header & 8 bytes\\
+Effective send window & $\min(\text{rwnd}, \text{cwnd}) - $ bytes in flight\\
+Slow start & Double \texttt{cwnd} per RTT\\
+Congestion avoidance & $+1$ MSS per RTT\\
+On timeout & \texttt{ssthresh} = \texttt{cwnd}/2, \texttt{cwnd} = 1 MSS\\
+On 3 duplicate ACKs & Fast retransmit, halve \texttt{cwnd}\\
+IntServ versus DiffServ & Per-flow reservation versus per-class marking\\
+RSA key relation & $ed \equiv 1 \pmod{\phi(n)}$, $\phi = (p-1)(q-1)$\\
+Signature & Hash, then encrypt with the \emph{private} key\\
+TLS objectives & Confidentiality, integrity, authentication\\
+IPSec modes & Transport (payload) and tunnel (whole packet)\\
+DHCP & Discover, Offer, Request, Acknowledge\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{The eight diagrams to be able to draw}
+
+\begin{enumerate}
+\item The seven-layer OSI stack and the four-layer TCP/IP stack side by side, with PDUs.
+\item Encapsulation: message, segment, packet, frame, bits.
+\item A frame format for CRC: data, appended zeros, remainder, transmitted codeword.
+\item The TCP three-way handshake and the four-way teardown.
+\item The IPv4 header as a row of labelled boxes.
+\item The congestion sawtooth with slow start and congestion avoidance labelled.
+\item The Internet hierarchy: access, Tier 3, Tier 2, Tier 1, IXP, content.
+\item CDN delivery: DNS picks the nearest edge, cache hit or miss, origin.
+\end{enumerate}
+
+\section{Common mistakes that cost marks}
+
+\begin{enumerate}
+\item Using ordinary binary subtraction in a CRC division. It is XOR.
+\item Forgetting to append $n$ zeros before dividing in CRC, where $n$ is the generator's degree.
+\item Swapping the TCP/IP and OSI layer counts.
+\item Saying ``FDM divides time''. FDM divides frequency; TDM divides time.
+\item Describing an IXP as something that routes.
+\item Saying Tier-1 ISPs buy transit. They do not.
+\item Confusing flow control (\texttt{rwnd}, protects the receiver) with congestion control (\texttt{cwnd}, protects the network).
+\item Writing a three-way teardown. TCP teardown is four-way.
+\item Signing with the public key. Signing uses the private key.
+\item Giving a comparison as two paragraphs instead of a table.
+\item Answering a scenario question with a product list and no justification.
+\item Forgetting that usable hosts $= 2^h - 2$, not $2^h$.
+\end{enumerate}
+
+\vfill
+\begin{center}\textit{Every calculation in this set was computed and checked programmatically. The CRC remainders, the Dijkstra distances, the subnet boundaries and the RSA values are all verified.}\end{center}
+
+\end{document}

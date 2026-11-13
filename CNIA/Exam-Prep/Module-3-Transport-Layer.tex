@@ -1,0 +1,468 @@
+\documentclass[11pt,a4paper]{article}
+\input{preamble.tex}
+\subject{MCA104 -- Module 3: The Transport Layer}
+
+\title{\textbf{Module 3: The Transport Layer}\\}
+\author{\large Transport services and ports, TCP and UDP, connection management,\\
+flow control, congestion control, and quality of service}
+\date{Exam: Wednesday 18 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{exambox}
+\textbf{Scope.} Syllabus 3.1 to 3.4: introduction to the transport layer; TCP and UDP (features, differences, use cases); flow control and congestion control mechanisms; and quality of service.
+
+This module carries CO3 and appears in \textbf{every} paper as a 10-mark question, most often as ``compare TCP and UDP'' or ``explain congestion control''. It is also the module where CAE-II questions concentrate, so treat it as guaranteed.
+\end{exambox}
+
+\tableofcontents
+\newpage
+
+\section{Transport layer services}
+
+\subsection{Process-to-process delivery}
+
+The network layer delivers a packet to a \emph{host}. The transport layer delivers a segment to a \emph{process} on that host. That difference is the whole point of the layer.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.22\textwidth} X}
+\toprule Function & Description\\
+\midrule
+Process-to-process delivery & Deliver to the correct application, identified by a port number.\\
+Multiplexing & Many applications send through one transport entity; each segment carries its source port.\\
+Demultiplexing & The receiver uses the destination port to hand each segment to the right socket.\\
+Segmentation and reassembly & Split the application stream into segments that fit the MTU and reassemble in order.\\
+Connection control & Connectionless (UDP) or connection-oriented (TCP).\\
+Flow control & Protect the receiver from being overrun.\\
+Error control & Detect loss and corruption end to end and retransmit.\\
+Congestion control & Adapt the sending rate to the state of the network.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Port numbers}
+
+A port is a 16-bit number, 0 to 65535, that identifies an application endpoint.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.20\textwidth} p{0.20\textwidth} X}
+\toprule Range & Name & Meaning\\
+\midrule
+0--1023 & Well-known & Assigned by IANA to standard servers: 20/21 FTP, 22 SSH, 23 Telnet, 25 SMTP, 53 DNS, 67/68 DHCP, 80 HTTP, 110 POP3, 143 IMAP, 161 SNMP, 443 HTTPS.\\
+1024--49151 & Registered & Vendor applications, for example 3306 MySQL, 5432 PostgreSQL.\\
+49152--65535 & Dynamic / ephemeral & Chosen temporarily by the client for the duration of a connection.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{rememberbox}
+A connection is identified by the \textbf{four-tuple}: source IP, source port, destination IP, destination port. Two browsers on the same machine talking to the same web server use different ephemeral source ports, which is how the OS keeps their data apart.
+\end{rememberbox}
+
+\section{UDP}
+
+\textbf{UDP} is a minimal, connectionless datagram transport. Its header is only 8 bytes: source port, destination port, length and checksum.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.22\textwidth} X}
+\toprule Property & Consequence\\
+\midrule
+Connectionless & No handshake, no state. Send immediately.\\
+Unreliable & No acknowledgement, no retransmission, no ordering.\\
+No flow control & The sender may outrun the receiver.\\
+No congestion control & UDP sends regardless of network condition.\\
+Message-oriented & It preserves message boundaries; each datagram is one message.\\
+Small header & 8 bytes versus 20 to 60 for TCP.\\
+Checksum optional & In IPv4 the UDP checksum may be zero, i.e.\ disabled.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q3(b)(iii).} Discuss how UDP achieves low latency communication despite its unreliability.
+\end{pyqbox}
+
+\begin{solbox}
+UDP is fast for four specific reasons, and each is the \emph{absence} of a mechanism TCP has:
+
+\begin{enumerate}
+\item \textbf{No handshake.} TCP spends one round trip establishing the connection before a single byte of data moves. UDP has no such delay: the first packet carries data.
+\item \textbf{No acknowledgement or retransmission.} TCD waits for ACKs and resends lost segments. Those waits and resends are latency. UDP simply moves on; if a datagram is lost, the application decides what to do.
+\item \textbf{No in-order delivery guarantee.} TCP must buffer out-of-order segments until the gap is filled, which introduces \emph{head-of-line blocking}: one lost segment stalls everything behind it even though those segments have already arrived. UDP delivers each datagram as soon as it arrives.
+\item \textbf{No congestion control.} TCP reduces its rate when it detects loss. UDP keeps sending at the application's rate, so a loss does not cause a rate cut and the resulting delays.
+\end{enumerate}
+
+\textbf{Why that trade is right for real-time media:} in a live voice or video call a frame that arrives 400 ms late is worthless. Retransmitting it wastes bandwidth \emph{and} delays the frames behind it. It is better to drop it and carry on, which is exactly UDP's behaviour. The application (RTP over UDP, WebRTC, DNS, DHCP, TFTP, SNMP, and most online games) implements whatever reliability or ordering it actually needs.
+
+\textbf{The cost:} UDP is unfair to TCP on a shared link because it does not back off, and it needs application-level mechanisms for loss, ordering and congestion, which is why the IETF later standardised QUIC (reliability over UDP, in user space) rather than letting every application reinvent it.
+\end{solbox}
+
+\section{TCP}
+
+\subsection{Features}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.24\textwidth} X}
+\toprule Feature & How it is achieved\\
+\midrule
+Connection-oriented & Three-way handshake before data; four-way teardown after.\\
+Reliable & Sequence numbers, cumulative ACKs, retransmission on timeout or on three duplicate ACKs.\\
+Ordered & The receiver buffers out-of-order segments and delivers in sequence.\\
+Byte-stream & No message boundaries: \texttt{write()} of 100 bytes may arrive as two reads.\\
+Full duplex & Independent data flow in both directions, each with its own window.\\
+Flow control & Receiver advertises a window (\texttt{rwnd}).\\
+Congestion control & Sender maintains a congestion window (\texttt{cwnd}); the effective window is the minimum of the two.\\
+Error detection & 16-bit checksum over header, data and a pseudo-header.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{TCP segment header}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.24\textwidth} p{0.12\textwidth} X}
+\toprule Field & Size & Purpose\\
+\midrule
+Source port & 16 bits & Sender's port\\
+Destination port & 16 bits & Receiver's port\\
+Sequence number & 32 bits & Byte number of the first data byte in this segment\\
+Acknowledgement number & 32 bits & Next byte the sender expects; cumulative\\
+Header length & 4 bits & In 32-bit words; minimum 5, i.e.\ 20 bytes\\
+Flags & 6 bits & URG, ACK, PSH, RST, SYN, FIN\\
+Window size & 16 bits & Flow-control window advertised by the receiver\\
+Checksum & 16 bits & Over header, data and pseudo-header\\
+Urgent pointer & 16 bits & Valid only when URG is set\\
+Options & variable & MSS, window scaling, SACK, timestamps\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Connection management}
+
+\begin{exambox}
+\textbf{Three-way handshake (connection open).}
+\begin{enumerate}
+\item Client sends \textbf{SYN}, \texttt{seq = x}. ``I want to connect; my first byte is x.''
+\item Server replies \textbf{SYN+ACK}, \texttt{seq = y}, \texttt{ack = x+1}. ``Accepted; my first byte is y; I have your x.''
+\item Client sends \textbf{ACK}, \texttt{ack = y+1}. ``I have your y.''
+\end{enumerate}
+Only after step 3 does either side send data. Three messages are needed so that \emph{each} side learns that the other's sequence number is known.
+
+\textbf{Four-way teardown (connection close).}
+\begin{enumerate}
+\item Client sends \textbf{FIN}.
+\item Server sends \textbf{ACK} (half-closed: the server may still send).
+\item Server sends its own \textbf{FIN} when done.
+\item Client sends \textbf{ACK} and waits \texttt{2MSL} before releasing the socket.
+\end{enumerate}
+
+Four messages because TCP is full duplex: each direction closes independently. The \texttt{2MSL} wait ensures the final ACK is not lost and that delayed duplicate segments from the old connection cannot be mistaken for the new one.
+\end{exambox}
+
+\begin{dangerbox}
+\textbf{Why a random initial sequence number?} If the sequence numbers were predictable, an off-path attacker could inject segments that the receiver would accept as genuine, and old duplicate segments from a previous connection could be accepted. Randomisation is a security control, not just a formality.
+\end{dangerbox}
+
+\section{TCP versus UDP}
+
+\begin{pyqbox}
+\textbf{Sept 2026 CAE-1 Q6A.} Compare connection-oriented and connectionless services in computer networks. Explain their characteristics, advantages, and limitations, using TCP as an example of connection-oriented service and UDP as an example of connectionless service.
+\end{pyqbox}
+
+\begin{solbox}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.20\textwidth} X X}
+\toprule Basis & TCP (connection-oriented) & UDP (connectionless)\\
+\midrule
+Connection & Handshake required before data & None\\
+Reliability & Guaranteed delivery, retransmission & Best effort, no retransmission\\
+Ordering & In-order byte stream & No ordering guarantee\\
+Header size & 20--60 bytes & 8 bytes\\
+Speed and overhead & Slower, more state and processing & Faster, minimal state\\
+Flow control & Yes, sliding window & No\\
+Congestion control & Yes, slow start and AIMD & No\\
+Data unit & Byte stream (segment) & Message (datagram)\\
+Broadcast/multicast & Not supported & Supported\\
+Suitable for & HTTP, FTP, SMTP, SSH, database & DNS, DHCP, VoIP, streaming, gaming, TFTP\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{Characteristics of a connection-oriented service:} the two sides agree on a connection and maintain state; delivery is reliable and ordered; there is flow and congestion control; teardown is explicit.
+
+\textbf{Characteristics of a connectionless service:} each message is independent and self-contained; no state is kept; delivery is not guaranteed; the overhead is minimal.
+
+\textbf{Advantages and limitations.} TCP's advantage is correctness --- applications receive a clean, ordered, complete stream. Its limitation is latency and head-of-line blocking. UDP's advantage is latency and simplicity; its limitation is that everything TCP gives is now the application's problem.
+
+\textbf{The modern nuance worth one sentence:} QUIC runs a reliable, congestion-controlled transport \emph{over} UDP in user space, getting UDP's deployability and fast handshake with TCP's guarantees. Examiners like this.
+\end{solbox}
+
+\subsection{What is the difference between connection-oriented and connectionless services}
+
+This is asked as a 3-mark standalone question. Give the table's first four rows: connection establishment, state, reliability, ordering. Add one example each.
+
+\section{Flow control}
+
+\subsection{The sliding window in TCP}
+
+Flow control protects the \textbf{receiver}: it stops a fast sender from overrunning a slow application.
+
+The receiver advertises a \textbf{receive window} \texttt{rwnd} in every ACK: the amount of buffer space still free. The sender keeps at most \texttt{rwnd} bytes unacknowledged. If the application stops reading and the buffer fills, \texttt{rwnd} becomes 0 and the sender stops.
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q3(a)(i).} Discuss the major flow control mechanisms in TCP. Explain how acknowledgements and timers are used to maintain flow control.
+\end{pyqbox}
+
+\begin{solbox}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.24\textwidth} X}
+\toprule Mechanism & Description\\
+\midrule
+Advertised window & Every ACK carries the free buffer size. The sender may have at most that many bytes in flight.\\
+Zero-window probe & When \texttt{rwnd = 0} the sender starts a persist timer; on expiry it sends a 1-byte probe so it learns when space frees up. Without this, a lost window update would deadlock the connection.\\
+Delayed ACK & The receiver waits up to about 200 ms to piggyback the ACK on data or to ACK two segments at once.\\
+Nagle's algorithm & The sender holds small segments until it has a full MSS or an ACK arrives, to avoid flooding the network with tiny packets.\\
+Silly window syndrome & Stopped by \emph{sender-side}: Nagle; and \emph{receiver-side}: do not advertise a window smaller than an MSS until it is at least half the buffer.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{How timers support this.} TCP keeps four timers: the \textbf{retransmission} timer (per segment, from the measured RTT via Jacobson's algorithm), the \textbf{persist} timer (zero-window probing), the \textbf{keepalive} timer (detect a dead peer) and the \textbf{TIME\_WAIT} timer (\texttt{2MSL} after closing).
+
+\textbf{ACKs and flow control together:} the ACK number tells the sender what has arrived; the window field tells it how much more may be sent. Together they form a credit scheme. The sender's effective limit is
+\[
+\text{effective window} = \min(\text{rwnd},\ \text{cwnd}) - (\text{last byte sent} - \text{last byte acked}).
+\]
+\end{solbox}
+
+\section{Congestion control}
+
+\subsection{How congestion occurs}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q3(b)(ii).} Describe how congestion occurs in a network.
+\end{pyqbox}
+
+\begin{solbox}
+Congestion is a state in which the load offered to a network exceeds its capacity, so queues build and performance collapses.
+
+The sequence is:
+\begin{enumerate}
+\item Traffic arrives at a router faster than the output link can carry it.
+\item The router buffers the excess in its queue. Queueing delay rises.
+\item When the queue is full, the router \textbf{drops} packets.
+\item Senders time out, retransmit, and \emph{also} slow down; but retransmissions add load.
+\item Delay and loss trigger more retransmission, which adds more load. This is \textbf{congestion collapse}: throughput falls while the offered load rises.
+\end{enumerate}
+
+\textbf{Symptoms:} rising delay and jitter, increasing loss, and throughput that falls as input grows. Note that overload is not the only cause: insufficient buffer memory, slow processors, and links whose bandwidth is mismatched in the middle of a path all produce it.
+
+\begin{dangerbox}
+\textbf{Flow control and congestion control are not the same problem.} Flow control is end-to-end and protects one receiver. Congestion control is network-wide and protects the routers. TCP implements both, using \texttt{rwnd} for the first and \texttt{cwnd} for the second, and always obeys the smaller.
+\end{dangerbox}
+\end{solbox}
+
+\subsection{Slow start, AIMD and fast recovery}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.24\textwidth} X}
+\toprule Phase & Behaviour\\
+\midrule
+Slow start & \texttt{cwnd} starts at 1 MSS and \textbf{doubles every RTT} (increases by one MSS per ACK). Exponential growth until the slow-start threshold.\\
+Congestion avoidance & Above the threshold, \texttt{cwnd} grows by about one MSS per RTT: \emph{additive increase}. The sawtooth begins here.\\
+Timeout & \texttt{ssthresh} = half of the current \texttt{cwnd}; \texttt{cwnd} reset to 1 MSS; slow start again.\\
+Three duplicate ACKs & Fast retransmit: the missing segment is resent immediately, without waiting for the timeout. This is \textbf{multiplicative decrease} without going back to 1.\\
+Fast recovery & \texttt{cwnd} = \texttt{ssthresh}, then congestion avoidance. Reno behaves this way; Tahoe always restarts at 1.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{rememberbox}
+\textbf{The shape to draw.} A curve that rises exponentially, then linearly, then drops sharply, then rises linearly again: a sawtooth. Additive increase, multiplicative decrease -- AIMD. This single graph is the answer to half the congestion-control questions.
+\end{rememberbox}
+
+\subsection{Modern variants}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.16\textwidth} X}
+\toprule Variant & Idea\\
+\midrule
+Tahoe & Slow start, congestion avoidance, fast retransmit. Always restarts at 1 after loss.\\
+Reno & Adds fast recovery: after three duplicate ACKs it halves instead of restarting.\\
+NewReno & Handles multiple losses in one window without multiple slow starts.\\
+CUBIC & Linux default. Window growth is a cubic function of time since the last loss, so it scales to high bandwidth-delay products.\\
+BBR & Models the bottleneck bandwidth and RTT instead of reacting to loss; performs well on lossy links such as mobile.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Quality of service}
+
+\begin{pyqbox}
+\textbf{Oct 2025 Q3(a)(iii).} What does QoS stand for? Mention any two of its key parameters.
+\end{pyqbox}
+
+\begin{solbox}
+\textbf{QoS (Quality of Service)} is the set of mechanisms that let a network treat some traffic better than others, so that applications with tight requirements get predictable service.
+
+\textbf{Key parameters:}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.20\textwidth} X}
+\toprule Parameter & Meaning\\
+\midrule
+Bandwidth & Guaranteed minimum rate, e.g.\ 2 Mbps for video.\\
+Delay (latency) & Maximum end-to-end delay, e.g.\ 150 ms for voice.\\
+Jitter & Maximum variation in delay, e.g.\ 30 ms.\\
+Packet loss & Maximum acceptable loss rate, e.g.\ 1\%.\\
+Reliability & Guaranteed delivery or availability.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{rememberbox}
+\textbf{Which application needs which.} Voice: low delay and low jitter, modest bandwidth, tolerates some loss. Video streaming: high bandwidth, jitter-tolerant because of buffering. File transfer: no delay requirement, needs zero loss. Interactive gaming: low delay above all.
+\end{rememberbox}
+\end{solbox}
+
+\subsection{Techniques}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.20\textwidth} X}
+\toprule Technique & Description\\
+\midrule
+Scheduling & Priority queueing, weighted fair queueing: decide which packet goes next.\\
+Traffic shaping & Smooth the output rate. \emph{Leaky bucket} sends at a constant rate; \emph{token bucket} allows bursts up to the bucket depth while enforcing an average rate.\\
+Traffic policing & Drop or mark traffic that exceeds the profile.\\
+Admission control & Refuse a new flow if it cannot be served.\\
+Resource reservation & RSVP signals the required bandwidth along the path.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.20\textwidth} X X}
+\toprule Model & Approach & Trade-off\\
+\midrule
+IntServ & Per-flow reservation with RSVP; every router keeps state for every flow. & Precise guarantees, but does not scale to a core router with millions of flows.\\
+DiffServ & Classify packets into a few classes (DSCP in the IP header); routers treat classes differently, keeping no per-flow state. & Scales well, but gives relative rather than absolute guarantees.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{exambox}
+\textbf{Leaky versus token bucket, in one line each.} A leaky bucket \emph{forces} a constant output rate and destroys bursts. A token bucket \emph{permits} bursts up to the bucket size and enforces only the long-run average. If the question asks which suits bursty traffic, the answer is the token bucket.
+\end{exambox}
+
+\section{Answer skeletons}
+
+\begin{answerbox}
+\textbf{Compare TCP and UDP (10 marks).} A table of at least eight rows, then two sentences: one on when TCP is right, one on when UDP is right. Mention the four-tuple and the port ranges to show depth.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Congestion control (10 marks).} Define congestion, give the cause-and-collapse sequence, then draw the sawtooth and label slow start, congestion avoidance, fast retransmit and fast recovery. Name \texttt{cwnd} and \texttt{ssthresh} explicitly.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{Flow control (10 marks).} State the problem (receiver overrun), the mechanism (advertised window), the edge cases (zero window, persist timer, silly window syndrome), and the four timers. Note that flow control is not congestion control.
+\end{answerbox}
+
+\begin{answerbox}
+\textbf{QoS (10 marks).} Define QoS, list the five parameters with a number each, then contrast IntServ and DiffServ and describe one shaping mechanism.
+\end{answerbox}
+
+\section{Self-test}
+
+\begin{enumerate}
+\item What is the difference between host-to-host and process-to-process delivery?
+\item Name the three port ranges and give three well-known ports.
+\item What is the four-tuple that identifies a TCP connection?
+\item List the fields of the UDP header and its size.
+\item Why does UDP have lower latency than TCP? Give four reasons.
+\item Explain the three-way handshake with the flags and sequence numbers.
+\item Why is the teardown four-way and not three-way?
+\item Why must the initial sequence number be random?
+\item Differentiate flow control from congestion control.
+\item What is a zero-window probe and why is it needed?
+\item What is silly window syndrome and how is it avoided?
+\item Explain slow start and congestion avoidance.
+\item What does \texttt{ssthresh} become after a timeout?
+\item Distinguish fast retransmit from fast recovery.
+\item State the AIMD principle and draw its sawtooth.
+\item What is congestion collapse?
+\item Define QoS and list five parameters.
+\item Differentiate IntServ and DiffServ.
+\item Compare leaky bucket and token bucket.
+\end{enumerate}
+
+\subsection*{Answers}
+\begin{enumerate}
+\item The network layer delivers to a host; the transport layer delivers to a process identified by a port.
+\item Well-known 0--1023, registered 1024--49151, ephemeral 49152--65535. HTTP 80, HTTPS 443, DNS 53, SMTP 25, SSH 22.
+\item Source IP, source port, destination IP, destination port.
+\item Source port, destination port, length, checksum: 8 bytes total.
+\item No handshake, no ACK or retransmission, no in-order buffering (so no head-of-line blocking), no congestion backoff.
+\item SYN(x), SYN+ACK(y, x+1), ACK(y+1). Three messages so both sides learn the other's sequence number.
+\item TCP is full duplex, so each direction is closed independently.
+\item To prevent off-path injection and to avoid accepting stale duplicate segments from an earlier connection.
+\item Flow control protects one receiver using \texttt{rwnd}; congestion control protects the network using \texttt{cwnd}.
+\item A 1-byte probe sent when the advertised window is zero, so the sender learns when space becomes available.
+\item Advertising tiny windows repeatedly; avoided by Nagle on the sender and by not advertising a window below one MSS (or half the buffer) on the receiver.
+\item Slow start doubles \texttt{cwnd} each RTT until \texttt{ssthresh}; congestion avoidance then adds about one MSS per RTT.
+\item Half of the \texttt{cwnd} at the time of the timeout.
+\item Fast retransmit resends on three duplicate ACKs without waiting for a timeout; fast recovery continues from \texttt{ssthresh} rather than restarting at 1.
+\item Additive increase, multiplicative decrease: grow linearly, halve on loss. The graph is a sawtooth.
+\item A state where offered load rises but throughput falls, because retransmissions add load to an already overloaded network.
+\item QoS is the set of mechanisms giving some traffic better, more predictable treatment. Parameters: bandwidth, delay, jitter, loss, reliability.
+\item IntServ reserves per flow with RSVP and does not scale; DiffServ classifies into a few classes with no per-flow state and scales well.
+\item A leaky bucket forces a constant rate and destroys bursts; a token bucket permits bursts up to the bucket size while enforcing the average rate.
+\end{enumerate}
+
+\section{Last-minute page}
+
+\begin{multicols}{2}
+\textbf{PORTS}\\
+0--1023 well known\\
+1024--49151 registered\\
+49152+ ephemeral\\
+20/21 FTP, 22 SSH, 25 SMTP,\\
+53 DNS, 80 HTTP, 443 HTTPS\\[5pt]
+\textbf{UDP}\\
+8-byte header, no handshake,\\
+no ACK, no order, no congestion\\
+control, message oriented\\
+DNS, DHCP, VoIP, TFTP\\[5pt]
+\textbf{TCP HEADER}\\
+src/dst port, seq, ack,\\
+header len, flags, window,\\
+checksum, urgent, options\\[5pt]
+\textbf{HANDSHAKE}\\
+SYN $\to$ SYN+ACK $\to$ ACK\\
+Teardown 4-way, 2MSL wait\\[5pt]
+\textbf{FLOW CONTROL}\\
+rwnd advertised by receiver\\
+zero window + persist probe\\
+Nagle, silly window syndrome\\[5pt]
+\textbf{CONGESTION}\\
+cwnd, ssthresh\\
+slow start: double per RTT\\
+avoidance: +1 MSS per RTT\\
+loss: halve (AIMD)\\
+3 dup ACKs: fast retransmit\\[5pt]
+\textbf{QoS}\\
+bandwidth, delay, jitter,\\
+loss, reliability\\
+IntServ (per flow) vs\\
+DiffServ (classes)\\
+leaky: constant, token: bursts\\[5pt]
+\textbf{TRAPS}\\
+Flow control $\neq$ congestion control\\
+Teardown is 4-way, not 3\\
+UDP has no ordering at all
+\end{multicols}
+
+\vfill
+\begin{center}\textit{The TCP/UDP table and the congestion sawtooth are the two things to be able to produce from memory.}\end{center}
+
+\end{document}
